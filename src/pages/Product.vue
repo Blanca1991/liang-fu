@@ -11,7 +11,7 @@
         maxlength="11" >
         <span class="fontFFF searchBtn">搜索</span>
         <span class="fontFFF downBtn">下载</span>
-        <Login class="fontFFF"/>
+        <LoginNav class="fontFFF"/>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
 
 <script>
 import LogoBg from '@/components/LogoBg'
-import Login from '@/components/Login'
+import LoginNav from '@/components/LoginNav'
 
 export default {
   name: 'Product',
@@ -40,7 +40,7 @@ export default {
   },
   components: {
     LogoBg,
-    Login
+    LoginNav
   }
 }
 </script>

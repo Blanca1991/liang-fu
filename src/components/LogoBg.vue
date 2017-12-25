@@ -1,3 +1,4 @@
+<!-- 产品logo -->
 <template>
   <div class="LogoBgBox">
     <div class="LogoBg">

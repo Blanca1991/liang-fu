@@ -1,3 +1,4 @@
+<!-- 头部导航栏 -->
 <template>
   <div class="comHeaderWarp" >
     <div class="comHeader" >
@@ -6,14 +7,14 @@
       :class="{ 'navActive': isActive==item.pagesName }" >
         {{ item.message }}
       </span>
-      <Login />
+      <LoginNav />
     </div>
   </div>
 </template>
 
 <script>
 import LogoBg from '../components/LogoBg'
-import Login from '../components/Login'
+import LoginNav from '../components/LoginNav'
 
 export default {
   name: 'ComHeader',
@@ -68,7 +69,7 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log(this.isActiveComp)
+      console.log(this)
     },
     gotoInfo (item, index) {
       if (item.pagesName === 'Product') {
@@ -81,7 +82,7 @@ export default {
   },
   components: {
     LogoBg,
-    Login
+    LoginNav
   },
   props: [ 'isActiveComp' ]
 }

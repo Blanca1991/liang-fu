@@ -5,11 +5,13 @@
     <div class="scoll">
       home
     </div>
+    <login />
   </div>
 </template>
 
 <script>
 import ComHeader from '@/components/ComHeader'
+import Login from '@/components/Login'
 
 export default {
   name: 'Home',
@@ -19,7 +21,8 @@ export default {
     }
   },
   components: {
-    ComHeader
+    ComHeader,
+    Login
   }
 }
 </script>

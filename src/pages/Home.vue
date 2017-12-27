@@ -5,7 +5,7 @@
     <div class="scoll">
       home
     </div>
-    <login />
+    <login v-show="this.$store.state.isLogin"/>
   </div>
 </template>
 
@@ -17,8 +17,17 @@ export default {
   name: 'Home',
   data () {
     return {
-      isActives: 'Home'
+      isActives: 'Home', // ComHeader内对应的tag高亮
+      isLogin: false // login登录组件是否显示  true显示 false隐藏
     }
+  },
+  computed: {
+
+  },
+  mounted () {
+    // 钩子函数
+  },
+  methods: {
   },
   components: {
     ComHeader,

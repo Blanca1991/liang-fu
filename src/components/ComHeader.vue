@@ -7,6 +7,8 @@
       :class="{ 'navActive': isActive==item.pagesName }" >
         {{ item.message }}
       </span>
+      <!-- 接收子组件传递的值 dateChild为子组件的值 showMsg是一个监听事件 -->
+      <!-- <LoginNav v-on:dateChild="showMsg"/> -->
       <LoginNav />
     </div>
   </div>
@@ -69,16 +71,20 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log(this)
     },
     gotoInfo (item, index) {
       if (item.pagesName === 'Product') {
         // 新开一个窗口展示页面
+        console.log(this.$store.state)
         window.open(window.location.origin + '#/' + item.pagesName)
+        console.log(this.$store.state)
       } else {
         this.$router.push({ name: item.pagesName })
       }
     }
+    // showMsg (date) {
+    //   console.log(date)
+    // }
   },
   components: {
     LogoBg,
@@ -101,7 +107,6 @@ export default {
 }
 .comHeader span{
   margin: 0 5px;
-  font-weight: bold;
   cursor:pointer
 }
 .comHeader span:hover{

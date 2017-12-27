@@ -5,11 +5,13 @@
     <div class="">
       Service
     </div>
+    <login v-show="this.$store.state.isLogin"/>
   </div>
 </template>
 
 <script>
 import ComHeader from '@/components/ComHeader'
+import Login from '@/components/Login'
 
 export default {
   name: 'Service',
@@ -29,7 +31,8 @@ export default {
     }
   },
   components: {
-    ComHeader
+    ComHeader,
+    Login
   }
 }
 </script>

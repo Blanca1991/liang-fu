@@ -1,29 +1,52 @@
 <!-- 登录小窗 -->
 <template>
   <div class="LoginNavWarp">
-    <div class="LoginNav">
-      <span class="clickSpan" v-show="login" @click="loginFun" >请登录</span>
-      <span v-show="!login">欢迎您</span>
-      <span v-show="!login">loginTest</span>
-      <span class="clickSpan" v-show="!login" @click="quitFun" >退出</span>
+    <div class="LoginNav font14">
+      <span class="pointer inBlock loginSpan" v-show="isLoginNav" @click="loginFun" >请登录</span>
+      <span v-show="!isLoginNav">欢迎您</span>
+      <span v-show="!isLoginNav">{{ userName }}</span>
+      <span class="clickSpan" v-show="!isLoginNav" @click="quitFun" >退出</span>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'LoginNav',
   data () {
     return {
-      login: true
+      userName: ''
     }
   },
+  computed: mapState([
+    'isLoginNav'
+  ]),
+  mounted () {
+    this.init()
+  },
   methods: {
+    init () {
+      // 初始化
+      this.getUserName()
+      console.log(this.$store.state)
+    },
+    getUserName () {
+      let userName = localStorage.getItem('userName')
+      if (userName && userName !== '') {
+        this.userName = userName
+        this.$store.state.isLoginNav = false
+      } else {
+        this.$store.state.isLoginNav = true
+      }
+    },
     quitFun () {
-      this.login = true
+      this.$store.state.isLoginNav = true
+      localStorage.clear()
     },
     loginFun () {
-      this.login = false
+      this.$store.commit('showLogin')// 显示登录窗口
     }
   }
 }
@@ -38,11 +61,14 @@ export default {
   margin-right: 10px;
   min-width: 200px;
 }
+.loginSpan {
+  width: 50%;
+  padding: 10px;
+}
+.loginSpan:hover{
+  color: #088db8
+}
 .LoginNav span{
   margin: 0 5px;
-  font-weight: bold;
-}
-.clickSpan{
-    cursor:pointer
 }
 </style>

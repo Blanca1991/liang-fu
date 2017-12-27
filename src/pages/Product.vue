@@ -9,17 +9,19 @@
         maxlength="18" >
         <input type="text" name="userPhone" class="userPhone" placeholder="请输入手机号"
         maxlength="11" >
-        <span class="fontFFF searchBtn">搜索</span>
-        <span class="fontFFF downBtn">下载</span>
-        <LoginNav class="fontFFF"/>
+        <span class="fontFFF searchBtn pointer font14">搜索</span>
+        <span class="fontFFF downBtn font14">下载</span>
+        <LoginNav class="fontFFF" />
       </div>
     </div>
+    <Login v-show="this.$store.state.isLogin"/>
   </div>
 </template>
 
 <script>
 import LogoBg from '@/components/LogoBg'
 import LoginNav from '@/components/LoginNav'
+import Login from '@/components/Login'
 
 export default {
   name: 'Product',
@@ -40,7 +42,8 @@ export default {
   },
   components: {
     LogoBg,
-    LoginNav
+    LoginNav,
+    Login
   }
 }
 </script>
@@ -65,10 +68,10 @@ export default {
 .searchBtn{
   padding:5px 10px;padding-left: 30px; margin-right: 10px; border-radius: 5px;
   background: url(../images/search_bg.png) no-repeat 10px center rgb(8, 141, 184) ;
-  margin-left: 10px; background-size: 18% ;font-weight: bold;
+  margin-left: 10px; background-size: 18% ;
 }
 .downBtn{
-  background: rgb(204, 204, 204); padding:5px 15px;border-radius: 5px;font-weight: bold;
+  background: rgb(204, 204, 204); padding:5px 15px;border-radius: 5px;
   margin-right: 10px
 }
 .ProductWarp input{

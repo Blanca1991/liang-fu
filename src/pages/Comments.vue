@@ -5,13 +5,13 @@
     <div class="">
       <span>意见和建议</span>
     </div>
+    <login v-show="this.$store.state.isLogin"/>
   </div>
 </template>
 
 <script>
 import ComHeader from '@/components/ComHeader'
-import http from '@/utils/http'
-import api from '@/utils/api'
+import Login from '@/components/Login'
 
 export default {
   name: 'Comments',
@@ -29,20 +29,11 @@ export default {
     init () {
       // 初始化
       console.log('Comments init !')
-    },
-    fetchData: async function () {
-      let params = {
-        userName: 'testlogin',
-        password: '1234qwer'
-      }
-      const res = await http.post(api.login, params)
-      if (res.data.success) {
-        alert('请求成功')
-      }
     }
   },
   components: {
-    ComHeader
+    ComHeader,
+    Login
   }
 }
 </script>

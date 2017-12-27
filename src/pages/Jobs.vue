@@ -5,11 +5,13 @@
     <div class="">
       公司招聘
     </div>
+    <login v-show="this.$store.state.isLogin"/>
   </div>
 </template>
 
 <script>
 import ComHeader from '@/components/ComHeader'
+import Login from '@/components/Login'
 
 export default {
   name: 'Jobs',
@@ -26,10 +28,12 @@ export default {
     init () {
       // 初始化
       console.log('Jobs init')
+      console.log(this.$store.state)
     }
   },
   components: {
-    ComHeader
+    ComHeader,
+    Login
   }
 }
 </script>

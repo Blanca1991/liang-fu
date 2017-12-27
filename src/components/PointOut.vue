@@ -1,10 +1,10 @@
 <!-- 登录小窗 -->
 <template>
   <div class="pointOutWarp">
-    <div class="pointOut">
+    <div class="pointOut font14">
       {{ this.pointTextComp }}
     </div>
-    <MaskBox class="mask" @click="closePointOut"/>
+    <MaskBox class="mask" />
   </div>
 </template>
 
@@ -19,9 +19,7 @@ export default {
     }
   },
   methods: {
-    closePointOut () {
-      this.$emit('dateFromChild', 'nihao')
-    }
+
   },
   components: {
     MaskBox
@@ -36,7 +34,7 @@ export default {
   width: 100vw;
   height: 100vh;
   min-width: 1200px;
-  letter-spacing:8px;
+  letter-spacing:4px;
 }
 .pointOut{
   background: #fff;

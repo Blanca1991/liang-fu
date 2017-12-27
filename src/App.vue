@@ -17,13 +17,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100vh;
+  overflow: auto;
 }
-body{ margin: 0;padding: 0;overflow: hidden; }
+body{ margin: 0;padding: 0; overflow: hidden;}
 body,html{-webkit-text-size-adjust: none;width: 100%;height: 100%;}
 *{text-decoration: none;list-style: none;}
 img{border: 0px;}
 ul,li,dl,dd,dt,p,ol,h1,h2,h3,h4,h5{font-size: 12px;font-weight: 100;padding: 0;margin: 0;}
 .wrap{margin: 0 auto;}
+.inBlock{display: inline-block;}
 .fl{float: left;}
 .fr{float: right;}
 .index{overflow: hidden;}

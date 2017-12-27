@@ -2,12 +2,13 @@
 <template>
   <div class="LoginWarp">
     <div class="Login" >
+      <span class="close inBlock pointer" @click="closeLogin"></span>
       <div class="font18 colorRed ">
-        登录
+        <span>登录</span>
       </div>
       <div class="inputBox userNameBox font14">
         <label class="colorRed ">用户名</label>
-        <input type="text" class="userName" v-model="userName"/>
+        <input type="text" class="userName" v-model="userName" @keyup="enterFun($event)"/>
       </div>
       <div class="inputBox passwordBox font14">
         <label class="colorRed ">密码</label>
@@ -17,8 +18,8 @@
         <span class="LoginBtn pointer" @click="loginFun()">登录</span>
       </div>
     </div>
-    <PointOut v-show="pointShow" :pointTextComp="pointText" :dateFromChild="showDate"/>
-    <MaskBox />
+    <PointOut v-show="pointShow" :pointTextComp="pointText" />
+    <MaskBox v-show="this.$store.state.isMask" v-on:closeComp="closeLogin"/>
   </div>
 </template>
 
@@ -32,11 +33,10 @@ export default {
   name: 'Login',
   data () {
     return {
-      login: true,
-      userName: '',
-      passWord: '',
-      pointShow: false,
-      pointText: ''
+      userName: '', // 用户名
+      passWord: '', // 密码
+      pointShow: false, // 控制提示框的显示 true为显示 false为隐藏
+      pointText: '' // 提示框内显示的文字
     }
   },
   methods: {
@@ -45,35 +45,54 @@ export default {
     },
     loginFun () {
       // 事件绑定 ———— 登录
-      console.log(this.userName)
       this.login = false
       if (this.userName === '') {
-        this.pointShow = true
-        this.pointText = '请填写用户名'
-        let vm = this
-        setTimeout(function () {
-          // 定时器
-          vm.pointShow = false
-        }, 1800)
+        this.pointOutFun('请填写用户名')
       } else if (this.passWord === '') {
-        this.pointShow = true
-        this.pointText = '请填写密码'
+        this.pointOutFun('请填写密码')
       }
-      // this.userName
-      // this.passWord
+      this.fetchLogin()
     },
-    fetchData: async function () {
+    enterFun (event) {
+      // 事件绑定 -- 回车键事件
+      if (event.keyCode === 13) {
+        this.fetchLogin()
+      }
+    },
+    fetchLogin: async function () {
+      // 接口请求 ———— 登录接口
       let params = {
-        userName: 'testlogin',
-        password: '1234qwer'
+        userName: this.userName,
+        password: this.passWord
       }
       const res = await http.post(api.login, params)
-      if (res.data.success) {
-        alert('请求成功')
+      // console.log(res)
+      if (res.data.success && res.data.success === 'true') {
+        console.log('loginSuccess')
+        this.$store.commit('hideLogin')// 隐藏登录框
+        // this.$store.commit('hideLoginNavBtn')
+        this.$store.state.isLoginNav = false// 切换loginNav的内容
+        localStorage.setItem('userName', this.userName)
+        localStorage.setItem('token', res.data.token)
+        this.userName = ''
+        this.passWord = ''
+      } else {
+        this.pointOutFun(res.data.msg)
       }
     },
-    showDate (data) {
-      console.log(data)
+    pointOutFun (date) {
+      // 事件调用 -- 调用提示层
+      this.pointShow = true
+      this.pointText = date
+      let vm = this
+      setTimeout(function () {
+        // 定时器
+        vm.pointShow = false
+      }, 1800)
+    },
+    closeLogin () {
+      // 事件绑定 -- 关闭登录窗口
+      this.$store.commit('hideLogin')
     }
   },
   components: {
@@ -104,11 +123,13 @@ export default {
   border-radius: 5px;
   text-align: left;
 }
-.inputBox{
-
-}
-.passwordBox{
-
+.close {
+  height: 30px;
+  width: 30px;
+  background: url(../images/close_bg.png) no-repeat center;
+  background-size: 50%;
+  position: absolute;
+  right: 10px;top: 10px;
 }
 .inputBox label{
   display: block;

@@ -4,21 +4,32 @@
     <div class="headerBox">
       <div class="header">
         <LogoBg :bgHide="bgHides" class="logoBg"/>
-        <input type="text" name="uesrName" class="uesrName" placeholder="请输入姓名">
-        <input type="text" name="userId" class="userId" placeholder="请输入身份证号"
-        maxlength="18" >
-        <input type="text" name="userPhone" class="userPhone" placeholder="请输入手机号"
-        maxlength="11" >
-        <span class="fontFFF searchBtn pointer font14">搜索</span>
+        <input type="text" class="uesrName" placeholder="请输入姓名" v-model="searchName" />
+        <input type="text" class="userId" placeholder="请输入身份证号"
+        maxlength="18" v-model="searchId">
+        <input type="text" class="userPhone" placeholder="请输入手机号"
+        maxlength="11" v-model="searchPhone">
+        <span class="fontFFF searchBtn pointer font14" @click="searchFun">搜索</span>
         <span class="fontFFF downBtn font14">下载</span>
         <LoginNav class="fontFFF" />
       </div>
     </div>
-    <Login v-show="this.$store.state.isLogin"/>
+    <div class="warning font16">注意！！！此处为示例数据，查询可获取相关数据</div>
+    <Login v-show="isLogin"/>
+    <MaskBox v-show="false"/>
+    <PointOut v-show="pointShow" :pointTextComp="pointText" />
+    <Loading v-show="isLoading"/>
   </div>
 </template>
 
 <script>
+import http from '@/utils/http'
+import api from '@/utils/api'
+import service from '@/service'
+import {mapState} from 'vuex'
+import PointOut from '@/components/PointOut'
+import Loading from '@/components/Loading'
+import MaskBox from '@/components/MaskBox'
 import LogoBg from '@/components/LogoBg'
 import LoginNav from '@/components/LoginNav'
 import Login from '@/components/Login'
@@ -27,8 +38,20 @@ export default {
   name: 'Product',
   data () {
     return {
-      bgHides: true
+      bgHides: true,
+      searchName: '',
+      searchId: '',
+      searchPhone: '',
+      isLoading: false
     }
+  },
+  computed: {
+    ...mapState({
+      // 获取数据
+      pointShow: state => state.pointShow,
+      pointText: state => state.pointText,
+      isLogin: state => state.isLogin
+    })
   },
   mounted () {
     // 钩子函数
@@ -38,56 +61,49 @@ export default {
     init () {
       // 初始化
       console.log('Product init')
+    },
+    searchFun () {
+      if (this.searchName === '') {
+
+      }
+    },
+    fetchSearch: async function () {
+      // 接口请求 ———— 搜索接口
+      let params = {
+        body: {
+          personName: this.searchName,
+          idNumber: this.searchId,
+          mobileNo: this.searchPhone,
+          token: localStorage.getItem('token')
+        },
+        header: {
+          reqFlag: '0',
+          userName: localStorage.getItem('username'),
+          source: 'web',
+          reqDateTime: service.getNowFormatDate(Date()),
+          reqDate: '',
+          merchantId: localStorage.getItem('username')
+        }
+      }
+      const res = await http.post(api.login, params)
+      // console.log(res)
+      if (res.data.success && res.data.success === 'true') {
+        console.log('loginSuccess')
+      } else {}
     }
   },
   components: {
     LogoBg,
     LoginNav,
-    Login
+    Login,
+    PointOut,
+    MaskBox,
+    Loading
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.ProductWarp{ }
-.ProductWarp .headerBox{
-  width: 100%;
-}
-.ProductWarp .header{
-  margin: 0 auto; width: 100%;min-width: 1200px; height:80px;
-  background: rgb(46, 46, 46); display: flex; justify-content: center;
-  align-items: center;
-}
-.logoBg{
-  width: 220px;
-}
-.fontFFF{
-  color: #ffffff
-}
-.searchBtn{
-  padding:5px 10px;padding-left: 30px; margin-right: 10px; border-radius: 5px;
-  background: url(../images/search_bg.png) no-repeat 10px center rgb(8, 141, 184) ;
-  margin-left: 10px; background-size: 18% ;
-}
-.downBtn{
-  background: rgb(204, 204, 204); padding:5px 15px;border-radius: 5px;
-  margin-right: 10px
-}
-.ProductWarp input{
-  height: 30px; line-height: 30px; font-size: 14px;
-  border: 0;border-radius: 5px; margin-left: 10px; outline:none ;
-}
-.uesrName{
-  background: url(../images/userName_bg.png) no-repeat 6px center #fff ; background-size: 12% ;
-  text-indent: 26px; margin-left: 20px
-}
-.userId{
-  width:200px;text-indent: 35px;
-  background: url(../images/userId_bg.png) no-repeat 9px center #fff ; background-size: 10% ;
-}
-.userPhone{
-  text-indent: 23px;
-  background: url(../images/userPhone_bg.png) no-repeat 5px center #fff ; background-size: 12% ;
-}
+@import '../css/product'
 </style>

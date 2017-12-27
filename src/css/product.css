@@ -1,0 +1,46 @@
+.ProductWarp{
+  background: #eee;min-width: 1200px;
+}
+.ProductWarp .headerBox{
+  width: 100%;
+}
+.ProductWarp .header{
+  margin: 0 auto; width: 100%;height:80px;min-width: 1200px;
+  background: rgb(46, 46, 46); display: flex; justify-content: center;
+  align-items: center;
+}
+.logoBg{
+  width: 220px;
+}
+.fontFFF{
+  color: #ffffff
+}
+.searchBtn{
+  padding:6px 10px;padding-left: 30px; margin-right: 10px; border-radius: 5px;
+  background: url(../images/search_bg.png) no-repeat 10px center rgb(8, 141, 184) ;
+  margin-left: 10px; background-size: 18% ;
+}
+.downBtn{
+  background: rgb(204, 204, 204); padding:6px 15px;border-radius: 5px;
+  margin-right: 10px
+}
+.ProductWarp input{
+  height: 30px; line-height: 30px; font-size: 14px;
+  border: 0;border-radius: 5px; margin-left: 10px; outline:none ;
+}
+.uesrName{
+  background: url(../images/userName_bg.png) no-repeat 6px center #fff ; background-size: 12% ;
+  text-indent: 26px; margin-left: 20px
+}
+.userId{
+  width:200px;text-indent: 35px;
+  background: url(../images/userId_bg.png) no-repeat 9px center #fff ; background-size: 10% ;
+}
+.userPhone{
+  text-indent: 23px;
+  background: url(../images/userPhone_bg.png) no-repeat 5px center #fff ; background-size: 12% ;
+}
+.warning{
+  width: 100%;padding: 15px 4%;background: #fcf8e3; color: #b8823b;
+  text-align: left; margin: 20px 0;box-sizing: border-box;
+}

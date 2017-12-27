@@ -5,7 +5,7 @@
       <span class="pointer inBlock loginSpan" v-show="isLoginNav" @click="loginFun" >请登录</span>
       <span v-show="!isLoginNav">欢迎您</span>
       <span v-show="!isLoginNav">{{ userName }}</span>
-      <span class="clickSpan" v-show="!isLoginNav" @click="quitFun" >退出</span>
+      <span class="clickSpan pointer" v-show="!isLoginNav" @click="quitFun" >退出</span>
     </div>
   </div>
 </template>
@@ -30,7 +30,6 @@ export default {
     init () {
       // 初始化
       this.getUserName()
-      console.log(this.$store.state)
     },
     getUserName () {
       let userName = localStorage.getItem('userName')
@@ -46,7 +45,7 @@ export default {
       localStorage.clear()
     },
     loginFun () {
-      this.$store.commit('showLogin')// 显示登录窗口
+      this.$store.commit('SHOWLOGIN')// 显示登录窗口
     }
   }
 }

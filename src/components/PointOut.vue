@@ -4,6 +4,9 @@
     <div class="pointOut font14">
       {{ this.pointTextComp }}
     </div>
+    <div class="">
+
+    </div>
     <MaskBox class="mask" />
   </div>
 </template>
@@ -14,13 +17,9 @@ import MaskBox from '../components/MaskBox'
 export default {
   name: 'PointOut',
   data () {
-    return {
-
-    }
+    return {}
   },
-  methods: {
-
-  },
+  methods: {},
   components: {
     MaskBox
   },

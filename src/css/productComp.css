@@ -1,0 +1,40 @@
+.infoTitle{
+  width: 170px;height: initial;color: #fff; padding-top: 30px;box-sizing: border-box;
+}
+.infoBox{margin-left: 10px; flex: 1;background: #fefefe}
+.textRebBg{ background: #ec6461;color: #ffffff;padding: 6px 8px;border-radius: 4px;}
+.textYellowBg{background: #f4af42; color: #ffffff; padding: 6px 8px; border-radius: 4px;}
+.textGreenBg{background: #39c46d; color: #ffffff; padding: 6px 8px; border-radius: 4px;}
+
+
+
+/* summaryInfo   style */
+.summaryInfo .infoTitle{
+  background: #50bfea;
+}
+.scoreBox{align-items: center;}
+.scoreWord{align-items: center; }
+.scoreBoxL{width: 42% ;height: 120px;line-height: 120px; padding-left: 20px;}
+.scoreImgBox .scoreDot span{
+  height: 20px;width: 20px;
+  background: url(../images/dot_bg.png) no-repeat center;background-size: 100%;
+}
+.scoreImgBox .scoreBar{ align-items: flex-start; padding-left: 5px}
+.scoreImgBox .scoreBar span{
+  width: 300px;height: 12px;border-radius: 10px;box-sizing: border-box;
+  background: -moz-linear-gradient(left, #AA3425, #F9F900,#3D8641);
+  background: -o-linear-gradient(left,#AA3425, #F9F900,#3D8641);
+  background: -webkit-linear-gradient(left ,#AA3425, #F9F900,#3D8641);
+}
+.selectDown{
+  display: inline-block;width: 30px;height: 30px;margin-left: 10px;
+  background: url(../images/select_bg.png) no-repeat center;background-size: 60%;
+}
+.selectUp{
+  transform: rotate(180deg);
+}
+.ruleTitle{background: #fafafa; box-sizing: border-box;height: 50px;line-height: 50px;}
+.ruleTitleL{width: 42%;}
+.ruleTitleR{flex: 1;align-items: center;}
+.detailList{box-sizing: border-box;height: 50px;line-height: 50px;}
+.detailListL{width: 42%;}

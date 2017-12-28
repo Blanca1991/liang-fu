@@ -1,5 +1,5 @@
 .ProductWarp{
-  background: #eee;min-width: 1200px;
+  background: #eee;min-width: 1200px; padding-bottom: 1px;
 }
 .ProductWarp .headerBox{
   width: 100%;
@@ -41,6 +41,9 @@
   background: url(../images/userPhone_bg.png) no-repeat 5px center #fff ; background-size: 12% ;
 }
 .warning{
-  width: 100%;padding: 15px 4%;background: #fcf8e3; color: #b8823b;
-  text-align: left; margin: 20px 0;box-sizing: border-box;
+  width: 100%;padding: 15px 3%;background: #fcf8e3; color: #b8823b;
+  text-align: left;box-sizing: border-box;margin-bottom: 10px;
+}
+.antiFraud{
+  width: 1140px;margin: 20px auto;
 }

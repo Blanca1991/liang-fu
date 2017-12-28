@@ -1,22 +1,39 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import summaryInfoStore from '../productComp/summaryInfoStore'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isLogin: false, // 登录窗口显示与否 true显示 false 隐藏
-    isMask: false, // 灰色遮罩层 true显示 false 隐藏
-    isLoginNav: true, // NAV 中的登录点击按钮显示与否
-    userName: '',
-    pointShow: false, // 控制提示框的显示 true为显示 false为隐藏
-    pointText: '' // 提示框内显示的文字
+    prohibit: {
+      num: '1',
+      details: [
+        {
+          ruleName: '公检法信息异常',
+          desc: '失信被执行人'
+        }
+      ]
+    },
+    restriction: {
+      num: '0',
+      details: []
+    },
+    prompt: {
+      num: '1',
+      details: [
+        {
+          ruleName: '运营商信息异常',
+          desc: '申请人姓名与手机号不一致'
+        }
+      ]
+    }
   },
   mutations: {
-    SHOWLOGIN (state) {
-      // 显示登录
-      this.state.isLogin = true
-      this.state.isMask = true
+    CHANGEDETILDS (state) {
+      // 空数据处理
+      console.log(state)
+      // for (let i = 0; i < state.length; i++) {
+      //   console.log(data[i])
+      // }
     },
     HIDELOGIN (state) {
       // 隐藏登录
@@ -45,8 +62,5 @@ export default new Vuex.Store({
     hidePoint ({commit}) {
       commit('HIDEOPTION')
     }
-  },
-  modules: {
-    summaryInfoStore
   }
 })

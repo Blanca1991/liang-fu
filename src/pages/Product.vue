@@ -14,7 +14,10 @@
         <LoginNav class="fontFFF" />
       </div>
     </div>
-    <div class="warning font16">注意！！！此处为示例数据，查询可获取相关数据</div>
+    <div class="antiFraud">
+      <div class="warning font16">注意！！！此处为示例数据，查询可获取相关数据</div>
+      <SummaryInfo />
+    </div>
     <Login v-show="isLogin"/>
     <MaskBox v-show="false"/>
     <PointOut v-show="pointShow" />
@@ -33,6 +36,7 @@ import MaskBox from '@/components/MaskBox'
 import LogoBg from '@/components/LogoBg'
 import LoginNav from '@/components/LoginNav'
 import Login from '@/components/Login'
+import SummaryInfo from '@/productComp/SummaryInfo'
 
 export default {
   name: 'Product',
@@ -97,7 +101,8 @@ export default {
     Login,
     PointOut,
     MaskBox,
-    Loading
+    Loading,
+    SummaryInfo
   }
 }
 </script>

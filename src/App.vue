@@ -30,6 +30,7 @@ ul,li,dl,dd,dt,p,ol,h1,h2,h3,h4,h5{font-size: 12px;font-weight: 100;padding: 0;m
 .fl{float: left;}
 .fr{float: right;}
 .index{overflow: hidden;}
+.flex{display: flex;}
 .clr{clear:both; height:0px; width:100%; font-size:1px; line-height:0px; visibility:hidden; overflow:hidden;}
 .pointer{cursor:pointer;}
 a,input,button{ outline:none; }
@@ -38,7 +39,18 @@ a,input,button{ outline:none; }
 .font16{font-size: 16px;}
 .font18{font-size: 18px;}
 .font20{font-size: 20px;}
+.font22{font-size: 22px;}
+.font24{font-size: 24px;}
+.font44{font-size: 44px;}
 .fontBold{font-weight: bold;}
+.textL{text-align: left; box-sizing: border-box;}
+.textR{text-align: right; box-sizing: border-box;}
+.borderL{border-left: 1px solid #eee;}
+.borderR{border-right: 1px solid #eee;}
+.borderT{border-top: 1px solid #eee;}
+.borderB{border-bottom: 1px solid #eee;}
+.pL20{padding-left: 20px}
+.pL10{padding-left: 10px}
 ::-moz-focus-inner{border:0px;}
 /*a:link {color:#0f0;text-decoration:none;}
 a:visited {color: #FFFF00; text-decoration:none;}

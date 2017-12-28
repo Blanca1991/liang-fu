@@ -77,6 +77,7 @@ export default {
         console.log('loginSuccess')
         this.$store.commit('HIDELOGIN')// 隐藏登录框
         this.$store.state.isLoginNav = false// 切换loginNav的内容
+        this.$store.commit('GETUSERNAME', this.userName)// 给store中的username赋值
         localStorage.setItem('userName', this.userName)
         localStorage.setItem('token', res.data.token)
         this.userName = ''
@@ -86,9 +87,9 @@ export default {
         this.$store.state.isLoginNav = true// 切换loginNav的内容
       }
     },
-    pointOutFun (date) {
+    pointOutFun (data) {
       // 事件调用 -- 调用提示层
-      this.$store.dispatch('showPoint', date)
+      this.$store.dispatch('showPoint', data)
     }
   },
   components: {

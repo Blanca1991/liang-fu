@@ -75,9 +75,13 @@ export default {
     gotoInfo (item, index) {
       if (item.pagesName === 'Product') {
         // 新开一个窗口展示页面
-        console.log(this.$store.state)
-        window.open(window.location.origin + '#/' + item.pagesName)
-        console.log(this.$store.state)
+        if (!localStorage.getItem('token')) {
+          this.$store.dispatch('showPoint', '请先登录')
+        } else {
+          window.open(window.location.origin + '#/' + item.pagesName)
+        }
+      } else if (item.pagesName === 'UserInfo') {
+        this.$store.commit('SHOWLOGIN')
       } else {
         this.$router.push({ name: item.pagesName })
       }

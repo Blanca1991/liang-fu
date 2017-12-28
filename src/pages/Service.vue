@@ -5,13 +5,16 @@
     <div class="">
       Service
     </div>
-    <login v-show="this.$store.state.isLogin"/>
+    <login v-show="isLogin"/>
+    <PointOut v-show="pointShow" :pointTextComp="pointText" />
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import ComHeader from '@/components/ComHeader'
 import Login from '@/components/Login'
+import PointOut from '@/components/PointOut'
 
 export default {
   name: 'Service',
@@ -19,6 +22,14 @@ export default {
     return {
       isActives: 'Service'
     }
+  },
+  computed: {
+    ...mapState({
+      // 获取数据
+      isLogin: state => state.isLogin,
+      pointShow: state => state.pointShow,
+      pointText: state => state.pointText
+    })
   },
   mounted () {
     // 钩子函数
@@ -32,7 +43,8 @@ export default {
   },
   components: {
     ComHeader,
-    Login
+    Login,
+    PointOut
   }
 }
 </script>

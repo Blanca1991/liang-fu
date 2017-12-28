@@ -28,6 +28,9 @@ export default new Vuex.Store({
     },
     HIDEOPTION (state) {
       this.state.pointShow = false
+    },
+    GETUSERNAME (state, data) {
+      this.state.userName = data
     }
   },
   actions: {

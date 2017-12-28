@@ -1,29 +1,41 @@
 <!-- 意见和建议 wuxiaobo-->
 <template>
   <div  class="ServiceWarp">
-    <ComHeader :isActiveComp="isActives"/>
+    <ComHeader :isActiveComp="isActives" />
     <div class="">
       <span>意见和建议</span>
     </div>
-    <login v-show="this.$store.state.isLogin"/>
+    <login v-show="isLogin"/>
+    <PointOut v-show="pointShowT"/>
+    <!-- <PointOut  v-show="pointShow" :pointTextComp="pointText" /> -->
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import ComHeader from '@/components/ComHeader'
 import Login from '@/components/Login'
+import PointOut from '@/components/PointOut'
 
 export default {
   name: 'Comments',
   data () {
     return {
-      isActives: 'Comments'
+      isActives: 'Comments',
+      pointShowT: false
     }
+  },
+  computed: {
+    ...mapState({
+      // 获取数据
+      isLogin: state => state.isLogin,
+      pointShow: state => state.pointShow,
+      pointText: state => state.pointText
+    })
   },
   mounted () {
     // 钩子函数
     this.init()
-    this.fetchData()
   },
   methods: {
     init () {
@@ -33,7 +45,8 @@ export default {
   },
   components: {
     ComHeader,
-    Login
+    Login,
+    PointOut
   }
 }
 </script>

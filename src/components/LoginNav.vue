@@ -5,7 +5,7 @@
       <span class="pointer inBlock loginSpan" v-show="isLoginNav" @click="loginFun" >请登录</span>
       <span v-show="!isLoginNav">欢迎您</span>
       <span v-show="!isLoginNav">{{ userName }}</span>
-      <span class="clickSpan pointer" v-show="!isLoginNav" @click="quitFun" >退出</span>
+      <span class="quitSpan pointer" v-show="!isLoginNav" @click="quitFun" >退出</span>
     </div>
   </div>
 </template>
@@ -16,13 +16,15 @@ import { mapState } from 'vuex'
 export default {
   name: 'LoginNav',
   data () {
-    return {
-      userName: ''
-    }
+    return {}
   },
-  computed: mapState([
-    'isLoginNav'
-  ]),
+  computed: {
+    ...mapState({
+      // 获取数据
+      isLoginNav: state => state.isLoginNav,
+      userName: state => state.userName
+    })
+  },
   mounted () {
     this.init()
   },
@@ -34,7 +36,7 @@ export default {
     getUserName () {
       let userName = localStorage.getItem('userName')
       if (userName && userName !== '') {
-        this.userName = userName
+        this.$store.commit('GETUSERNAME', userName)
         this.$store.state.isLoginNav = false
       } else {
         this.$store.state.isLoginNav = true
@@ -69,5 +71,8 @@ export default {
 }
 .LoginNav span{
   margin: 0 5px;
+}
+.quitSpan:hover{
+  color: #088db8
 }
 </style>

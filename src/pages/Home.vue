@@ -1,37 +1,44 @@
 <!-- 首页 wuxiaobo-->
 <template>
   <div  class="HomeWarp">
-    <ComHeader :isActiveComp="isActives"/>
+    <ComHeader :isActiveComp="isActives" />
     <div class="scoll">
       home
     </div>
-    <login v-show="this.$store.state.isLogin"/>
+    <login v-show="isLogin"/>
+    <PointOut v-show="pointShow" :pointTextComp="pointText" />
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import ComHeader from '@/components/ComHeader'
 import Login from '@/components/Login'
+import PointOut from '@/components/PointOut'
 
 export default {
   name: 'Home',
   data () {
     return {
-      isActives: 'Home', // ComHeader内对应的tag高亮
-      isLogin: false // login登录组件是否显示  true显示 false隐藏
+      isActives: 'Home' // ComHeader内对应的tag高亮
     }
   },
   computed: {
-
+    ...mapState({
+      // 获取数据
+      pointShow: state => state.pointShow,
+      pointText: state => state.pointText,
+      isLogin: state => state.isLogin
+    })
   },
   mounted () {
     // 钩子函数
   },
-  methods: {
-  },
+  methods: {},
   components: {
     ComHeader,
-    Login
+    Login,
+    PointOut
   }
 }
 </script>

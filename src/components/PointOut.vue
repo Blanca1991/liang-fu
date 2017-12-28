@@ -2,7 +2,7 @@
 <template>
   <div class="pointOutWarp">
     <div class="pointOut font14">
-      {{ this.pointTextComp }}
+      {{ pointText }}
     </div>
     <div class="">
 
@@ -13,17 +13,23 @@
 
 <script>
 import MaskBox from '../components/MaskBox'
+import {mapState} from 'vuex'
 
 export default {
   name: 'PointOut',
   data () {
     return {}
   },
+  computed: {
+    ...mapState({
+      // 获取数据
+      pointText: state => state.pointText
+    })
+  },
   methods: {},
   components: {
     MaskBox
-  },
-  props: [ 'pointTextComp' ]
+  }
 }
 </script>
 

@@ -6,7 +6,7 @@
       公司介绍
     </div>
     <login v-show="isLogin"/>
-    <PointOut v-show="pointShow" :pointTextComp="pointText" />
+    <PointOut v-show="pointShow" />
   </div>
 </template>
 
@@ -27,8 +27,7 @@ export default {
     ...mapState({
       // 获取数据
       isLogin: state => state.isLogin,
-      pointShow: state => state.pointShow,
-      pointText: state => state.pointText
+      pointShow: state => state.pointShow
     })
   },
   mounted () {

@@ -6,7 +6,7 @@
       home
     </div>
     <login v-show="isLogin"/>
-    <PointOut v-show="pointShow" :pointTextComp="pointText" />
+    <PointOut v-show="pointShow" />
   </div>
 </template>
 
@@ -27,7 +27,6 @@ export default {
     ...mapState({
       // 获取数据
       pointShow: state => state.pointShow,
-      pointText: state => state.pointText,
       isLogin: state => state.isLogin
     })
   },

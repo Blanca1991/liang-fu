@@ -17,7 +17,7 @@
     <div class="warning font16">注意！！！此处为示例数据，查询可获取相关数据</div>
     <Login v-show="isLogin"/>
     <MaskBox v-show="false"/>
-    <PointOut v-show="pointShow" :pointTextComp="pointText" />
+    <PointOut v-show="pointShow" />
     <Loading v-show="isLoading"/>
   </div>
 </template>
@@ -49,7 +49,6 @@ export default {
     ...mapState({
       // 获取数据
       pointShow: state => state.pointShow,
-      pointText: state => state.pointText,
       isLogin: state => state.isLogin
     })
   },

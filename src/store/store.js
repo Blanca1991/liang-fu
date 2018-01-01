@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import summaryInfoStore from '../productComp/summaryInfoStore'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    appOverflow: 'auto',
     isLogin: false, // 登录窗口显示与否 true显示 false 隐藏
     isMask: false, // 灰色遮罩层 true显示 false 隐藏
     isLoginNav: true, // NAV 中的登录点击按钮显示与否
@@ -17,11 +19,13 @@ export default new Vuex.Store({
       // 显示登录
       this.state.isLogin = true
       this.state.isMask = true
+      this.state.appOverflow = 'hidden'
     },
     HIDELOGIN (state) {
       // 隐藏登录
       this.state.isLogin = false
       this.state.isMask = false
+      this.state.appOverflow = 'auto'
     },
     SHOWPOINT (state, pointText) {
       this.state.pointShow = true

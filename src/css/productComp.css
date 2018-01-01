@@ -5,7 +5,7 @@
 .textRebBg{ background: #ec6461;color: #ffffff;padding: 6px 8px;border-radius: 4px;}
 .textYellowBg{background: #f4af42; color: #ffffff; padding: 6px 8px; border-radius: 4px;}
 .textGreenBg{background: #39c46d; color: #ffffff; padding: 6px 8px; border-radius: 4px;}
-
+.titleBg{background: #fafafa;}
 
 
 /* summaryInfo   style */
@@ -19,22 +19,31 @@
   height: 20px;width: 20px;
   background: url(../images/dot_bg.png) no-repeat center;background-size: 100%;
 }
-.scoreImgBox .scoreBar{ align-items: flex-start; padding-left: 5px}
+.scoreImgBox .scoreBar{ align-items: flex-start; padding-left: 5px; width: 310px;}
 .scoreImgBox .scoreBar span{
-  width: 300px;height: 12px;border-radius: 10px;box-sizing: border-box;
+  width: 310px;height: 12px;border-radius: 10px;box-sizing: border-box;
   background: -moz-linear-gradient(left, #AA3425, #F9F900,#3D8641);
   background: -o-linear-gradient(left,#AA3425, #F9F900,#3D8641);
   background: -webkit-linear-gradient(left ,#AA3425, #F9F900,#3D8641);
 }
 .selectDown{
+  /* transition:transform 1s; */
   display: inline-block;width: 30px;height: 30px;margin-left: 10px;
   background: url(../images/select_bg.png) no-repeat center;background-size: 60%;
 }
 .selectUp{
-  transform: rotate(180deg);
+  transform: rotateX(180deg);
 }
 .ruleTitle{background: #fafafa; box-sizing: border-box;height: 50px;line-height: 50px;}
 .ruleTitleL{width: 42%;}
 .ruleTitleR{flex: 1;align-items: center;}
 .detailList{box-sizing: border-box;height: 50px;line-height: 50px;}
 .detailListL{width: 42%;}
+
+
+/**/
+.baseInfoWarp{margin-top: 10px;}
+.baseInfo .infoTitle{
+  background: #5ed3b6;
+}
+.baseInfo .width18{width: 18%}

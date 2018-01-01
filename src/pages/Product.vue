@@ -17,6 +17,7 @@
     <div class="antiFraud">
       <div class="warning font16">注意！！！此处为示例数据，查询可获取相关数据</div>
       <SummaryInfo />
+      <BaseInfo />
     </div>
     <Login v-show="isLogin"/>
     <MaskBox v-show="false"/>
@@ -37,6 +38,7 @@ import LogoBg from '@/components/LogoBg'
 import LoginNav from '@/components/LoginNav'
 import Login from '@/components/Login'
 import SummaryInfo from '@/productComp/SummaryInfo'
+import BaseInfo from '@/productComp/BaseInfo'
 
 export default {
   name: 'Product',
@@ -102,7 +104,8 @@ export default {
     PointOut,
     MaskBox,
     Loading,
-    SummaryInfo
+    SummaryInfo,
+    BaseInfo
   }
 }
 </script>

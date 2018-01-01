@@ -15,9 +15,9 @@
               <span class="font22">智多分 :</span>
               <span class="font44 pL10">{{score}}</span>
             </div>
-            <div class="scoreImgBox pL20">
+            <div class="scoreImgBox pL20" v-if="scoreShow">
               <div class="scoreDot flex">
-                <span class="inBlock" style="margin-left:120px"></span>
+                <span class="inBlock" v-bind:style="{marginLeft: this.scoreStyle}"></span>
               </div>
               <div class="scoreBar flex">
                 <span class="inBlock"></span>
@@ -41,7 +41,7 @@
                 <span>{{item.ruleName}}</span>
               </div>
               <div class="textL pL20 ">
-                <span class="textRebBg">{{item.desc}}</span>
+                <span :class="{textRebBg: prohibit.num !== '0'}">{{item.desc}}</span>
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@
                 <span>{{item.ruleName}}</span>
               </div>
               <div class="textL pL20 ">
-                <span class="textYellowBg">{{item.desc}}</span>
+                <span :class="{textYellowBg: restriction.num !=='0'}">{{item.desc}}</span>
               </div>
             </div>
           </div><div class="infoList">
@@ -78,7 +78,7 @@
                 <span>{{item.ruleName}}</span>
               </div>
               <div class="textL pL20 ">
-                <span class="textYellowBg">{{item.desc}}</span>
+                <span :class="{textYellowBg: prompt.num !=='0'}">{{item.desc}}</span>
               </div>
             </div>
           </div>
@@ -95,7 +95,8 @@ export default {
   name: 'SummaryInfo',
   data () {
     return {
-      score: 620,
+      scoreStyle: '', // 智多分 分数的坐标
+      scoreShow: true, // 分数条的显示与否
       prohibitIsShow: false, // 控制禁止规则显示与否
       restrictionIsShow: false, // 控制限制规则显示与否
       promptIsShow: false // 控制提示规则显示与否
@@ -104,6 +105,7 @@ export default {
   computed: {
     ...mapState({
       // 获取数据
+      score: state => state.summaryInfoStore.score,
       prohibit: state => state.summaryInfoStore.prohibit,
       restriction: state => state.summaryInfoStore.restriction,
       prompt: state => state.summaryInfoStore.prompt
@@ -117,7 +119,10 @@ export default {
     init () {
       // 初始化
       console.log('summaryInfo init')
-      this.emptyDetailsFun()
+      this.emptyDetailsFun(this.prohibit)
+      this.emptyDetailsFun(this.restriction)
+      this.emptyDetailsFun(this.prompt)
+      this.scoreStyleFun()
     },
     toggleList (data) {
       switch (data) {
@@ -133,16 +138,21 @@ export default {
         default:
       }
     },
-    emptyDetailsFun () {
-      console.log(this.restriction.details.length)
-      if (this.restriction.details.length === 0) {
-        this.restriction.details.ruleName = '————'
-        this.restriction.details.desc = '————'
-        console.log(this.restriction)
+    emptyDetailsFun (data) {
+      if (data.details.length === 0) {
+        data.details.push({ruleName: '——', desc: '——'})
       }
-      // for (let i = 0; i < data.length; i++) {
-      //   console.log(data[i])
-      // }
+    },
+    scoreStyleFun () {
+      if (this.score === null || this.score === '') {
+        this.$store.state.summaryInfoStore.score = '暂无数据'
+        console.log(this)
+        this.scoreShow = false
+      } else {
+        let score = parseInt(this.score)
+        let scoreStyle = (score - 350) * 0.6
+        this.scoreStyle = scoreStyle + 'px'
+      }
     }
   }
 }

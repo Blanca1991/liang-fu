@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-bind:style="{overflow: this.$store.state.appOverflow}">
     <router-view/>
   </div>
 </template>
@@ -49,8 +49,9 @@ a,input,button{ outline:none; }
 .borderR{border-right: 1px solid #eee;}
 .borderT{border-top: 1px solid #eee;}
 .borderB{border-bottom: 1px solid #eee;}
-.pL20{padding-left: 20px}
-.pL10{padding-left: 10px}
+.pL20{padding-left: 20px;box-sizing: border-box;}
+.pL10{padding-left: 10px;box-sizing: border-box;}
+.pR20{padding-right: 20px;box-sizing: border-box;}
 ::-moz-focus-inner{border:0px;}
 /*a:link {color:#0f0;text-decoration:none;}
 a:visited {color: #FFFF00; text-decoration:none;}

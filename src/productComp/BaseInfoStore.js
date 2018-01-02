@@ -4,28 +4,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    score: '390',
-    prohibit: {
-      num: '1',
-      details: [
-        {
-          ruleName: '公检法信息异常',
-          desc: '失信被执行人'
-        }
-      ]
+    baseInfo: {
+      name: '李*天',
+      idNumber: '64***********14',
+      age: '36',
+      sex: '男',
+      idNumberOwnership: '宁夏回族自治区银南地区青铜峡市',
+      idNumberCheck: '是',
+      nameMatchIdNumber: '否'
     },
-    restriction: {
-      num: '0',
-      details: []
-    },
-    prompt: {
-      num: '1',
-      details: [
-        {
-          ruleName: '运营商信息异常',
-          desc: '申请人姓名与手机号不一致'
-        }
-      ]
+    telecomInfo: {
+      type: '联通',
+      mobileNo: '15379509999',
+      mobileOwnership: '上海',
+      inTime: '3-6个月',
+      onLineStatus: '正常在用',
+      nameMatchMobile: '否'
     }
   },
   mutations: {

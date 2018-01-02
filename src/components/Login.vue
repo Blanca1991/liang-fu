@@ -18,7 +18,7 @@
         <span class="LoginBtn pointer" @click="loginFun()">登录</span>
       </div>
     </div>
-    <PointOut v-show="pointShow" :pointTextComp="pointText" />
+    <PointOut v-show="pointShow" />
     <MaskBox v-show="this.$store.state.isMask" v-on:closeComp="$store.commit('HIDELOGIN')"/>
   </div>
 </template>
@@ -41,8 +41,7 @@ export default {
   computed: {
     ...mapState({
       // 获取数据
-      pointShow: state => state.pointShow,
-      pointText: state => state.pointText
+      pointShow: state => state.pointShow
     })
   },
   methods: {
@@ -56,8 +55,9 @@ export default {
         this.pointOutFun('请填写用户名')
       } else if (this.passWord === '') {
         this.pointOutFun('请填写密码')
+      } else {
+        this.fetchLogin()
       }
-      this.fetchLogin()
     },
     enterFun (event) {
       // 事件绑定 -- 回车键事件

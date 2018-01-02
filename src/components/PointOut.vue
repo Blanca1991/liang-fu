@@ -1,11 +1,21 @@
 <!-- 登录小窗 -->
 <template>
-  <div class="pointOutWarp">
+  <div class="pointOutWarp" v-if="!pointShowBtn">
     <div class="pointOut font14">
       {{ pointText }}
     </div>
-    <div class="">
-
+    <div class="btnClass" v-if="pointShowBtn">
+      <div class="">
+        {{ pointText }}
+      </div>
+      <div class="">
+        <div class="cancelBtn">
+          取消
+        </div>
+        <div class="ensureBtn">
+          确定
+        </div>
+      </div>
     </div>
     <MaskBox class="mask" />
   </div>
@@ -23,7 +33,8 @@ export default {
   computed: {
     ...mapState({
       // 获取数据
-      pointText: state => state.pointText
+      pointText: state => state.pointText,
+      pointShowBtn: state => state.pointShowBtn
     })
   },
   methods: {},

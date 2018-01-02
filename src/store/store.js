@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import summaryInfoStore from '../productComp/summaryInfoStore'
+import baseInfoStore from '../productComp/baseInfoStore'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ export default new Vuex.Store({
     isLoginNav: true, // NAV 中的登录点击按钮显示与否
     userName: '',
     pointShow: false, // 控制提示框的显示 true为显示 false为隐藏
-    pointText: '' // 提示框内显示的文字
+    pointText: '', // 提示框内显示的文字
+    pointShowBtn: false // pointShow 弹框有无Btn按钮
   },
   mutations: {
     SHOWLOGIN (state) {
@@ -36,6 +38,10 @@ export default new Vuex.Store({
     },
     GETUSERNAME (state, data) {
       this.state.userName = data
+    },
+    CHANGESEARCHDATA (state, data) {
+      console.log(this.state)
+      console.log(data)
     }
   },
   actions: {
@@ -48,9 +54,13 @@ export default new Vuex.Store({
     },
     hidePoint ({commit}) {
       commit('HIDEOPTION')
+    },
+    changeSearchData ({commit}) {
+      commit('CHANGESEARCHDATA')
     }
   },
   modules: {
-    summaryInfoStore
+    summaryInfoStore,
+    baseInfoStore
   }
 })

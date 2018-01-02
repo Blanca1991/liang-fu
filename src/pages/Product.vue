@@ -1,6 +1,6 @@
 <!-- 产品适用 wuxiaobo-->
 <template>
-  <div  class="ProductWarp">
+  <div class="ProductWarp">
     <div class="headerBox">
       <div class="header">
         <LogoBg :bgHide="bgHides" class="logoBg"/>
@@ -20,7 +20,6 @@
       <BaseInfo />
     </div>
     <Login v-show="isLogin"/>
-    <MaskBox v-show="false"/>
     <PointOut v-show="pointShow" />
     <Loading v-show="isLoading"/>
   </div>
@@ -33,7 +32,6 @@ import service from '@/service'
 import {mapState} from 'vuex'
 import PointOut from '@/components/PointOut'
 import Loading from '@/components/Loading'
-import MaskBox from '@/components/MaskBox'
 import LogoBg from '@/components/LogoBg'
 import LoginNav from '@/components/LoginNav'
 import Login from '@/components/Login'
@@ -45,9 +43,9 @@ export default {
   data () {
     return {
       bgHides: true,
-      searchName: '',
-      searchId: '',
-      searchPhone: '',
+      searchName: '王立国',
+      searchId: '642102197107030914',
+      searchPhone: '15379509999',
       isLoading: false
     }
   },
@@ -68,11 +66,30 @@ export default {
       console.log('Product init')
     },
     searchFun () {
+      let userNameReg = /^[\u4E00-\u9FA5]{2,4}$/  // 姓名限制为二到四位的中文字符
+      let userMobileReg = /^1(3|4|5|7|8)[0-9]\d{8}$/  // 手机号为1开头的11位数字
       if (this.searchName === '') {
-
+        this.pointOutFun('请输入姓名')
+      } else if (!userNameReg.test(this.searchName)) {
+        this.pointOutFun('请输入正确的姓名')
+      } else if (this.searchId === '') {
+        this.pointOutFun('请输入身份证号')
+      } else if (!service.IdentityCodeValid(this.searchId)) {
+        this.pointOutFun('请输入正确的身份证号')
+      } else if (this.searchPhone === '') {
+        this.pointOutFun('请输入电话号码')
+      } else if (!userMobileReg.test(this.searchPhone)) {
+        this.pointOutFun('请输入正确的电话号码')
+      } else {
+        this.fetchSearch()
       }
     },
+    pointOutFun (data) {
+      // 事件调用 -- 调用提示层
+      this.$store.dispatch('showPoint', data)
+    },
     fetchSearch: async function () {
+      this.isLoading = true
       // 接口请求 ———— 搜索接口
       let params = {
         body: {
@@ -83,18 +100,26 @@ export default {
         },
         header: {
           reqFlag: '0',
-          userName: localStorage.getItem('username'),
+          userName: localStorage.getItem('userName'),
           source: 'web',
           reqDateTime: service.getNowFormatDate(Date()),
           reqDate: '',
-          merchantId: localStorage.getItem('username')
+          merchantId: localStorage.getItem('userName')
         }
       }
-      const res = await http.post(api.login, params)
-      // console.log(res)
-      if (res.data.success && res.data.success === 'true') {
-        console.log('loginSuccess')
-      } else {}
+      console.log(params)
+      const res = await http.post(api.antifraud, params)
+      console.log(res)
+      console.log(res.data)
+      if (res.data.body.success && res.data.body.success === 'true') {
+        console.log(res.data.body)
+        let data = res.data.body.result
+        this.$store.dispatch('changeSearchData', data)
+        this.isLoading = false
+      } else if (res.data.body.success === 'false') {
+        this.isLoading = false
+        this.pointOutFun(res.data.body.errorMsg)
+      }
     }
   },
   components: {
@@ -102,7 +127,6 @@ export default {
     LoginNav,
     Login,
     PointOut,
-    MaskBox,
     Loading,
     SummaryInfo,
     BaseInfo

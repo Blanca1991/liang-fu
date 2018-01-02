@@ -1,35 +1,47 @@
 <template>
   <div class="loading">
-    <div class="round_box">
-      <div class="round round_01"></div>
-      <div class="round round_02"></div>
-      <div class="round round_03"></div>
-      <div class="round round_04"></div>
-      <div class="round round_05"></div>
-      <div class="round round_06"></div>
-      <div class="round round_07"></div>
-      <div class="round round_08"></div>
-      <div class="round round_09"></div>
-      <div class="round round_10"></div>
-      <div class="round round_11"></div>
-      <div class="round round_12"></div>
+    <div class="round_box_box">
+      <div class="round_box">
+        <div class="round round_01"></div>
+        <div class="round round_02"></div>
+        <div class="round round_03"></div>
+        <div class="round round_04"></div>
+        <div class="round round_05"></div>
+        <div class="round round_06"></div>
+        <div class="round round_07"></div>
+        <div class="round round_08"></div>
+        <div class="round round_09"></div>
+        <div class="round round_10"></div>
+        <div class="round round_11"></div>
+        <div class="round round_12"></div>
+      </div>
     </div>
+    <MaskBox />
   </div>
 </template>
 
 <script>
+import MaskBox from '../components/MaskBox'
 export default {
   name: 'Loading',
   data () {
     return {}
+  },
+  methods: {},
+  components: {
+    MaskBox
   }
 }
 </script>
 
 <style scoped>
+.round_box_box{
+  width: 150px; height: 150px; background: rgba(0,0,0,0.6); position: absolute;
+  transform: translateX(-50%)translateY(-50%);left: 50%;top: 50%; z-index: 20;border-radius: 5px;
+}
 .round_box{
   position: absolute; top:50%; left:50%; height: 150px; width: 150px;
-  transform: translateX(-50%) translateY(-50%) rotateY(180deg) scale(0.5); 
+  transform: translateX(-50%) translateY(-50%) rotateY(180deg) scale(0.5);
 }
 .round {
   position: absolute; width: 40px; height: 15px; border-radius: 10px;

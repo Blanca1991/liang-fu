@@ -5,13 +5,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     baseInfo: {
-      name: '李*天',
+      name: '李晓天',
       idNumber: '64***********14',
       age: '36',
       sex: '男',
       idNumberOwnership: '宁夏回族自治区银南地区青铜峡市',
       idNumberCheck: '是',
-      nameMatchIdNumber: '否'
+      nameMatchIdNumber: '是'
     },
     telecomInfo: {
       type: '联通',

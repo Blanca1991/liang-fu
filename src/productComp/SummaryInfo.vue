@@ -31,17 +31,17 @@
               <div class="ruleTitleL textL borderR pL20">
                 <strong>触发禁止性规则</strong>
               </div>
-              <div class="ruleTitleR textL pL20 flex pointer" @click="toggleList('prohibit')">
-                <span>{{prohibit.num}} 条</span>
-                <i class="selectDown " v-bind:class="{'selectUp': prohibitIsShow}"></i>
+              <div class="ruleTitleR textL pL20 flex pointer" @click="toggleList('prohibitoryInfo')">
+                <span>{{prohibitoryInfo.num}} 条</span>
+                <i class="selectDown " v-bind:class="{'selectUp': prohibitoryInfoIsShow}"></i>
               </div>
             </div>
-            <div class="flex detailList borderT" v-if="prohibitIsShow" v-for="item in prohibit.details">
+            <div class="flex detailList borderT" v-if="prohibitoryInfoIsShow" v-for="item in prohibitoryInfo.detail">
               <div class="textL pL20 detailListL borderR">
                 <span>{{item.ruleName}}</span>
               </div>
               <div class="textL pL20 ">
-                <span :class="{textRebBg: prohibit.num !== '0'}">{{item.desc}}</span>
+                <span :class="{textRebBg: prohibitoryInfo.num !== '0'}">{{item.desc}}</span>
               </div>
             </div>
           </div>
@@ -50,17 +50,17 @@
               <div class="ruleTitleL textL borderR pL20">
                 <strong>触发限制性规则</strong>
               </div>
-              <div class="ruleTitleR textL pL20 flex pointer" @click="toggleList('restriction')">
-                <span>{{restriction.num}} 条</span>
-                <i class="selectDown " v-bind:class="{'selectUp': restrictionIsShow}"></i>
+              <div class="ruleTitleR textL pL20 flex pointer" @click="toggleList('restrictedInfo')">
+                <span>{{restrictedInfo.num}} 条</span>
+                <i class="selectDown " v-bind:class="{'selectUp': restrictedInfoIsShow}"></i>
               </div>
             </div>
-            <div class="flex detailList borderT" v-if="restrictionIsShow" v-for="item in restriction.details">
+            <div class="flex detailList borderT" v-if="restrictedInfoIsShow" v-for="item in restrictedInfo.detail">
               <div class="textL pL20 detailListL borderR">
                 <span>{{item.ruleName}}</span>
               </div>
               <div class="textL pL20 ">
-                <span :class="{textYellowBg: restriction.num !=='0'}">{{item.desc}}</span>
+                <span :class="{textYellowBg: restrictedInfo.num !=='0'}">{{item.desc}}</span>
               </div>
             </div>
           </div><div class="infoList">
@@ -68,17 +68,17 @@
               <div class="ruleTitleL textL borderR pL20">
                 <strong>触发提示性规则</strong>
               </div>
-              <div class="ruleTitleR textL pL20 flex pointer" @click="toggleList('prompt')">
-                <span>{{prompt.num}} 条</span>
-                <i class="selectDown " v-bind:class="{'selectUp': promptIsShow}"></i>
+              <div class="ruleTitleR textL pL20 flex pointer" @click="toggleList('riskWarningInfo')">
+                <span>{{riskWarningInfo.num}} 条</span>
+                <i class="selectDown " v-bind:class="{'selectUp': riskWarningInfoIsShow}"></i>
               </div>
             </div>
-            <div class="flex detailList borderT" v-if="promptIsShow" v-for="item in prompt.details">
+            <div class="flex detailList borderT" v-if="riskWarningInfoIsShow" v-for="item in riskWarningInfo.detail">
               <div class="textL pL20 detailListL borderR">
                 <span>{{item.ruleName}}</span>
               </div>
               <div class="textL pL20 ">
-                <span :class="{textYellowBg: prompt.num !=='0'}">{{item.desc}}</span>
+                <span :class="{textYellowBg: riskWarningInfo.num !=='0'}">{{item.desc}}</span>
               </div>
             </div>
           </div>
@@ -97,50 +97,61 @@ export default {
     return {
       scoreStyle: '', // 智多分 分数的坐标
       scoreShow: true, // 分数条的显示与否
-      prohibitIsShow: false, // 控制禁止规则显示与否
-      restrictionIsShow: false, // 控制限制规则显示与否
-      promptIsShow: false // 控制提示规则显示与否
+      prohibitoryInfoIsShow: false, // 控制禁止规则显示与否
+      restrictedInfoIsShow: false, // 控制限制规则显示与否
+      riskWarningInfoIsShow: false // 控制提示规则显示与否
     }
   },
   computed: {
     ...mapState({
       // 获取数据
       score: state => state.summaryInfoStore.score,
-      prohibit: state => state.summaryInfoStore.prohibit,
-      restriction: state => state.summaryInfoStore.restriction,
-      prompt: state => state.summaryInfoStore.prompt
+      prohibitoryInfo: state => state.summaryInfoStore.prohibitoryInfo,
+      restrictedInfo: state => state.summaryInfoStore.restrictedInfo,
+      riskWarningInfo: state => state.summaryInfoStore.riskWarningInfo
     })
   },
   mounted () {
     // 钩子函数
     this.init()
   },
+  watch: {
+    restrictedInfo (newrestrictedInfo) {
+      this.emptyDetailFun(newrestrictedInfo)
+    },
+    score () {
+      this.scoreStyleFun()
+    },
+    prohibitoryInfo (newprohibitoryInfo) {
+      this.emptyDetailFun(newprohibitoryInfo)
+    },
+    riskWarningInfo (newriskWarningInfo) {
+      this.emptyDetailFun(newriskWarningInfo)
+    }
+  },
   methods: {
     init () {
       // 初始化
-      console.log('summaryInfo init')
-      this.emptyDetailsFun(this.prohibit)
-      this.emptyDetailsFun(this.restriction)
-      this.emptyDetailsFun(this.prompt)
       this.scoreStyleFun()
+      console.log('summaryInfo init')
     },
     toggleList (data) {
       switch (data) {
-        case 'prohibit':
-          this.prohibitIsShow = !this.prohibitIsShow
+        case 'prohibitoryInfo':
+          this.prohibitoryInfoIsShow = !this.prohibitoryInfoIsShow
           break
-        case 'restriction':
-          this.restrictionIsShow = !this.restrictionIsShow
+        case 'restrictedInfo':
+          this.restrictedInfoIsShow = !this.restrictedInfoIsShow
           break
-        case 'prompt':
-          this.promptIsShow = !this.promptIsShow
+        case 'riskWarningInfo':
+          this.riskWarningInfoIsShow = !this.riskWarningInfoIsShow
           break
         default:
       }
     },
-    emptyDetailsFun (data) {
-      if (data.details.length === 0) {
-        data.details.push({ruleName: '——', desc: '——'})
+    emptyDetailFun (data) {
+      if (data.detail.length === 0) {
+        data.detail.push({ruleName: '——', desc: '——'})
       }
     },
     scoreStyleFun () {

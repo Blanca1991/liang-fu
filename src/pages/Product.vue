@@ -119,6 +119,9 @@ export default {
       } else if (res.data.body.success === 'false') {
         this.isLoading = false
         this.pointOutFun(res.data.body.errorMsg)
+      } else {
+        this.isLoading = false
+        this.pointOutFun('系统异常，请稍后再试')
       }
     }
   },

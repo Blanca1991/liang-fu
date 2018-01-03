@@ -11,7 +11,7 @@
             <span>姓名</span>
           </div>
           <div class="pL20 width18">
-            <span>{{ baseInfo.name }}</span>
+            <span>{{ baseInfo.name.replace(baseInfo.name.substring(1,2), '*') }}</span>
           </div>
           <div class="pR20 borderR width18 textR">
             <span>身份证号</span>
@@ -45,15 +45,19 @@
             <span>身份证符合编码规则</span>
           </div>
           <div class="pL20">
-            <span>{{ baseInfo.idNumberCheck }}</span>
+            <span class="" :class="{ textRebBg: !isIdNumberCheck ,textGreenBg: isIdNumberCheck}">
+            {{ baseInfo.idNumberCheck }}
+            </span>
           </div>
         </div>
         <div class="flex detailList borderB">
           <div class="pL20 borderR width18">
             <span>姓名与身份证匹配</span>
           </div>
-          <div class="pL20">
-            <span>{{ baseInfo.nameMatchIdNumber }}</span>
+          <div class="pL20" >
+            <span class="" :class="{ textRebBg: !isNameMatchIdNumber,textGreenBg: isNameMatchIdNumber}">
+            {{ baseInfo.nameMatchIdNumber }}
+            </span>
           </div>
         </div>
       </div>
@@ -67,7 +71,10 @@ import {mapState} from 'vuex'
 export default {
   name: 'BaseInfo',
   data () {
-    return {}
+    return {
+      isNameMatchIdNumber: false,
+      isIdNumberCheck: true
+    }
   },
   computed: {
     ...mapState({
@@ -75,6 +82,11 @@ export default {
       baseInfo: state => state.baseInfoStore.baseInfo,
       telecomInfo: state => state.baseInfoStore.telecomInfo
     })
+  },
+  watch: {
+    baseInfo (newbaseInfo) {
+      this.styeChange()
+    }
   },
   mounted () {
     // 钩子函数
@@ -85,6 +97,17 @@ export default {
       // 初始化
       console.log('baseInfo init')
       console.log(this.telecomInfo)
+    },
+    nameCode () {
+      // 姓名掩码
+      console.log(this.baseInfo.name)
+    },
+    styeChange () {
+      if (this.baseInfo.nameMatchIdNumber === '否') {
+        this.isNameMatchIdNumber = true
+      } else if (this.baseInfo.idNumberCheck === '否') {
+        this.isIdNumberCheck = true
+      }
     }
   }
 }

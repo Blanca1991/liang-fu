@@ -32,6 +32,7 @@ export default new Vuex.Store({
     SHOWPOINT (state, pointText) {
       this.state.pointShow = true
       this.state.pointText = pointText
+      console.log(pointText)
     },
     HIDEOPTION (state) {
       this.state.pointShow = false
@@ -42,6 +43,8 @@ export default new Vuex.Store({
     CHANGESEARCHDATA (state, data) {
       console.log(this.state)
       console.log(data)
+      this.state.summaryInfoStore = data.summaryInfo
+      this.state.baseInfoStore.baseInfo = data.baseInfo
     }
   },
   actions: {
@@ -55,8 +58,8 @@ export default new Vuex.Store({
     hidePoint ({commit}) {
       commit('HIDEOPTION')
     },
-    changeSearchData ({commit}) {
-      commit('CHANGESEARCHDATA')
+    changeSearchData ({commit}, data) {
+      commit('CHANGESEARCHDATA', data)
     }
   },
   modules: {

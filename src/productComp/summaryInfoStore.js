@@ -5,22 +5,27 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     score: '390',
-    prohibit: {
+    prohibitoryInfo: {
       num: '1',
-      details: [
+      detail: [
         {
           ruleName: '公检法信息异常',
           desc: '失信被执行人'
         }
       ]
     },
-    restriction: {
-      num: '0',
-      details: []
-    },
-    prompt: {
+    restrictedInfo: {
       num: '1',
-      details: [
+      detail: [
+        {
+          ruleName: '可疑查询信息',
+          desc: '身份证关联过多个姓名'
+        }
+      ]
+    },
+    riskWarningInfo: {
+      num: '1',
+      detail: [
         {
           ruleName: '运营商信息异常',
           desc: '申请人姓名与手机号不一致'

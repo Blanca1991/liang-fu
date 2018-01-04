@@ -60,10 +60,18 @@
             <div class="flex">
               <div class="pL20 width50 borderR">
                 <span>{{ item.date }}</span>
-              </div>
+                </div>
               <div class="pL20 width50">
-                <span>{{ item.personName }}</span>
+                <span>{{ item.personName.replace(item.personName.substring(1,2), '*') }}</span>
               </div>
+            </div>
+          </div>
+          <div class="flex titleFont" v-if="userIdNumberForName">
+            <div class="pL20 width50 borderR borderB">
+              <span>——</span>
+              </div>
+            <div class="pL20 width50 borderB">
+              <span>——</span>
             </div>
           </div>
         </div>
@@ -87,8 +95,16 @@
                 <span>{{ item.date }}</span>
               </div>
               <div class="pL20 width50">
-                <span>{{ item.mobile }}</span>
+                <span>{{ item.mobile.replace(item.mobile.substring(3,9), '*******') }}</span>
               </div>
+            </div>
+          </div>
+          <div class="flex titleFont" v-if="userIdNumberForMobile">
+            <div class="pL20 width50 borderR borderB">
+              <span>——</span>
+              </div>
+            <div class="pL20 width50 borderB">
+              <span>——</span>
             </div>
           </div>
         </div>
@@ -112,8 +128,16 @@
                 <span>{{ item.date }}</span>
               </div>
               <div class="pL20 width50">
-                <span>{{ item.personName }}</span>
+                <span>{{ item.personName.replace(item.personName.substring(1,2), '*') }}</span>
               </div>
+            </div>
+          </div>
+          <div class="flex titleFont" v-if="userMobileForName">
+            <div class="pL20 width50 borderR borderB">
+              <span>——</span>
+              </div>
+            <div class="pL20 width50 borderB">
+              <span>——</span>
             </div>
           </div>
         </div>
@@ -137,8 +161,16 @@
                 <span>{{ item.date }}</span>
               </div>
               <div class="pL20 width50">
-                <span>{{ item.idNumber }}</span>
+                <span>{{ item.idNumber.substr(0, 2)+ '***********'+ item.idNumber.substr(item.idNumber.length- 2, 2) }}</span>
               </div>
+            </div>
+          </div>
+          <div class="flex titleFont" v-if="userMobileForIdNumber">
+            <div class="pL20 width50 borderR borderB">
+              <span>——</span>
+              </div>
+            <div class="pL20 width50 borderB">
+              <span>——</span>
             </div>
           </div>
         </div>
@@ -154,31 +186,21 @@ export default {
   name: 'BaseInfo',
   data () {
     return {
-      isScoreScoreRed: false, // 控制不良行为评分--评分的背景色 red
-      isScoreScoreYellow: false, // 控制不良行为评分--评分的背景色 yellow
-      isScoreScoreGreen: false, // 控制不良行为评分--评分的背景色 green
-      isScoreLevelRed: false, // 控制不良行为评分--等级的背景色 red
-      isScoreLevelYellow: false, // 控制不良行为评分--等级的背景色 yellow
-      isScoreLevelGreen: false, // 控制不良行为评分--等级的背景色  green
-      isOverdue90Red: false, // 控制逾期信息--评分的背景色
-      isOverdue180Red: false // 控制逾期信息--等级的背景色
+      userIdNumberForName: false,
+      userIdNumberForMobile: false,
+      userMobileForName: false,
+      userMobileForIdNumber: false
     }
   },
   computed: {
     ...mapState({
       // 获取数据
-
-      publicSecurityInfo: state => state.baseInfoStore.publicSecurityInfo,
-      overdueInfo: state => state.baseInfoStore.overdueInfo,
       historyInfo: state => state.baseInfoStore.historyInfo
     })
   },
   watch: {
-    publicSecurityInfo (publicSecurityInfo) {
-      this.styeChange()
-    },
-    overdueInfo (overdueInfo) {
-      this.styeBgChange()
+    historyInfo (historyInfo) {
+      this.emptyListChange()
     }
   },
   mounted () {
@@ -188,74 +210,17 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('publicSecurityInfo init')
-      this.styeChange()
-      this.styeBgChange()
+      console.log('historyInfo init')
+      this.emptyListChange()
     },
-    styeChange () {
-      // 不良行为评分 背景颜色 控制
-      if (this.publicSecurityInfo.negativeScore.score === '' || this.publicSecurityInfo.negativeScore.score === null) {
-        // this.publicSecurityInfo.negativeScore.score = '——'
-        this.isScoreScoreRed = false
-        this.isScoreScoreYellow = false
-        this.isScoreScoreGreen = false
-      } else if (this.publicSecurityInfo.negativeScore.score >= 80) {
-        this.isScoreScoreRed = true
-        this.isScoreScoreYellow = false
-        this.isScoreScoreGreen = false
-      } else if (this.publicSecurityInfo.negativeScore.score < 80 && this.publicSecurityInfo.negativeScore.score >= 60) {
-        this.isScoreScoreRed = false
-        this.isScoreScoreYellow = true
-        this.isScoreScoreGreen = false
-      } else if (this.publicSecurityInfo.negativeScore.score < 60) {
-        this.isScoreScoreRed = false
-        this.isScoreScoreYellow = false
-        this.isScoreScoreGreen = true
-      } else {
-        // this.publicSecurityInfo.negativeScore.score = '——'
-        this.isScoreScoreRed = false
-        this.isScoreScoreYellow = false
-        this.isScoreScoreGreen = false
+    emptyListChange () {
+      for (let key in this.historyInfo.suspiciousQueryInfo) {
+        if (this.historyInfo.suspiciousQueryInfo[key] === null) {
+          this[key] = true
+        } else if (this.historyInfo.suspiciousQueryInfo[key] === '') {
+          this[key] = true
+        }
       }
-      //   //
-      if (this.publicSecurityInfo.negativeScore.level === null || this.publicSecurityInfo.negativeScore.level === '') {
-        // this.publicSecurityInfo.negativeScore.level = '——'
-        this.isScoreLevelRed = false
-        this.isScoreLevelYellow = false
-        this.isScoreLevelGreen = false
-      } else if (this.publicSecurityInfo.negativeScore.level.indexOf('高') > -1) {
-        this.isScoreLevelRed = true
-        this.isScoreLevelYellow = false
-        this.isScoreLevelGreen = false
-      } else if (this.publicSecurityInfo.negativeScore.level.indexOf('中') > -1) {
-        this.isScoreLevelRed = false
-        this.isScoreLevelYellow = true
-        this.isScoreLevelGreen = false
-      } else if (this.publicSecurityInfo.negativeScore.level.indexOf('低') > -1) {
-        this.isScoreLevelRed = false
-        this.isScoreLevelYellow = false
-        this.isScoreLevelGreen = true
-      } else {
-        // this.publicSecurityInfo.negativeScore.level = '——'
-        this.isScoreLevelRed = false
-        this.isScoreLevelYellow = false
-        this.isScoreLevelGreen = false
-      }
-    },
-    styeBgChange () {
-      // 逾期信息 背景颜色 控制
-      if (this.overdueInfo.isOverdue90.indexOf('是') > -1) {
-        this.isOverdue90Red = true
-      } else if (this.overdueInfo.isOverdue90.indexOf('否') > -1) {
-        this.isOverdue90Red = false
-      }
-      //    //
-      if (this.overdueInfo.isOverdue180.indexOf('是') > -1) {
-        this.isOverdue180Red = true
-      } else if (this.overdueInfo.isOverdue180.indexOf('否') > -1) {
-        this.isOverdue180Red = false
-      }
-      console.log('this.isOverdue180Red', this.overdueInfo.isOverdue180.indexOf('是'), this.overdueInfo.isOverdue180.indexOf('否'), this.isOverdue180Red)
     }
   }
 }

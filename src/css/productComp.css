@@ -6,9 +6,17 @@
 .textYellowBg{background: #f4af42; color: #ffffff; padding: 6px 8px; border-radius: 4px;}
 .textGreenBg{background: #39c46d; color: #ffffff; padding: 6px 8px; border-radius: 4px;}
 .titleBg{background: #fafafa;}
-
-
-/* summaryInfo   style */
+.fontGreenColor{background: #eff8e7;color: #39c46d;padding: 6px 8px; border-radius: 4px;}
+.width14{width: 14%}
+.width18{width: 18%}
+.width20{width: 20%}
+.width22{width: 22%}
+.width25{width: 25%}
+.width14{width: 14%}
+.titleFont{line-height: 55px;}
+.titleHeader{ }
+.flexAlignItems{align-items: center;}
+/* summaryInfo   总体情况style */
 .summaryInfo .infoTitle{
   background: #50bfea;
 }
@@ -41,9 +49,38 @@
 .detailListL{width: 42%;}
 
 
-/**/
+/*baseInfoWarp */
 .baseInfoWarp{margin-top: 10px;}
+/* baseInfo 基本信息*/
 .baseInfo .infoTitle{
   background: #5ed3b6;
 }
-.baseInfo .width18{width: 18%}
+/* telecomInfo 运营商*/
+.telecomInfo{margin-top: 10px; }
+.telecomInfo .infoTitle{
+  background: #c7ac8f;
+}
+
+/* 公检法 */
+.publicSecurityInfo{margin-top: 10px;}
+.publicSecurityInfo .infoTitle {
+  background: #fcbe51
+}
+.negativeInfo .titleList{padding: 30px 26px 30px 20px;}
+.negativeInfo > div:nth-child(2n+1) {background: #fafafa;}
+
+/* 网贷逾期信息 */
+.overdueInfo{margin-top: 10px;}
+.overdueInfo .infoTitle{background: #ec5923;}
+
+/* 多头借贷信息 */
+.borrowingInfo{margin-top: 10px;}
+.borrowingInfo .infoTitle{background: #f37e53;}
+
+/* 联系人圈子 */
+.contactsInfo{margin-top: 10px;}
+.contactsInfo .infoTitle{background: #50bfea;}
+
+/* APP注册信息 */
+.appInfo{margin-top: 10px;}
+.appInfo .infoTitle{background: #f4ad5f;}

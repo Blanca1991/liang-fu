@@ -18,6 +18,8 @@
       <div class="warning font16">注意！！！此处为示例数据，查询可获取相关数据</div>
       <SummaryInfo />
       <BaseInfo />
+      <PublicSecurityInfo />
+      <BorrowingInfo />
     </div>
     <Login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
@@ -37,6 +39,8 @@ import LoginNav from '@/components/LoginNav'
 import Login from '@/components/Login'
 import SummaryInfo from '@/productComp/SummaryInfo'
 import BaseInfo from '@/productComp/BaseInfo'
+import PublicSecurityInfo from '@/productComp/PublicSecurityInfo'
+import BorrowingInfo from '@/productComp/BorrowingInfo'
 
 export default {
   name: 'Product',
@@ -132,7 +136,9 @@ export default {
     PointOut,
     Loading,
     SummaryInfo,
-    BaseInfo
+    BaseInfo,
+    PublicSecurityInfo,
+    BorrowingInfo
   }
 }
 </script>

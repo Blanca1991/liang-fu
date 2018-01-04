@@ -45,6 +45,7 @@ export default new Vuex.Store({
       console.log(data)
       this.state.summaryInfoStore = data.summaryInfo
       this.state.baseInfoStore.baseInfo = data.baseInfo
+      this.state.baseInfoStore.telecomInfo = data.telecomInfo
     }
   },
   actions: {

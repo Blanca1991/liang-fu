@@ -1,3 +1,4 @@
+// 存放总体评估情况信息 的store
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)

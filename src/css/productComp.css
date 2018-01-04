@@ -12,7 +12,8 @@
 .width20{width: 20%}
 .width22{width: 22%}
 .width25{width: 25%}
-.width14{width: 14%}
+.width33{width: 33.33%}
+.width50{width: 50%}
 .titleFont{line-height: 55px;}
 .titleHeader{ }
 .flexAlignItems{align-items: center;}
@@ -84,3 +85,7 @@
 /* APP注册信息 */
 .appInfo{margin-top: 10px;}
 .appInfo .infoTitle{background: #f4ad5f;}
+
+/* 历史查询信息 */
+.historyInfo{margin-top: 10px;}
+.historyInfo .infoTitle{background: #fcbe51;}

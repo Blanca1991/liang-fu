@@ -41,7 +41,7 @@ export default new Vuex.Store({
       ],
       // 不良行为分
       negativeScore: {
-        score: '',
+        score: '68',
         level: '中风险'
       }
     },
@@ -89,6 +89,41 @@ export default new Vuex.Store({
       financialAppCount: null,
       borrowingAppCount: null,
       financialOrBorrowingAppCount: '1'
+    },
+    // 历史查询信息
+    historyInfo: {
+      queryInfo: [
+        {
+          date: '2017-10-25',
+          type: '线下消费分期',
+          isLocal: 'true'
+        }
+      ],
+      suspiciousQueryInfo: {
+        userIdNumberForName: null,
+        userIdNumberForMobile: [
+          {
+            date: '2017-10-19',
+            mobile: '18516508888'
+          }
+        ],
+        userMobileForName: [
+          {
+            date: '2017-10-25',
+            personName: '王立国'
+          },
+          {
+            date: '2017-10-25',
+            personName: '陈二狗'
+          }
+        ],
+        userMobileForIdNumber: [
+          {
+            date: '2017-10-25',
+            idNumber: '642102197107030914'
+          }
+        ]
+      }
     }
   },
   mutations: {

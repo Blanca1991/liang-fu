@@ -1,4 +1,4 @@
-<!-- product引用组件 多头借贷信息  wuxiaobo-->
+<!-- product引用组件 多头借贷信息 联系人圈子 疑似APP注册  wuxiaobo-->
 <template>
   <div class="borrowingInfoWarp ">
     <div class="borrowingInfo flex">
@@ -12,7 +12,7 @@
               <span>多头借贷笔数</span>
             </div>
             <div class="pL20 borderB">
-              <span>{{ borrowingInfo.borrowingNumber }}</span>
+              <span>{{ borrowingInfo.borrowingNumber || '——' }}</span>
             </div>
           </div>
           <div class="width25 borderR ">
@@ -20,7 +20,7 @@
               <span>申请金额(元)</span>
             </div>
             <div class="pL20 borderB">
-              <span>{{ borrowingInfo.applyAmount }}</span>
+              <span>{{ borrowingInfo.applyAmount || '——' }}</span>
             </div>
           </div>
           <div class="width25 borderR ">
@@ -28,7 +28,7 @@
               <span>存放金额(元)</span>
             </div>
             <div class="pL20 borderB">
-              <span>{{ borrowingInfo.passedAmount }}</span>
+              <span>{{ borrowingInfo.passedAmount || '——' }}</span>
             </div>
           </div>
           <div class="width25 borderR ">
@@ -36,7 +36,7 @@
               <span>逾期金额(元)</span>
             </div>
             <div class="pL20 borderB">
-              <span class="textRebBg">{{ borrowingInfo.overdueAmount }}</span>
+              <span class="textRebBg">{{ borrowingInfo.overdueAmount || '——' }}</span>
             </div>
           </div>
         </div>
@@ -65,25 +65,25 @@
         </div>
         <div class="titleHeader flex borderB titleFont" v-for="item in borrowingInfo.record">
           <div class="width14 pL20 borderR">
-            <span>{{ item.type }}</span>
+            <span>{{ item.type || '——' }}</span>
           </div>
           <div class="width14 pL20 borderR">
-            <span>{{ item.borrowingStatus }}</span>
+            <span>{{ item.borrowingStatus || '——' }}</span>
           </div>
           <div class="width14 pL20 borderR">
-            <span>{{ item.amount }}</span>
+            <span>{{ item.amount || '——' }}</span>
           </div>
           <div class="width14 pL20 borderR">
-            <span>{{ item.date }}</span>
+            <span>{{ item.date || '——' }}</span>
           </div>
           <div class="width14 pL20 borderR">
-            <span>{{ item.numberOfPeriods }}</span>
+            <span>{{ item.numberOfPeriods || '——' }}</span>
           </div>
           <div class="width14 pL20 borderR">
-            <span :class="{textRebBg: item.overdueAmount > 0}">{{ item.repaymentStatus }}</span>
+            <span :class="{textRebBg: item.overdueAmount > 0}">{{ item.repaymentStatus  || '——'}}</span>
           </div>
           <div class="width14 pL20">
-            <span :class="{textRebBg: item.overdueAmount > 0}">{{ item.overdueAmount }}</span>
+            <span :class="{textRebBg: item.overdueAmount > 0}">{{ item.overdueAmount || '——' }}</span>
           </div>
         </div>
       </div>
@@ -196,13 +196,6 @@ export default {
     init () {
       // 初始化
       console.log('borrowingInfo init')
-      console.log(this.borrowingInfo)
-    },
-    styeChange () {
-      console.log('nihao')
-    },
-    dataChange () {
-
     }
   }
 }

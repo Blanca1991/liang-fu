@@ -16,10 +16,16 @@
     </div>
     <div class="antiFraud">
       <div class="warning font16">注意！！！此处为示例数据，查询可获取相关数据</div>
+      <!-- 总体情况评估 -->
       <SummaryInfo />
+      <!-- 基本身份信息 运营商信息 -->
       <BaseInfo />
+      <!-- 公检法 逾期信息 -->
       <PublicSecurityInfo />
+      <!-- 多头借贷信息 联系人圈子 疑似APP注册  -->
       <BorrowingInfo />
+      <!-- 历史查询信息 -->
+      <HistoryInfo />
     </div>
     <Login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
@@ -41,6 +47,7 @@ import SummaryInfo from '@/productComp/SummaryInfo'
 import BaseInfo from '@/productComp/BaseInfo'
 import PublicSecurityInfo from '@/productComp/PublicSecurityInfo'
 import BorrowingInfo from '@/productComp/BorrowingInfo'
+import HistoryInfo from '@/productComp/HistoryInfo'
 
 export default {
   name: 'Product',
@@ -138,7 +145,8 @@ export default {
     SummaryInfo,
     BaseInfo,
     PublicSecurityInfo,
-    BorrowingInfo
+    BorrowingInfo,
+    HistoryInfo
   }
 }
 </script>

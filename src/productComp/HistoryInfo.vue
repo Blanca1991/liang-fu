@@ -1,103 +1,145 @@
-<!-- product引用组件 公检法 逾期信息 wuxiaobo-->
+<!-- product引用组件 历史查询信息 wuxiaobo-->
 <template>
-  <div class="publicSecurityInfoWarp ">
-    <div class="publicSecurityInfo flex">
+  <div class="historyInfoWarp ">
+    <div class="historyInfo flex">
       <div class="infoTitle font24">
-        公检法信息
+        历史查询信息
       </div>
       <div class="infoBox textL font16">
-        <div class="pL20 titleBg borderB  titleFont">
-          <strong>司法负面信息</strong>
+        <div class="pL20  borderB  titleFont">
+          <strong>查询记录</strong>
         </div>
-        <div class="titleHeader flex borderB titleFont">
-          <div class="width25 pL20 borderR">
-            <span>日期</span>
+        <div class="titleHeader flex borderB titleBg titleFont">
+          <div class="width33 pL20 borderR">
+            <span>查询日期</span>
           </div>
-          <div class="width25 pL20 borderR">
-            <span>类型</span>
+          <div class="width33 pL20 borderR">
+            <span>机构类型</span>
           </div>
-          <div class="width25 pL20 borderR">
-            <span>标题</span>
-          </div>
-          <div class="width25 pL20">
-            <span>匹配度</span>
+          <div class="width33 pL20 borderR">
+            <span>是否本机构</span>
           </div>
         </div>
-        <div class="negativeInfo">
-          <div class="titleHeader flex borderB " v-for="item in publicSecurityInfo.negativeInfo">
-            <div class="width25 pL20 borderR flex flexAlignItems ">
+        <div class="">
+          <div class="titleHeader flex borderB titleFont" v-for="item in historyInfo.queryInfo">
+            <div class="width33 pL20 borderR flex flexAlignItems ">
               <div>
                 <span class="">{{ item.date }}</span>
               </div>
             </div>
-            <div class="width25 pL20 borderR flex flexAlignItems ">
+            <div class="width33 pL20 borderR flex flexAlignItems ">
               <div class="">
                 <span>{{ item.type }}</span>
               </div>
             </div>
-            <div class="width25 pL20 borderR titleList">
+            <div class="width33 pL20 borderR titleList">
               <div>
-                <span>{{ item.title }}</span>
-              </div>
-            </div>
-            <div class="width25 pL20 flex flexAlignItems ">
-              <div class="">
-                <span>{{ item.matchDegree }}</span>
+                <span :class="{textRebBg: !item.isLocal}">{{ item.isLocal }}</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="pL20 borderB titleBg titleFont">
-          <strong>不良行为分</strong>
+        <div class="pL20 borderB titleFont">
+          <strong>可疑查询记录</strong>
         </div>
-        <div class=" borderB titleFont flex ">
-          <div class="width25 borderR pL20 ">
-            <span>评分</span>
+        <div class="">
+          <div class="pL20 borderB titleBg titleFont">
+            <span>使用过此身份证的其他姓名</span>
           </div>
-          <div class="pL20">
-            <span class="" :class="{textRebBg: isScoreScoreRed, textYellowBg: isScoreScoreYellow, textGreenBg: isScoreScoreGreen}">
-              {{ publicSecurityInfo.negativeScore.score || '——'}}
-            </span>
+          <div class=" borderB titleFont">
+            <div class="flex">
+              <div class="pL20 width50 borderR">
+                <span>查询日期</span>
+              </div>
+              <div class="pL20 width50">
+                <span>姓名</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="borderB titleFont titleBg flex">
-          <div class="width25 borderR pL20">
-            <span>等级</span>
-          </div>
-          <div class="pL20">
-            <span class="" :class="{textRebBg: isScoreLevelRed, textYellowBg: isScoreLevelYellow, textGreenBg: isScoreLevelGreen}">
-              {{ publicSecurityInfo.negativeScore.level || '——'}}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="baseInfo overdueInfo flex">
-      <div class="infoTitle font24">
-        网贷逾期信息
-      </div>
-      <div class="infoBox textL">
-        <div class="pL20 borderB titleBg titleFont">
-          <strong>逾期信息</strong>
-        </div>
-        <div class="flex detailList  borderB">
-          <div class="pL20 borderR width25">
-            <span>是否逾期90天以上</span>
-          </div>
-          <div class="pL20 ">
-            <span class="" :class="{textRebBg: isOverdue90Red, textGreenBg: !isOverdue90Red}">
-              {{ overdueInfo.isOverdue90 }}
-            </span>
+          <div class=" borderB titleFont" v-for="item in historyInfo.suspiciousQueryInfo.userIdNumberForName">
+            <div class="flex">
+              <div class="pL20 width50 borderR">
+                <span>{{ item.date }}</span>
+              </div>
+              <div class="pL20 width50">
+                <span>{{ item.personName }}</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="flex detailList titleBg borderB">
-          <div class="pL20 borderR width25 ">
-            <span>是否逾期180天以上</span>
+        <div class="">
+          <div class="pL20 borderB titleBg titleFont">
+            <span>使用过此身份证的其他手机号</span>
           </div>
-          <div class="pL20 ">
-            <span class="" :class="{textRebBg: isOverdue180Red, textGreenBg: !isOverdue180Red}">
-              {{ overdueInfo.isOverdue180 }}
-            </span>
+          <div class=" borderB titleFont">
+            <div class="flex">
+              <div class="pL20 width50 borderR">
+                <span>查询日期</span>
+              </div>
+              <div class="pL20 width50">
+                <span>手机号</span>
+              </div>
+            </div>
+          </div>
+          <div class=" borderB titleFont" v-for="item in historyInfo.suspiciousQueryInfo.userIdNumberForMobile">
+            <div class="flex">
+              <div class="pL20 width50 borderR">
+                <span>{{ item.date }}</span>
+              </div>
+              <div class="pL20 width50">
+                <span>{{ item.mobile }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <div class="pL20 borderB titleBg titleFont">
+            <span>使用过此手机号的其他姓名</span>
+          </div>
+          <div class=" borderB titleFont">
+            <div class="flex">
+              <div class="pL20 width50 borderR">
+                <span>查询日期</span>
+              </div>
+              <div class="pL20 width50">
+                <span>姓名</span>
+              </div>
+            </div>
+          </div>
+          <div class=" borderB titleFont" v-for="item in historyInfo.suspiciousQueryInfo.userMobileForName">
+            <div class="flex">
+              <div class="pL20 width50 borderR">
+                <span>{{ item.date }}</span>
+              </div>
+              <div class="pL20 width50">
+                <span>{{ item.personName }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <div class="pL20 borderB titleBg titleFont">
+            <span>使用过此手机号的其他身份证</span>
+          </div>
+          <div class=" borderB titleFont">
+            <div class="flex">
+              <div class="pL20 width50 borderR">
+                <span>查询日期</span>
+              </div>
+              <div class="pL20 width50">
+                <span>身份证号</span>
+              </div>
+            </div>
+          </div>
+          <div class=" borderB titleFont" v-for="item in historyInfo.suspiciousQueryInfo.userMobileForIdNumber">
+            <div class="flex">
+              <div class="pL20 width50 borderR">
+                <span>{{ item.date }}</span>
+              </div>
+              <div class="pL20 width50">
+                <span>{{ item.idNumber }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -125,8 +167,10 @@ export default {
   computed: {
     ...mapState({
       // 获取数据
+
       publicSecurityInfo: state => state.baseInfoStore.publicSecurityInfo,
-      overdueInfo: state => state.baseInfoStore.overdueInfo
+      overdueInfo: state => state.baseInfoStore.overdueInfo,
+      historyInfo: state => state.baseInfoStore.historyInfo
     })
   },
   watch: {
@@ -211,6 +255,7 @@ export default {
       } else if (this.overdueInfo.isOverdue180.indexOf('否') > -1) {
         this.isOverdue180Red = false
       }
+      console.log('this.isOverdue180Red', this.overdueInfo.isOverdue180.indexOf('是'), this.overdueInfo.isOverdue180.indexOf('否'), this.isOverdue180Red)
     }
   }
 }

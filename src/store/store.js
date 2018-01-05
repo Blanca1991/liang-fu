@@ -46,6 +46,12 @@ export default new Vuex.Store({
       this.state.summaryInfoStore = data.summaryInfo
       this.state.baseInfoStore.baseInfo = data.baseInfo
       this.state.baseInfoStore.telecomInfo = data.telecomInfo
+      this.state.baseInfoStore.publicSecurityInfo = data.publicSecurityInfo
+      this.state.baseInfoStore.overdueInfo = data.overdueInfo
+      this.state.baseInfoStore.borrowingInfo = data.borrowingInfo
+      this.state.baseInfoStore.contactsInfo = data.contactsInfo
+      this.state.baseInfoStore.appInfo = data.appInfo
+      this.state.baseInfoStore.historyInfo = data.historyInfo
     }
   },
   actions: {

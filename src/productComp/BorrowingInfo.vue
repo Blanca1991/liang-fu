@@ -175,7 +175,7 @@
 import {mapState} from 'vuex'
 
 export default {
-  name: 'BaseInfo',
+  name: 'BorrowingInfo',
   data () {
     return {}
   },

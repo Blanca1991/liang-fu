@@ -34,7 +34,8 @@
             </div>
             <div class="width33 pL20 borderR titleList">
               <div>
-                <span :class="{textRebBg: !item.isLocal}">{{ item.isLocal }}</span>
+                <span v-if="item.isLocal === 'true'">是</span>
+                <span :class="{textRebBg: item.isLocal === 'false'}" v-if="item.isLocal === 'false'">否</span>
               </div>
             </div>
           </div>
@@ -62,7 +63,9 @@
                 <span>{{ item.date }}</span>
                 </div>
               <div class="pL20 width50">
-                <span>{{ item.personName.replace(item.personName.substring(1,2), '*') }}</span>
+                <span v-if="item.personName.length === 2">{{ item.personName.substr(0,1) + '*' }}</span>
+                <span v-if="item.personName.length === 3">{{ item.personName.substr(0,1) + '*' + item.personName.substr(-1) }}</span>
+                <span v-if="item.personName.length === 4">{{ item.personName.substr(0,1) + '*' + item.personName.substr(-2) }}</span>
               </div>
             </div>
           </div>
@@ -128,7 +131,9 @@
                 <span>{{ item.date }}</span>
               </div>
               <div class="pL20 width50">
-                <span>{{ item.personName.replace(item.personName.substring(1,2), '*') }}</span>
+                <span v-if="item.personName.length === 2">{{ item.personName.substr(0,1) + '*' }}</span>
+                <span v-if="item.personName.length === 3">{{ item.personName.substr(0,1) + '*' + item.personName.substr(-1) }}</span>
+                <span v-if="item.personName.length === 4">{{ item.personName.substr(0,1) + '*' + item.personName.substr(-2) }}</span>
               </div>
             </div>
           </div>
@@ -183,7 +188,7 @@
 import {mapState} from 'vuex'
 
 export default {
-  name: 'BaseInfo',
+  name: 'HistoryInfo',
   data () {
     return {
       userIdNumberForName: false,
@@ -219,6 +224,8 @@ export default {
           this[key] = true
         } else if (this.historyInfo.suspiciousQueryInfo[key] === '') {
           this[key] = true
+        } else {
+          this.historyInfo.suspiciousQueryInfo[key] = this.historyInfo.suspiciousQueryInfo[key].reverse()
         }
       }
     }

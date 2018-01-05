@@ -11,7 +11,7 @@
             <span>姓名</span>
           </div>
           <div class="pL20 width18">
-            <span>{{ baseInfo.name.replace(baseInfo.name.substring(1,2), '*') }}</span>
+            <span>{{ baseInfo.name }}</span>
           </div>
           <div class="pR20 borderR width20 textR">
             <span>身份证号</span>
@@ -72,7 +72,7 @@
             <span>手机号</span>
           </div>
           <div class="pL20 width18">
-            <span>{{ telecomInfo.mobileNo.replace(telecomInfo.mobileNo.substring(3,9), '*******') }}</span>
+            <span>{{ telecomInfo.mobileNo.replace(/(\d{3})\d{6}(\d{2})/, "$1******$2") }}</span>
           </div>
           <div class="pR20 borderR width20 textR">
             <span>运营商类别</span>
@@ -154,6 +154,11 @@ export default {
       this.styeChange()
     },
     styeChange () {
+      // 姓名第二个字*
+      let nameArry = this.baseInfo.name.split('')
+      nameArry[1] = '*'
+      this.baseInfo.name = nameArry.join('').replace(/,/g, '')
+      // 修改背景色
       if (this.baseInfo.idNumberCheck.indexOf('否') > -1) {
         this.isIdNumberCheck = true
       } else if (this.baseInfo.idNumberCheck.indexOf('是') > -1) {

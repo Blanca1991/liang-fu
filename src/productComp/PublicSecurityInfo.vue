@@ -109,7 +109,7 @@
 import {mapState} from 'vuex'
 
 export default {
-  name: 'BaseInfo',
+  name: 'PublicSecurityInfo',
   data () {
     return {
       isScoreScoreRed: false, // 控制不良行为评分--评分的背景色 red

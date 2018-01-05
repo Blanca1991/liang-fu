@@ -27,6 +27,7 @@
       <!-- 历史查询信息 -->
       <HistoryInfo />
     </div>
+    <FloorList />
     <Login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
     <Loading v-show="isLoading"/>
@@ -48,6 +49,7 @@ import BaseInfo from '@/productComp/BaseInfo'
 import PublicSecurityInfo from '@/productComp/PublicSecurityInfo'
 import BorrowingInfo from '@/productComp/BorrowingInfo'
 import HistoryInfo from '@/productComp/HistoryInfo'
+import FloorList from '@/productComp/FloorList'
 
 export default {
   name: 'Product',
@@ -146,7 +148,8 @@ export default {
     BaseInfo,
     PublicSecurityInfo,
     BorrowingInfo,
-    HistoryInfo
+    HistoryInfo,
+    FloorList
   }
 }
 </script>

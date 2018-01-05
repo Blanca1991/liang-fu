@@ -118,8 +118,9 @@ export default {
   watch: {
     restrictedInfo (newrestrictedInfo) {
       this.emptyDetailFun(newrestrictedInfo)
+      this.listReverse()
     },
-    score () {
+    score (newrestrictedInfo) {
       this.scoreStyleFun()
     },
     prohibitoryInfo (newprohibitoryInfo) {
@@ -134,6 +135,12 @@ export default {
       // 初始化
       this.scoreStyleFun()
       console.log('summaryInfo init')
+      this.listReverse()
+    },
+    listReverse () {
+      this.prohibitoryInfo.detail = this.prohibitoryInfo.detail.reverse()
+      this.restrictedInfo.detail = this.restrictedInfo.detail.reverse()
+      this.riskWarningInfo.detail = this.riskWarningInfo.detail.reverse()
     },
     toggleList (data) {
       switch (data) {

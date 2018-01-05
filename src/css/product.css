@@ -1,5 +1,5 @@
 .ProductWarp{
-  background: #eee;min-width: 1200px; padding-bottom: 1px;
+  background: #eee;min-width: 1200px; padding-bottom: 1px;position: relative;
 }
 .ProductWarp .headerBox{
   width: 100%;

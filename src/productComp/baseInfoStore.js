@@ -110,17 +110,17 @@ export default new Vuex.Store({
         userMobileForName: [
           {
             date: '2017-10-25',
-            personName: '王立国'
+            personName: '王国'
           },
           {
             date: '2017-10-25',
-            personName: '陈二狗'
+            personName: '李二狗'
           }
         ],
         userMobileForIdNumber: [
           {
             date: '2017-10-25',
-            idNumber: '642102197107030914'
+            idNumber: '642102197107030933'
           }
         ]
       }

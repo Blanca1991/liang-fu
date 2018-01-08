@@ -1,33 +1,36 @@
 <!-- 产品适用 wuxiaobo-->
 <template>
-  <div class="ProductWarp">
-    <div class="headerBox">
-      <div class="header">
-        <LogoBg :bgHide="bgHides" class="logoBg"/>
-        <input type="text" class="uesrName" placeholder="请输入姓名" v-model="searchName" />
-        <input type="text" class="userId" placeholder="请输入身份证号"
-        maxlength="18" v-model="searchId">
-        <input type="text" class="userPhone" placeholder="请输入手机号"
-        maxlength="11" v-model="searchPhone">
-        <span class="fontFFF searchBtn pointer font14" @click="searchFun">搜索</span>
-        <span class="fontFFF downBtn font14">下载</span>
-        <LoginNav class="fontFFF" />
+  <div class="ProductWarp" >
+    <div class="ProductBox" id='ProductBox' >
+      <div class="headerBox">
+        <div class="header">
+          <LogoBg :bgHide="bgHides" class="logoBg"/>
+          <input type="text" class="uesrName" placeholder="请输入姓名" v-model="searchName" />
+          <input type="text" class="userId" placeholder="请输入身份证号"
+          maxlength="18" v-model="searchId">
+          <input type="text" class="userPhone" placeholder="请输入手机号"
+          maxlength="11" v-model="searchPhone">
+          <span class="fontFFF searchBtn pointer font14" @click="searchFun">搜索</span>
+          <span class="fontFFF downBtn font14">下载</span>
+          <LoginNav class="fontFFF" />
+        </div>
+      </div>
+      <div class="antiFraud" id="antiFraud">
+        <div class="warning font16">注意！！！此处为示例数据，查询可获取相关数据</div>
+        <!-- 总体情况评估 -->
+        <SummaryInfo />
+        <!-- 基本身份信息 运营商信息 -->
+        <BaseInfo />
+        <!-- 公检法 逾期信息 -->
+        <PublicSecurityInfo />
+        <!-- 多头借贷信息 联系人圈子 疑似APP注册  -->
+        <BorrowingInfo />
+        <!-- 历史查询信息 -->
+        <HistoryInfo />
+        <!-- 锚点楼层 -->
+        <FloorList />
       </div>
     </div>
-    <div class="antiFraud">
-      <div class="warning font16">注意！！！此处为示例数据，查询可获取相关数据</div>
-      <!-- 总体情况评估 -->
-      <SummaryInfo />
-      <!-- 基本身份信息 运营商信息 -->
-      <BaseInfo />
-      <!-- 公检法 逾期信息 -->
-      <PublicSecurityInfo />
-      <!-- 多头借贷信息 联系人圈子 疑似APP注册  -->
-      <BorrowingInfo />
-      <!-- 历史查询信息 -->
-      <HistoryInfo />
-    </div>
-    <FloorList />
     <Login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
     <Loading v-show="isLoading"/>
@@ -59,7 +62,9 @@ export default {
       searchName: '王立国',
       searchId: '642102197107030914',
       searchPhone: '15379509999',
-      isLoading: false
+      isLoading: false,
+      scroll: 0,
+      antiFraudTop: '120px'
     }
   },
   computed: {

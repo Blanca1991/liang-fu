@@ -1,7 +1,7 @@
 <!-- product引用组件 多头借贷信息 联系人圈子 疑似APP注册  wuxiaobo-->
 <template>
   <div class="borrowingInfoWarp ">
-    <div class="borrowingInfo flex">
+    <div class="borrowingInfo flex divJump" id="borrowingInfo">
       <div class="infoTitle font24">
         多头借贷信息
       </div>
@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-    <div class="baseInfo contactsInfo flex">
+    <div class="baseInfo contactsInfo flex divJump" id="contactsInfo">
       <div class="infoTitle font24">
         <div class="">
           联系人圈子
@@ -132,7 +132,7 @@
         </div>
       </div>
     </div>
-    <div class="baseInfo appInfo flex">
+    <div class="baseInfo appInfo flex divJump" id="appInfo">
       <div class="infoTitle font24">
         <div class="">
           疑似APP注册
@@ -195,7 +195,19 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('borrowingInfo init')
+      // console.log('borrowingInfo init')
+      this.getBorrowingInfoTop()
+      this.getContactsInfoTop()
+      this.getAppInfoTop()
+    },
+    getBorrowingInfoTop () {
+      console.log('borrowingInfo', document.getElementById('baseInfo').offsetTop)
+    },
+    getContactsInfoTop () {
+      console.log('contactsInfo', document.getElementById('telecomInfo').offsetTop)
+    },
+    getAppInfoTop () {
+      console.log('contactsInfo', document.getElementById('appInfo').offsetTop)
     }
   }
 }

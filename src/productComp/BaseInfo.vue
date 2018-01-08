@@ -1,7 +1,7 @@
 <!-- product引用组件 基本身份信息 + 运营商信息 wuxiaobo-->
 <template>
   <div class="baseInfoWarp ">
-    <div class="baseInfo flex">
+    <div class="baseInfo flex divJump" id="baseInfo" >
       <div class="infoTitle font24">
         基本身份信息
       </div>
@@ -62,7 +62,7 @@
         </div>
       </div>
     </div>
-    <div class="baseInfo telecomInfo flex">
+    <div class="baseInfo telecomInfo flex divJump" id="telecomInfo">
       <div class="infoTitle font24">
         运营商信息
       </div>
@@ -150,8 +150,10 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('baseInfo init')
+      // console.log('baseInfo init')
       this.styeChange()
+      this.getBaseInfoTop()
+      this.getTelecomInfo()
     },
     styeChange () {
       // 姓名第二个字*
@@ -174,6 +176,12 @@ export default {
       } else if (this.telecomInfo.nameMatchMobile.indexOf('是') > -1) {
         this.isNameMatchMobile = false
       }
+    },
+    getBaseInfoTop () {
+      console.log('baseInfo', document.getElementById('baseInfo').offsetTop)
+    },
+    getTelecomInfo () {
+      console.log('telecomInfo', document.getElementById('telecomInfo').offsetTop)
     }
   }
 }

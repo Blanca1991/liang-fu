@@ -1,6 +1,9 @@
 .ProductWarp{
   background: #eee;min-width: 1200px; padding-bottom: 1px;position: relative;
 }
+.ProductBox{
+  position: absolute;width: 100%;
+}
 .ProductWarp .headerBox{
   width: 100%;
 }
@@ -45,5 +48,5 @@
   text-align: left;box-sizing: border-box;margin-bottom: 10px;
 }
 .antiFraud{
-  width: 1140px;margin: 20px auto;
+  width: 1140px;margin: 20px auto; position: relative; padding-right: 50px;
 }

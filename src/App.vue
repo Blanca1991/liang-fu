@@ -1,12 +1,28 @@
 <template>
-  <div id="app" v-bind:style="{overflow: this.$store.state.appOverflow}" onselectstart="return false">
+  <div id="app" v-bind:style="{overflow: this.$store.state.appOverflow}" onselectstart="return false" >
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  mounted () {
+    this.getAppScroll()
+  },
+  watch: {},
+  computed: {},
+  methods: {
+    getAppScroll () {
+      this.$store.state.appDom = document.getElementById('app') // 楼梯关联跳转需要用到
+      let app = document.getElementById('app')
+      let vm = this
+      app.onscroll = function () {
+        let scrollTop = app.scrollTop
+        vm.$store.commit('GETFLOORLISTTOP', scrollTop)
+      }
+    }
+  }
 }
 </script>
 

@@ -92,15 +92,20 @@
 
 /* floorList */
 .floorListWarp{
-  position: absolute; right: 0;
+  position: absolute;right: -5px;
 }
 .floorList{
   /* position: absolute; */
 }
 .floorList .floorItem{
-  width: 130px; font-size: 16px; line-height: 50px; text-align: center; color: #ffffff;
-  background: #ccc; margin-bottom: 10px; border-radius: 50px;
+  width: 130px; height: 50px;font-size: 16px; line-height: 50px; text-align: center; color: #ffffff;
+   margin-bottom: 10px; border-radius: 50px;
 }
-.floorList .floorItem:hover{
-  background: #088db8;
-}
+.floorList .floorItem .title{ display: none;}
+.floorList .floorItem .imgTitleBox{width: 50px;height: 50px;display: flex;justify-content: center;
+  align-items: center;background: #ccc; border-radius: 50px; float: right;}
+.floorList .floorItem img{ width: 25px;height: auto; display:block}
+.imgTitleBox .imgDiv{width: 25px;height: 25px;}
+.floorList .floorItem:hover{background: #088db8;}
+.floorList .floorItem:hover .title{ display: block;}
+.floorList .floorItem:hover .imgTitleBox{ display: none; }

@@ -1,7 +1,7 @@
 <!-- product引用组件 总体评分 wuxiaobo-->
 <template>
   <div class="summaryInfoWarp ">
-    <div class="summaryInfo flex">
+    <div class="summaryInfo flex divJump" id="summaryInfo">
       <div class="infoTitle font24">
         总体评估情况
       </div>
@@ -133,11 +133,13 @@ export default {
   methods: {
     init () {
       // 初始化
+      // console.log('summaryInfo init')
       this.scoreStyleFun()
-      console.log('summaryInfo init')
       this.listReverse()
+      this.getSummaryInfoTop()
     },
     listReverse () {
+      // 数组反向 循环
       this.prohibitoryInfo.detail = this.prohibitoryInfo.detail.reverse()
       this.restrictedInfo.detail = this.restrictedInfo.detail.reverse()
       this.riskWarningInfo.detail = this.riskWarningInfo.detail.reverse()
@@ -171,6 +173,9 @@ export default {
         let scoreStyle = (score - 350) * 0.6
         this.scoreStyle = scoreStyle + 'px'
       }
+    },
+    getSummaryInfoTop () {
+      console.log('summaryInfo', document.getElementById('summaryInfo').offsetTop)
     }
   }
 }

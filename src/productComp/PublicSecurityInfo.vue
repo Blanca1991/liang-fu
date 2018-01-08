@@ -1,7 +1,7 @@
 <!-- product引用组件 公检法 逾期信息 wuxiaobo-->
 <template>
   <div class="publicSecurityInfoWarp ">
-    <div class="publicSecurityInfo flex">
+    <div class="publicSecurityInfo flex divJump" id="publicSecurityInfo">
       <div class="infoTitle font24">
         公检法信息
       </div>
@@ -72,7 +72,7 @@
         </div>
       </div>
     </div>
-    <div class="baseInfo overdueInfo flex">
+    <div class="baseInfo overdueInfo flex divJump" id="overdueInfo">
       <div class="infoTitle font24">
         网贷逾期信息
       </div>
@@ -144,9 +144,11 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('publicSecurityInfo init')
+      // console.log('publicSecurityInfo init')
       this.styeChange()
       this.styeBgChange()
+      this.getPublicSecurityInfoTop()
+      this.getOverdueInfoTop()
     },
     styeChange () {
       // 不良行为评分 背景颜色 控制
@@ -211,6 +213,12 @@ export default {
       } else if (this.overdueInfo.isOverdue180.indexOf('否') > -1) {
         this.isOverdue180Red = false
       }
+    },
+    getPublicSecurityInfoTop () {
+      console.log('publicSecurityInfo', document.getElementById('publicSecurityInfo').offsetTop)
+    },
+    getOverdueInfoTop () {
+      console.log('overdueInfo', document.getElementById('overdueInfo').offsetTop)
     }
   }
 }

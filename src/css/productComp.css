@@ -104,6 +104,7 @@
 .floorList .floorItem .title{ display: none;}
 .floorList .floorItem .imgTitleBox{width: 50px;height: 50px;display: flex;justify-content: center;
   align-items: center;background: #ccc; border-radius: 50px; float: right;}
+.floorList .floorItem .isImgTitleBox{background: #088db8;}
 .floorList .floorItem img{ width: 25px;height: auto; display:block}
 .imgTitleBox .imgDiv{width: 25px;height: 25px;}
 .floorList .floorItem:hover{background: #088db8;}

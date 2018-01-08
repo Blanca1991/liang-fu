@@ -3,7 +3,7 @@
   <div class="floorListWarp " v-bind:style="{top: floorListTop}">
     <div class="floorList">
       <div class="floorItem" v-for="(item, index) in list" @click="gotItem(index)">
-        <div class="imgTitleBox">
+        <div class="imgTitleBox" :class="{isImgTitleBox: item.type === imgType}">
           <div class="imgDiv">
             <img :src="item.bgUrl" alt="" />
           </div>
@@ -36,54 +36,70 @@ export default {
       list: [
         {
           title: '总体评估情况',
-          bgUrl: allSomeIcon
+          bgUrl: allSomeIcon,
+          type: '01'
         },
         {
           title: '基本身份信息',
-          bgUrl: baseInfoIcon
+          bgUrl: baseInfoIcon,
+          type: '02'
         },
         {
           title: '运营商信息',
-          bgUrl: tellShopIcon
+          bgUrl: tellShopIcon,
+          type: '03'
         },
         {
           title: '公检法信息',
-          bgUrl: publicIcon
+          bgUrl: publicIcon,
+          type: '04'
         },
         {
           title: '网贷逾期信息',
-          bgUrl: overMonyIcon
+          bgUrl: overMonyIcon,
+          type: '05'
         },
         {
           title: '多头借贷信息',
-          bgUrl: borrowMoneyIcon
+          bgUrl: borrowMoneyIcon,
+          type: '06'
         },
         {
           title: '联系人圈子',
-          bgUrl: phoneBookIcon
+          bgUrl: phoneBookIcon,
+          type: '07'
         },
         {
           title: '疑似APP注册',
-          bgUrl: appIcon
+          bgUrl: appIcon,
+          type: '08'
         },
         {
           title: '历史查询信息',
-          bgUrl: historyIcon
+          bgUrl: historyIcon,
+          type: '09'
         },
         {
           title: '点击回到顶部',
-          bgUrl: backTopIcon
+          bgUrl: backTopIcon,
+          type: '10'
         }
-      ]
+      ],
+      imgType: ''
     }
   },
   computed: {
     ...mapState({
       // 获取数据
-      floorListTop: state => state.floorListTop
+      floorListTop: state => state.floorListTop,
+      modelListTop: state => state.modelListTop
     })
   },
-  watch: {},
+  watch: {
+    floorListTop () {
+      this.changeFloorIconBg()
+    }
+  },
   mounted () {
     // 钩子函数
     this.init()
@@ -93,23 +109,54 @@ export default {
       // 初始化
       console.log('baseInfo init')
       console.log(this.floorListTop)
+      this.getAllModelTop()
+      this.changeFloorIconBg()
     },
     getAllModelTop () {
-      this.$store.state.summaryInfoTop = document.getElementById('summaryInfo').offsetTop
-      this.$store.state.baseInfoTop = document.getElementById('baseInfo').offsetTop
-      this.$store.state.telecomInfoTop = document.getElementById('telecomInfo').offsetTop
-      this.$store.state.publicSecurityInfoTop = document.getElementById('publicSecurityInfo').offsetTop
-      this.$store.state.overdueInfoTop = document.getElementById('overdueInfo').offsetTop
-      this.$store.state.borrowingInfoTop = document.getElementById('borrowingInfo').offsetTop
-      this.$store.state.contactsInfoTop = document.getElementById('contactsInfo').offsetTop
-      this.$store.state.appInfoTop = document.getElementById('appInfo').offsetTop
-      this.$store.state.historyInfoTop = document.getElementById('historyInfo').offsetTop
+      for (let i = 0; i < this.modelListTop.length; i++) {
+        this.modelListTop[i].topNum = document.getElementById(this.modelListTop[i].modelName).offsetTop
+      }
     },
     gotItem (index) {
-      console.log(index)
-      if (index === 2) {
-        let data = 644
+      if (index !== 9) {
+        let data = this.modelListTop[index].topNum + 90
         this.$store.dispatch('changeAppScrollTop', data)
+      } else {
+        console.log(this.$store.state.appDom.scrollTop)
+        let step = this.$store.state.appDom.scrollTop / 20
+        let vm = this;
+        (function stepMove () {
+          if (vm.$store.state.appDom.scrollTop > 0) {
+            vm.$store.state.appDom.scrollTop = vm.$store.state.appDom.scrollTop - step
+            setTimeout(stepMove, 8)
+          } else {
+            vm.$store.state.appDom.scrollTop = 0
+          }
+        })()
+        // this.$store.state.appDom.scrollTop = 0
+      }
+    },
+    changeFloorIconBg () {
+      console.log(this.$store.state.appScrollTop)
+      let appScrollTop = this.$store.state.appScrollTop - 90
+      if (appScrollTop < this.modelListTop[1].topNum) {
+        this.imgType = '01'
+      } else if (appScrollTop >= this.modelListTop[1].topNum && appScrollTop < this.modelListTop[2].topNum) {
+        this.imgType = '02'
+      } else if (appScrollTop >= this.modelListTop[2].topNum && appScrollTop < this.modelListTop[3].topNum) {
+        this.imgType = '03'
+      } else if (appScrollTop >= this.modelListTop[3].topNum && appScrollTop < this.modelListTop[4].topNum) {
+        this.imgType = '04'
+      } else if (appScrollTop >= this.modelListTop[4].topNum && appScrollTop < this.modelListTop[5].topNum) {
+        this.imgType = '05'
+      } else if (appScrollTop >= this.modelListTop[5].topNum && appScrollTop < this.modelListTop[6].topNum) {
+        this.imgType = '06'
+      } else if (appScrollTop >= this.modelListTop[6].topNum && appScrollTop < this.modelListTop[7].topNum) {
+        this.imgType = '07'
+      } else if (appScrollTop >= this.modelListTop[7].topNum && appScrollTop < this.modelListTop[8].topNum) {
+        this.imgType = '08'
+      } else if (appScrollTop >= this.modelListTop[8].topNum) {
+        this.imgType = '09'
       }
     }
   }

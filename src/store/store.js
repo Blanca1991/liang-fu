@@ -18,15 +18,44 @@ export default new Vuex.Store({
     appScrollTop: 0, // id = app scroll 的高度
     floorListTop: '80px', // 楼梯层跟随
     appDom: '', // 获取app Dom元素
-    summaryInfoTop: 0, // 总体评分模块的top值
-    baseInfoTop: 0, // 基本信息模块的 top值
-    telecomInfoTop: 0, // 运营商信息模块的 top值
-    publicSecurityInfoTop: 0, // 公检法信息模块的 top值
-    overdueInfoTop: 0, // 网贷逾期信息模块 top值
-    borrowingInfoTop: 0, // 多猎头借贷模块的 top值
-    contactsInfoTop: 0, // 联系人圈子模块 的top值
-    appInfoTop: 0, // app注册模块 的top值
-    historyInfoTop: 0 // 历史信息模块 的top值
+    modelListTop: [
+      {
+        modelName: 'summaryInfo',
+        topNum: 0 // 总体评分模块的top值
+      },
+      {
+        modelName: 'baseInfo',
+        topNum: 0 // 总体评分模块的top值
+      },
+      {
+        modelName: 'telecomInfo',
+        topNum: 0 // 总体评分模块的top值
+      },
+      {
+        modelName: 'publicSecurityInfo',
+        topNum: 0 // 总体评分模块的top值
+      },
+      {
+        modelName: 'overdueInfo',
+        topNum: 0 // 总体评分模块的top值
+      },
+      {
+        modelName: 'borrowingInfo',
+        topNum: 0 // 总体评分模块的top值
+      },
+      {
+        modelName: 'contactsInfo',
+        topNum: 0 // 总体评分模块的top值
+      },
+      {
+        modelName: 'appInfo',
+        topNum: 0 // 总体评分模块的top值
+      },
+      {
+        modelName: 'historyInfo',
+        topNum: 0 // 总体评分模块的top值
+      }// 历史信息模块 的top值
+    ]
   },
   mutations: {
     SHOWLOGIN (state) {
@@ -101,12 +130,12 @@ export default new Vuex.Store({
     },
     changeAppScrollTop ({commit}, data) {
       let step = data / 50
-      console.log(step)
+      // console.log(step)
       let vm = this;
       // commit('CHANGEAPPSCROLLTOP', data)
       (function smoothDown () {
-        console.log(vm.state.appScrollTop)
-        console.log(data)
+        // console.log(vm.state.appScrollTop)
+        // console.log(data)
         // start
         if (vm.state.appScrollTop < data) {
           vm.state.appDom.scrollTop += step

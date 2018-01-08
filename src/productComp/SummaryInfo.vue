@@ -108,7 +108,8 @@ export default {
       score: state => state.summaryInfoStore.score,
       prohibitoryInfo: state => state.summaryInfoStore.prohibitoryInfo,
       restrictedInfo: state => state.summaryInfoStore.restrictedInfo,
-      riskWarningInfo: state => state.summaryInfoStore.riskWarningInfo
+      riskWarningInfo: state => state.summaryInfoStore.riskWarningInfo,
+      modelListTop: state => state.modelListTop
     })
   },
   mounted () {
@@ -136,6 +137,8 @@ export default {
       // console.log('summaryInfo init')
       this.scoreStyleFun()
       this.listReverse()
+      this.getAllModelTop()
+      console.log(document.getElementById('baseInfo').offsetTop)
     },
     listReverse () {
       // 数组反向 循环
@@ -144,20 +147,18 @@ export default {
       this.riskWarningInfo.detail = this.riskWarningInfo.detail.reverse()
     },
     getAllModelTop () {
-      this.$store.state.summaryInfoTop = document.getElementById('summaryInfo').offsetTop
-      this.$store.state.baseInfoTop = document.getElementById('baseInfo').offsetTop
-      this.$store.state.telecomInfoTop = document.getElementById('telecomInfo').offsetTop
-      this.$store.state.publicSecurityInfoTop = document.getElementById('publicSecurityInfo').offsetTop
-      this.$store.state.overdueInfoTop = document.getElementById('overdueInfo').offsetTop
-      this.$store.state.borrowingInfoTop = document.getElementById('borrowingInfo').offsetTop
-      this.$store.state.contactsInfoTop = document.getElementById('contactsInfo').offsetTop
-      this.$store.state.appInfoTop = document.getElementById('appInfo').offsetTop
-      this.$store.state.historyInfoTop = document.getElementById('historyInfo').offsetTop
-      console.log(this.$store.state)
+      for (let i = 0; i < this.modelListTop.length; i++) {
+        this.modelListTop[i].topNum = document.getElementById(this.modelListTop[i].modelName).offsetTop
+      }
     },
     toggleList (data) {
       // 点击切换显示和隐藏
-      this.getAllModelTop()
+      let vm = this
+      setTimeout(function () {
+        // 修改因 折叠受到影响的 接下来的模块的top
+        vm.getAllModelTop()
+        // console.log(document.getElementById('baseInfo').offsetTop)
+      }, 100)
       switch (data) {
         case 'prohibitoryInfo':
           this.prohibitoryInfoIsShow = !this.prohibitoryInfoIsShow

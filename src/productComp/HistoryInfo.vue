@@ -217,7 +217,6 @@ export default {
       // 初始化
       // console.log('historyInfo init')
       this.emptyListChange()
-      this.getHistoryInfoTop()
     },
     emptyListChange () {
       for (let key in this.historyInfo.suspiciousQueryInfo) {
@@ -229,9 +228,6 @@ export default {
           this.historyInfo.suspiciousQueryInfo[key] = this.historyInfo.suspiciousQueryInfo[key].reverse()
         }
       }
-    },
-    getHistoryInfoTop () {
-      console.log('historyInfo', document.getElementById('historyInfo').offsetTop)
     }
   }
 }

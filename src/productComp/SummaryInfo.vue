@@ -136,7 +136,6 @@ export default {
       // console.log('summaryInfo init')
       this.scoreStyleFun()
       this.listReverse()
-      this.getSummaryInfoTop()
     },
     listReverse () {
       // 数组反向 循环
@@ -144,7 +143,21 @@ export default {
       this.restrictedInfo.detail = this.restrictedInfo.detail.reverse()
       this.riskWarningInfo.detail = this.riskWarningInfo.detail.reverse()
     },
+    getAllModelTop () {
+      this.$store.state.summaryInfoTop = document.getElementById('summaryInfo').offsetTop
+      this.$store.state.baseInfoTop = document.getElementById('baseInfo').offsetTop
+      this.$store.state.telecomInfoTop = document.getElementById('telecomInfo').offsetTop
+      this.$store.state.publicSecurityInfoTop = document.getElementById('publicSecurityInfo').offsetTop
+      this.$store.state.overdueInfoTop = document.getElementById('overdueInfo').offsetTop
+      this.$store.state.borrowingInfoTop = document.getElementById('borrowingInfo').offsetTop
+      this.$store.state.contactsInfoTop = document.getElementById('contactsInfo').offsetTop
+      this.$store.state.appInfoTop = document.getElementById('appInfo').offsetTop
+      this.$store.state.historyInfoTop = document.getElementById('historyInfo').offsetTop
+      console.log(this.$store.state)
+    },
     toggleList (data) {
+      // 点击切换显示和隐藏
+      this.getAllModelTop()
       switch (data) {
         case 'prohibitoryInfo':
           this.prohibitoryInfoIsShow = !this.prohibitoryInfoIsShow
@@ -173,9 +186,6 @@ export default {
         let scoreStyle = (score - 350) * 0.6
         this.scoreStyle = scoreStyle + 'px'
       }
-    },
-    getSummaryInfoTop () {
-      console.log('summaryInfo', document.getElementById('summaryInfo').offsetTop)
     }
   }
 }

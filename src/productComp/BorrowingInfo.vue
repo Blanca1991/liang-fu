@@ -196,18 +196,6 @@ export default {
     init () {
       // 初始化
       // console.log('borrowingInfo init')
-      this.getBorrowingInfoTop()
-      this.getContactsInfoTop()
-      this.getAppInfoTop()
-    },
-    getBorrowingInfoTop () {
-      console.log('borrowingInfo', document.getElementById('baseInfo').offsetTop)
-    },
-    getContactsInfoTop () {
-      console.log('contactsInfo', document.getElementById('telecomInfo').offsetTop)
-    },
-    getAppInfoTop () {
-      console.log('contactsInfo', document.getElementById('appInfo').offsetTop)
     }
   }
 }

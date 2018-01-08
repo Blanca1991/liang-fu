@@ -147,8 +147,6 @@ export default {
       // console.log('publicSecurityInfo init')
       this.styeChange()
       this.styeBgChange()
-      this.getPublicSecurityInfoTop()
-      this.getOverdueInfoTop()
     },
     styeChange () {
       // 不良行为评分 背景颜色 控制
@@ -213,12 +211,6 @@ export default {
       } else if (this.overdueInfo.isOverdue180.indexOf('否') > -1) {
         this.isOverdue180Red = false
       }
-    },
-    getPublicSecurityInfoTop () {
-      console.log('publicSecurityInfo', document.getElementById('publicSecurityInfo').offsetTop)
-    },
-    getOverdueInfoTop () {
-      console.log('overdueInfo', document.getElementById('overdueInfo').offsetTop)
     }
   }
 }

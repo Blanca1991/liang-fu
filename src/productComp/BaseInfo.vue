@@ -152,8 +152,6 @@ export default {
       // 初始化
       // console.log('baseInfo init')
       this.styeChange()
-      this.getBaseInfoTop()
-      this.getTelecomInfo()
     },
     styeChange () {
       // 姓名第二个字*
@@ -176,12 +174,6 @@ export default {
       } else if (this.telecomInfo.nameMatchMobile.indexOf('是') > -1) {
         this.isNameMatchMobile = false
       }
-    },
-    getBaseInfoTop () {
-      console.log('baseInfo', document.getElementById('baseInfo').offsetTop)
-    },
-    getTelecomInfo () {
-      console.log('telecomInfo', document.getElementById('telecomInfo').offsetTop)
     }
   }
 }

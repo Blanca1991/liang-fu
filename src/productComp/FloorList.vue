@@ -80,8 +80,7 @@ export default {
   computed: {
     ...mapState({
       // 获取数据
-      floorListTop: state => state.floorListTop,
-      appDom: state => state.appDom
+      floorListTop: state => state.floorListTop
     })
   },
   watch: {},
@@ -95,14 +94,22 @@ export default {
       console.log('baseInfo init')
       console.log(this.floorListTop)
     },
+    getAllModelTop () {
+      this.$store.state.summaryInfoTop = document.getElementById('summaryInfo').offsetTop
+      this.$store.state.baseInfoTop = document.getElementById('baseInfo').offsetTop
+      this.$store.state.telecomInfoTop = document.getElementById('telecomInfo').offsetTop
+      this.$store.state.publicSecurityInfoTop = document.getElementById('publicSecurityInfo').offsetTop
+      this.$store.state.overdueInfoTop = document.getElementById('overdueInfo').offsetTop
+      this.$store.state.borrowingInfoTop = document.getElementById('borrowingInfo').offsetTop
+      this.$store.state.contactsInfoTop = document.getElementById('contactsInfo').offsetTop
+      this.$store.state.appInfoTop = document.getElementById('appInfo').offsetTop
+      this.$store.state.historyInfoTop = document.getElementById('historyInfo').offsetTop
+    },
     gotItem (index) {
       console.log(index)
-      if (index === 3) {
+      if (index === 2) {
         let data = 644
         this.$store.dispatch('changeAppScrollTop', data)
-        // window.scrollTo(0, 500)
-        // this.$store.state.appScrollTop = '-664px'
-        // console.log(this.$store.state.appScrollTop)
       }
     }
   }

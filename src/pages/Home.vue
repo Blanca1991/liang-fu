@@ -58,7 +58,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .HomeWarp{ min-width: 1200px;width: 100%;position: relative;}
-.comHeaderBox{position: absolute; z-index: 1}
+.comHeaderBox{position: absolute; z-index: 1;width: 100%}
 .scoll{position: relative; height: auto;width: 100%;height: 100vh;overflow: auto;}
 .scoll::-webkit-scrollbar {display: none;}
 </style>

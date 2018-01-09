@@ -1,7 +1,7 @@
 <!-- product引用组件 基本身份信息 + 运营商信息 wuxiaobo-->
 <template>
   <div class="oueServicesWarp ourNewsWarp">
-    <div class="oueServices">
+    <div class="oueServices ourNews">
       <div class="font28 servicesTitle">
         <div class="">
           <span>Our News</span>
@@ -12,45 +12,49 @@
           <div class="circleDiv"></div>
         </div>
       </div>
+      <div class="ourNewsList">
+        <div class="ourNewsItem flex" v-for="item in newsList">
+          <div class="ourNewsBg">
+            <img :src="imgUrl" alt="newsImg">
+          </div>
+          <div class="newsInfo">
+            <div class="">
+              <strong>{{ item.title }}</strong>
+            </div>
+            <div class="">
+              {{ item.article }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import liangfu from '../images/home/liangfu.png'
+import news from '../images/home/news.jpg'
 
 export default {
   name: 'homeBigBg',
   data () {
     return {
-      imgUrl: liangfu,
-      articles: [
+      imgUrl: news,
+      newsList: [
         {
-          article: '量富征信管理有限公司（简称“量富征信”）是复星集团的下属公司。'
+          title: '梁信军出席圣彼得堡高峰论坛 复星献策世界经济发展',
+          article: '7月4日，复星集团执行董事、总裁汪群斌与蚂蚁金融服务集团总裁井贤栋代表双方在上海正式签署战略合作协议，双方将致力于结合复星集团在医疗、旅游、金融、商业地产等板块的优质资源与蚂蚁金服领先的互联网技术，在互联网+医疗、旅游、金融、商业，及移动支付、数字化服务平台等领域展开深入合作，共同探索创新型解决方案。此次协议的签署是两家企业携手推动信息技术和产业生态融合的第一步。'
         },
         {
-          article: '为了积极响应市场经济和金融体制改革的市场需求，落实十六届三中全会有关“建立建全社会信用体系，推动全社会信用体系发展”，复星决定立足集团背景，依托多年形成的产业网络体系，发起设立量富征信管理有限公司，从事个人和企业征信业务。'
+          title: '复星集团与蚂蚁金服签署战略合作协议',
+          article: '6月16至18日，复星集团副董事长兼首席执行官梁信军出席第二十届圣彼得堡国际经济论坛。本次论坛，梁信军以就业工作组联合主席的身份，代表该组就讨论的政策建议做了汇报。在汇报中，梁信军建议 “贯彻落实大力推进大众创业、万众创新计划”，希望发起G20智慧网络倡议（SMART）,推动技术创新。同时，在G20国家范围内成立国家创新基金，打造创新技术分享经济平台，建立G20创新签证计划。G20国家还可以发起全国性或全球性的创业大赛来引导万众创新。'
         },
         {
-          article: '量富征信于'
+          title: '复星联合健康保险股份有限公司获准筹建',
+          article: '8月3日，复星国际（00656.HK）发布公告宣布，由复星集团发起设立的复星联合健康保险股份有限公司（以下简称“复星联合健康保险”（筹））收到中国保险监督管理委员会的正式批复，批准在广东省广州市筹建，注册资本金为人民币5亿元。'
         },
         {
-          article: '2015年4月30日'
-        },
-        {
-          article: '于上海市宜山路1289号克隆科技园区注册成立，由国内知名民营企业，即复星集团下属的两家机构发起人发起设立，注册资本'
-        },
-        {
-          article: '5500万元。'
-        },
-        {
-          article: '量富征信计划立足上海地区，辐射全国，立志在3-5年内通过提供创新型市场化征信服务成为'
-        },
-        {
-          article: '行业龙头，'
-        },
-        {
-          article: '助力上海建设国际金融中心的宏伟目标。'
+          title: '郭广昌出席巴西平台签约，新兴市场再迈坚实一步',
+          article: '巴西当地时间8月1日，复星集团收购Rio Bravo投资集团签约仪式在巴西圣保罗举行，共同庆祝Rio Bravo——这一巴西市场领先的房地产基金管理公司加入复星的全球化版图。'
         }
       ]
     }
@@ -64,7 +68,7 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('homeBigBg init')
+      console.log('OurNews init')
     }
   }
 }

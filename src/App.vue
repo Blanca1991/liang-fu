@@ -16,6 +16,7 @@ export default {
     getAppScroll () {
       this.$store.state.appDom = document.getElementById('app') // 楼梯关联跳转需要用到
       let app = document.getElementById('app')
+      // console.log(app.scrollTop)
       let vm = this
       app.onscroll = function () {
         let scrollTop = app.scrollTop
@@ -57,6 +58,10 @@ a,input,button{ outline:none; }
 .font20{font-size: 20px;}
 .font22{font-size: 22px;}
 .font24{font-size: 24px;}
+.font28{font-size: 28px;}
+.font30{font-size: 30px;}
+.font32{font-size: 32px;}
+.font36{font-size: 36px;}
 .font44{font-size: 44px;}
 .fontBold{font-weight: bold;}
 .textL{text-align: left; box-sizing: border-box;}

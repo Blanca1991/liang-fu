@@ -1,0 +1,49 @@
+/* home内的组件 用到的样式 */
+/* 第一个 大背景图 */
+.homeBigBgWarp{min-width: 1120px;width: 100% ;}
+.homeBigBgWarp .bigBg{width: 100%;height: 100vh;margin: 0;
+  background: url(../images/home/section.jpg) no-repeat center; background-size:cover}
+.homeBigBgWarp .textBox{color: #fff; position: absolute;top: 42%; width: 100%;text-align: center;}
+.circleBox{position: absolute;bottom: 10px;width: 100%;display: flex;justify-content: center;
+animation: moveCircleBox 2s infinite ;}
+.circleBox .circle{width: 40px; height: 40px;border: #fff 1px solid;border-radius: 50%;position: relative;}
+.circleBox .circle .leftEm{display: inline-block; width: 20px;height: 2px;background:#fff;
+  transform: rotate(45deg);position: absolute;top: 21px;left: 3px;border-radius: 5px;}
+.circleBox .circle .rightEm{ display: inline-block;width: 20px;height: 2px;background:#fff;
+  transform: rotate(-45deg);position: absolute;top: 21px;right: 3px;border-radius: 5px;}
+@keyframes moveCircleBox{
+  0% {opacity: 1;bottom: 10px;}
+  50% {opacity: 0;bottom: 30px; }
+  100% {opacity: 1;bottom: 10px;}
+}
+
+/*our services  */
+.oueServicesWarp{ width: 100%;height: 100vh; background-color: rgb(78, 157, 216);position: relative; color: #fff;}
+.servicesTitle{position: absolute;width: 100%;text-align: center;top: 100px;}
+.circleDivBox{ justify-content: center;align-items:center; margin-top: 10px}
+.circleDiv{ width: 12px;height: 12px;background: #fff;border-radius: 50%;}
+.ruleDiv{width: 240px;height: 2px;background: #fff;}
+.servicesList{width: 1100px; position: absolute;top: 240px;left: 50%;transform: translate(-50%);}
+.servicesItem{width: 25%; padding: 15px;}
+.article{text-indent: 28px;}
+.servicesItemBorder{border: #fff 1px solid; padding: 11px;}
+.servicesItemBorder .textBox{ margin-top: 10px;}
+.servicesButtonBox{justify-content: center;padding: 20px 0 10px;}
+.servicesButton{background: #fff;border-radius: 5px;width: 80px;padding: 4px 0;}
+.servicesButton{color: rgb(78, 157, 216)}
+.servicesButton:hover { background: #ea5b57; color: #fff}
+
+/* about Us */
+.aboutUsWarp{ width: 100%;height: 100vh; background: rgb(151, 210, 12) ;position: relative;}
+.aboutUsWarp .aboutUs{position: absolute; top: 300px; width: 100%;}
+.aboutUsWarp .aboutUs .imgBox{width: 50%;}
+.aboutUsWarp .aboutUs .imgBox img{width: 80%;}
+.aboutUsWarp .aboutUs .aboutUsArticles{ width: 50%;padding-right: 4%;}
+.aboutUsArticles .articles {text-align: left;text-indent: 25px;}
+.aboutUsArticles div{ margin-bottom: 5px;}
+.aboutUsArticles .aboutUsBtn {color: #a4d335; background: #fff;width: 100px;border-radius: 5px;padding: 5px 0;}
+.aboutUsArticles .aboutUsBtn:hover { color: #fff;background:#ea5b57 }
+.aboutRuleDiv {height: 2px; width: 400px;background: #fff; transform: rotate(71deg) translate(-220px,220px);}
+
+/* Our News */
+.ourNewsWarp{ width: 100%;height: 100vh; background: rgb(245, 85, 87) ;position: relative;}

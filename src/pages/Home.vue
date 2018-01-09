@@ -1,9 +1,14 @@
 <!-- 首页 wuxiaobo-->
 <template>
   <div  class="HomeWarp">
-    <ComHeader :isActiveComp="isActives" />
+    <div class="comHeaderBox">
+      <ComHeader :isActiveComp="isActives" />
+    </div>
     <div class="scoll">
-      home
+      <BigBg />
+      <OurServices />
+      <AboutUs />
+      <OurNews />
     </div>
     <login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
@@ -15,6 +20,10 @@ import {mapState} from 'vuex'
 import ComHeader from '@/components/ComHeader'
 import Login from '@/components/Login'
 import PointOut from '@/components/PointOut'
+import BigBg from '@/homeComp/BigBg'
+import OurServices from '@/homeComp/OurServices'
+import AboutUs from '@/homeComp/AboutUs'
+import OurNews from '@/homeComp/OurNews'
 
 export default {
   name: 'Home',
@@ -37,12 +46,19 @@ export default {
   components: {
     ComHeader,
     Login,
-    PointOut
+    PointOut,
+    BigBg,
+    OurServices,
+    AboutUs,
+    OurNews
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.HomeWarp{ min-width: 1200px;width: 100%;position: relative;}
+.comHeaderBox{position: absolute; z-index: 1}
+.scoll{position: relative; height: auto;width: 100%;height: 100vh;overflow: auto;}
+.scoll::-webkit-scrollbar {display: none;}
 </style>

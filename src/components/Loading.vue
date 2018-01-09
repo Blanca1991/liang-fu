@@ -1,22 +1,24 @@
 <template>
   <div class="loading">
-    <div class="round_box_box">
-      <div class="round_box">
-        <div class="round round_01"></div>
-        <div class="round round_02"></div>
-        <div class="round round_03"></div>
-        <div class="round round_04"></div>
-        <div class="round round_05"></div>
-        <div class="round round_06"></div>
-        <div class="round round_07"></div>
-        <div class="round round_08"></div>
-        <div class="round round_09"></div>
-        <div class="round round_10"></div>
-        <div class="round round_11"></div>
-        <div class="round round_12"></div>
+    <div class="loadingIn">
+      <div class="round_box_box">
+        <div class="round_box">
+          <div class="round round_01"></div>
+          <div class="round round_02"></div>
+          <div class="round round_03"></div>
+          <div class="round round_04"></div>
+          <div class="round round_05"></div>
+          <div class="round round_06"></div>
+          <div class="round round_07"></div>
+          <div class="round round_08"></div>
+          <div class="round round_09"></div>
+          <div class="round round_10"></div>
+          <div class="round round_11"></div>
+          <div class="round round_12"></div>
+        </div>
       </div>
+      <MaskBox />
     </div>
-    <MaskBox />
   </div>
 </template>
 
@@ -35,6 +37,8 @@ export default {
 </script>
 
 <style scoped>
+.loading{ width: 100vw; height: 100vh; position: absolute;top: 0}
+.loadingIn{ position: relative; width: 100vw; height: 100vh;}
 .round_box_box{
   width: 150px; height: 150px; background: rgba(0,0,0,0.6); position: absolute;
   transform: translateX(-50%)translateY(-50%);left: 50%;top: 50%; z-index: 20;border-radius: 5px;

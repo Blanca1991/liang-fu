@@ -1,8 +1,8 @@
 .ProductWarp{
-  background: #eee;min-width: 1200px; padding-bottom: 1px;position: relative;
+  background: #eee;min-width: 1200px; padding-bottom: 1px;
 }
 .ProductBox{
-  position: absolute;width: 100%; background: #eee;
+  width: 100%; background: #eee;
 }
 .ProductWarp .headerBox{
   width: 100%;
@@ -43,10 +43,13 @@
   text-indent: 23px;
   background: url(../images/userPhone_bg.png) no-repeat 5px center #fff ; background-size: 12% ;
 }
+.warninBox{
+  width: 1190px;margin: 20px auto 10px;
+}
 .warning{
-  width: 100%;padding: 15px 3%;background: #fcf8e3; color: #b8823b;
-  text-align: left;box-sizing: border-box;margin-bottom: 10px;
+  width: 1140px;padding: 15px 3%;background: #fcf8e3; color: #b8823b;
+  text-align: left;box-sizing: border-box;margin-top: 20px;
 }
 .antiFraud{
-  width: 1140px;margin: 20px auto; position: relative; padding-right: 50px;
+  width: 1140px;margin: 10px auto; position: relative; padding-right: 50px;
 }

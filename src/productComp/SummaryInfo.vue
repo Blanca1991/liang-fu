@@ -120,15 +120,19 @@ export default {
     restrictedInfo (newrestrictedInfo) {
       this.emptyDetailFun(newrestrictedInfo)
       this.listReverse()
+      this.getAllModelTop()
     },
     score (newrestrictedInfo) {
       this.scoreStyleFun()
+      this.getAllModelTop()
     },
     prohibitoryInfo (newprohibitoryInfo) {
       this.emptyDetailFun(newprohibitoryInfo)
+      this.getAllModelTop()
     },
     riskWarningInfo (newriskWarningInfo) {
       this.emptyDetailFun(newriskWarningInfo)
+      this.getAllModelTop()
     }
   },
   methods: {
@@ -138,7 +142,7 @@ export default {
       this.scoreStyleFun()
       this.listReverse()
       this.getAllModelTop()
-      console.log(document.getElementById('baseInfo').offsetTop)
+      // console.log(document.getElementById('baseInfo').offsetTop)
     },
     listReverse () {
       // 数组反向 循环
@@ -180,7 +184,7 @@ export default {
     scoreStyleFun () {
       if (this.score === null || this.score === '') {
         this.$store.state.summaryInfoStore.score = '暂无数据'
-        console.log(this)
+        // console.log(this)
         this.scoreShow = false
       } else {
         let score = parseInt(this.score)

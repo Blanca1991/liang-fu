@@ -107,8 +107,7 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('baseInfo init')
-      console.log(this.floorListTop)
+      // console.log('baseInfo init')
       this.getAllModelTop()
       this.changeFloorIconBg()
     },
@@ -119,10 +118,10 @@ export default {
     },
     gotItem (index) {
       if (index !== 9) {
-        let data = this.modelListTop[index].topNum + 90
+        let data = this.modelListTop[index].topNum + 145
         this.$store.dispatch('changeAppScrollTop', data)
       } else {
-        console.log(this.$store.state.appDom.scrollTop)
+        // console.log(this.$store.state.appDom.scrollTop)
         let step = this.$store.state.appDom.scrollTop / 20
         let vm = this;
         (function stepMove () {
@@ -137,8 +136,8 @@ export default {
       }
     },
     changeFloorIconBg () {
-      console.log(this.$store.state.appScrollTop)
-      let appScrollTop = this.$store.state.appScrollTop - 90
+      // console.log(this.$store.state.appScrollTop)
+      let appScrollTop = this.$store.state.appScrollTop - 145
       if (appScrollTop < this.modelListTop[1].topNum) {
         this.imgType = '01'
       } else if (appScrollTop >= this.modelListTop[1].topNum && appScrollTop < this.modelListTop[2].topNum) {

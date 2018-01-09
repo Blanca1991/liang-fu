@@ -16,7 +16,7 @@ export default new Vuex.Store({
     pointText: '', // 提示框内显示的文字
     pointShowBtn: false, // pointShow 弹框有无Btn按钮
     appScrollTop: 0, // id = app scroll 的高度
-    floorListTop: '80px', // 楼梯层跟随
+    floorListTop: '20px', // 楼梯层跟随
     appDom: '', // 获取app Dom元素
     modelListTop: [
       {
@@ -102,9 +102,9 @@ export default new Vuex.Store({
       // 楼梯层滚动跟随
       this.state.appScrollTop = data
       if (data < 160) {
-        this.state.floorListTop = '80px'
+        this.state.floorListTop = '20px'
       } else if (data > 160) {
-        this.state.floorListTop = (data - 80).toString() + 'px'
+        this.state.floorListTop = (data - 140).toString() + 'px'
       }
       // console.log(this.state.appScrollTop)
       // console.log(this.state.floorListTop)

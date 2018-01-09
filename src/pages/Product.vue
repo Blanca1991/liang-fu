@@ -15,8 +15,10 @@
           <LoginNav class="fontFFF" />
         </div>
       </div>
+      <div class="warninBox">
+        <div class="warning font16" v-if="this.isWarning">注意！！！此处为示例数据，查询可获取相关数据</div>
+      </div>
       <div class="antiFraud" id="antiFraud">
-        <div class="warning font16">注意！！！此处为示例数据，查询可获取相关数据</div>
         <!-- 总体情况评估 -->
         <SummaryInfo />
         <!-- 基本身份信息 运营商信息 -->
@@ -58,13 +60,12 @@ export default {
   name: 'Product',
   data () {
     return {
-      bgHides: true,
+      bgHides: true, // 星护甲logo 显示和隐藏
       searchName: '王立国',
       searchId: '642102197107030914',
       searchPhone: '15379509999',
-      isLoading: false,
-      scroll: 0,
-      antiFraudTop: '120px'
+      isLoading: false, // 加载动画 显示和隐藏
+      isWarning: true // 注意 实例显示和隐藏
     }
   },
   computed: {
@@ -134,6 +135,7 @@ export default {
         let data = res.data.body.result
         this.$store.dispatch('changeSearchData', data)
         this.isLoading = false
+        this.isWarning = false
       } else if (res.data.body.success === 'false') {
         this.isLoading = false
         this.pointOutFun(res.data.body.errorMsg)

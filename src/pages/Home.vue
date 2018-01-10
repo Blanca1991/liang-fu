@@ -10,8 +10,10 @@
       <AboutUs />
       <OurNews />
     </div>
-    <login v-show="isLogin"/>
-    <PointOut v-show="pointShow" />
+    <div class="loginBox">
+      <login v-show="isLogin"/>
+      <PointOut v-show="pointShow" />
+    </div>
   </div>
 </template>
 
@@ -61,4 +63,5 @@ export default {
 .comHeaderBox{position: absolute; z-index: 1;width: 100%}
 .scoll{position: relative; height: auto;width: 100%;height: 100vh;overflow: auto;}
 .scoll::-webkit-scrollbar {display: none;}
+.loginBox{position: fixed;top: 0; width: 100%;}
 </style>

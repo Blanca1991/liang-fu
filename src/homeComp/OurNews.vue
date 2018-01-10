@@ -111,11 +111,11 @@ export default {
       let moveLeft = 4 * offset
       let moveRight = -offset
       console.log(newLeft, moveLeft, moveRight)
-      if (newLeft < moveLeft) {
-        this.moveNum = '-' + this.needWidth + 'px'
-      } else if (newLeft > moveRight) {
-        this.moveNum = '-' + moveLeft + 'px'
-      }
+      // if (newLeft < moveLeft) {
+      //   this.moveNum = '-' + this.needWidth + 'px'
+      // } else if (newLeft > moveRight) {
+      //   this.moveNum = '-' + moveLeft + 'px'
+      // }
     },
     leftSlide () {
       // toggleList: document.getElementById('ourNewsList')

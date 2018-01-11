@@ -14,7 +14,7 @@
       </div>
       <div class="ourNewsListBox" ref="ourNewsListBox">
         <div class="ourNewsList" :style="{left: moveNum}">
-          <div class="ourNewsItem flex" v-for="item in newsList">
+          <div class="ourNewsItem flex" v-for="item in newsList" style="border:1px solid #fff">
             <div class="ourNewsBg">
               <img :src="imgUrl" alt="newsImg">
             </div>
@@ -93,6 +93,7 @@ export default {
     },
     getNeedWidth () {
       let width = document.body.clientWidth
+      console.log(width)
       if (width < 1200) {
         this.needWidth = 1200
         this.moveNum = '-' + this.needWidth + 'px'
@@ -108,14 +109,14 @@ export default {
       let moveNum = parseInt(this.moveNum)
       let newLeft = moveNum + offset
       this.moveNum = newLeft.toString() + 'px'
-      let moveLeft = 4 * offset
-      let moveRight = -offset
+      let moveLeft = -(4 * Math.abs(offset))
+      let moveRight = -(Math.abs(offset))
       console.log(newLeft, moveLeft, moveRight)
-      // if (newLeft < moveLeft) {
-      //   this.moveNum = '-' + this.needWidth + 'px'
-      // } else if (newLeft > moveRight) {
-      //   this.moveNum = '-' + moveLeft + 'px'
-      // }
+      if (newLeft < moveLeft) {
+        this.moveNum = '-' + this.needWidth + 'px'
+      } else if (newLeft > moveRight) {
+        this.moveNum = moveLeft + 'px'
+      }
     },
     leftSlide () {
       // toggleList: document.getElementById('ourNewsList')
@@ -125,7 +126,7 @@ export default {
     },
     rightSlide () {
       console.log('rightSlide')
-      this.animate(this.needWidth)
+      this.animate(-this.needWidth)
     }
   }
 }

@@ -125,7 +125,7 @@ export default {
     },
     rightSlide () {
       console.log('rightSlide')
-      this.animate(-this.needWidth)
+      this.animate(this.needWidth)
     }
   }
 }

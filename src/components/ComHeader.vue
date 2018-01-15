@@ -1,7 +1,7 @@
 <!-- 头部导航栏 -->
 <template>
   <div class="comHeaderWarp" >
-    <div class="comHeader" >
+    <div class="comHeader minWidthBox" >
       <LogoBg :bgHide="bgHides"/>
       <span v-for="(item, index) in items" :key="item.id" @click="gotoInfo(item, index)"
       :class="{ 'navActive': isActive==item.pagesName }" >
@@ -107,7 +107,6 @@ export default {
   background: #2a2d2c;
   color: #fff;
   height: 80px;
-  min-width: 1200px;
 }
 .comHeader span{
   margin: 0 5px;

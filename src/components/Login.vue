@@ -1,6 +1,6 @@
 <!-- 登录输入信息框 -->
 <template>
-  <div class="LoginWarp">
+  <div class="LoginWarp minWidthBox">
     <div class="Login" >
       <span class="close inBlock pointer" @click="$store.commit('HIDELOGIN')"></span>
       <div class="font18 colorRed ">

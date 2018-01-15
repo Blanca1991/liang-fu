@@ -1,6 +1,6 @@
 <!-- 登录输入信息框 -->
 <template>
-  <div class="maskWarp" @click="callMethod">
+  <div class="maskWarp minWidthBox" @click="callMethod">
     <div class="maskBox" ></div>
   </div>
 </template>
@@ -30,7 +30,6 @@ export default {
 <style scoped>
 .maskWarp{
   width: 100vw;
-  min-width: 1200px;
   height: 100vh;
   background: rgba(0,0,0,0.4);
   position: absolute;

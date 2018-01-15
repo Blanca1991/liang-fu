@@ -1,6 +1,6 @@
 <!-- 首页 wuxiaobo-->
 <template>
-  <div  class="HomeWarp">
+  <div  class="HomeWarp minWidthBox">
     <div class="comHeaderBox">
       <ComHeader :isActiveComp="isActives" />
     </div>
@@ -9,6 +9,7 @@
       <OurServices />
       <AboutUs />
       <OurNews />
+      <OurAddress />
     </div>
     <div class="loginBox">
       <login v-show="isLogin"/>
@@ -26,6 +27,7 @@ import BigBg from '@/homeComp/BigBg'
 import OurServices from '@/homeComp/OurServices'
 import AboutUs from '@/homeComp/AboutUs'
 import OurNews from '@/homeComp/OurNews'
+import OurAddress from '@/homeComp/OurAddress'
 
 export default {
   name: 'Home',
@@ -52,14 +54,15 @@ export default {
     BigBg,
     OurServices,
     AboutUs,
-    OurNews
+    OurNews,
+    OurAddress
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.HomeWarp{ min-width: 1200px;width: 100%;position: relative;}
+.HomeWarp{ width: 100%;position: relative;}
 .comHeaderBox{position: absolute; z-index: 1;width: 100%}
 .scoll{position: relative; height: auto;width: 100%;height: 100vh;overflow: auto;}
 .scoll::-webkit-scrollbar {display: none;}

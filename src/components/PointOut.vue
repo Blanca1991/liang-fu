@@ -1,6 +1,6 @@
 <!-- 登录小窗 -->
 <template>
-  <div class="pointOutWarp" v-if="!pointShowBtn">
+  <div class="pointOutWarp minWidthBox" v-if="!pointShowBtn">
     <div class="pointOut font14">
       {{ pointText }}
     </div>
@@ -49,7 +49,6 @@ export default {
 .pointOutWarp{
   width: 100vw;
   height: 100vh;
-  min-width: 1200px;
   letter-spacing:4px;
 }
 .pointOut{

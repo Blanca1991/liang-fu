@@ -1,4 +1,4 @@
-<!-- product引用组件 基本身份信息 + 运营商信息 wuxiaobo-->
+<!-- home引用组件 新闻模块 wuxiaobo-->
 <template>
   <div class="oueServicesWarp ourNewsWarp">
     <div class="oueServices ourNews">
@@ -13,8 +13,8 @@
         </div>
       </div>
       <div class="ourNewsListBox" ref="ourNewsListBox">
-        <div class="ourNewsList" :style="{left: moveNum}">
-          <div class="ourNewsItem flex" v-for="item in newsList" style="border:1px solid #fff">
+        <div class="ourNewsList" :style="{left: moveNum}" ref="ourNewsList">
+          <div class="ourNewsItem flex" v-for="item in newsList" >
             <div class="ourNewsBg">
               <img :src="imgUrl" alt="newsImg">
             </div>
@@ -51,10 +51,6 @@ export default {
       imgUrl: news,
       newsList: [
         {
-          title: '444郭广昌出席巴西平台签约，新兴市场再迈坚实一步',
-          article: '巴西当地时间8月1日，复星集团收购Rio Bravo投资集团签约仪式在巴西圣保罗举行，共同庆祝Rio Bravo——这一巴西市场领先的房地产基金管理公司加入复星的全球化版图。'
-        },
-        {
           title: '111梁信军出席圣彼得堡高峰论坛 复星献策世界经济发展',
           article: '7月4日，复星集团执行董事、总裁汪群斌与蚂蚁金融服务集团总裁井贤栋代表双方在上海正式签署战略合作协议，双方将致力于结合复星集团在医疗、旅游、金融、商业地产等板块的优质资源与蚂蚁金服领先的互联网技术，在互联网+医疗、旅游、金融、商业，及移动支付、数字化服务平台等领域展开深入合作，共同探索创新型解决方案。此次协议的签署是两家企业携手推动信息技术和产业生态融合的第一步。'
         },
@@ -69,30 +65,57 @@ export default {
         {
           title: '444郭广昌出席巴西平台签约，新兴市场再迈坚实一步',
           article: '巴西当地时间8月1日，复星集团收购Rio Bravo投资集团签约仪式在巴西圣保罗举行，共同庆祝Rio Bravo——这一巴西市场领先的房地产基金管理公司加入复星的全球化版图。'
-        },
-        {
-          title: '111梁信军出席圣彼得堡高峰论坛 复星献策世界经济发展',
-          article: '7月4日，复星集团执行董事、总裁汪群斌与蚂蚁金融服务集团总裁井贤栋代表双方在上海正式签署战略合作协议，双方将致力于结合复星集团在医疗、旅游、金融、商业地产等板块的优质资源与蚂蚁金服领先的互联网技术，在互联网+医疗、旅游、金融、商业，及移动支付、数字化服务平台等领域展开深入合作，共同探索创新型解决方案。此次协议的签署是两家企业携手推动信息技术和产业生态融合的第一步。'
         }
       ],
       moveNum: '',
-      needWidth: 0
+      screenWidth: document.body.clientWidth,
+      needWidth: 0,
+      timer: false
     }
   },
   computed: {},
-  watch: {},
+  watch: {
+    // screenWidth (val) {
+    //   this.screenWidth = val
+    //   console.log(this.screenWidth)
+    // }
+    screenWidth (val) {
+      if (!this.timer) {
+        this.screenWidth = val
+        this.timer = true
+        let vm = this
+        setTimeout(function () {
+          console.log(vm.screenWidth)
+          vm.init()
+          vm.timer = false
+        }, 400)
+      }
+    }
+  },
   mounted () {
     // 钩子函数
     this.init()
+    this.play()
   },
   methods: {
     init () {
       // 初始化
-      console.log('OurNews init')
+      // console.log('OurNews init')
+      this.getScreenWidth()
       this.getNeedWidth()
     },
+    getScreenWidth () {
+      const vm = this
+      window.onresize = () => {
+        return (() => {
+          window.screenWidth = document.body.clientWidth
+          vm.screenWidth = window.screenWidth
+          console.log(vm.screenWidth)
+        })()
+      }
+    },
     getNeedWidth () {
-      let width = document.body.clientWidth
+      let width = this.screenWidth
       console.log(width)
       if (width < 1200) {
         this.needWidth = 1200
@@ -106,27 +129,35 @@ export default {
     animate (offset) {
       // 获取的是style.left，是相对左边获取距离，所以第一张图后style.left都为负值，
       // 且style.left获取的是字符串，需要用parseInt()取整转化为数字。
+      //   /////////////////////
       let moveNum = parseInt(this.moveNum)
-      let newLeft = moveNum + offset
-      this.moveNum = newLeft.toString() + 'px'
+      let newMoveNum = moveNum + offset
+      this.moveNum = newMoveNum.toString() + 'px'
+      // this.moveNum = newMoveNum.toString() + 'px'
       let moveLeft = -(4 * Math.abs(offset))
       let moveRight = -(Math.abs(offset))
-      console.log(newLeft, moveLeft, moveRight)
-      if (newLeft < moveLeft) {
+      console.log(newMoveNum, moveLeft, moveRight)
+      if (newMoveNum < moveLeft) {
         this.moveNum = '-' + this.needWidth + 'px'
-      } else if (newLeft > moveRight) {
+      } else if (newMoveNum > moveRight) {
         this.moveNum = moveLeft + 'px'
       }
     },
     leftSlide () {
-      // toggleList: document.getElementById('ourNewsList')
-      // console.log(this.$refs.ourNewsList.style.left)
-      this.animate(this.needWidth)
+      // 事件绑定 —— 左点击事件
       console.log('leftSlide')
+      // this.animate(this.needWidth)
     },
     rightSlide () {
+      // 事件绑定 —— 右点击事件
       console.log('rightSlide')
-      this.animate(-this.needWidth)
+      // this.animate(-this.needWidth)
+    },
+    play () {
+      // let vm = this
+      // setInterval(function () {
+      //   vm.rightSlide()
+      // }, 3000)
     }
   }
 }

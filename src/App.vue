@@ -73,6 +73,7 @@ a,input,button{ outline:none; }
 .pL20{padding-left: 20px;box-sizing: border-box;}
 .pL10{padding-left: 10px;box-sizing: border-box;}
 .pR20{padding-right: 20px;box-sizing: border-box;}
+.minWidthBox{min-width: 1200px;}
 ::-moz-focus-inner{border:0px;}
 /*a:link {color:#0f0;text-decoration:none;}
 a:visited {color: #FFFF00; text-decoration:none;}

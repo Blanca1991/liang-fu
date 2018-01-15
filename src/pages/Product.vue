@@ -1,9 +1,9 @@
 <!-- 产品适用 wuxiaobo-->
 <template>
-  <div class="ProductWarp" >
+  <div class="ProductWarp minWidthBox" >
     <div class="ProductBox" id='ProductBox' >
       <div class="headerBox">
-        <div class="header">
+        <div class="header minWidthBox">
           <LogoBg :bgHide="bgHides" class="logoBg"/>
           <input type="text" class="uesrName" placeholder="请输入姓名" v-model="searchName" />
           <input type="text" class="userId" placeholder="请输入身份证号"

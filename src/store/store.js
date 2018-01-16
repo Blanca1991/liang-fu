@@ -55,7 +55,8 @@ export default new Vuex.Store({
         modelName: 'historyInfo',
         topNum: 0 // 总体评分模块的top值
       }// 历史信息模块 的top值
-    ]
+    ],
+    isTipsShow: false
   },
   mutations: {
     SHOWLOGIN (state) {

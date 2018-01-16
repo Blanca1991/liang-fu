@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="servicesList flex">
-        <div class="servicesItem" v-for="item in servicesList">
+        <div class="servicesItem" v-for="(item, index) in servicesList">
           <div class="servicesItemBorder">
             <div class="bg">
               <img :src="item.imgUrl" alt="">
@@ -27,7 +27,7 @@
               </div>
             </div>
             <div class="servicesButtonBox flex">
-              <div class="servicesButton pointer">
+              <div class="servicesButton pointer" @click="goToService(index)">
                 <span >More</span>
               </div>
             </div>
@@ -82,6 +82,9 @@ export default {
     init () {
       // 初始化
       console.log('homeBigBg init')
+    },
+    goToService (index) {
+      this.$router.push({ name: 'Service' })
     }
   }
 }

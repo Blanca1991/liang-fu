@@ -42,6 +42,7 @@ body,html{-webkit-text-size-adjust: none;width: 100%;height: 100%;}
 *{text-decoration: none;list-style: none;}
 img{border: 0px;}
 ul,li,dl,dd,dt,p,ol,h1,h2,h3,h4,h5{font-size: 12px;font-weight: 100;padding: 0;margin: 0;}
+p{font-size: 14px;}
 .wrap{margin: 0 auto;}
 .inBlock{display: inline-block;}
 .fl{float: left;}

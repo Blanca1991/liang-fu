@@ -7,7 +7,7 @@
         新闻资讯
       </div>
       <div class="newslist textL">
-        <div class="newsItem flex pointer" v-for="item in newsList" @click='showTipsBox(item)'>
+        <div class="newsItem flex pointer" v-for="(item, index) in newsList" @click='showTipsBox(item, index)'>
           <div class="imgBox">
             <img :src="item.image" alt="">
           </div>
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <TipsBox v-show="this.$store.state.isTipsShow" :tipsInfoComp="tipsInfo"/>
+    <TipsBox v-show="this.$store.state.isTipsShow" :tipsInfoComp="tipsInfo" :tipsIndexCom="tipsIndex" :newsListCom="newsListNews"/>
     <Login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
   </div>
@@ -47,7 +47,9 @@ export default {
     return {
       isActives: 'News',
       newsList: [],
-      tipsInfo: ''
+      tipsInfo: '',
+      tipsIndex: 0,
+      newsListNews: ''
     }
   },
   computed: {
@@ -78,6 +80,10 @@ export default {
       if (res.data.type && res.data.type === 'success') {
         // this.pointOutFun('提交成功！')
         this.newsList = res.data.data.content
+        this.newsListNews = JSON.parse(JSON.stringify(this.newsList))
+        this.newsListNews.unshift({name: 0})
+        this.newsListNews.push({name: 0})
+        console.log(this.newsListNews)
         console.log(this.newsList)
       } else if (res.data.type === 'false') {
         this.pointOutFun(res.data.message)
@@ -89,9 +95,12 @@ export default {
       // 事件调用 -- 调用提示层
       this.$store.dispatch('showPoint', data)
     },
-    showTipsBox (item) {
+    showTipsBox (item, index) {
+      console.log(index)
       this.$store.state.isTipsShow = true
       this.tipsInfo = item
+      this.tipsIndex = index
+      console.log(this.newsListNews)
     }
   },
   components: {

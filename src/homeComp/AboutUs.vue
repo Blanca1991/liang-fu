@@ -37,7 +37,7 @@
             <span>助力上海建设国际金融中心的宏伟目标。</span>
           </div>
           <div class="aboutUsBtn pointer">
-            <span>查看详情</span>
+            <span @click="goToCompany">查看详情</span>
           </div>
           <div class="aboutRuleDiv"></div>
         </div>
@@ -95,6 +95,9 @@ export default {
     init () {
       // 初始化
       console.log('homeBigBg init')
+    },
+    goToCompany () {
+      this.$router.push({ name: 'Company' })
     }
   }
 }

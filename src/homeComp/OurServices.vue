@@ -27,7 +27,7 @@
               </div>
             </div>
             <div class="servicesButtonBox flex">
-              <div class="servicesButton pointer" @click="goToService(index)">
+              <div class="servicesButton pointer" @click="goToService()">
                 <span >More</span>
               </div>
             </div>
@@ -83,7 +83,7 @@ export default {
       // 初始化
       console.log('homeBigBg init')
     },
-    goToService (index) {
+    goToService () {
       this.$router.push({ name: 'Service' })
     }
   }

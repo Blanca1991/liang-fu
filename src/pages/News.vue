@@ -25,7 +25,23 @@
         </div>
       </div>
     </div>
-    <TipsBox v-show="this.$store.state.isTipsShow" :tipsInfoComp="tipsInfo" :tipsIndexCom="tipsIndex" :newsListCom="newsListNews"/>
+    <TipsBox v-show="this.$store.state.isTipsShow" :tipsInfoComp="tipsInfo" />
+    <div class="newsTipsBox" v-show="this.$store.state.isTipsShow">
+      <div class="bottomBtnBox flex">
+        <div class="preBtn" >
+          <span class="pointer" @click="preFun" v-show="preName !== ''">
+            <span>上一条：</span>
+            <span>{{ preName }}</span>
+          </span>
+        </div>
+        <div class="nextBtn">
+          <span class="pointer" @click="nextFun" v-show="nextName !== ''">
+            <span>下一条：</span>
+            <span>{{ nextName }}</span>
+          </span>
+        </div>
+      </div>
+    </div>
     <Login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
   </div>
@@ -49,7 +65,8 @@ export default {
       newsList: [],
       tipsInfo: '',
       tipsIndex: 0,
-      newsListNews: ''
+      preName: '',
+      nextName: ''
     }
   },
   computed: {
@@ -80,11 +97,11 @@ export default {
       if (res.data.type && res.data.type === 'success') {
         // this.pointOutFun('提交成功！')
         this.newsList = res.data.data.content
-        this.newsListNews = JSON.parse(JSON.stringify(this.newsList))
-        this.newsListNews.unshift({name: 0})
-        this.newsListNews.push({name: 0})
-        console.log(this.newsListNews)
-        console.log(this.newsList)
+        // this.newsListNews = JSON.parse(JSON.stringify(this.newsList))
+        // this.newsListNews.unshift({name: 0})
+        // this.newsListNews.push({name: 0})
+        // console.log(this.newsListNews)
+        // console.log(this.newsList)
       } else if (res.data.type === 'false') {
         this.pointOutFun(res.data.message)
       } else {
@@ -100,7 +117,24 @@ export default {
       this.$store.state.isTipsShow = true
       this.tipsInfo = item
       this.tipsIndex = index
-      console.log(this.newsListNews)
+      if (index === 0) {
+        this.preName = ''
+        this.nextName = this.newsList[index + 1].name
+      } else if (index === 3) {
+        this.preName = this.newsList[index - 1].name
+        this.nextName = ''
+      } else {
+        this.preName = this.newsList[index - 1].name
+        this.nextName = this.newsList[index + 1].name
+      }
+    },
+    nextFun () {
+      console.log('下一页')
+      this.showTipsBox(this.newsList[this.tipsIndex + 1], this.tipsIndex + 1)
+    },
+    preFun () {
+      console.log('上一页')
+      this.showTipsBox(this.newsList[this.tipsIndex - 1], this.tipsIndex - 1)
     }
   },
   components: {
@@ -121,4 +155,8 @@ export default {
 .newslistWarp .imgBox img{width: 100%;height: 100%;}
 .newsContent{width: 820px;height: 55px;box-sizing: border-box;display: -webkit-box;text-indent: 24px;
   -webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;line-height: 28px;}
+.newsTipsBox{position: absolute; z-index: 19;width: 100%;top: 540px;}
+.bottomBtnBox{ justify-content: space-between;position: absolute;bottom: 10px;width: 800px;left:50%;transform: translate(-50%);}
+.bottomBtnBox .preBtn{width: 40%;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;padding-left: 20px;}
+.bottomBtnBox .nextBtn{width: 40%;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;padding-right: 20px;}
 </style>

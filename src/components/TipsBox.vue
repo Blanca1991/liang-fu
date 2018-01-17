@@ -14,20 +14,6 @@
           <img :src="this.tipsInfoComp.imgInUrl" alt="">
         </div>
       </div>
-      <div class="bottomBtnBox flex">
-        <div class="preBtn" >
-          <span class="pointer" @click="preFun" v-show="newsListCom[tipsIndexCom - 1]">
-            <span>上一条：</span>
-            <span>{{  }}</span>
-          </span>
-        </div>
-        <div class="nextBtn">
-          <span class="pointer" @click="nextFun" v-show="newsListCom[tipsIndexCom + 1]">
-            <span>下一条：</span>
-            <span>{{  }}</span>
-          </span>
-        </div>
-      </div>
     </div>
     <div class="" @click="closeTips">
       <MaskBox />
@@ -52,22 +38,13 @@ export default {
     init () {},
     closeTips () {
       this.$store.state.isTipsShow = false
-    },
-    nextFun () {
-      console.log('下一页')
-      console.log(this.newsListCom)
-    },
-    preFun () {
-      console.log('上一页')
     }
   },
   components: {
     MaskBox
   },
   props: [
-    'tipsInfoComp',
-    'tipsIndexCom',
-    'newsListCom'
+    'tipsInfoComp'
   ]
 }
 </script>
@@ -82,8 +59,5 @@ export default {
 .imgInUrlStyle{text-align: center;}
 .contentDiv{overflow: auto; height: 100%;}
 .contentDiv::-webkit-scrollbar { display: none; }
-.bottomBtnBox{line-height: 40px; justify-content: space-between;}
-.bottomBtnBox .preBtn{width: 40%;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-.bottomBtnBox .nextBtn{width: 40%;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 
 </style>

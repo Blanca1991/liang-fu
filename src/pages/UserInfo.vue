@@ -1,9 +1,16 @@
 <!-- 用户信息 wuxiaobo-->
 <template>
-  <div  class="ServiceWarp">
+  <div  class="UserInfoWarp minWidthBox">
     <ComHeader :isActiveComp="isActives"/>
-    <div class="">
-      用户中心
+    <div class="UserInfo">
+      <div class="infoList">
+
+      </div>
+      <div class="contentDiv">
+        <div class="">
+
+        </div>
+      </div>
     </div>
     <login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
@@ -50,5 +57,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.UserInfoWarp{}
+.UserInfo{}
+.infoList{}
+.contentDiv{}
 </style>

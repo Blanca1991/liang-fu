@@ -128,20 +128,25 @@ export default {
       }
       console.log(params)
       const res = await http.post(api.antifraud, params)
-      console.log(res)
-      console.log(res.data)
-      if (res.data.body.success && res.data.body.success === 'true') {
-        console.log(res.data.body)
-        let data = res.data.body.result
-        this.$store.dispatch('changeSearchData', data)
-        this.isLoading = false
-        this.isWarning = false
-      } else if (res.data.body.success === 'false') {
-        this.isLoading = false
-        this.pointOutFun(res.data.body.errorMsg)
+      console.log('res', res)
+      if (res.status === 200) {
+        console.log(res.data)
+        if (res.data.body.success && res.data.body.success !== 'false') {
+          console.log(res.data.body)
+          let data = res.data.body.result
+          this.$store.dispatch('changeSearchData', data)
+          this.isLoading = false
+          this.isWarning = false
+        } else if (res.data.body.success === 'false') {
+          this.isLoading = false
+          this.pointOutFun(res.data.body.errorMsg)
+        } else {
+          this.isLoading = false
+          this.pointOutFun('系统异常，请稍后再试')
+        }
       } else {
+        this.pointOutFun(res.msg)
         this.isLoading = false
-        this.pointOutFun('系统异常，请稍后再试')
       }
     }
   },

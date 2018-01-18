@@ -25,7 +25,7 @@
     </div>
     <login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
-    <TipsBox v-show="this.$store.state.isTipsShow" :tipsInfoComp="tipsInfo"/>
+    <TipsBox v-show="this.$store.state.isTipsShow" :tipsInfoComp="tipsInfo" :jobsTellShow="true"/>
   </div>
 </template>
 
@@ -44,8 +44,8 @@ export default {
   data () {
     return {
       isActives: 'Jobs',
-      jobsList: '',
-      tipsInfo: '',
+      jobsList: '', // 获取到的工作列表
+      tipsInfo: '', // 给子组件传递的参数
       bgColor: [
         '4c94cb',
         '92c529',
@@ -83,30 +83,42 @@ export default {
       }
       const res = await http.post(api.getRecruitInfo, params)
       console.log(res)
-      if (res.data.type && res.data.type === 'success') {
-        console.log(res.data.data)
-        this.jobsList = res.data.data
-      } else if (res.data.type === 'false') {
-        this.pointOutFun(res.data.message)
+      if (res.status === 200) {
+        if (res.data.type && res.data.type === 'success') {
+          console.log(res.data.data)
+          this.jobsList = res.data.data
+        } else if (res.data.type === 'false') {
+          this.pointOutFun(res.data.message)
+        } else {
+          this.pointOutFun('系统异常，请稍后再试')
+        }
       } else {
-        this.pointOutFun('系统异常，请稍后再试')
+        this.pointOutFun(res.msg)
       }
     },
+    pointOutFun (data) {
+      // 事件调用 -- 调用提示层
+      this.$store.dispatch('showPoint', data)
+    },
     itemEnter (index) {
-      console.log(index, 'itemEnter')
-      console.log(this.$refs.itemHover[index].style.backgroundColor)
+      // console.log(index, 'itemEnter')
+      // console.log(this.$refs.itemHover[index].style.backgroundColor)
       let itemHover = this.$refs.itemHover[index]
       let bgColor = this.rgb2hex(itemHover.style.backgroundColor)
-      setTimeout(function () {
-        // 定时器
-        itemHover.style.backgroundColor = '#fff'
-        itemHover.style.color = bgColor
-        itemHover.style.borderColor = bgColor
-        itemHover.style.zIndex = 3
-      }, 80)
+      itemHover.style.backgroundColor = '#fff'
+      itemHover.style.color = bgColor
+      itemHover.style.borderColor = bgColor
+      itemHover.style.zIndex = 3
+      // setTimeout(function () {
+      //   // 定时器
+      //   itemHover.style.backgroundColor = '#fff'
+      //   itemHover.style.color = bgColor
+      //   itemHover.style.borderColor = bgColor
+      //   itemHover.style.zIndex = 3
+      // }, 80)
     },
     itemOut (index) {
-      console.log(index, 'itemOut')
+      // console.log(index, 'itemOut')
       let itemHover = this.$refs.itemHover[index]
       let color = this.rgb2hex(itemHover.style.color)
       itemHover.style.backgroundColor = color
@@ -117,7 +129,7 @@ export default {
     showTipsBox (item) {
       this.$store.state.isTipsShow = true
       this.tipsInfo = item
-      console.log(item)
+      // console.log(item)
     },
     rgb2hex (rgb) {
       if (rgb.charAt(0) === '#') {

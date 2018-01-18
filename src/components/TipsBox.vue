@@ -7,11 +7,22 @@
       </div>
       <div class="contentDiv">
         <div class="font22">
-          <strong>{{ this.tipsInfoComp.name }}</strong>
+          <strong>{{ this.tipsInfoComp.name || this.tipsInfoComp.position }}</strong>
         </div>
         <span class="font16" v-html="this.tipsInfoComp.content"></span>
         <div class="imgInUrlStyle">
           <img :src="this.tipsInfoComp.imgInUrl" alt="">
+        </div>
+        <div class="font16" v-show="this.jobsTellShow">
+          <div class="">
+            联系电话：021-34697459
+          </div>
+          <div class="">
+            邮箱：liyili@fosun.com
+          </div>
+          <div class="">
+            2016-07-05
+          </div>
         </div>
       </div>
     </div>
@@ -44,7 +55,8 @@ export default {
     MaskBox
   },
   props: [
-    'tipsInfoComp'
+    'tipsInfoComp',
+    'jobsTellShow'
   ]
 }
 </script>

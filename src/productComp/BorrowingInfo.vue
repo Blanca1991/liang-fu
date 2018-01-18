@@ -187,7 +187,11 @@ export default {
       appInfo: state => state.baseInfoStore.appInfo
     })
   },
-  watch: {},
+  watch: {
+    borrowingInfo (borrowingInfo) {
+      this.faultCheck()
+    }
+  },
   mounted () {
     // 钩子函数
     this.init()
@@ -196,6 +200,10 @@ export default {
     init () {
       // 初始化
       // console.log('borrowingInfo init')
+      // this.faultCheck()
+    },
+    faultCheck () {
+      console.log(this.borrowingInfo)
     }
   }
 }

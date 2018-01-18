@@ -94,18 +94,22 @@ export default {
       }
       const res = await http.post(api.getArticleInfoPage, params)
       console.log(res)
-      if (res.data.type && res.data.type === 'success') {
-        // this.pointOutFun('提交成功！')
-        this.newsList = res.data.data.content
-        // this.newsListNews = JSON.parse(JSON.stringify(this.newsList))
-        // this.newsListNews.unshift({name: 0})
-        // this.newsListNews.push({name: 0})
-        // console.log(this.newsListNews)
-        // console.log(this.newsList)
-      } else if (res.data.type === 'false') {
-        this.pointOutFun(res.data.message)
+      if (res.status === 200) {
+        if (res.data.type && res.data.type === 'success') {
+          // this.pointOutFun('提交成功！')
+          this.newsList = res.data.data.content
+          // this.newsListNews = JSON.parse(JSON.stringify(this.newsList))
+          // this.newsListNews.unshift({name: 0})
+          // this.newsListNews.push({name: 0})
+          // console.log(this.newsListNews)
+          // console.log(this.newsList)
+        } else if (res.data.type === 'false') {
+          this.pointOutFun(res.data.message)
+        } else {
+          this.pointOutFun('系统异常，请稍后再试')
+        }
       } else {
-        this.pointOutFun('系统异常，请稍后再试')
+        this.pointOutFun(res.msg)
       }
     },
     pointOutFun (data) {

@@ -150,7 +150,7 @@ export default {
 .constantDivIn .imgBox{position: absolute;top: 0%;left: 50%;transform: translateX(-50%) translateY(-50%);}
 .constantDivIn .titleBox{line-height: 120px;}
 .hoverDiv{ position: absolute; top: -200px;display: none;}
-.listBox .item:hover {width: 30%;}
+.listBox .item:hover {width: 35%;}
 .listBox .item:hover .constantDivIn{ display: none}
 .listBox .item:hover .hoverDiv{ display: block;}
 .secondInfo{ padding:0 20px; box-sizing: border-box; }

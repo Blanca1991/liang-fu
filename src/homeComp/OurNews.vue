@@ -117,13 +117,14 @@ export default {
     getNeedWidth () {
       let width = this.screenWidth
       console.log(width)
-      if (width < 1200) {
-        this.needWidth = 1200
-        this.moveNum = '-' + this.needWidth + 'px'
-      } else {
-        this.needWidth = document.body.clientWidth
-        this.moveNum = '-' + this.needWidth + 'px'
-      }
+      this.moveNum = '-1200px'
+      // if (width < 1200) {
+      //   this.needWidth = 1200
+      //   this.moveNum = '-' + this.needWidth + 'px'
+      // } else {
+      //   this.needWidth = document.body.clientWidth
+      //   this.moveNum = '-' + this.needWidth + 'px'
+      // }
       console.log(this.needWidth)
     },
     animate (offset) {

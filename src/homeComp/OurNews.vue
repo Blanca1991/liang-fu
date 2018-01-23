@@ -1,6 +1,6 @@
 <!-- home引用组件 新闻模块 wuxiaobo-->
 <template>
-  <div class="oueServicesWarp ourNewsWarp">
+  <div class="oueServicesWarp ourNewsWarp homeItem" id="OurNews">
     <div class="oueServices ourNews">
       <div class="font28 servicesTitle">
         <div class="">

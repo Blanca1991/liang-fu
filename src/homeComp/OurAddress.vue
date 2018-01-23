@@ -1,6 +1,6 @@
 <!-- home引用组件 联系我们 wuxiaobo-->
 <template>
-  <div class="oueServicesWarp ourAddressWarp">
+  <div class="oueServicesWarp ourAddressWarp homeItem" id="OurAddress">
     <div class="ourAddress ourNews">
       <div class="font28 servicesTitle">
         <div class="">

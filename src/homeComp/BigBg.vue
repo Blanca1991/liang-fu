@@ -1,6 +1,6 @@
 <!-- product引用组件 基本身份信息 + 运营商信息 wuxiaobo-->
 <template>
-  <div class="homeBigBgWarp minWidthBox">
+  <div class="homeBigBgWarp minWidthBox homeItem" id="BigBg">
     <div class="bigBg">
       <div class="textBox">
         <div class="font30">

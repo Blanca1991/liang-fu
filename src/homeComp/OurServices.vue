@@ -1,6 +1,6 @@
 <!-- product引用组件 基本身份信息 + 运营商信息 wuxiaobo-->
 <template>
-  <div class="oueServicesWarp">
+  <div class="oueServicesWarp homeItem" id="OurServices">
     <div class="oueServices">
       <div class="font28 servicesTitle">
         <div class="">

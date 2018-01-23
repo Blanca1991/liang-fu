@@ -12,9 +12,10 @@
       <OurAddress />
     </div>
     <div class="loginBox">
-      <login v-show="isLogin"/>
+      <Login v-show="isLogin"/>
       <PointOut v-show="pointShow" />
     </div>
+    <FloorItem />
   </div>
 </template>
 
@@ -23,6 +24,7 @@ import {mapState} from 'vuex'
 import ComHeader from '@/components/ComHeader'
 import Login from '@/components/Login'
 import PointOut from '@/components/PointOut'
+import FloorItem from '@/homeComp/FloorItem'
 import BigBg from '@/homeComp/BigBg'
 import OurServices from '@/homeComp/OurServices'
 import AboutUs from '@/homeComp/AboutUs'
@@ -33,20 +35,29 @@ export default {
   name: 'Home',
   data () {
     return {
-      isActives: 'Home' // ComHeader内对应的tag高亮
+      isActives: 'Home', // ComHeader内对应的tag高亮
+      clientHeight: 0 // 屏幕的高度
     }
   },
   computed: {
     ...mapState({
       // 获取数据
       pointShow: state => state.pointShow,
-      isLogin: state => state.isLogin
+      isLogin: state => state.isLogin,
+      homeItemListTop: state => state.homeItemListTop
     })
   },
   mounted () {
     // 钩子函数
+    this.scroolFun()
+    this.clientHeight = document.documentElement.clientHeight
   },
-  methods: {},
+  methods: {
+    scroolFun () {
+      console.log(this.homeItemListTop)
+      // console.log(this.$store.state.appDom)
+    }
+  },
   components: {
     ComHeader,
     Login,
@@ -55,7 +66,8 @@ export default {
     OurServices,
     AboutUs,
     OurNews,
-    OurAddress
+    OurAddress,
+    FloorItem
   }
 }
 </script>
@@ -63,8 +75,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .HomeWarp{ width: 100%;position: relative;}
-.comHeaderBox{position: absolute; z-index: 1;width: 100%}
-.scoll{position: relative; height: auto;width: 100%;height: 100vh;overflow: auto;}
+.comHeaderBox{position: fixed; z-index: 1;width: 100%;top: 0}
+.scoll{position: relative; height: auto;width: 100%;}
 .scoll::-webkit-scrollbar {display: none;}
 .loginBox{position: fixed;top: 0; width: 100%;}
 </style>

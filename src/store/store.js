@@ -56,7 +56,29 @@ export default new Vuex.Store({
         topNum: 0 // 总体评分模块的top值
       }// 历史信息模块 的top值
     ],
-    isTipsShow: false
+    isTipsShow: false, // 控制TipsShow显示与否
+    homeItemListTop: [
+      {
+        modelName: 'BigBg',
+        topNum: 0
+      },
+      {
+        modelName: 'OurServices',
+        topNum: 0
+      },
+      {
+        modelName: 'AboutUs',
+        topNum: 0
+      },
+      {
+        modelName: 'OurNews',
+        topNum: 0
+      },
+      {
+        modelName: 'OurAddress',
+        topNum: 0
+      }
+    ]
   },
   mutations: {
     SHOWLOGIN (state) {
@@ -148,6 +170,34 @@ export default new Vuex.Store({
         }
         // end
       })()
+    },
+    homeItemScroll ({commit}, data) {
+      // home 页面的滚动 切换背景
+      // this.state.appScrollTop = data
+      // let homeItemListTop = this.state.homeItemListTop
+      // console.log(data)
+      // let step = data / 50
+      // let vm = this
+      // let step = data / 50
+      // let vm = this
+      // if ((beforeScrollTop = 0) < data) {
+      //   let scrollData = homeItemListTop[1].topNum;
+      //   (function smoothDown () {
+      //     if (vm.state.appScrollTop < scrollData) {
+      //       vm.state.appDom.scrollTop += step
+      //       // 设定每一次跳动的时间间隔为10ms
+      //       setTimeout(smoothDown, 5)
+      //     } else {
+      //       // 限制滚动停止时的距离
+      //       vm.state.appDom.scrollTop = scrollData
+      //     }
+      //     beforeScrollTop = homeItemListTop[1].topNum
+      //     console.log(beforeScrollTop)
+      //   })()
+      //   // this.$store.dispatch('changeAppScrollTop', data)
+      // } else if ((beforeScrollTop = homeItemListTop[1].topNum) < data && ) {
+      //
+      // }
     }
   },
   modules: {

@@ -11,7 +11,7 @@
           <input type="text" class="userPhone" placeholder="请输入手机号"
           maxlength="11" v-model="searchPhone">
           <span class="fontFFF searchBtn pointer font14" @click="searchFun">搜索</span>
-          <span class="fontFFF downBtn font14">下载</span>
+          <span class="fontFFF downBtn font14" :class="{pointer: isDownLoad === true}" @click="downLoadFun">下载</span>
           <LoginNav class="fontFFF" />
         </div>
       </div>
@@ -65,7 +65,9 @@ export default {
       searchId: '642102197107030914',
       searchPhone: '15379509999',
       isLoading: false, // 加载动画 显示和隐藏
-      isWarning: true // 注意 实例显示和隐藏
+      isWarning: true, // 注意 实例显示和隐藏
+      isDownLoad: false,
+      userCodeId: '' // 用户订单 -- 搜索接口返回  下载pdf使用
     }
   },
   computed: {
@@ -128,7 +130,6 @@ export default {
       }
       console.log(params)
       const res = await http.post(api.antifraud, params)
-      console.log('res', res)
       if (res.status === 200) {
         console.log(res.data)
         if (res.data.body.success && res.data.body.success !== 'false') {
@@ -137,6 +138,8 @@ export default {
           this.$store.dispatch('changeSearchData', data)
           this.isLoading = false
           this.isWarning = false
+          this.userCodeId = res.data.header.ordeCode
+          this.isDownLoad = true
         } else if (res.data.body.success === 'false') {
           this.isLoading = false
           this.pointOutFun(res.data.body.errorMsg)
@@ -148,6 +151,28 @@ export default {
         this.pointOutFun(res.msg)
         this.isLoading = false
       }
+    },
+    downLoadFun () {
+      console.log('downLoadFun')
+      if (this.isDownLoad === false) {
+        return
+      }
+      let commonApiUrl = 'http://10.166.10.111:20010/' // sit 登录 搜索 下载 接口使用
+      let url = commonApiUrl + '/credit-service/downloadpdf/' + this.userCodeId
+      console.log(url)
+      this.downLoad(url)
+    },
+    downLoad (strUrl) {
+      var form = document.createElement('form') // 定义一个form表单
+      form.setAttribute('style', 'display:none') // 在form表单中添加查询参数
+      form.setAttribute('target', '_blank')
+      form.setAttribute('method', 'get')
+      form.setAttribute('action', strUrl)
+      var input1 = document.createElement('input')
+      input1.setAttribute('type', 'hidden')
+      document.body.append(form) // 将表单放置在web中
+      form.append(input1) // 将查询参数控件提交到表单上
+      form.submit()
     }
   },
   components: {

@@ -3,8 +3,9 @@
 .isHomeItem {z-index: 1} */
 /* 第一个 大背景图 */
 .homeBigBgWarp{width: 100% ;}
-.homeBigBgWarp .bigBg{width: 100%;height: 100vh;margin: 0;position: relative;
-  background: url(../images/home/section.jpg) no-repeat center; background-size:cover}
+.homeBigBgWarp .bigBg{width: 100%;height: 100vh;margin: 0;position: relative;}
+.homeBigBgWarp .bigBg .imgBox {width: 100%;height: 100%}
+.homeBigBgWarp .bigBg .imgBox img{width: 100%;height: 100%}
 .homeBigBgWarp .textBox{color: #fff; position: absolute;top: 42%; width: 100%;text-align: center;}
 .circleBox{position: absolute;bottom: 10px;width: 100%;display: flex;justify-content: center;
 animation: moveCircleBox 2s infinite ;}
@@ -53,6 +54,7 @@ animation: moveCircleBox 2s infinite ;}
 .ourNewsListBox {width: 100%; min-width: 1200px;position: absolute;top: 50%; transform: translateY(-50%);height: 340px; overflow: hidden;}
 .ourNewsWarp .ourNewsList{width: 600%;min-width: 6000px;height: 340px;position: absolute;display: flex;
   /* animation: moveNewsList 30s infinite linear */
+  transition: left 1s;
 }
 .ourNewsWarp .ourNewsItem{width:16.66% ;min-width: 1200px;padding: 0 200px;box-sizing: border-box;height: 340px;}
 .ourNewsWarp .ourNewsItem .ourNewsBg{ width: 340px;}

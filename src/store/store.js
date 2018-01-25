@@ -172,32 +172,80 @@ export default new Vuex.Store({
       })()
     },
     homeItemScroll ({commit}, data) {
-      // home 页面的滚动 切换背景
-      // this.state.appScrollTop = data
-      // let homeItemListTop = this.state.homeItemListTop
-      // console.log(data)
-      // let step = data / 50
-      // let vm = this
-      // let step = data / 50
-      // let vm = this
-      // if ((beforeScrollTop = 0) < data) {
-      //   let scrollData = homeItemListTop[1].topNum;
-      //   (function smoothDown () {
-      //     if (vm.state.appScrollTop < scrollData) {
-      //       vm.state.appDom.scrollTop += step
-      //       // 设定每一次跳动的时间间隔为10ms
-      //       setTimeout(smoothDown, 5)
-      //     } else {
-      //       // 限制滚动停止时的距离
-      //       vm.state.appDom.scrollTop = scrollData
-      //     }
-      //     beforeScrollTop = homeItemListTop[1].topNum
-      //     console.log(beforeScrollTop)
-      //   })()
-      //   // this.$store.dispatch('changeAppScrollTop', data)
-      // } else if ((beforeScrollTop = homeItemListTop[1].topNum) < data && ) {
-      //
-      // }
+      let homeItemList = this.state.homeItemListTop
+      let beforeScrollTop = data
+      let newScrollTop = this.state.appScrollTop
+      // console.log('beforeScrollTop', beforeScrollTop)
+      // console.log('newScrollTop', newScrollTop)
+
+      let vm = this
+      if (beforeScrollTop < newScrollTop) {
+        // console.log('向上滚动')
+        if (newScrollTop < homeItemList[1].topNum) {
+          (function smoothDown () {
+            if (vm.state.appDom.scrollTop < homeItemList[1].topNum) {
+              vm.state.appDom.scrollTop += 1
+              // 设定每一次跳动的时间间隔为10ms
+              setTimeout(smoothDown, 30)
+            } else if (vm.state.appDom.scrollTop === homeItemList[1].topNum) {
+              // 限制滚动停止时的距离
+              clearTimeout(smoothDown)
+              vm.state.appDom.scrollTop = homeItemList[1].topNum
+            }
+          })()
+        } else if (newScrollTop > homeItemList[1].topNum && newScrollTop < homeItemList[2].topNum) {
+          (function smoothDown () {
+            if (vm.state.appDom.scrollTop < homeItemList[2].topNum) {
+              vm.state.appDom.scrollTop += 1
+              // 设定每一次跳动的时间间隔为10ms
+              setTimeout(smoothDown, 30)
+            } else if (vm.state.appDom.scrollTop === homeItemList[2].topNum) {
+              // 限制滚动停止时的距离
+              clearTimeout(smoothDown)
+              vm.state.appDom.scrollTop = homeItemList[2].topNum
+            }
+          })()
+        } else if (newScrollTop > homeItemList[2].topNum && newScrollTop < homeItemList[3].topNum) {
+          (function smoothDown () {
+            if (vm.state.appDom.scrollTop < homeItemList[3].topNum) {
+              vm.state.appDom.scrollTop += 1
+              // 设定每一次跳动的时间间隔为10ms
+              setTimeout(smoothDown, 30)
+            } else if (vm.state.appDom.scrollTop === homeItemList[3].topNum) {
+              // 限制滚动停止时的距离
+              clearTimeout(smoothDown)
+              vm.state.appDom.scrollTop = homeItemList[3].topNum
+            }
+          })()
+        } else if (newScrollTop > homeItemList[3].topNum && newScrollTop < homeItemList[4].topNum) {
+          (function smoothDown () {
+            if (vm.state.appDom.scrollTop < homeItemList[4].topNum) {
+              vm.state.appDom.scrollTop += 1
+              // 设定每一次跳动的时间间隔为10ms
+              setTimeout(smoothDown, 30)
+            } else if (vm.state.appDom.scrollTop === homeItemList[4].topNum) {
+              // 限制滚动停止时的距离
+              clearTimeout(smoothDown)
+              vm.state.appDom.scrollTop = homeItemList[4].topNum
+            }
+          })()
+        }
+      } else if (beforeScrollTop > newScrollTop) {
+        // console.log('向下滚动')
+        if (newScrollTop < homeItemList[1].topNum) {
+          (function smoothDown () {
+            if (vm.state.appDom.scrollTop < homeItemList[1].topNum) {
+              vm.state.appDom.scrollTop += 1
+              // 设定每一次跳动的时间间隔为10ms
+              setTimeout(smoothDown, 30)
+            } else if (vm.state.appDom.scrollTop === homeItemList[1].topNum) {
+              // 限制滚动停止时的距离
+              clearTimeout(smoothDown)
+              vm.state.appDom.scrollTop = homeItemList[1].topNum
+            }
+          })()
+        }
+      }
     }
   },
   modules: {

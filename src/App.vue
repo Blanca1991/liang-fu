@@ -23,7 +23,10 @@ export default {
         let scrollTop = app.scrollTop
         // console.log(scrollTop)
         vm.$store.commit('GETFLOORLISTTOP', scrollTop)
-        vm.$store.dispatch('homeItemScroll', scrollTop)
+        // vm.$store.dispatch('homeItemScroll', scrollTop)
+        setTimeout(function () {
+          vm.$store.dispatch('homeItemScroll', scrollTop)
+        }, 100)
       }
     }
   }

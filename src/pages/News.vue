@@ -83,7 +83,7 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('News init')
+      // console.log('News init')
       this.fetchNews()
     },
     fetchNews: async function () {
@@ -93,7 +93,7 @@ export default {
         time: service.getNowFormatDate(Date())
       }
       const res = await http.post(api.getArticleInfoPage, params)
-      console.log(res)
+      // console.log(res)
       if (res.status === 200) {
         if (res.data.type && res.data.type === 'success') {
           // this.pointOutFun('提交成功！')
@@ -117,7 +117,7 @@ export default {
       this.$store.dispatch('showPoint', data)
     },
     showTipsBox (item, index) {
-      console.log(index)
+      // console.log(index)
       this.$store.state.isTipsShow = true
       this.tipsInfo = item
       this.tipsIndex = index
@@ -133,11 +133,11 @@ export default {
       }
     },
     nextFun () {
-      console.log('下一页')
+      // console.log('下一页')
       this.showTipsBox(this.newsList[this.tipsIndex + 1], this.tipsIndex + 1)
     },
     preFun () {
-      console.log('上一页')
+      // console.log('上一页')
       this.showTipsBox(this.newsList[this.tipsIndex - 1], this.tipsIndex - 1)
     }
   },

@@ -69,7 +69,7 @@ export default {
       ],
       moveNum: '',
       screenWidth: document.body.clientWidth,
-      needWidth: 0,
+      needWidth: 1200,
       timer: false
     }
   },
@@ -85,7 +85,7 @@ export default {
         this.timer = true
         let vm = this
         setTimeout(function () {
-          console.log(vm.screenWidth)
+          // console.log(vm.screenWidth)
           vm.init()
           vm.timer = false
         }, 400)
@@ -110,14 +110,14 @@ export default {
         return (() => {
           window.screenWidth = document.body.clientWidth
           vm.screenWidth = window.screenWidth
-          console.log(vm.screenWidth)
+          // console.log(vm.screenWidth)
         })()
       }
     },
     getNeedWidth () {
-      let width = this.screenWidth
-      console.log(width)
-      this.moveNum = '-1200px'
+      // let width = this.screenWidth
+      // console.log(width)
+      this.moveNum = '-0px'
       // if (width < 1200) {
       //   this.needWidth = 1200
       //   this.moveNum = '-' + this.needWidth + 'px'
@@ -125,7 +125,7 @@ export default {
       //   this.needWidth = document.body.clientWidth
       //   this.moveNum = '-' + this.needWidth + 'px'
       // }
-      console.log(this.needWidth)
+      // console.log(this.needWidth)
     },
     animate (offset) {
       // 获取的是style.left，是相对左边获取距离，所以第一张图后style.left都为负值，
@@ -135,11 +135,11 @@ export default {
       let newMoveNum = moveNum + offset
       this.moveNum = newMoveNum.toString() + 'px'
       // this.moveNum = newMoveNum.toString() + 'px'
-      let moveLeft = -(4 * Math.abs(offset))
-      let moveRight = -(Math.abs(offset))
+      let moveLeft = -(3 * Math.abs(offset))
+      let moveRight = -0
       console.log(newMoveNum, moveLeft, moveRight)
       if (newMoveNum < moveLeft) {
-        this.moveNum = '-' + this.needWidth + 'px'
+        this.moveNum = '0px'
       } else if (newMoveNum > moveRight) {
         this.moveNum = moveLeft + 'px'
       }
@@ -147,12 +147,12 @@ export default {
     leftSlide () {
       // 事件绑定 —— 左点击事件
       console.log('leftSlide')
-      // this.animate(this.needWidth)
+      this.animate(this.needWidth)
     },
     rightSlide () {
       // 事件绑定 —— 右点击事件
       console.log('rightSlide')
-      // this.animate(-this.needWidth)
+      this.animate(-this.needWidth)
     },
     play () {
       // let vm = this

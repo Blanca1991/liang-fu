@@ -2,6 +2,9 @@
 <template>
   <div class="homeBigBgWarp minWidthBox homeItem" id="BigBg">
     <div class="bigBg">
+      <div class="imgBox">
+        <img :src="imgUrl" alt="">
+      </div>
       <div class="textBox">
         <div class="font30">
           <strong>信仰是力量，信用是财富！</strong>
@@ -19,11 +22,14 @@
 </template>
 
 <script>
+import section from '../images/home/section.jpg'
 
 export default {
   name: 'homeBigBg',
   data () {
-    return {}
+    return {
+      imgUrl: section
+    }
   },
   computed: {},
   watch: {},

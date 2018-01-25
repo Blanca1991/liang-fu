@@ -15,11 +15,11 @@
         </div>
       </div>
       <div class="imgBox flex">
-        <div class="pre1 image">
+        <div class="pre1 image" :style="{backgroundImage: 'url(' + pre1 + ')'}">
         </div>
-        <div class="pre2 image">
+        <div class="pre2 image" :style="{backgroundImage: 'url(' + pre2 + ')'}">
         </div>
-        <div class="pre3 image">
+        <div class="pre3 image" :style="{backgroundImage: 'url(' + pre3 + ')'}">
         </div>
       </div>
     </div>
@@ -30,6 +30,9 @@
 </template>
 
 <script>
+import pre1 from '../images/jobs/per1.png'
+import pre2 from '../images/jobs/per2.png'
+import pre3 from '../images/jobs/per3.png'
 import {mapState} from 'vuex'
 import http from '@/utils/http'
 import api from '@/utils/api'
@@ -43,6 +46,9 @@ export default {
   name: 'Jobs',
   data () {
     return {
+      pre1: pre1,
+      pre2: pre2,
+      pre3: pre3,
       isActives: 'Jobs',
       jobsList: '', // 获取到的工作列表
       tipsInfo: '', // 给子组件传递的参数
@@ -164,20 +170,20 @@ export default {
 .JobsWarp .jobsBox{width: 100%;}
 .JobsWarp .imgBox{width: 50%;height: 50%;position: absolute;bottom: 20px;right: 0;}
 .image{width: 100%;height: 100%;}
-.pre1{width: 20%;background: url(../images/jobs/per1.png) no-repeat bottom; background-size: 80%;
+.pre1{width: 20%;background-size: 80%; background-repeat:no-repeat; background-position:bottom;
   animation: pre1Move 1s ease-in; }
 @keyframes pre1Move {
   0% {width: 0%;}
   50% {width: 25%;}
   100% {width: 20%;}
 }
-.pre2{width: 60%;background: url(../images/jobs/per2.png) no-repeat bottom; background-size: 80%;
+.pre2{width: 60%; background-size: 80%;background-repeat:no-repeat; background-position:bottom;
   animation: pre2Move 1s ease; }
 @keyframes pre2Move {
   0% {width: 0%;}
   100% {width: 60%;}
 }
-.pre3{width: 20%;background: url(../images/jobs/per3.png) no-repeat bottom; background-size: 70%;}
+.pre3{width: 20%; background-size: 70%;background-repeat:no-repeat; background-position:bottom;}
 .jobsList{position: absolute;top: 0px; padding: 100px;z-index: 2;}
 .jobItem{width: 120px;height: 120px;border-radius: 50%; border: 8px solid #fff;box-sizing: border-box;
   justify-content: center;align-items: center; position: absolute;color: #fff;}

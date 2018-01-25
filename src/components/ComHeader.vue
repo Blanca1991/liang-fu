@@ -78,7 +78,7 @@ export default {
         if (!localStorage.getItem('token')) {
           this.$store.dispatch('showPoint', '请先登录')
         } else {
-          window.open(window.location.origin + '#/' + item.pagesName)
+          window.open(window.location.href.split('#')[0] + '#/' + item.pagesName)
         }
       } else if (item.pagesName === 'UserInfo') {
         this.$store.commit('SHOWLOGIN')

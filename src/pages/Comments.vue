@@ -120,6 +120,7 @@ export default {
       }
     },
     fetchSubmit: async function () {
+      let times = new Date().getTime()
       this.isLoading = true
       // 接口请求 ———— 搜索接口
       let params = {
@@ -131,7 +132,7 @@ export default {
         mail: this.ContactEmail,
         createdDt: service.getNowFormatDate(Date())
       }
-      const res = await http.post(api.addAdvice, params)
+      const res = await http.postFromdata(api.addAdvice + times, JSON.stringify(params))
       console.log(res)
       console.log(res.data)
       if (res.type && res.type === 'success') {

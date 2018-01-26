@@ -129,7 +129,7 @@ export default {
         }
       }
       console.log(params)
-      const res = await http.post(api.antifraud, params)
+      const res = await http.post(api.antifraud, JSON.stringify(params))
       if (res.status === 200) {
         console.log(res.data)
         if (res.data.body.success && res.data.body.success !== 'false') {

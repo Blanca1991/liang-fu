@@ -66,6 +66,27 @@ export default {
       }
     )
   },
+  postFromdata (url, data) {
+    return axios({
+      method: 'post',
+      baseURL: baseUrl,
+      url,
+      data: JSON.parse(data),
+      timeout: 10000,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Content-Type': 'multipart/form-data;charset=UTF-8'
+      }
+    }).then(
+      (response) => {
+        return checkStatus(response)
+      }
+    ).then(
+      (res) => {
+        return checkCode(res)
+      }
+    )
+  },
   get (url, params) {
     return axios({
       method: 'get',

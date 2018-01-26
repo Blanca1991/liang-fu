@@ -24,9 +24,11 @@ export default {
         // console.log(scrollTop)
         vm.$store.commit('GETFLOORLISTTOP', scrollTop)
         // vm.$store.dispatch('homeItemScroll', scrollTop)
-        setTimeout(function () {
-          vm.$store.dispatch('homeItemScroll', scrollTop)
-        }, 100)
+        if (window.location.hash === '#/Home') {
+          setTimeout(function () {
+            vm.$store.dispatch('homeItemScroll', scrollTop)
+          }, 100)
+        }
       }
     }
   }
@@ -42,6 +44,9 @@ export default {
   color: #2c3e50;
   height: 100vh;
   overflow: auto;
+}
+#app::-webkit-scrollbar {
+    display: none;
 }
 body{ margin: 0;padding: 0; overflow: hidden;}
 body,html{-webkit-text-size-adjust: none;width: 100%;height: 100%;}

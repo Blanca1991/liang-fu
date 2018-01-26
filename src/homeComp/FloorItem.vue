@@ -74,10 +74,10 @@ export default {
       // console.log(index)
       this.isDotType = index
       let data = this.homeItemListTop[index].topNum
-      this.$store.dispatch('changeAppScrollTop', data)
+      this.$store.dispatch('homeChangeAppScrollTop', data)
     },
     changeHomeItemBg () {
-      // 事件 ———— 楼梯跟随滚动的Icon 背景色
+      // 事件 ———— 楼梯跟随 修改方框的被选中状态
       // console.log(this.$store.state.appScrollTop)
       let appScrollTop = this.$store.state.appScrollTop
       if (appScrollTop < this.homeItemListTop[1].topNum) {

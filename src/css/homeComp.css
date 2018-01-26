@@ -51,13 +51,16 @@ animation: moveCircleBox 2s infinite ;}
 
 /* Our News */
 .ourNewsWarp{ width: 100%;height: 100vh; background: rgb(245, 85, 87) ;}
-.ourNewsListBox {width: 100%; min-width: 1200px;position: absolute;top: 50%; transform: translateY(-50%);height: 340px; overflow: hidden;}
+.ourNewsListBox {width: 100%; min-width: 1200px;position: absolute;top: 58%; transform: translateY(-50%);height: 340px; overflow: hidden;}
 .ourNewsWarp .ourNewsList{width: 600%;min-width: 6000px;height: 340px;position: absolute;display: flex;
   /* animation: moveNewsList 30s infinite linear */
   transition: left 1s;
 }
+.newsArticle {text-align: left; text-indent: 28px;}
+.moreBtnBox{text-align: left; margin-top: 10px; font-size: 14px;position: absolute; bottom: 50px;}
+.moreBtnBox .moreBtn{display: inline-block; padding:5px 10px; background: #fff; color: #EA5B56;border-radius: 5px;}
 .ourNewsWarp .ourNewsItem{width:16.66% ;min-width: 1200px;padding: 0 200px;box-sizing: border-box;height: 340px;}
-.ourNewsWarp .ourNewsItem .ourNewsBg{ width: 340px;}
+.ourNewsWarp .ourNewsItem .ourNewsBg{ width: 280px;}
 .ourNewsWarp .ourNewsItem .ourNewsBg img{ width: 100%;height: auto;border-radius: 50%;}
 .ourNewsWarp .ourNewsItem .newsInfo{flex: 1; padding-left: 50px;box-sizing: border-box;}
 @keyframes moveNewsList{
@@ -84,10 +87,10 @@ animation: moveCircleBox 2s infinite ;}
 }
 .ourNewsWarp .toggleBtnBox{height: 100px;width: 100%;position: absolute;top: 110px;}
 .ourNewsWarp .toggleBtnBox .leftBtn{ position: absolute;left: 30px; }
-.ourNewsWarp .toggleBtnBox .leftBtn  em{display: inline-block; width: 0px; height: 0px;border:50px solid #fff;
+.ourNewsWarp .toggleBtnBox .leftBtn  em{display: inline-block; width: 0px; height: 0px;border:40px solid #fff;
    border-top-color: transparent; border-left-color: transparent; border-bottom-color: transparent;transform: rotateY(50deg);}
 .ourNewsWarp .toggleBtnBox .rightBtn{ position: absolute;right:30px;}
-.ourNewsWarp .toggleBtnBox .rightBtn  em{display: inline-block; width: 0px; height: 0px;border:50px solid #fff;
+.ourNewsWarp .toggleBtnBox .rightBtn  em{display: inline-block; width: 0px; height: 0px;border:40px solid #fff;
    border-top-color: transparent; border-right-color: transparent; border-bottom-color: transparent;transform: rotateY(50deg);
  }
 

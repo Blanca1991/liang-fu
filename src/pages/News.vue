@@ -93,11 +93,10 @@ export default {
         time: service.getNowFormatDate(Date())
       }
       const res = await http.post(api.getArticleInfoPage, params)
-      // console.log(res)
+      console.log(res)
       if (res.status === 200) {
         if (res.data.type && res.data.type === 'success') {
-          // this.pointOutFun('提交成功！')
-          this.newsList = res.data.data.content
+          this.newsList = res.data.data.article
           // this.newsListNews = JSON.parse(JSON.stringify(this.newsList))
           // this.newsListNews.unshift({name: 0})
           // this.newsListNews.push({name: 0})

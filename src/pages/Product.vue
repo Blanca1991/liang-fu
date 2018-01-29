@@ -84,7 +84,7 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('Product init')
+      // console.log('Product init')
     },
     searchFun () {
       let userNameReg = /^[\u4E00-\u9FA5]{2,4}$/  // 姓名限制为二到四位的中文字符
@@ -128,12 +128,13 @@ export default {
           merchantId: localStorage.getItem('userName')
         }
       }
-      console.log(params)
-      const res = await http.post(api.antifraud, JSON.stringify(params))
+      // console.log(params)
+      const res = await http.post(api.antifraud, params)
+      console.log(res)
       if (res.status === 200) {
-        console.log(res.data)
+        // console.log(res.data)
         if (res.data.body.success && res.data.body.success !== 'false') {
-          console.log(res.data.body)
+          // console.log(res.data.body)
           let data = res.data.body.result
           this.$store.dispatch('changeSearchData', data)
           this.isLoading = false
@@ -142,24 +143,78 @@ export default {
           this.isDownLoad = true
         } else if (res.data.body.success === 'false') {
           this.isLoading = false
-          this.pointOutFun(res.data.body.errorMsg)
+          let data
+          // this.pointOutFun(res.data.body.errorMsg)
+          switch (res.data.body.errorCode) {
+            case '-204':
+              data = ['用户未添加或已注销', '请联系客服人员']
+              this.showPointBtnFun(data)
+              break
+            case '-205':
+              data = ['账号已到期', '请联系客服人员']
+              this.showPointBtnFun(data)
+              break
+            case '-206':
+              data = ['对应机构已停用', '请联系客服人员']
+              this.showPointBtnFun(data)
+              break
+            case '-207':
+              data = ['产品已到期', '请联系客服人员']
+              this.showPointBtnFun(data)
+              break
+            case '-208':
+              data = ['用户没有对应的机构', '请联系客服人员']
+              this.showPointBtnFun(data)
+              break
+            case '-209':
+              data = ['未开通查询权限', '请联系客服人员']
+              this.showPointBtnFun(data)
+              break
+            case '-210':
+              data = ['用量已用完', '请联系客服人员']
+              this.showPointBtnFun(data)
+              break
+            case '-211':
+              data = ['已达到今日最大用量', '请联系客服人员']
+              this.showPointBtnFun(data)
+              break
+            case '-213':
+              data = ['产品没有用量', '请联系客服人员']
+              this.showPointBtnFun(data)
+              break
+            case '-214':
+              data = ['未找到对应产品', '请联系客服人员']
+              this.showPointBtnFun(data)
+              break
+            case '-222':
+              data = ['登录状态已失效', '请重新登录']
+              this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = true
+              break
+          }
         } else {
           this.isLoading = false
           this.pointOutFun('系统异常，请稍后再试')
         }
       } else {
         this.pointOutFun(res.msg)
+        this.isWarning = true
         this.isLoading = false
+        this.isDownLoad = false
       }
     },
+    showPointBtnFun (data) {
+      this.$store.state.pointShowBtn = true
+      this.$store.commit('SHOWPOINT', data)
+    },
     downLoadFun () {
-      console.log('downLoadFun')
+      // console.log('downLoadFun')
       if (this.isDownLoad === false) {
         return
       }
       let commonApiUrl = 'http://10.166.10.111:20010/' // sit 登录 搜索 下载 接口使用
       let url = commonApiUrl + '/credit-service/downloadpdf/' + this.userCodeId
-      console.log(url)
+      // console.log(url)
       this.downLoad(url)
     },
     downLoad (strUrl) {

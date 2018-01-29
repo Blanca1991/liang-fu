@@ -37,7 +37,7 @@
             </div>
             <div class="width25 pL20 borderR titleList">
               <div>
-                <span>{{ item.title }}</span>
+                <span>{{ item.title || '——' }}</span>
               </div>
             </div>
             <div class="width25 pL20 flex flexAlignItems ">

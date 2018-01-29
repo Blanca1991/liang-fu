@@ -73,6 +73,7 @@
     </div>
     <login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
+    <Loading v-show="isLoading"/>
   </div>
 </template>
 
@@ -84,6 +85,7 @@ import service from '@/service'
 import ComHeader from '@/components/ComHeader'
 import Login from '@/components/Login'
 import PointOut from '@/components/PointOut'
+import Loading from '@/components/Loading'
 
 export default {
   name: 'Cooperate',
@@ -95,7 +97,8 @@ export default {
       ContactCompany: '',
       ContacTitle: '',
       ContactEmail: '',
-      ContactContent: ''
+      ContactContent: '',
+      isLoading: false
     }
   },
   computed: {
@@ -136,10 +139,11 @@ export default {
       } else if (this.ContactContent === '') {
         this.pointOutFun('请提交内容部分')
       } else {
-        this.fetchSubmit()
+        this.fetchCooperate()
       }
     },
     fetchCooperate: async function () {
+      let times = new Date().getTime()
       this.isLoading = true
       // 接口请求 ———— 搜索接口
       let params = {
@@ -153,15 +157,18 @@ export default {
         mail: this.ContactEmail,
         createdDt: service.getNowFormatDate(Date())
       }
-      const res = await http.post(api.addAdvice, params)
+      const res = await http.postFromdata(api.addAdvice + times, params)
       console.log(res)
       console.log(res.data)
-      if (res.type && res.type === 'success') {
+      if (res.data.type && res.data.type === 'success') {
         this.pointOutFun('提交成功！')
-      } else if (res.type === 'false') {
-        this.pointOutFun(res.message)
+        this.isLoading = false
+      } else if (res.data.type === 'false') {
+        this.pointOutFun(res.data.message)
+        this.isLoading = false
       } else {
         this.pointOutFun('系统异常，请稍后再试')
+        this.isLoading = false
       }
     },
     pointOutFun (data) {
@@ -172,7 +179,8 @@ export default {
   components: {
     ComHeader,
     Login,
-    PointOut
+    PointOut,
+    Loading
   }
 }
 </script>

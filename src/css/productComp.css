@@ -68,7 +68,7 @@
   background: #fcbe51
 }
 .negativeInfo .titleList{padding: 30px 26px 30px 20px;}
-.negativeInfo > div:nth-child(2n+1) {background: #fafafa;}
+.negativeInfo > div:nth-child(2n+1) {background: #FAFAFF;}
 
 /* 网贷逾期信息 */
 .overdueInfo{margin-top: 10px;}

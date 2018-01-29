@@ -2,16 +2,13 @@
 // const devUrl = 'http://10.166.15.150:20010/'
 const sitUrl = 'http://10.166.10.111:20010'
 // const uatUrl = 'http://10.166.8.56:11080'
-// const prdUrl = 'http://www.liangfuzhengxin.com'
-let baseUrl = sitUrl
-// let baseUrl = prdUrl
-
-// if (process.env.NODE_ENV = 'development'){
-//   baseUrl = 'http://10.166.15.150:20010/'
-// }else if (process.env.NODE_ENV = 'production'){
-//   baseUrl = 'http://www.liangfuzhengxin.com'
-// }
-
+const prdUrl = 'http://credit.liangfuzhengxin.com/'
+let baseUrl
+if (process.env.NODE_ENV === 'development') {
+  baseUrl = sitUrl
+} else if (process.env.NODE_ENV === 'production') {
+  baseUrl = prdUrl
+}
 export {
   baseUrl
 }

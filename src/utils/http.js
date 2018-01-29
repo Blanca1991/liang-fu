@@ -71,12 +71,19 @@ export default {
       method: 'post',
       baseURL: baseUrl,
       url,
-      data: JSON.parse(data),
-      timeout: 10000,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type': 'multipart/form-data;charset=UTF-8'
-      }
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      timeout: 10000,
+      data: data,
+      transformRequest: [function (data) {
+        let ret = ''
+        for (let it in data) {
+          ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+        }
+        return ret
+      }]
     }).then(
       (response) => {
         return checkStatus(response)

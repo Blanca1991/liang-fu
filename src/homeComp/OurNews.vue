@@ -26,7 +26,7 @@
                 {{ item.article }}
               </div>
               <div class="moreBtnBox">
-                <span class="moreBtn" @click="moreNewsFun">查看更多</span>
+                <span class="moreBtn pointer" @click="moreNewsFun">查看更多</span>
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@ export default {
       // this.moveNum = newMoveNum.toString() + 'px'
       let moveLeft = -(3 * Math.abs(offset))
       let moveRight = -0
-      console.log(newMoveNum, moveLeft, moveRight)
+      // console.log(newMoveNum, moveLeft, moveRight)
       if (newMoveNum < moveLeft) {
         this.moveNum = '0px'
       } else if (newMoveNum > moveRight) {
@@ -149,19 +149,19 @@ export default {
     },
     leftSlide () {
       // 事件绑定 —— 左点击事件
-      console.log('leftSlide')
+      // console.log('leftSlide')
       this.animate(this.needWidth)
     },
     rightSlide () {
       // 事件绑定 —— 右点击事件
-      console.log('rightSlide')
+      // console.log('rightSlide')
       this.animate(-this.needWidth)
     },
     play () {
-      // let vm = this
-      // setInterval(function () {
-      //   vm.rightSlide()
-      // }, 3000)
+      let vm = this
+      setInterval(function () {
+        vm.rightSlide()
+      }, 3000)
     },
     moreNewsFun () {
       this.$router.push({ name: 'News' })

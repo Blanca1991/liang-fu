@@ -14,7 +14,8 @@ export default new Vuex.Store({
     userName: '',
     pointShow: false, // 控制提示框的显示 true为显示 false为隐藏
     pointText: '', // 提示框内显示的文字
-    pointShowBtn: false, // pointShow 弹框有无Btn按钮
+    pointShowBtn: true, // pointShow 弹框有无Btn按钮 fasle 隐藏btn true 显示btn
+    pointOutLoginBtn: false, // 弹框有无登录 Btn按钮 fasle 隐藏   true 显示
     appScrollTop: 0, // id = app scroll 的高度
     floorListTop: '20px', // 楼梯层跟随
     appDom: '', // 获取app Dom元素

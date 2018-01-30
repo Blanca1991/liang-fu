@@ -107,7 +107,11 @@ export default new Vuex.Store({
     HIDEOPTION (state) {
       // 隐藏提示框
       this.state.pointShow = false
-      // this.state.isLoginBox = false
+      if (this.state.isLogin === true) {
+        this.state.isLoginBox = true
+      } else {
+        this.state.isLoginBox = false
+      }
     },
     GETUSERNAME (state, data) {
       // 获取登录用户名

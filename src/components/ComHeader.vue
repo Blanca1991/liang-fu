@@ -1,6 +1,6 @@
 <!-- 头部导航栏 -->
 <template>
-  <div class="comHeaderWarp" >
+  <div class="comHeaderWarp minWidthBox" >
     <div class="comHeader minWidthBox" >
       <LogoBg :bgHide="bgHides"/>
       <div class="headerTitle pointer" v-for="(item, index) in items" :key="item.id" @click="gotoInfo(item, index)"
@@ -12,7 +12,6 @@
           </div>
         </div>
       </div>
-
       <!-- 接收子组件传递的值 dateChild为子组件的值 showMsg是一个监听事件 -->
       <!-- <LoginNav v-on:dateChild="showMsg"/> -->
       <LoginNav />
@@ -81,7 +80,8 @@ export default {
     gotoInfo (item, index) {
       if (item.pagesName === 'Product') {
         // 新开一个窗口展示页面
-        if (!localStorage.getItem('token')) {
+        if (localStorage.getItem('token') === null || localStorage.getItem('token') === '') {
+          this.$store.state.isLoginBox = true
           this.$store.dispatch('showPoint', '请先登录')
         } else {
           window.open(window.location.href.split('#')[0] + '#/' + item.pagesName)
@@ -118,6 +118,6 @@ export default {
 .comHeader .headerTitle:hover .productList{display: block; color: #fff;}
 .navActive{color: rgb(193, 83, 80);}
 .productList{position: absolute; background: rgb(193, 83, 80); padding:0px 15px;
-  display: none;top: 60px ;transition: all 1s;}
+  display: block;top: 60px ;transition: all 1s;z-index: 22;}
 .productItem{margin: 5px 0;width: 50px;height: 20px;line-height: 20px;}
 </style>

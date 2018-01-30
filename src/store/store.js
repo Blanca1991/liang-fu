@@ -14,10 +14,11 @@ export default new Vuex.Store({
     userName: '',
     pointShow: false, // 控制提示框的显示 true为显示 false为隐藏
     pointText: '', // 提示框内显示的文字
-    pointShowBtn: true, // pointShow 弹框有无Btn按钮 fasle 隐藏btn true 显示btn
+    pointShowBtn: false, // pointShow 弹框有无Btn按钮 fasle 隐藏btn true 显示btn
     pointOutLoginBtn: false, // 弹框有无登录 Btn按钮 fasle 隐藏   true 显示
     appScrollTop: 0, // id = app scroll 的高度
     floorListTop: '20px', // 楼梯层跟随
+    isLoginBox: false, // 在home页面中 需要用到的控制isLoginBox显示与否 true显示  false 隐藏
     appDom: '', // 获取app Dom元素
     modelListTop: [
       {
@@ -86,23 +87,26 @@ export default new Vuex.Store({
       // 显示登录
       this.state.isLogin = true
       this.state.isMask = true
+      this.state.isLoginBox = true
       this.state.appOverflow = 'hidden'
     },
     HIDELOGIN (state) {
       // 隐藏登录
       this.state.isLogin = false
       this.state.isMask = false
+      this.state.isLoginBox = false
       this.state.appOverflow = 'auto'
     },
     SHOWPOINT (state, pointText) {
       // 显示提示框
       this.state.pointShow = true
+      this.state.pointShowBtn = false
       this.state.pointText = pointText
-      console.log(pointText)
     },
     HIDEOPTION (state) {
       // 隐藏提示框
       this.state.pointShow = false
+      this.state.isLoginBox = false
     },
     GETUSERNAME (state, data) {
       // 获取登录用户名

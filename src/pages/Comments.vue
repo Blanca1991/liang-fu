@@ -141,6 +141,10 @@ export default {
       if (res.data.type && res.data.type === 'success') {
         this.pointOutFun('提交成功！')
         this.isLoading = false
+        this.ContactName = ''
+        this.ContactPhone = ''
+        this.ContactEmail = ''
+        this.ContactContent = ''
       } else if (res.data.type === 'false') {
         this.pointOutFun(res.data.message)
         this.isLoading = false

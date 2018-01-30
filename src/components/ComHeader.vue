@@ -117,7 +117,7 @@ export default {
 .comHeader .headerTitle:hover {color: rgb(193, 83, 80);}
 .comHeader .headerTitle:hover .productList{display: block; color: #fff;}
 .navActive{color: rgb(193, 83, 80);}
-.productList{position: absolute; background: rgb(193, 83, 80); padding:0px 15px;
-  display: block;top: 60px ;transition: all 1s;z-index: 22;}
+.productList{position: absolute; background: rgb(193, 83, 80); padding:0px 15px;display: none;
+  top: 60px ;transition: all 1s;z-index: 22;}
 .productItem{margin: 5px 0;width: 50px;height: 20px;line-height: 20px;}
 </style>

@@ -16,12 +16,13 @@ export default {
     getAppScroll () {
       this.$store.state.appDom = document.getElementById('app') // 楼梯关联跳转需要用到
       let app = document.getElementById('app')
-      console.log(this.$store)
+      // console.log(this.$store)
       // console.log(app.scrollTop)
       let vm = this
       app.onscroll = function () {
         let scrollTop = app.scrollTop
-        // console.log(scrollTop)
+        let scrollLeft = app.scrollLeft
+        vm.$store.commit('CHANGESCROLLLEFT', scrollLeft)
         vm.$store.commit('GETFLOORLISTTOP', scrollTop)
         // vm.$store.dispatch('homeItemScroll', scrollTop)
         if (window.location.hash === '#/Home') {

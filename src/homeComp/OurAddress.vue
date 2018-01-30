@@ -124,19 +124,27 @@ export default {
         mail: this.ContactEmail,
         createdDt: service.getNowFormatDate(Date())
       }
-      const res = await http.post(api.addAdvice, params)
+      const res = await http.postFromdata(api.addAdvice, params)
       console.log(res)
       console.log(res.data)
-      if (res.type && res.type === 'success') {
+      if (res.data.type && res.data.type === 'success') {
         this.pointOutFun('提交成功！')
-      } else if (res.type === 'false') {
-        this.pointOutFun(res.message)
+        this.isLoading = false
+        this.ContactName = ''
+        this.ContactPhone = ''
+        this.ContactEmail = ''
+        this.ContactContent = ''
+      } else if (res.data.type === 'false') {
+        this.pointOutFun(res.data.message)
+        this.isLoading = false
       } else {
         this.pointOutFun('系统异常，请稍后再试')
+        this.isLoading = false
       }
     },
     pointOutFun (data) {
       // 事件调用 -- 调用提示层
+      this.$store.state.isLoginBox = true
       this.$store.dispatch('showPoint', data)
     }
   }

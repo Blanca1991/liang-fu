@@ -20,6 +20,7 @@ export default new Vuex.Store({
     floorListTop: '20px', // 楼梯层跟随
     isLoginBox: false, // 在home页面中 需要用到的控制isLoginBox显示与否 true显示  false 隐藏
     appDom: '', // 获取app Dom元素
+    scrollLeft: 0, // 被浏览器卷去的宽度
     modelListTop: [
       {
         modelName: 'summaryInfo',
@@ -140,6 +141,9 @@ export default new Vuex.Store({
     CHANGEAPPSCROLLTOP (state, data) {
       // 修改App的scrollTop值
       this.state.appDom.scrollTop = data
+    },
+    CHANGESCROLLLEFT (state, data) {
+      this.state.scrollLeft = data
     }
   },
   actions: {

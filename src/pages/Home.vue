@@ -1,11 +1,11 @@
 <!-- 首页 wuxiaobo-->
 <template>
   <div  class="HomeWarp minWidthBox">
-    <div class="comHeaderBox">
+    <div class="comHeaderBox" :style="{left: - scrollLeft + 'px'}">
       <ComHeader :isActiveComp="isActives" />
     </div>
-    <div class="scollWarp"  :style="{height: scollHeight + 'px'}">
-      <div class="" id="scoll">
+    <div class="scrollWarp">
+      <div class="" id="scroll">
         <BigBg />
         <OurServices />
         <AboutUs />
@@ -37,10 +37,7 @@ export default {
   name: 'Home',
   data () {
     return {
-      isActives: 'Home', // ComHeader内对应的tag高亮
-      clientHeight: 0, // 屏幕的高度
-      leftNum: 0,
-      scollHeight: 0
+      isActives: 'Home' // ComHeader内对应的tag高亮
     }
   },
   watch: {},
@@ -50,21 +47,14 @@ export default {
       pointShow: state => state.pointShow,
       isLogin: state => state.isLogin,
       homeItemListTop: state => state.homeItemListTop,
-      isLoginBox: state => state.isLoginBox
+      isLoginBox: state => state.isLoginBox,
+      scrollLeft: state => state.scrollLeft
     })
   },
   mounted () {
     // 钩子函数
-    this.scollHeight = window.document.body.clientHeight - 80
-    this.scroolFun()
-    this.clientHeight = document.documentElement.clientHeight
   },
-  methods: {
-    scroolFun () {
-      console.log(this.homeItemListTop)
-      // console.log(this.$store.state.appDom)
-    }
-  },
+  methods: {},
   components: {
     ComHeader,
     Login,
@@ -82,9 +72,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .HomeWarp{ width: 100%;position: relative;}
-/* .comHeaderBox{position: fixed;top: 0; width: 100%;z-index: 11;} */
-.scollWarp{width: 100%;overflow: auto;}
-.scoll{position: relative; height: auto;width: 100%;}
-.scollWarp::-webkit-scrollbar {display: none;}
+.comHeaderBox{position: fixed;top: 0; width: 100%;z-index: 11;}
+.scrollWarp{width: 100%;overflow: auto;}
+.scroll{position: relative; height: auto;width: 100%;}
+.scrollWarp::-webkit-scrollbar {display: none;}
 .loginBox{position: fixed;top: 0; width: 100%;height: 100vh;z-index: 22}
 </style>

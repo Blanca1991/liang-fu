@@ -31,7 +31,10 @@
             <span>身份证所在地</span>
           </div>
           <div class="pL20">
-            <span class="fontGreenColor">{{ baseInfo.idNumberOwnership }}</span>
+            <span v-if="baseInfo.idNumberOwnership === '' || baseInfo.idNumberOwnership === null" >——</span>
+            <span class="fontGreenColor" v-if="baseInfo.idNumberOwnership !== '' || baseInfo.idNumberOwnership !== null">
+              {{ baseInfo.idNumberOwnership }}
+            </span>
           </div>
         </div>
         <div class="flex detailList titleBg borderB">
@@ -86,7 +89,10 @@
             <span>号码归属地</span>
           </div>
           <div class="pL20 width18">
-            <span class="fontGreenColor">{{ telecomInfo.mobileOwnership }}</span>
+            <span v-if="telecomInfo.mobileOwnership === '' || telecomInfo.mobileOwnership === null">——</span>
+            <span class="fontGreenColor" v-if="telecomInfo.mobileOwnership !== '' || telecomInfo.mobileOwnership !== null">
+              {{ telecomInfo.mobileOwnership }}
+            </span>
           </div>
           <div class="pR20 borderR width20 textR">
             <span>入网时长</span>

@@ -13,7 +13,7 @@
           {{ item }}
         </div>
       </div>
-      <div class="btnBox flex">
+      <div class="btnBox flex font14">
         <div class="btnWarp ">
           <span class="cancelBtn pointer" @click="cancelPoint">取消</span>
         </div>
@@ -53,7 +53,6 @@ export default {
     },
     cancelPoint () {
       this.$store.commit('HIDEOPTION')
-      console.log(555)
     }
   },
   components: {
@@ -76,6 +75,6 @@ export default {
 .btnClassText{color: #EA5B56 }
 .pointOutWarp .btnClass .btnBox{ position: absolute; bottom: 20px; width: 100%;}
 .btnClass .btnBox .btnWarp{width: 50%;}
-.btnWarp .cancelBtn {display: inline-block; padding:5px 15px; color: #EA5B56;border-radius: 5px;border: 1px solid #EA5B56;}
-.btnWarp .ensureBtn{display: inline-block; padding:5px 15px; color: #fff;border-radius: 5px;background-color: #EA5B56;border: 1px solid #EA5B56;}
+.btnWarp .cancelBtn {display: inline-block; padding:5px 20px; color: #EA5B56;border-radius: 5px;border: 1px solid #EA5B56;}
+.btnWarp .ensureBtn{display: inline-block; padding:5px 20px; color: #fff;border-radius: 5px;background-color: #EA5B56;border: 1px solid #EA5B56;}
 </style>

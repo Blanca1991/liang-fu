@@ -95,7 +95,7 @@ animation: moveCircleBox 2s infinite ;}
  }
 
 /* 联系我们 */
-.ourAddressWarp{background: rgb(177, 90, 169);box-sizing: border-box;width: 100%;min-width: 1200px;position: absolute;}
+.ourAddressWarp{background: rgb(177, 90, 169);box-sizing: border-box;width: 100%;min-width: 1200px;position: relative;}
 .ourAddress{}
 .ourAddressBox{position: absolute;top: 260px;width: 100%;padding: 0 100px;box-sizing: border-box;max-width: 1200px;
 transform: translateX(-50%);left: 50%;}

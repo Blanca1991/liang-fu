@@ -18,6 +18,7 @@ export default new Vuex.Store({
     pointOutLoginBtn: false, // 弹框有无登录 Btn按钮 fasle 隐藏   true 显示
     appScrollTop: 0, // id = app scroll 的高度
     floorListTop: '20px', // 楼梯层跟随
+    isWarning: true, // product用到的   注意 实例显示和隐藏
     isLoginBox: false, // 在home页面中 需要用到的控制isLoginBox显示与否 true显示  false 隐藏
     appDom: '', // 获取app Dom元素
     scrollLeft: 0, // 被浏览器卷去的宽度
@@ -101,13 +102,12 @@ export default new Vuex.Store({
     SHOWPOINT (state, pointText) {
       // 显示提示框
       this.state.pointShow = true
-      this.state.pointShowBtn = false
       this.state.pointText = pointText
     },
     HIDEOPTION (state) {
       // 隐藏提示框
       this.state.pointShow = false
-      this.state.isLoginBox = false
+      // this.state.isLoginBox = false
     },
     GETUSERNAME (state, data) {
       // 获取登录用户名
@@ -115,7 +115,7 @@ export default new Vuex.Store({
     },
     CHANGESEARCHDATA (state, data) {
       // 星护甲查询三要素返回参数更新
-      console.log(this.state)
+      // console.log(this.state)
       console.log(data)
       this.state.summaryInfoStore = data.summaryInfo
       this.state.baseInfoStore.baseInfo = data.baseInfo
@@ -129,10 +129,13 @@ export default new Vuex.Store({
     },
     GETFLOORLISTTOP (state, data) {
       // 楼梯层滚动跟随
+      // console.log(data)
       this.state.appScrollTop = data
-      if (data < 160) {
+      if (data < 160 && this.state.isWarning === true) {
         this.state.floorListTop = '20px'
-      } else if (data > 160) {
+      } else if (data > 80 && this.state.isWarning === false) {
+        this.state.floorListTop = (data - 80).toString() + 'px'
+      } else if (data > 160 && this.state.isWarning === true) {
         this.state.floorListTop = (data - 140).toString() + 'px'
       }
       // console.log(this.state.appScrollTop)

@@ -74,12 +74,12 @@ export default {
       const res = await http.post(api.login, params)
       // console.log(res)
       if (res.data.success && res.data.success === 'true') {
-        console.log('loginSuccess')
+        // console.log('loginSuccess')
         this.$store.commit('HIDELOGIN')// 隐藏登录框
         this.$store.state.isLoginNav = false// 切换loginNav的内容
         this.$store.commit('GETUSERNAME', this.userName)// 给store中的username赋值
         localStorage.setItem('userName', this.userName)
-        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('LFZXtoken', res.data.token)
         this.userName = ''
         this.passWord = ''
       } else {
@@ -89,6 +89,7 @@ export default {
     },
     pointOutFun (data) {
       // 事件调用 -- 调用提示层
+      this.$store.state.pointShowBtn = false // 隐藏掉point的btn
       this.$store.dispatch('showPoint', data)
     }
   },

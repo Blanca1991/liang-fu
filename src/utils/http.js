@@ -37,10 +37,6 @@ function checkCode (res) {
     console.log(res)
     // alert(res.msg)
   }
-  // if (res.data && (!res.data.success)) {
-  //   // alert(res.data.error_msg)
-  //   console.log(store)
-  // }
   return res
 }
 

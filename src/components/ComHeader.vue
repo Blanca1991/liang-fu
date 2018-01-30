@@ -80,14 +80,14 @@ export default {
     gotoInfo (item, index) {
       if (item.pagesName === 'Product') {
         // 新开一个窗口展示页面
-        if (localStorage.getItem('token') === null || localStorage.getItem('token') === '') {
+        if (localStorage.getItem('LFZXtoken') === null || localStorage.getItem('LFZXtoken') === '') {
           this.$store.state.isLoginBox = true
           this.$store.dispatch('showPoint', '请先登录')
         } else {
           window.open(window.location.href.split('#')[0] + '#/' + item.pagesName)
         }
       } else if (item.pagesName === 'UserInfo') {
-        if (!localStorage.getItem('token')) {
+        if (!localStorage.getItem('LFZXtoken')) {
           this.$store.commit('SHOWLOGIN')
         } else {
           this.$router.push({ name: item.pagesName })

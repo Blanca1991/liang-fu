@@ -99,13 +99,13 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('Comments init !')
+      // console.log('Comments init !')
     },
     submitComments () {
       let myRegMobile = /^(((13[0 -9]{1})|(15[0 -9]{1})|(17[0 -9]{1})|(18[0 -9]{1}))+\d{8})$/
       let myRegEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/
       // let myRegEmail = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/
-      console.log('submitContact')
+      // console.log('submitContact')
       if (this.ContactName === '') {
         this.pointOutFun('请填写姓名')
       } else if (this.ContactPhone === '') {
@@ -136,7 +136,7 @@ export default {
         createdDt: service.getNowFormatDate(Date())
       }
       const res = await http.postFromdata(api.addAdvice + times, params)
-      console.log(res)
+      // console.log(res)
       console.log(res.data)
       if (res.data.type && res.data.type === 'success') {
         this.pointOutFun('提交成功！')

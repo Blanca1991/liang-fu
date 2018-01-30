@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="warninBox">
-        <div class="warning font16" v-if="this.isWarning">注意！！！此处为示例数据，查询可获取相关数据</div>
+        <div class="warning font16" v-show="this.$store.state.isWarning" >注意！！！此处为示例数据，查询可获取相关数据</div>
       </div>
       <div class="antiFraud" id="antiFraud">
         <!-- 总体情况评估 -->
@@ -65,7 +65,6 @@ export default {
       searchId: '642102197107030914',
       searchPhone: '15379509999',
       isLoading: false, // 加载动画 显示和隐藏
-      isWarning: true, // 注意 实例显示和隐藏
       isDownLoad: false,
       userCodeId: '' // 用户订单 -- 搜索接口返回  下载pdf使用
     }
@@ -117,7 +116,7 @@ export default {
           personName: this.searchName,
           idNumber: this.searchId,
           mobileNo: this.searchPhone,
-          token: localStorage.getItem('token')
+          token: localStorage.getItem('LFZXtoken')
         },
         header: {
           reqFlag: '0',
@@ -138,7 +137,7 @@ export default {
           let data = res.data.body.result
           this.$store.dispatch('changeSearchData', data)
           this.isLoading = false
-          this.isWarning = false
+          this.$store.state.isWarning = false
           this.userCodeId = res.data.header.ordeCode
           this.isDownLoad = true
         } else if (res.data.body.success === 'false') {
@@ -185,6 +184,11 @@ export default {
             case '-214':
               data = ['未找到对应产品', '请联系客服人员']
               this.showPointBtnFun(data)
+              break
+            case '-215':
+              data = ['您还未登录', '请登录']
+              this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = true
               break
             case '-222':
               data = ['登录状态已失效', '请重新登录']

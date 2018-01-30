@@ -81,7 +81,7 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('homeBigBg init')
+      // console.log('homeBigBg init')
     },
     goToService () {
       this.$router.push({ name: 'Service' })

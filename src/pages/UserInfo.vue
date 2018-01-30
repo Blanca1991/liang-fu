@@ -27,7 +27,7 @@
               <div class="">
                 <span>您好：</span>
                 <span>{{ userName }}</span>
-                <span class="queit" @click="quitFun">退出</span>
+                <span class="queit pointer" @click="quitFun">退出</span>
               </div>
               <div class="">
                 <span>资料完整度</span>

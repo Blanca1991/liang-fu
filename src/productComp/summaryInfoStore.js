@@ -37,7 +37,7 @@ export default new Vuex.Store({
   mutations: {
     EMPTYDETILDS (state) {
       // 空数据处理
-      console.log(state.length)
+      // console.log(state.length)
     }
   },
   actions: {}

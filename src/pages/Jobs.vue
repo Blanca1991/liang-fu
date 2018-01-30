@@ -78,8 +78,8 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('Jobs init')
-      console.log(this.$store.state)
+      // console.log('Jobs init')
+      // console.log(this.$store.state)
       this.fetchJobs()
     },
     fetchJobs: async function () {
@@ -91,7 +91,7 @@ export default {
       console.log(res)
       if (res.status === 200) {
         if (res.data.type && res.data.type === 'success') {
-          console.log(res.data.data)
+          // console.log(res.data.data)
           this.jobsList = res.data.data
         } else if (res.data.type === 'false') {
           this.pointOutFun(res.data.message)

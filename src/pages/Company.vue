@@ -115,7 +115,7 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('Company init')
+      // console.log('Company init')
     },
     showTips (item) {
       this.$store.state.isTipsShow = true

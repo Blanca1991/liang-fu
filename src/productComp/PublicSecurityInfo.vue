@@ -9,6 +9,13 @@
         <div class="pL20 titleBg borderB  titleFont">
           <strong>司法负面信息</strong>
         </div>
+        <div class="titleHeader flex borderB titleFont ">
+          <div class="width12 pL20 borderR pointer" :class="{tabIsActive: tabIndex === index}"
+          v-for="(item,index) in tabTitleList" @click="changeTab(index)">
+            <span>{{ item }}</span>
+            <em class="trigon" v-if="index === tabIndex"></em>
+          </div>
+        </div>
         <div class="titleHeader flex borderB titleFont">
           <div class="width25 pL20 borderR">
             <span>日期</span>
@@ -119,7 +126,18 @@ export default {
       isScoreLevelYellow: false, // 控制不良行为评分--等级的背景色 yellow
       isScoreLevelGreen: false, // 控制不良行为评分--等级的背景色  green
       isOverdue90Red: false, // 控制逾期信息--评分的背景色
-      isOverdue180Red: false // 控制逾期信息--等级的背景色
+      isOverdue180Red: false, // 控制逾期信息--等级的背景色
+      tabTitleList: [
+        '裁判文书',
+        '执行公告',
+        '失信公告',
+        '法院公告',
+        '开庭公告',
+        '案件流程',
+        '曝光台',
+        '网贷黑名单'
+      ],
+      tabIndex: 0
     }
   },
   computed: {
@@ -147,6 +165,9 @@ export default {
       // console.log('publicSecurityInfo init')
       this.styeChange()
       this.styeBgChange()
+    },
+    changeTab (index) {
+      this.tabIndex = index
     },
     styeChange () {
       // 不良行为评分 背景颜色 控制

@@ -7,6 +7,7 @@
 .textGreenBg{background: #39c46d; color: #ffffff; padding: 6px 8px; border-radius: 4px;}
 .titleBg{background: #fafafa;}
 .fontGreenColor{background: #eff8e7;color: #39c46d;padding: 6px 8px; border-radius: 4px;}
+.width12{width: 12.5%}
 .width14{width: 14%}
 .width18{width: 18%}
 .width20{width: 20%}
@@ -69,7 +70,9 @@
 }
 .negativeInfo .titleList{padding: 30px 26px 30px 20px;}
 .negativeInfo > div:nth-child(2n+1) {background: #FAFAFF;}
-
+.tabIsActive {background: #cccccc}
+.trigon{ width: 10px;display: inline-block;height: 10px;background: #fefefe;
+  transform: translateY(270%) translateX(-350%) rotate(45deg);}
 /* 网贷逾期信息 */
 .overdueInfo{margin-top: 10px;}
 .overdueInfo .infoTitle{background: #ec5923;}

@@ -78,10 +78,6 @@ export default {
   },
   computed: {},
   watch: {
-    // screenWidth (val) {
-    //   this.screenWidth = val
-    //   console.log(this.screenWidth)
-    // }
     screenWidth (val) {
       if (!this.timer) {
         this.screenWidth = val

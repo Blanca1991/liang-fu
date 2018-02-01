@@ -37,7 +37,8 @@ export default {
   name: 'Home',
   data () {
     return {
-      isActives: 'Home' // ComHeader内对应的tag高亮
+      isActives: 'Home', // ComHeader内对应的tag高亮
+      screenHeight: document.documentElement.offsetHeight
     }
   },
   watch: {},
@@ -53,8 +54,24 @@ export default {
   },
   mounted () {
     // 钩子函数
+    console.log(this.screenHeight)
+    console.log(this.homeItemListTop)
+    this.getChangeHeight()
   },
-  methods: {},
+  methods: {
+    getChangeHeight () {
+      let vm = this
+      setInterval(function () {
+        if (window.location.hash.indexOf('Home') >= 0) {
+          vm.screenHeight = document.documentElement.offsetHeight
+          // console.log(vm.screenHeight)
+          for (let i = 0; i < vm.homeItemListTop.length; i++) {
+            vm.homeItemListTop[i].topNum = document.getElementById(vm.homeItemListTop[i].modelName).offsetTop
+          }
+        }
+      }, 400)
+    }
+  },
   components: {
     ComHeader,
     Login,

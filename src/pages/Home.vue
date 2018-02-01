@@ -22,6 +22,8 @@
 </template>
 
 <script>
+// import $ from 'jquery' // 为了兼容IE 引入jq 崩溃啊对IE  不想玩了
+// import fullpage from '@/fullpage/jquery.fullPage.js'
 import {mapState} from 'vuex'
 import ComHeader from '@/components/ComHeader'
 import Login from '@/components/Login'

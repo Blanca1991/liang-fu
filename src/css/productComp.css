@@ -7,14 +7,25 @@
 .textGreenBg{background: #39c46d; color: #ffffff; padding: 6px 8px; border-radius: 4px;}
 .titleBg{background: #fafafa;}
 .fontGreenColor{background: #eff8e7;color: #39c46d;padding: 6px 8px; border-radius: 4px;}
+.width9{width: 9%}
+.width11{width: 11%}
+.width1212{width: 12%}
 .width12{width: 12.5%}
 .width14{width: 14%}
+.width15{width: 15%}
 .width18{width: 18%}
 .width20{width: 20%}
 .width22{width: 22%}
 .width25{width: 25%}
 .width33{width: 33.33%}
 .width50{width: 50%}
+.flex1{flex: 1;}
+.positionR{position: relative;}
+.textAlignC{position: absolute;top: 50%;transform: translateY(-50%);}
+.pTB{padding-top:10px;padding-bottom: 10px; }
+.pR20{padding-right: 20px;}
+.pR10{padding-right: 10px;}
+.pL2{padding-left: 2px}
 .titleFont{line-height: 55px;}
 .titleHeader{ }
 .flexAlignItems{align-items: center;}
@@ -69,7 +80,7 @@
   background: #fcbe51
 }
 .negativeInfo .titleList{padding: 30px 26px 30px 20px;}
-.negativeInfo > div:nth-child(2n+1) {background: #FAFAFF;}
+/* .negativeInfo > div:nth-child(2n+1) {background: #FAFAFF;} */
 .tabIsActive {background: #cccccc}
 .trigon{ width: 10px;display: inline-block;height: 10px;background: #fefefe;
   transform: translateY(270%) translateX(-350%) rotate(45deg);}
@@ -101,15 +112,15 @@
   /* position: absolute; */
 }
 .floorList .floorItem{
-  width: 130px; height: 50px;font-size: 16px; line-height: 50px; text-align: center; color: #ffffff;
+  width: 50px; height: 50px;font-size: 16px; line-height: 50px; text-align: center; color: #ffffff;
    margin-bottom: 10px; border-radius: 50px;
 }
 .floorList .floorItem .title{ display: none;}
 .floorList .floorItem .imgTitleBox{width: 50px;height: 50px;display: flex;justify-content: center;
-  align-items: center;background: #ccc; border-radius: 50px; float: right;}
-.floorList .floorItem .isImgTitleBox{background: #088db8;}
+  align-items: center;background: #ccc; border-radius: 50px; float: right;position: absolute; right: 0;}
+.floorList .floorItem .isImgTitleBox{background: #088db8; }
 .floorList .floorItem img{ width: 25px;height: auto; display:block}
 .imgTitleBox .imgDiv{width: 25px;height: 25px;}
-.floorList .floorItem:hover{background: #088db8;}
+.floorList .floorItem:hover{background: #088db8;width: 130px;}
 .floorList .floorItem:hover .title{ display: block;}
 .floorList .floorItem:hover .imgTitleBox{ display: none; }

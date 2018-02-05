@@ -31,6 +31,12 @@
         <HistoryInfo />
         <!-- 锚点楼层 -->
         <FloorList />
+        <div class="footDiv">
+          <div class="footDivText">
+            报告结束
+          </div>
+          <span class="footDivRule"></span>
+        </div>
       </div>
     </div>
     <Login v-show="isLogin"/>
@@ -73,7 +79,8 @@ export default {
     ...mapState({
       // 获取数据
       pointShow: state => state.pointShow,
-      isLogin: state => state.isLogin
+      isLogin: state => state.isLogin,
+      modelListTop: state => state.modelListTop
     })
   },
   mounted () {
@@ -84,6 +91,11 @@ export default {
     init () {
       // 初始化
       // console.log('Product init')
+    },
+    getAllModelTop () {
+      for (let i = 0; i < this.modelListTop.length; i++) {
+        this.modelListTop[i].topNum = document.getElementById(this.modelListTop[i].modelName).offsetTop
+      }
     },
     searchFun () {
       let userNameReg = /^[\u4E00-\u9FA5]{2,4}$/  // 姓名限制为二到四位的中文字符

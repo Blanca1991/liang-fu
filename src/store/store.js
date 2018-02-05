@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import summaryInfoStore from '../productComp/summaryInfoStore'
 import baseInfoStore from '../productComp/baseInfoStore'
+import publicStore from '../productComp/publicStore'
 
 Vue.use(Vuex)
 
@@ -124,7 +125,7 @@ export default new Vuex.Store({
       this.state.summaryInfoStore = data.summaryInfo
       this.state.baseInfoStore.baseInfo = data.baseInfo
       this.state.baseInfoStore.telecomInfo = data.telecomInfo
-      this.state.baseInfoStore.publicSecurityInfo = data.publicSecurityInfo
+      this.state.baseInfoStore.publicSecurityInfoNew = data.publicSecurityInfo
       this.state.baseInfoStore.overdueInfo = data.overdueInfo
       this.state.baseInfoStore.borrowingInfo = data.borrowingInfo
       this.state.baseInfoStore.contactsInfo = data.contactsInfo
@@ -357,6 +358,7 @@ export default new Vuex.Store({
   },
   modules: {
     summaryInfoStore,
-    baseInfoStore
+    baseInfoStore,
+    publicStore
   }
 })

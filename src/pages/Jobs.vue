@@ -170,20 +170,20 @@ export default {
 .JobsWarp .jobsBox{width: 100%;}
 .JobsWarp .imgBox{width: 50%;height: 50%;position: absolute;bottom: 20px;right: 0;}
 .image{width: 100%;height: 100%;}
-.pre1{width: 20%;background-size: 80%; background-repeat:no-repeat; background-position:bottom;
+.pre1{width: 20%;background-size: 60%; background-repeat:no-repeat; background-position:bottom;
   animation: pre1Move 1s ease-in; }
 @keyframes pre1Move {
   0% {width: 0%;}
   50% {width: 25%;}
   100% {width: 20%;}
 }
-.pre2{width: 60%; background-size: 80%;background-repeat:no-repeat; background-position:bottom;
+.pre2{width: 60%; background-size: 60%;background-repeat:no-repeat; background-position:bottom;
   animation: pre2Move 1s ease; }
 @keyframes pre2Move {
   0% {width: 0%;}
   100% {width: 60%;}
 }
-.pre3{width: 20%; background-size: 70%;background-repeat:no-repeat; background-position:bottom;}
+.pre3{width: 20%; background-size: 60%;background-repeat:no-repeat; background-position:bottom;}
 .jobsList{position: absolute;top: 0px; padding: 100px;z-index: 2;}
 .jobItem{width: 120px;height: 120px;border-radius: 50%; border: 8px solid #fff;box-sizing: border-box;
   justify-content: center;align-items: center; position: absolute;color: #fff;}

@@ -15,11 +15,11 @@
               <span>类型</span>
             </div>
             <div class="pL20 flex1 borderR">
-              <span class="textGreenBg" v-show="badbehaviorInfo.type === '0' ">无不良行为</span>
-              <span class="textYellowBg" v-show="badbehaviorInfo.type === '1' ">前科</span>
-              <span class="textRebBg" v-show="badbehaviorInfo.type === '2' ">涉案</span>
-              <span class="textRebBg" v-show="badbehaviorInfo.type === '3' ">犯罪嫌疑人</span>
-              <span class="textRebBg" v-show="badbehaviorInfo.type === '4' ">吸毒</span>
+              <span class="textGreenBg" v-show="badbehaviorInfo.type === '0' ">0</span>
+              <span class="textYellowBg" v-show="badbehaviorInfo.type === '1' ">1</span>
+              <span class="textRebBg" v-show="badbehaviorInfo.type === '2' ">2</span>
+              <span class="textRebBg" v-show="badbehaviorInfo.type === '3' ">3</span>
+              <span class="textRebBg" v-show="badbehaviorInfo.type === '4' ">4</span>
               <span class="" v-show="badbehaviorInfo.type === '' || null ">——</span>
             </div>
           </div>
@@ -331,7 +331,7 @@ export default {
   },
   watch: {
     publicSecurityInfoNew (publicSecurityInfoNew) {
-      // this.styeChange()
+      this.init()
     },
     overdueInfo (overdueInfo) {
       this.styeBgChange()
@@ -348,7 +348,7 @@ export default {
       // console.log('publicSecurityInfo init')
       // this.styeChange()
       // this.styeBgChange()
-      console.log(this.$store.state)
+      console.log('state', this.$store.state)
       this.listDate = this.cpws
       this.timeGetAllModelTop()
     },

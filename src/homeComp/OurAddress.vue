@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="marginTop10 submitBox ">
-            <span class="submitBtn font22 pointer" @click="submitContact">提交</span>
+            <span class="submitBtn font18 pointer" @click="submitContact">提交</span>
           </div>
         </div>
         <div class="imgBox ">
@@ -50,14 +50,14 @@
           <div class="imgBoxIn">
             <img :src="imgUrl" alt="">
             <div>
-              <p class="font18">上海市徐汇区宜山路1289号复星科技园B栋9楼</p>
-              <p class="font18">邮箱：lfzx.cs@fosun.com 电话：021-34611615</p>
+              <p class="font16">上海市徐汇区宜山路1289号复星科技园B栋9楼</p>
+              <p class="font16">邮箱：lfzx.cs@fosun.com 电话：021-34611615</p>
             </div>
           </div>
         </div>
-      </div>
-      <div class="liangfuBox">
-        量富征信管理有限公司版权所有©沪ICP备18002309号-1
+        <div class="liangfuBox">
+          量富征信管理有限公司版权所有©沪ICP备18002309号-1
+        </div>
       </div>
     </div>
   </div>

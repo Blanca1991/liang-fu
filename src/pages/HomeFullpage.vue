@@ -1,16 +1,41 @@
 <!-- 首页 wuxiaobo-->
 <template>
   <div  class="HomeWarp minWidthBox">
-    <div class="comHeaderBox" :style="{left: - scrollLeft + 'px'}">
+    <!-- <div class="comHeaderBox" :style="{left: - scrollLeft + 'px'}">
       <ComHeader :isActiveComp="isActives" />
-    </div>
-    <div class="scrollWarp">
+    </div> -->
+    <div class="scrollWarp" id="scrollWarp" :style="{height: '100vh'}">
       <div class="" id="scroll">
-        <BigBg />
+        <div class="section section1">
+          <div class="homeBigBgWarp minWidthBox homeItem" id="BigBg">
+            <div class="bigBg">
+              <div class="imgBox">
+                <img :src="imgUrl" alt="">
+              </div>
+              <div class="textBox">
+                <div class="font30">
+                  <strong>信仰是力量，信用是财富！</strong>
+                </div>
+                <div class="font28">Faith is power, credit is wealth! </div>
+              </div>
+              <div class="circleBox">
+                <div class="circle">
+                  <em class="leftEm"></em>
+                  <em class="rightEm"></em>
+                </div>
+              </div>
+            </div>
+          </div>
+      	</div>
+        <div class="section section2">
+      	</div>
+        <div class="section section3">
+      	</div>
+        <!-- <BigBg />
         <OurServices />
         <AboutUs />
         <OurNews />
-        <OurAddress />
+        <OurAddress /> -->
       </div>
     </div>
     <div class="loginBox" v-show="isLoginBox">
@@ -22,8 +47,9 @@
 </template>
 
 <script>
-// import $ from 'jquery' // 为了兼容IE 引入jq 崩溃啊对IE  不想玩了
-// import fullpage from '@/fullpage/jquery.fullPage.js'
+import $ from 'jquery' // 为了兼容IE 引入jq 崩溃啊对IE  不想玩了
+import section from '../images/home/section.jpg'
+import '@/fullpage/jquery.fullPage.js'
 import {mapState} from 'vuex'
 import ComHeader from '@/components/ComHeader'
 import Login from '@/components/Login'
@@ -40,7 +66,8 @@ export default {
   data () {
     return {
       isActives: 'Home', // ComHeader内对应的tag高亮
-      screenHeight: document.documentElement.offsetHeight
+      screenHeight: document.documentElement.offsetHeight,
+      imgUrl: section
     }
   },
   watch: {},
@@ -57,21 +84,16 @@ export default {
   mounted () {
     // 钩子函数
     console.log(this.screenHeight)
-    console.log(this.homeItemListTop)
-    this.getChangeHeight()
+    this.fullpageFun()
   },
   methods: {
-    getChangeHeight () {
-      let vm = this
-      setInterval(function () {
-        if (window.location.hash.indexOf('Home') >= 0) {
-          vm.screenHeight = document.documentElement.offsetHeight
-          // console.log(vm.screenHeight)
-          for (let i = 0; i < vm.homeItemListTop.length; i++) {
-            vm.homeItemListTop[i].topNum = document.getElementById(vm.homeItemListTop[i].modelName).offsetTop
-          }
-        }
-      }, 400)
+    fullpageFun () {
+      let scrollWarp = $('#scroll')
+      scrollWarp.fullpage({
+        sectionsColor: ['', '#4e9dd8', '#97d20c', '#f55557', '#b15aa9'],
+        css3: true,
+        scrollingSpeed: 1000
+      })
     }
   },
   components: {
@@ -90,10 +112,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.HomeWarp{ width: 100%;position: relative;}
-.comHeaderBox{position: fixed;top: 0; width: 100%;z-index: 11;}
-.scrollWarp{width: 100%;}
-.scroll{position: relative; height: auto;width: 100%;}
-.scrollWarp::-webkit-scrollbar {display: none;}
-.loginBox{position: fixed;top: 0; width: 100%;height: 100vh;z-index: 22}
+@import '../css/homeComp'
 </style>

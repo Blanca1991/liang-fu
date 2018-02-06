@@ -72,7 +72,8 @@ export default {
       searchPhone: '15379509999',
       isLoading: false, // 加载动画 显示和隐藏
       isDownLoad: false,
-      userCodeId: '' // 用户订单 -- 搜索接口返回  下载pdf使用
+      userCodeId: '', // 用户订单 -- 搜索接口返回  下载pdf使用
+      TimeoutFun: ''
     }
   },
   computed: {
@@ -90,7 +91,7 @@ export default {
   methods: {
     init () {
       // 初始化
-      // console.log('Product init')
+      console.log('Product init')
     },
     getAllModelTop () {
       for (let i = 0; i < this.modelListTop.length; i++) {
@@ -120,6 +121,31 @@ export default {
       // 事件调用 -- 调用提示层
       this.$store.dispatch('showPoint', data)
     },
+    setTimeFun () {
+      console.log('setTimeFun')
+      let times = parseFloat(localStorage.getItem('startTimes'))
+      times = times * 1000
+      // let times = 30 * 1000
+      let vm = this
+      this.TimeoutFun = setTimeout(function () {
+        vm.checkTokenFun()
+      }, times)
+    },
+    checkTokenFun: async function () {
+      let params
+      params = {
+        userName: localStorage.getItem('userName')
+      }
+      const res = await http.post(api.checkToken, params)
+      console.log('checkToken', res)
+      if (res.data.errorCode === '200') {
+        console.log('token未失效')
+        this.setTimeFun()
+      } else if (res.data.errorCode === '-222') {
+        clearTimeout(this.setTimeFun)
+        this.isLogin = true
+      }
+    },
     fetchSearch: async function () {
       this.isLoading = true
       // 接口请求 ———— 搜索接口
@@ -141,7 +167,7 @@ export default {
       }
       // console.log(params)
       const res = await http.post(api.antifraud, params)
-      console.log(res)
+      console.log('fetchSearch', res)
       if (res.status === 200) {
         // console.log(res.data)
         if (res.data.body.success && res.data.body.success !== 'false') {
@@ -152,6 +178,13 @@ export default {
           this.$store.state.isWarning = false
           this.userCodeId = res.data.header.ordeCode
           this.isDownLoad = true
+          if (res.data.header.startTimes === null) {
+            localStorage.setItem('startTimes', '3600')
+          } else {
+            localStorage.setItem('startTimes', res.data.header.startTimes)
+          }
+          console.log(localStorage.getItem('startTimes'))
+          this.setTimeFun()
         } else if (res.data.body.success === 'false') {
           this.isLoading = false
           let data
@@ -198,7 +231,7 @@ export default {
               this.showPointBtnFun(data)
               break
             case '-215':
-              data = ['您还未登录', '请登录']
+              data = ['登录状态已失效', '请重新登录']
               this.showPointBtnFun(data)
               this.$store.state.pointOutLoginBtn = true
               break

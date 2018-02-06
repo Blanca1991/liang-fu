@@ -72,7 +72,7 @@ export default {
         password: this.passWord
       }
       const res = await http.post(api.login, params)
-      // console.log(res)
+      console.log(res)
       if (res.data.success && res.data.success === 'true') {
         // console.log('loginSuccess')
         this.$store.commit('HIDELOGIN')// 隐藏登录框

@@ -125,7 +125,7 @@ export default new Vuex.Store({
       this.state.summaryInfoStore = data.summaryInfo
       this.state.baseInfoStore.baseInfo = data.baseInfo
       this.state.baseInfoStore.telecomInfo = data.telecomInfo
-      this.state.baseInfoStore.publicSecurityInfoNew = data.publicSecurityInfo
+      this.state.publicStore.publicSecurityInfoNew = data.publicSecurityInfo
       this.state.baseInfoStore.overdueInfo = data.overdueInfo
       this.state.baseInfoStore.borrowingInfo = data.borrowingInfo
       this.state.baseInfoStore.contactsInfo = data.contactsInfo
@@ -216,7 +216,7 @@ export default new Vuex.Store({
       let vm = this
       if (beforeScrollTop < newScrollTop) {
         upFlag = true
-        this.state.appOverflow = 'hidden'
+        // this.state.appOverflow = 'hidden'
         // console.log('向上滚动')
         if (newScrollTop < homeItemList[1].topNum) {
           (function smoothDown () {
@@ -273,7 +273,7 @@ export default new Vuex.Store({
         }
       } else if (beforeScrollTop > newScrollTop) {
         downFlag = true
-        this.state.appOverflow = 'hidden'
+        // this.state.appOverflow = 'hidden'
         if (newScrollTop > homeItemList[3].topNum && newScrollTop < homeItemList[4].topNum) {
           (function smoothDown () {
             if (vm.state.appDom.scrollTop > homeItemList[3].topNum) {

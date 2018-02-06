@@ -47,7 +47,8 @@
               <span>结果</span>
             </div>
             <div class="flex1 positionR pL20 positionR borderB" >
-              <span class="textAlignC">{{ item.judgeResult || "——"}}</span>
+              <span v-show="item.judgeResult !== '' && item.judgeResult !== null">{{ item.judgeResult }}</span>
+              <span v-show="item.judgeResult === '' || item.judgeResult === null" class="textAlignC">——</span>
             </div>
           </div>
         </div>

@@ -1,6 +1,14 @@
 /* home内的组件 用到的样式 */
 /* .homeItem{position: absolute;z-index: 0}
 .isHomeItem {z-index: 1} */
+/* home自己 */
+.HomeWarp{ width: 100%;position: relative;}
+.comHeaderBox{position: fixed;top: 0; width: 100%;z-index: 11;}
+.scrollWarp{width: 100%;overflow: auto;}
+.scroll{position: relative; height: auto;width: 100%;}
+.scrollWarp::-webkit-scrollbar {display: none;}
+.loginBox{position: fixed;top: 0; width: 100%;height: 100vh;z-index: 22}
+
 /* 第一个 大背景图 */
 .homeBigBgWarp{width: 100% ;}
 .homeBigBgWarp .bigBg{width: 100%;height: 100vh;margin: 0;position: relative;}
@@ -27,7 +35,7 @@ animation: moveCircleBox 2s infinite ;}
 .circleDivBox{ justify-content: center;align-items:center; margin-top: 10px}
 .circleDiv{ width: 12px;height: 12px;background: #fff;border-radius: 50%;}
 .ruleDiv{width: 240px;height: 2px;background: #fff;}
-.servicesList{width: 1100px; position: absolute;top:50%;left: 50%;transform: translateX(-50%) translateY(-50%);}
+.servicesList{width: 1100px; position: absolute;top:59%;left: 50%;transform: translateX(-50%) translateY(-50%);}
 .servicesItem{width: 25%; padding: 15px;}
 .article{text-indent: 28px;}
 .servicesItemBorder{border: #fff 1px solid; padding: 11px;}
@@ -39,7 +47,7 @@ animation: moveCircleBox 2s infinite ;}
 
 /* about Us */
 .aboutUsWarp{ width: 100%;height: 100vh; background: rgb(151, 210, 12) ;}
-.aboutUsWarp .aboutUs{position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);width: 100%;}
+.aboutUsWarp .aboutUs{position: absolute; top: 59%; left: 50%; transform: translateX(-50%) translateY(-50%);width: 100%;}
 .aboutUsWarp .aboutUs .imgBox{width: 50%;}
 .aboutUsWarp .aboutUs .imgBox img{width: 80%;}
 .aboutUsWarp .aboutUs .aboutUsArticles{ width: 50%;padding-right: 4%;}
@@ -51,7 +59,7 @@ animation: moveCircleBox 2s infinite ;}
 
 /* Our News */
 .ourNewsWarp{ width: 100%;height: 100vh; background: rgb(245, 85, 87) ;}
-.ourNewsListBox {width: 100%; min-width: 1200px;position: absolute;top: 58%; transform: translateY(-50%);height: 340px; overflow: hidden;}
+.ourNewsListBox {width: 100%; min-width: 1200px;position: absolute;top: 64%; transform: translateY(-50%);height: 340px; overflow: hidden;}
 .ourNewsWarp .ourNewsList{width: 600%;min-width: 6000px;height: 340px;position: absolute;display: flex;
   /* animation: moveNewsList 30s infinite linear */
   transition: left 1s;
@@ -97,11 +105,11 @@ animation: moveCircleBox 2s infinite ;}
 /* 联系我们 */
 .ourAddressWarp{background: rgb(177, 90, 169);box-sizing: border-box;width: 100%;min-width: 1200px;position: relative;}
 .ourAddress{}
-.ourAddressBox{position: absolute;top: 260px;width: 100%;padding: 0 100px;box-sizing: border-box;max-width: 1200px;
+.ourAddressBox{position: absolute;top: 220px;width: 100%;padding: 0 100px;box-sizing: border-box;max-width: 1200px;
 transform: translateX(-50%);left: 50%;}
 .ourAddressBox .imgBox{width: 50%;}
-.ourAddressBox .imgBox img{width: 100%;height: auto;}
-.imgBoxIn{margin-top: 10px;}
+.ourAddressBox .imgBox img{width: 80%;height: auto;}
+.imgBoxIn{margin-top: 10px; }
 .ourAddressBox .fromBox{width: 50%; padding-right: 10%;box-sizing: border-box;}
 .ourAddressBox .fromBox input{ width: 100%;height: 32px;border-radius: 5px;border: none ;text-indent: 16px;line-height: 18px;
 color: rgb(177, 90, 169)}
@@ -113,7 +121,7 @@ color: rgb(177, 90, 169)}
 }
 .submitBox {margin-top: 20px;}
 .submitBox .submitBtn{color:rgb(177, 90, 169); background: #fff; padding:10px 20px;border-radius: 5px;}
-.imgMask{width: 0;height: 0;border: 200px solid rgb(177, 90, 169);border-bottom-color: transparent;
-  border-right-color: transparent;position: absolute;transform: rotateY(70deg) translate(-390px);}
-.imgLine{height: 2px; width: 400px;background: #fff; transform: rotate(-71deg) translate(-196px,-62px);}
-.liangfuBox{bottom: 70px;width: 100%;position: absolute;text-align: center;}
+.imgMask{width: 0;height: 0;border: 140px solid rgb(177, 90, 169);border-bottom-color: transparent;
+  border-right-color: transparent;position: absolute;transform: rotateY(70deg) translate(-152px);}
+.imgLine{height: 2px; width: 300px;background: #fff; transform: rotate(-71deg) translate(-149px,-14px);}
+.liangfuBox{bottom: -45px;width: 100%;position: absolute;text-align: center;left: 0;}

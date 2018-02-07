@@ -183,7 +183,7 @@ export default {
   0% {width: 0%;}
   100% {width: 60%;}
 }
-.pre3{width: 20%; background-size: 60%;background-repeat:no-repeat; background-position:bottom;}
+.pre3{width: 20%; background-size: 70%;background-repeat:no-repeat; background-position:bottom;}
 .jobsList{position: absolute;top: 0px; padding: 100px;z-index: 2;}
 .jobItem{width: 120px;height: 120px;border-radius: 50%; border: 8px solid #fff;box-sizing: border-box;
   justify-content: center;align-items: center; position: absolute;color: #fff;}

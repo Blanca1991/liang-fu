@@ -7,7 +7,10 @@
       :class="{ 'navActive': isActive==item.pagesName }" >
         <span>{{ item.message }}</span>
         <div class="productList" v-if="item.pagesName === 'Product'">
-          <div class="productItem pointer font14">
+          <!-- <div class="productItem pointer font14" @click="itemGo = 1">
+            企明星
+          </div> -->
+          <div class="productItem pointer font14" @click="itemGo = 2">
             星护甲
           </div>
         </div>
@@ -66,7 +69,8 @@ export default {
         }
       ],
       isActive: this.isActiveComp,
-      bgHides: false
+      bgHides: false,
+      itemGo: 0 // 跳转企明星还是星护甲flag
     }
   },
   mounted () {
@@ -84,7 +88,10 @@ export default {
           this.$store.state.isLoginBox = true
           this.$store.dispatch('showPoint', '请先登录')
         } else {
-          window.open(window.location.href.split('#')[0] + '#/' + item.pagesName)
+          if (this.itemGo === 2) {
+            this.itemGo = 0
+            window.open(window.location.href.split('#')[0] + '#/' + item.pagesName)
+          }
         }
       } else if (item.pagesName === 'UserInfo') {
         if (!localStorage.getItem('LFZXtoken')) {

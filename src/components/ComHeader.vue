@@ -91,7 +91,7 @@ export default {
           if (this.itemGo === 2) {
             this.itemGo = 0
             window.open(window.location.href.split('#')[0] + '#/' + item.pagesName)
-          } else {
+          } else if (this.itemGo === 1) {
             this.itemGo = 0
             window.open(window.location.href.split('#')[0] + '#/' + 'ProductQMX')
           }

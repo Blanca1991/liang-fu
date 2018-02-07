@@ -74,7 +74,10 @@
               <span>发布时间</span>
             </div>
             <div class="flex1 positionR pL20 positionR borderB" >
-              <span class="textAlignC">{{ item.postTime || "——"}}</span>
+              <span class="textAlignC">
+                {{ new Date().getFullYear(item.postTime) + "年" + (new Date().getMonth(item.postTime) + 1) + "月" + new Date().getDate(item.postTime) + "日"|| "——"}}
+              </span>
+              <!-- <span class="textAlignC">{{ item.postTime || "——"}}</span> -->
             </div>
           </div>
           <div class="flex newNegativeInfo">

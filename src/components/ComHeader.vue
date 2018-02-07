@@ -91,6 +91,9 @@ export default {
           if (this.itemGo === 2) {
             this.itemGo = 0
             window.open(window.location.href.split('#')[0] + '#/' + item.pagesName)
+          } else {
+            this.itemGo = 0
+            window.open(window.location.href.split('#')[0] + '#/' + 'ProductQMX')
           }
         }
       } else if (item.pagesName === 'UserInfo') {

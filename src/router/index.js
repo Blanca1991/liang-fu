@@ -9,6 +9,7 @@ import Jobs from '@/pages/Jobs'
 import Cooperate from '@/pages/Cooperate'
 import Product from '@/pages/Product'
 import UserInfo from '@/pages/UserInfo'
+import ProductQMX from '@/pages/ProductQMX'
 
 Vue.use(Router)
 
@@ -54,6 +55,11 @@ export default new Router({
       path: '/Product',
       name: 'Product',
       component: Product
+    },
+    {
+      path: '/ProductQMX',
+      name: 'ProductQMX',
+      component: ProductQMX
     },
     {
       path: '/UserInfo',

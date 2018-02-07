@@ -164,7 +164,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.JobsWarp{ width: 100%; height:100%; background: #eee}
+.JobsWarp{ width: 100%; height:100%; background: #eee; min-height: 700px}
 .header{width: 100%;position: absolute;top: 0}
 .JobsWarp .jobsBoxWarp{width: 100%; height:100%;position: relative;}
 .JobsWarp .jobsBox{width: 100%;}

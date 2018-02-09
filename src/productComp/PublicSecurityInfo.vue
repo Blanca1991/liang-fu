@@ -54,10 +54,10 @@
             <span>法院</span>
           </div>
           <div class="width20 pL20 borderR">
-            <span>依据案号</span>
+            <span>案号</span>
           </div>
           <div class="pL20 borderR width15">
-            <span v-if="tabIndex === 0 || tabIndex === 4">依据案由</span>
+            <span v-if="tabIndex === 0 || tabIndex === 4">案由</span>
             <span v-if="tabIndex === 1">执行标的</span>
             <span v-if="tabIndex === 2">履行情况</span>
             <span v-if="tabIndex === 3">公告类型</span>

@@ -7,9 +7,9 @@
       :class="{ 'navActive': isActive==item.pagesName }" >
         <span>{{ item.message }}</span>
         <div class="productList" v-if="item.pagesName === 'Product'">
-          <!-- <div class="productItem pointer font14" @click="itemGo = 1">
+          <div class="productItem pointer font14" @click="itemGo = 1">
             企明星
-          </div> -->
+          </div>
           <div class="productItem pointer font14" @click="itemGo = 2">
             星护甲
           </div>

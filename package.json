@@ -12,12 +12,13 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "jquery": "^2.2.3",
     "swiper": "^4.0.7",
     "vue": "^2.5.2",
+    "vue-atom-canvas": "^1.0.0",
     "vue-concise-slider": "^2.4.3",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1",
-    "jquery": "^2.2.3"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

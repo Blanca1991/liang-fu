@@ -100,7 +100,7 @@ export default {
     },
     searchFun () {
       let userNameReg = /^[\u4E00-\u9FA5]{2,4}$/  // 姓名限制为二到四位的中文字符
-      let userMobileReg = /^1(3|4|5|7|8)[0-9]\d{8}$/  // 手机号为1开头的11位数字
+      let userMobileReg = /^1(3|4|5|6|7|8|9)[0-9]\d{8}$/  // 手机号为1开头的11位数字
       if (this.searchName === '') {
         this.pointOutFun('请输入姓名')
       } else if (!userNameReg.test(this.searchName)) {
@@ -119,6 +119,7 @@ export default {
     },
     pointOutFun (data) {
       // 事件调用 -- 调用提示层
+      this.$store.state.pointShowBtn = false
       this.$store.dispatch('showPoint', data)
     },
     setTimeFun () {
@@ -230,6 +231,14 @@ export default {
               data = ['未找到对应产品', '请联系客服人员']
               this.showPointBtnFun(data)
               break
+            case '-8985':
+              data = ['手机号格式不合法', '手机号码为虚拟号码']
+              this.showPointBtnFun(data)
+              break
+            case '-8984':
+              data = ['手机号为虚拟号段', '无法查询']
+              this.showPointBtnFun(data)
+              break
             case '-215':
               data = ['登录状态已失效', '请重新登录']
               this.showPointBtnFun(data)
@@ -242,7 +251,6 @@ export default {
               break
           }
         } else {
-          this.isLoading = false
           this.pointOutFun('系统异常，请稍后再试')
         }
       } else {

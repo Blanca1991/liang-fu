@@ -124,7 +124,7 @@
           </div>
           <div class="flex newNegativeInfo">
             <div class="width18 borderR titleBg pL20 borderB titleFont ">
-              <span>未还/返息</span>
+              <span>未还/罚息</span>
             </div>
             <div class="flex1 positionR pL20 positionR borderB" >
               <span class="textAlignC">{{ item.whfx || "——"}}</span>

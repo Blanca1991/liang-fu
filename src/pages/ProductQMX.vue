@@ -1,6 +1,9 @@
 <!-- 产品适用 wuxiaobo-->
 <template>
   <div class="ProductWarp minWidthBox" >
+    <div class="myCanvas">
+      <myCanvas :dotsNum="50" :isColor="false" />
+    </div>
     <LogoBg :bgHide="bgHides" class="logoBg"/>
     <Login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
@@ -9,6 +12,7 @@
 </template>
 
 <script>
+import myCanvas from 'vue-atom-canvas'
 // import http from '@/utils/http'
 // import api from '@/utils/api'
 // import service from '@/service'
@@ -50,6 +54,7 @@ export default {
     }
   },
   components: {
+    myCanvas,
     LogoBg,
     LoginNav,
     Login,
@@ -61,5 +66,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.myCanvas{background: #0D4C96;width: 100%;height:500px;min-width: 1200px;}
 </style>

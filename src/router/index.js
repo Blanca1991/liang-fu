@@ -10,6 +10,7 @@ import Cooperate from '@/pages/Cooperate'
 import Product from '@/pages/Product'
 import UserInfo from '@/pages/UserInfo'
 import ProductQMX from '@/pages/ProductQMX'
+import ProductQMXOrder from '@/pages/ProductQMXOrder'
 
 Vue.use(Router)
 
@@ -57,14 +58,20 @@ export default new Router({
       component: Product
     },
     {
-      path: '/ProductQMX',
-      name: 'ProductQMX',
-      component: ProductQMX
-    },
-    {
       path: '/UserInfo',
       name: 'UserInfo',
       component: UserInfo
     }
+    // ,
+    // {
+    //   path: '/ProductQMX',
+    //   name: 'ProductQMX',
+    //   component: ProductQMX
+    // },
+    // {
+    //   path: '/ProductQMXOrder',
+    //   name: 'ProductQMXOrder',
+    //   component: ProductQMXOrder
+    // }
   ]
 })

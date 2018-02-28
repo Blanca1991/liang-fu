@@ -89,6 +89,7 @@ a,input,button{ outline:none; }
 .pR20{padding-right: 20px;box-sizing: border-box;}
 .minWidthBox{min-width: 1200px;}
 ::-moz-focus-inner{border:0px;}
+.alignCenter{align-items: center;}
 /*a:link {color:#0f0;text-decoration:none;}
 a:visited {color: #FFFF00; text-decoration:none;}
 a:hover {color: #00FF00; text-decoration:underline;}

@@ -67,9 +67,12 @@ export default {
   data () {
     return {
       bgHides: true, // 星护甲logo 显示和隐藏
-      searchName: '王立国',
-      searchId: '642102197107030914',
-      searchPhone: '15379509999',
+      searchName: '',
+      searchId: '',
+      searchPhone: '',
+      // searchName: '王立国',
+      // searchId: '642102197107030914',
+      // searchPhone: '15379509999',
       isLoading: false, // 加载动画 显示和隐藏
       isDownLoad: false,
       userCodeId: '', // 用户订单 -- 搜索接口返回  下载pdf使用
@@ -168,11 +171,14 @@ export default {
       }
       // console.log(params)
       const res = await http.post(api.antifraud, params)
-      console.log('fetchSearch', res)
+      // console.log('fetchSearch', res)
       if (res.status === 200) {
         // console.log(res.data)
         if (res.data.body.success && res.data.body.success !== 'false') {
           // console.log(res.data.body)
+          this.searchName = ''
+          this.searchId = ''
+          this.searchPhone = ''
           let data = res.data.body.result
           this.$store.dispatch('changeSearchData', data)
           this.isLoading = false

@@ -36,17 +36,17 @@
             </div>
           </div>
         </div>
-        <div class="pL20 titleBg borderB  titleFont">
+        <div class="pL20 titleBg borderB  titleFont" v-if="allTabHide">
           <strong>司法负面信息</strong>
         </div>
-        <div class="titleHeader flex borderB titleFont titleBg">
-          <div class="width12 pL20 borderR pointer" :class="{tabIsActive: tabIndex === index}"
-          v-for="(item, index) in tabTitleList" @click="changeTab(index)">
-            <span>{{ item }}</span>
+        <div class="titleHeader flex borderB titleFont titleBg pubilceBox" v-if="allTabHide">
+          <div class="pL20 width12 borderR pointer" :class="{tabIsActive: tabIndex === index}"
+          v-for="(item, index) in tabTitleList" @click="changeTab(index)" v-if="item.nameDate">
+            <span >{{ item.name }}</span>
             <em class="trigon" v-if="index === tabIndex"></em>
           </div>
         </div>
-        <div class="titleHeader flex borderB titleFont pubilce titleBg">
+        <div class="titleHeader flex borderB titleFont pubilce titleBg" v-if="allTabHide">
           <div class="width18 pL20 borderR">
             <span>日期</span>
           </div>
@@ -77,176 +77,7 @@
         </div>
         <div class="negativeInfo newNegativeInfo" v-for="(item, index) in listDate" >
           <ToogleList :item="item" :tabIndex="tabIndex" />
-          <!-- <div class="flex font14 borderB " >
-            <div class="width18 pL20 pR10 borderR pTB positionR">
-              <span class="textAlignC">{{ item.sortTimeString  || "——"}}</span>
-            </div>
-            <div class="width20 pL20 pR10 borderR pTB positionR">
-              <span class="textAlignC">{{ item.court  || "——"}}</span>
-            </div>
-            <div class="width20 pL20 pR10 borderR pTB">
-              {{ item.caseNo  || "——"}}
-            </div>
-            <div class="pL20 borderR width15 positionR">
-              <span class="textAlignC" v-if="tabIndex === 0 || tabIndex === 4">{{ item.caseCause || "——" }}</span>
-              <span class="textAlignC" v-if="tabIndex === 1">{{ item.execMoney || "——" }}</span>
-              <span class="textAlignC" v-if="tabIndex === 2">{{ item.lxqk || "——" }}</span>
-              <span class="textAlignC" v-if="tabIndex === 3">{{ item.ggType || "——" }}</span>
-              <span class="textAlignC" v-if="tabIndex === 5">{{ item.ajlcStatus || "——" }}</span>
-              <span class="textAlignC" v-if="tabIndex === 6">{{ item.execMoney || "——" }}</span>
-              <span class="textAlignC" v-if="tabIndex === 7">{{ item.bjbx || "——" }}</span>
-            </div>
-            <div class=" pL20 borderR width1212 positionR">
-              <span class="textAlignC">{{ item.partyIdentity || "——"}}</span>
-            </div>
-            <div class=" pL20 borderR width9 positionR">
-              <span class="textAlignC">{{ item.matchRatio || "——" }}</span>
-            </div>
-            <div class=" flex1 flexAlignItems flex pointer" >
-              <i class="selectDown " v-bind:class="{'selectUp': false }"></i>
-            </div>
-          </div> -->
-          <!-- <div class="customizationBox">
-            <div class="cpws" v-show="tabIndex ===0">
-              <div class="flex newNegativeInfo" >
-                <div class="width18 borderR titleBg pL20 borderB titleFont">
-                  标题
-                </div>
-                <div class="flex1 borderB pL20 positionR">
-                  <span class="textAlignC">{{ item.title || "——"}}</span>
-                </div>
-              </div>
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>结果</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.judgeResult || "——"}}</span>
-                </div>
-              </div>
-            </div>
-            <div class="shixin" v-show="tabIndex === 2">
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>省份</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.province || "——"}}</span>
-                </div>
-              </div>
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>案号</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.yjCode || "——"}}</span>
-                </div>
-              </div>
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>发布时间</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.postTime || "——"}}</span>
-                </div>
-              </div>
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>做出行政依据单位</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.yjdw || "——"}}</span>
-                </div>
-              </div>
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>失信被执行人行为具体情形</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.jtqx || "——"}}</span>
-                </div>
-              </div>
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>生效法律文书确定的义务</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.yiwu || "——"}}</span>
-                </div>
-              </div>
-            </div>
-            <div class="wdhmd"  v-show="tabIndex === 7">
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>信息更新时间</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.updateTime || "——"}}</span>
-                </div>
-              </div>
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>已还金额</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.yhje || "——"}}</span>
-                </div>
-              </div>
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>未还/返息</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.whfx || "——"}}</span>
-                </div>
-              </div>
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>身份证号</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.idcardNo || "——"}}</span>
-                </div>
-              </div>
-              <div class="flex newNegativeInfo">
-                <div class="width18 borderR titleBg pL20 borderB titleFont ">
-                  <span>数据来源单位名称</span>
-                </div>
-                <div class="flex1 positionR pL20 positionR borderB" >
-                  <span class="textAlignC">{{ item.datasource || "——"}}</span>
-                </div>
-              </div>
-            </div>
-          </div> -->
         </div>
-        <!-- 新的结束 -->
-
-        <!-- 旧的 -->
-        <!-- <div class="negativeInfo">
-          <div class="titleHeader flex borderB " v-for="item in publicSecurityInfo.negativeInfo">
-            <div class="width25 pL20 borderR flex flexAlignItems ">
-              <div>
-                <span class="">{{ item.date }}</span>
-              </div>
-            </div>
-            <div class="width25 pL20 borderR flex flexAlignItems ">
-              <div class="">
-                <span>{{ item.type }}</span>
-              </div>
-            </div>
-            <div class="width25 pL20 borderR titleList">
-              <div>
-                <span>{{ item.title || '——' }}</span>
-              </div>
-            </div>
-            <div class="width25 pL20 flex flexAlignItems ">
-              <div class="">
-                <span>{{ item.matchDegree }}</span>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- 旧的 -->
       </div>
     </div>
     <div class="baseInfo overdueInfo flex divJump" id="overdueInfo">
@@ -290,6 +121,7 @@ export default {
   name: 'PublicSecurityInfo',
   data () {
     return {
+      allTabHide: true, // 控制 比如一个也没返回 则全部隐藏掉
       isScoreScoreRed: false, // 控制不良行为评分--评分的背景色 red
       isScoreScoreYellow: false, // 控制不良行为评分--评分的背景色 yellow
       isScoreScoreGreen: false, // 控制不良行为评分--评分的背景色 green
@@ -299,17 +131,49 @@ export default {
       isOverdue90Red: false, // 控制逾期信息--评分的背景色
       isOverdue180Red: false, // 控制逾期信息--等级的背景色
       tabTitleList: [
-        '裁判文书',
-        '执行公告',
-        '失信公告',
-        '法院公告',
-        '开庭公告',
-        '案件流程',
-        '曝光台',
-        '网贷黑名单'
+        {
+          name: '裁判文书',
+          nameDate: true
+        },
+        {
+          name: '执行公告',
+          nameDate: true
+        },
+        {
+          name: '失信公告',
+          nameDate: true
+        },
+        {
+          name: '法院公告',
+          nameDate: true
+        },
+        {
+          name: '开庭公告',
+          nameDate: true
+        },
+        {
+          name: '案件流程',
+          nameDate: true
+        },
+        {
+          name: '曝光台',
+          nameDate: true
+        },
+        {
+          name: '网贷黑名单',
+          nameDate: true
+        }
       ],
       tabIndex: 0,
-      listDate: ''
+      listDate: '',
+      cpws: { },
+      zxgg: { },
+      shixin: { },
+      fygg: { },
+      ktgg: { },
+      ajlc: { },
+      bgt: { },
+      wdhmd: { }
     }
   },
   computed: {
@@ -318,14 +182,14 @@ export default {
       overdueInfo: state => state.baseInfoStore.overdueInfo,
       publicSecurityInfoNew: state => state.publicStore.publicSecurityInfoNew,
       badbehaviorInfo: state => state.publicStore.publicSecurityInfoNew.badbehaviorInfo,
-      cpws: state => state.publicStore.publicSecurityInfoNew.negativeList.cpws,
-      zxgg: state => state.publicStore.publicSecurityInfoNew.negativeList.zxgg,
-      shixin: state => state.publicStore.publicSecurityInfoNew.negativeList.shixin,
-      fygg: state => state.publicStore.publicSecurityInfoNew.negativeList.fygg,
-      ktgg: state => state.publicStore.publicSecurityInfoNew.negativeList.ktgg,
-      ajlc: state => state.publicStore.publicSecurityInfoNew.negativeList.ajlc,
-      bgt: state => state.publicStore.publicSecurityInfoNew.negativeList.bgt,
-      wdhmd: state => state.publicStore.publicSecurityInfoNew.negativeList.wdhmd,
+      // cpws: state => state.publicStore.publicSecurityInfoNew.negativeList.cpws,
+      // zxgg: state => state.publicStore.publicSecurityInfoNew.negativeList.zxgg,
+      // shixin: state => state.publicStore.publicSecurityInfoNew.negativeList.shixin,
+      // fygg: state => state.publicStore.publicSecurityInfoNew.negativeList.fygg,
+      // ktgg: state => state.publicStore.publicSecurityInfoNew.negativeList.ktgg,
+      // ajlc: state => state.publicStore.publicSecurityInfoNew.negativeList.ajlc,
+      // bgt: state => state.publicStore.publicSecurityInfoNew.negativeList.bgt,
+      // wdhmd: state => state.publicStore.publicSecurityInfoNew.negativeList.wdhmd,
       modelListTop: state => state.modelListTop
     })
   },
@@ -344,13 +208,100 @@ export default {
   },
   methods: {
     init () {
+      let negativeList = this.publicSecurityInfoNew.negativeList
+      console.log(negativeList)
+      if (negativeList === undefined) {
+        this.allTabHide = false
+      } else {
+        this.cpws = negativeList.cpws
+        this.zxgg = negativeList.zxgg
+        this.shixin = negativeList.shixin
+        this.fygg = negativeList.fygg
+        this.ktgg = negativeList.ktgg
+        this.ajlc = negativeList.ajlc
+        this.bgt = negativeList.bgt
+        this.wdhmd = negativeList.wdhmd
+      }
       // 初始化
       // console.log('publicSecurityInfo init')
       // this.styeChange()
       // this.styeBgChange()
-      console.log('state', this.$store.state)
+      // console.log('state', this.$store.state)
       this.listDate = this.cpws
       this.timeGetAllModelTop()
+      this.tabHide()
+      this.getTabIndex()
+    },
+    getTabIndex () {
+      // 确定哪个 tab 被选中
+      if (this.cpws && this.cpws !== '') {
+        this.tabIndex = 0
+      } else if (this.zxgg && this.cpws !== '') {
+        this.tabIndex = 1
+        this.listDate = this.zxgg
+      } else if (this.shixin && this.shixin !== '') {
+        this.tabIndex = 2
+        this.listDate = this.shixin
+      } else if (this.fygg && this.fygg !== '') {
+        this.tabIndex = 3
+        this.listDate = this.fygg
+      } else if (this.ktgg && this.ktgg !== '') {
+        this.tabIndex = 4
+        this.listDate = this.ktgg
+      } else if (this.ajlc && this.ajlc !== '') {
+        this.tabIndex = 5
+        this.listDate = this.ajlc
+      } else if (this.bgt && this.bgt !== '') {
+        this.tabIndex = 6
+        this.listDate = this.bgt
+      } else if (this.wdhmd && this.wdhmd !== '') {
+        this.tabIndex = 7
+        this.listDate = this.wdhmd
+      }
+    },
+    tabHide () {
+      // 返回的数据为空的时候 要隐藏掉他的tab
+      let tabTitleList = this.tabTitleList
+      if (this.cpws === undefined) {
+        tabTitleList[0].nameDate = false
+      } else {
+        tabTitleList[0].nameDate = true
+      }
+      if (this.zxgg === undefined) {
+        tabTitleList[1].nameDate = false
+      } else {
+        tabTitleList[1].nameDate = true
+      }
+      if (this.shixin === undefined) {
+        tabTitleList[2].nameDate = false
+      } else {
+        tabTitleList[2].nameDate = true
+      }
+      if (this.fygg === undefined) {
+        tabTitleList[3].nameDate = false
+      } else {
+        tabTitleList[3].nameDate = true
+      }
+      if (this.ktgg === undefined) {
+        tabTitleList[4].nameDate = false
+      } else {
+        tabTitleList[4].nameDate = true
+      }
+      if (this.ajlc === undefined) {
+        tabTitleList[5].nameDate = false
+      } else {
+        tabTitleList[5].nameDate = true
+      }
+      if (this.bgt === undefined) {
+        tabTitleList[6].nameDate = false
+      } else {
+        tabTitleList[6].nameDate = true
+      }
+      if (this.wdhmd === undefined) {
+        tabTitleList[7].nameDate = false
+      } else {
+        tabTitleList[7].nameDate = true
+      }
     },
     timeGetAllModelTop () {
       let vm = this

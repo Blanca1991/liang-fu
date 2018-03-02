@@ -61,7 +61,7 @@
             <div class="flex">
               <div class="pL20 width50 borderR">
                 <span>{{ item.date }}</span>
-                </div>
+              </div>
               <div class="pL20 width50">
                 <span v-if="item.personName.length === 2">{{ item.personName.substr(0,1) + '*' }}</span>
                 <span v-if="item.personName.length === 3">{{ item.personName.substr(0,1) + '*' + item.personName.substr(-1) }}</span>
@@ -219,12 +219,14 @@ export default {
       this.emptyListChange()
     },
     emptyListChange () {
+      let vm = this
       for (let key in this.historyInfo.suspiciousQueryInfo) {
         if (this.historyInfo.suspiciousQueryInfo[key] === null) {
-          this[key] = true
+          vm[key] = true
         } else if (this.historyInfo.suspiciousQueryInfo[key] === '') {
-          this[key] = true
+          vm[key] = true
         } else {
+          vm[key] = false
           this.historyInfo.suspiciousQueryInfo[key] = this.historyInfo.suspiciousQueryInfo[key].reverse()
         }
       }

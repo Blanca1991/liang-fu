@@ -11,7 +11,7 @@
           <input type="text" class="userPhone" placeholder="请输入手机号"
           maxlength="11" v-model="searchPhone">
           <span class="fontFFF searchBtn pointer font14" @click="searchFun">搜索</span>
-          <span class="fontFFF downBtn font14" :class="{pointer: isDownLoad === true}" @click="downLoadFun">下载</span>
+          <span class="fontFFF downBtn font14 " :class="{notAllowed: isDownLoad === false,isDown: isDownLoad === true}" @click="downLoadFun">下载</span>
           <LoginNav class="fontFFF" />
         </div>
       </div>
@@ -61,6 +61,7 @@ import PublicSecurityInfo from '@/productComp/PublicSecurityInfo'
 import BorrowingInfo from '@/productComp/BorrowingInfo'
 import HistoryInfo from '@/productComp/HistoryInfo'
 import FloorList from '@/productComp/FloorList'
+import { baseUrl } from '@/utils/env.js'
 
 export default {
   name: 'Product',
@@ -94,7 +95,10 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('Product init')
+      // console.log('Product init')
+      if (!localStorage.getItem('userName') && !localStorage.getItem('LFZXtoken')) {
+        this.$store.commit('SHOWLOGIN')
+      }
     },
     getAllModelTop () {
       for (let i = 0; i < this.modelListTop.length; i++) {
@@ -275,8 +279,10 @@ export default {
       if (this.isDownLoad === false) {
         return
       }
-      let commonApiUrl = 'http://10.166.10.111:20010/' // sit 登录 搜索 下载 接口使用
-      let url = commonApiUrl + '/credit-service/downloadpdf/' + this.userCodeId
+      // sit 的链接
+      // let commonApiUrl = 'http://10.166.10.111:20010/' // sit 登录 搜索 下载 接口使用
+      // let commonApiUrl = 'http://10.166.8.56:11080' // uat 登录 搜索 下载 接口使用
+      let url = baseUrl + '/credit-service/pdfbyOrderPersonal/file/' + this.userCodeId + '&' + localStorage.getItem('userName')
       // console.log(url)
       this.downLoad(url)
     },
@@ -288,9 +294,20 @@ export default {
       form.setAttribute('action', strUrl)
       var input1 = document.createElement('input')
       input1.setAttribute('type', 'hidden')
-      document.body.append(form) // 将表单放置在web中
-      form.append(input1) // 将查询参数控件提交到表单上
+      document.body.appendChild(form) // 将表单放置在web中
+      form.appendChild(input1) // 将查询参数控件提交到表单上
       form.submit()
+
+      // var form = $("<form>")   //定义一个form表单
+      // form.attr('style', 'display:none')  //在form表单中添加查询参数
+      // form.attr('target', '')
+      // form.attr('method', 'get')
+      // form.attr('action', strUrl)
+      // var input1 = $('<input>')
+      // input1.attr('type', 'hidden')
+      // $('body').append(form)  //将表单放置在web中
+      // form.append(input1)   //将查询参数控件提交到表单上
+      // form.submit()
     }
   },
   components: {

@@ -19,10 +19,60 @@
           <input type="text" name="" value="">
         </div>
         <div class="">
-          <span >查询</span>
+          <span class="queryBtn">查询</span>
         </div>
         <div class="">
-          <span >重置</span>
+          <span class="resetBtn">重置</span>
+        </div>
+      </div>
+      <div class="orderListBox">
+        <div class="orderListTitle colorWhite flex font12">
+          <div class="titleItem width14">
+            编号
+          </div>
+          <div class="titleItem width30">
+            被调企业
+          </div>
+          <div class="titleItem width20">
+            统一社会信用代码 / 注册号
+          </div>
+          <div class="titleItem width8">
+            法人
+          </div>
+          <div class="titleItem width14">
+            提交日期
+          </div>
+          <div class="titleItem width8">
+            状态
+          </div>
+          <div class="titleItem width8">
+            操作
+          </div>
+        </div>
+        <div class="orderList font12">
+          <div class="orderListItem flex">
+            <div class="titleItem width14">
+              127892982737
+            </div>
+            <div class="titleItem width30">
+              量富征信管理有限公司
+            </div>
+            <div class="titleItem width20">
+              127892982737
+            </div>
+            <div class="titleItem width8">
+              张张
+            </div>
+            <div class="titleItem width14">
+              2017-01-01
+            </div>
+            <div class="titleItem width8">
+              完成
+            </div>
+            <div class="titleItem downLoad width8">
+              下载
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -87,4 +137,14 @@ export default {
 .inputBox{margin-top: 20px; }
 .Blank{padding:0 10px;}
 .lineLength34px{height: 34px; line-height: 34px;}
+.queryBtn{background: #3b77e3;color: #fff;padding:10px 14px 10px 20px;
+  border-radius: 5px;letter-spacing: 6px;border: #3b77e3 solid 1px; margin-right: 20px;}
+.resetBtn{color: #3b77e3;background: #fff;padding:10px 14px 10px 20px;
+  border-radius: 5px;letter-spacing: 6px;border: #3b77e3 solid 1px; }
+.orderListBox{margin:20px auto;border:#eee solid 1px; border-radius: 5px 5px 0 0 ;}
+.orderListTitle{background: #3b77e3;border-radius: 5px 5px 0 0 ;}
+.titleItem{ padding:10px 0;}
+.width14{width: 14%} .width8{width: 8%} .width25{width: 25%} .width20{width: 20%} .width30{width: 30%;}
+.orderList{ }
+.downLoad{ color: #3b77e3}
 </style>

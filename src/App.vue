@@ -64,6 +64,7 @@ p{font-size: 14px;}
 .flex{display: flex;}
 .clr{clear:both; height:0px; width:100%; font-size:1px; line-height:0px; visibility:hidden; overflow:hidden;}
 .pointer{cursor:pointer;}
+.notAllowed{cursor:not-allowed;}
 a,input,button{ outline:none; }
 .font12{font-size: 12px;}
 .font14{font-size: 14px;}

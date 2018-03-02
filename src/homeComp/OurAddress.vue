@@ -55,9 +55,9 @@
             </div>
           </div>
         </div>
-        <div class="liangfuBox">
-          量富征信管理有限公司版权所有©沪ICP备18002309号-1
-        </div>
+      </div>
+      <div class="liangfuBox">
+        量富征信管理有限公司版权所有©沪ICP备18002309号-1
       </div>
     </div>
   </div>

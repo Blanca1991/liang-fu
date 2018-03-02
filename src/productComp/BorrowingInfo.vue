@@ -12,7 +12,8 @@
               <span>多头借贷笔数</span>
             </div>
             <div class="pL20 borderB">
-              <span>{{ borrowingInfo.borrowingNumber || '——' }}</span>
+              <span v-if="borrowingInfo.borrowingNumber === null">——</span>
+              <span v-if="borrowingInfo.borrowingNumber">{{ borrowingInfo.borrowingNumber }}</span>
             </div>
           </div>
           <div class="width25 borderR ">
@@ -203,7 +204,7 @@ export default {
       // this.faultCheck()
     },
     faultCheck () {
-      console.log(this.borrowingInfo)
+      // console.log(this.borrowingInfo)
     }
   }
 }

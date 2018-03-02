@@ -6,6 +6,8 @@ import router from './router'
 import axios from 'axios'
 import Vuex from 'vuex'
 import store from './store/store'
+import promise from 'es6-promise'
+promise.polyfill()
 
 Vue.prototype.$ajax = axios
 Vue.config.productionTip = false

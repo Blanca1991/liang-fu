@@ -121,11 +121,15 @@ export default new Vuex.Store({
     CHANGESEARCHDATA (state, data) {
       // 星护甲查询三要素返回参数更新
       // console.log(this.state)
-      console.log(data)
+      // console.log(data)
       this.state.summaryInfoStore = data.summaryInfo
       this.state.baseInfoStore.baseInfo = data.baseInfo
       this.state.baseInfoStore.telecomInfo = data.telecomInfo
-      this.state.publicStore.publicSecurityInfoNew = data.publicSecurityInfo
+      if (!!data.publicSecurityInfo.negativeList && data.publicSecurityInfo.negativeList !== '') {
+        this.state.publicStore.publicSecurityInfoNew = data.publicSecurityInfo
+      } else {
+        data.publicSecurityInfo.negativeList = { }
+      }
       this.state.baseInfoStore.overdueInfo = data.overdueInfo
       this.state.baseInfoStore.borrowingInfo = data.borrowingInfo
       this.state.baseInfoStore.contactsInfo = data.contactsInfo

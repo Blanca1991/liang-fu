@@ -289,5 +289,5 @@ export default {
 .newsMsg{color: #999;}
 .newsItem img{width: 100%;height: auto;}
 .newsTitle{color: #0d4492;margin: 10px 0;}
-.TextBottom{background: #2d3237;height: 58;line-height: 58px;}
+.TextBottom{background: #2d3237;height: 58;line-height: 58px;margin-top: 20px;}
 </style>

@@ -25,7 +25,8 @@
           <span class="textAlignC">{{ item.partyIdentity || "——"}}</span>
         </div>
         <div class=" pL20 borderR flex1 positionR">
-          <span class="textAlignC">{{ item.matchRatio || "——" }}</span>
+          <!-- <span class="textAlignC">{{ item.matchRatio || "——" }}</span> -->
+          <span class="textAlignC">{{ item.matchDegree || "——" }}</span>
         </div>
         <div class="pL2 pR10 flexAlignItems flex pointer" @click="moreShowFun()"  v-show="tabIndex === 0 || tabIndex === 2 ||tabIndex === 7">
           <i class="selectDown " v-bind:class="{'selectUp': isMoreShow }"></i>
@@ -135,7 +136,15 @@
               <span>身份证号</span>
             </div>
             <div class="flex1 positionR pL20 positionR borderB" >
-              <span class="textAlignC">{{ item.idcardNo || "——"}}</span>
+              <!-- <span class="textAlignC"  v-if="!item.idcardNo">
+                {{ item.idcardNo.substring(0, 2) + '***********' + item.idcardNo.substring(item.idcardNo.length - 2, item.idcardNo.length)}}
+              </span> -->
+              <span class="textAlignC"  v-if="item.idcardNo">
+                {{ item.idcardNo.substring(0, 2) }}
+                <span>***********</span>
+                {{ item.idcardNo.substring(item.idcardNo.length - 2, item.idcardNo.length) }}
+              </span>
+              <span class="textAlignC" v-if="item.idcardNo === null || item.idcardNo === ''">——</span>
             </div>
           </div>
           <div class="flex newNegativeInfo">

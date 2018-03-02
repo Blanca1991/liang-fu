@@ -115,11 +115,11 @@ export default {
 .msgItem{border-bottom: 1px solid #eee;border-right: 1px solid #eee;border-left: 1px solid #eee;}
 .msgItem:hover{background: #e3edfe}
 .msgTip{height: 40px;line-height: 40px;background: #f0f0f0}
-.itemImg{transform: translateY(10px);}
+.itemImg{transform: translateY(10px); width: 30px;height: auto;}
 .msgPointBox{ left: -80px;width: 390px;background: #fff;position: absolute;z-index: 9999; top: 66px;
-  transform: rotateX(90deg); transform-origin: 0 0;transition: transform 0.5s;}
+  transform: rotateX(90deg) ; transform-origin: 0 0;transition: transform 0.5s;}
 .ismsgPointBox{ left: -80px;width: 390px;background: #fff;position: absolute;z-index: 9999; top: 66px;
-  transform: rotateX(0deg); transform-origin: 0 0; transition: transform 0.5s;}
+  transform: rotateX(0deg) ; transform-origin: 0 0; transition: transform 0.5s;}
 .triangle{display: inline-block;width: 10px;height: 10px;background: #f0f0f0;
   position: absolute; top: -4px; left: 110px; transform: rotate(45deg);}
 .height28{height: 28px;line-height: 32px}

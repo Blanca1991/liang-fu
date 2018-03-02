@@ -52,7 +52,7 @@ export default new Vuex.Store({
     },
     // 多头借贷信息
     borrowingInfo: {
-      borrowingNumber: '31',
+      borrowingNumber: null,
       applyAmount: '1400000',
       passedAmount: '1400000',
       overdueAmount: '49500',

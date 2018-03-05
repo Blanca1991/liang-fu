@@ -90,7 +90,7 @@ export default {
         } else {
           if (this.itemGo === 2) {
             this.itemGo = 0
-            window.open(window.location.href.split('#')[0] + '#/' + item.pagesName)
+            window.open(window.location.href.split('#')[0] + '#/' + 'antiFraud.html')
           } else if (this.itemGo === 1) {
             this.itemGo = 0
             window.open(window.location.href.split('#')[0] + '#/' + 'ProductQMX')

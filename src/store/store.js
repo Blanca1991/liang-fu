@@ -125,13 +125,13 @@ export default new Vuex.Store({
       this.state.summaryInfoStore = data.summaryInfo
       this.state.baseInfoStore.baseInfo = data.baseInfo
       this.state.baseInfoStore.telecomInfo = data.telecomInfo
-      if (!!data.publicSecurityInfo.negativeList && data.publicSecurityInfo.negativeList !== '') {
-        this.state.publicStore.publicSecurityInfoNew = data.publicSecurityInfo
-      } else {
-        data.publicSecurityInfo.negativeList = { }
-      }
+      // 公检法信息 --------公检法
+      this.state.publicStore.publicSecurityInfoNew = data.publicSecurityInfo
+      // 基本信息
       this.state.baseInfoStore.overdueInfo = data.overdueInfo
+      // 多头借贷信息
       this.state.baseInfoStore.borrowingInfo = data.borrowingInfo
+
       this.state.baseInfoStore.contactsInfo = data.contactsInfo
       this.state.baseInfoStore.appInfo = data.appInfo
       this.state.baseInfoStore.historyInfo = data.historyInfo

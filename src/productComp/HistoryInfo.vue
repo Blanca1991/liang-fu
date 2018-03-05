@@ -20,22 +20,41 @@
             <span>是否本机构</span>
           </div>
         </div>
-        <div class="">
+        <div class="" v-if="!!historyInfo && JSON.stringify(historyInfo) != '{}'">
           <div class="titleHeader flex borderB titleFont" v-for="item in historyInfo.queryInfo">
             <div class="width33 pL20 borderR flex flexAlignItems ">
               <div>
-                <span class="">{{ item.date }}</span>
+                <span class="">{{ item.date || '——'}}</span>
               </div>
             </div>
             <div class="width33 pL20 borderR flex flexAlignItems ">
               <div class="">
-                <span>{{ item.type }}</span>
+                <span>{{ item.type || '——'}}</span>
               </div>
             </div>
             <div class="width33 pL20 borderR titleList">
               <div>
                 <span v-if="item.isLocal === 'true'">是</span>
                 <span :class="{textRebBg: item.isLocal === 'false'}" v-if="item.isLocal === 'false'">否</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="" v-if="!historyInfo || JSON.stringify(historyInfo) == '{}' || !historyInfo.queryInfo ">
+          <div class="titleHeader flex borderB titleFont" >
+            <div class="width33 pL20 borderR flex flexAlignItems ">
+              <div>
+                <span class="">——</span>
+              </div>
+            </div>
+            <div class="width33 pL20 borderR flex flexAlignItems ">
+              <div class="">
+                <span>——</span>
+              </div>
+            </div>
+            <div class="width33 pL20 borderR titleList">
+              <div>
+                <span>——</span>
               </div>
             </div>
           </div>
@@ -57,10 +76,10 @@
               </div>
             </div>
           </div>
-          <div class=" borderB titleFont" v-for="item in historyInfo.suspiciousQueryInfo.userIdNumberForName">
-            <div class="flex">
+          <div class="titleFont" v-if="historyInfo.suspiciousQueryInfo.userIdNumberForName && historyInfo.suspiciousQueryInfo.userIdNumberForName.length > 0 && historyInfo.suspiciousQueryInfo.userIdNumberForName !== ''">
+            <div class="flex borderB" v-for="item in historyInfo.suspiciousQueryInfo.userIdNumberForName" >
               <div class="pL20 width50 borderR">
-                <span>{{ item.date }}</span>
+                <span>{{ item.date || '——' }}</span>
               </div>
               <div class="pL20 width50">
                 <span v-if="item.personName.length === 2">{{ item.personName.substr(0,1) + '*' }}</span>
@@ -69,12 +88,14 @@
               </div>
             </div>
           </div>
-          <div class="flex titleFont" v-if="userIdNumberForName">
-            <div class="pL20 width50 borderR borderB">
-              <span>——</span>
+          <div class="titleFont" v-if="userIdNumberForName || !historyInfo.suspiciousQueryInfo.userIdNumberForName || historyInfo.suspiciousQueryInfo.userIdNumberForMobile == 0">
+            <div class="flex borderB" >
+              <div class="pL20 width50 borderR">
+                <span>——</span>
               </div>
-            <div class="pL20 width50 borderB">
-              <span>——</span>
+              <div class="pL20 width50">
+                <span>——</span>
+              </div>
             </div>
           </div>
         </div>
@@ -92,17 +113,17 @@
               </div>
             </div>
           </div>
-          <div class=" borderB titleFont" v-for="item in historyInfo.suspiciousQueryInfo.userIdNumberForMobile">
-            <div class="flex">
+          <div class="titleFont" v-if="!!historyInfo.suspiciousQueryInfo.userIdNumberForMobile && historyInfo.suspiciousQueryInfo.userIdNumberForMobile.length > 0 && historyInfo.suspiciousQueryInfo.userIdNumberForMobile != ''">
+            <div class="flex borderB" v-for="item in historyInfo.suspiciousQueryInfo.userIdNumberForMobile">
               <div class="pL20 width50 borderR">
-                <span>{{ item.date }}</span>
+                <span>{{ item.date || '——' }}</span>
               </div>
               <div class="pL20 width50">
-                <span>{{ item.mobile.replace(item.mobile.substring(3,9), '*******') }}</span>
+                <span>{{ item.mobile.replace(item.mobile.substring(3,9), '*******') || '——'  }}</span>
               </div>
             </div>
           </div>
-          <div class="flex titleFont" v-if="userIdNumberForMobile">
+          <div class="flex titleFont" v-if="userIdNumberForMobile || !historyInfo.suspiciousQueryInfo.userIdNumberForMobile || historyInfo.suspiciousQueryInfo.userIdNumberForMobile.length == 0 ">
             <div class="pL20 width50 borderR borderB">
               <span>——</span>
               </div>
@@ -125,8 +146,8 @@
               </div>
             </div>
           </div>
-          <div class=" borderB titleFont" v-for="item in historyInfo.suspiciousQueryInfo.userMobileForName">
-            <div class="flex">
+          <div class="titleFont" v-if="!!historyInfo.suspiciousQueryInfo.userMobileForName && historyInfo.suspiciousQueryInfo.userMobileForName.length > 0 && historyInfo.suspiciousQueryInfo.userMobileForName != ''">
+            <div class="borderB flex" v-for="item in historyInfo.suspiciousQueryInfo.userMobileForName">
               <div class="pL20 width50 borderR">
                 <span>{{ item.date }}</span>
               </div>
@@ -137,7 +158,7 @@
               </div>
             </div>
           </div>
-          <div class="flex titleFont" v-if="userMobileForName">
+          <div class="flex titleFont" v-if="userMobileForName || !historyInfo.suspiciousQueryInfo.userMobileForName || historyInfo.suspiciousQueryInfo.userMobileForName.length == 0">
             <div class="pL20 width50 borderR borderB">
               <span>——</span>
               </div>
@@ -160,8 +181,8 @@
               </div>
             </div>
           </div>
-          <div class=" borderB titleFont" v-for="item in historyInfo.suspiciousQueryInfo.userMobileForIdNumber">
-            <div class="flex">
+          <div class=" titleFont" v-if="!!historyInfo.suspiciousQueryInfo.userMobileForIdNumber && historyInfo.suspiciousQueryInfo.userMobileForIdNumber.length > 0 && historyInfo.suspiciousQueryInfo.userMobileForIdNumber != ''">
+            <div class="flex borderB" v-for="item in historyInfo.suspiciousQueryInfo.userMobileForIdNumber">
               <div class="pL20 width50 borderR">
                 <span>{{ item.date }}</span>
               </div>
@@ -170,7 +191,7 @@
               </div>
             </div>
           </div>
-          <div class="flex titleFont" v-if="userMobileForIdNumber">
+          <div class="flex titleFont" v-if="userMobileForIdNumber || !historyInfo.suspiciousQueryInfo.userMobileForIdNumber || historyInfo.suspiciousQueryInfo.userMobileForIdNumber.length == 0">
             <div class="pL20 width50 borderR borderB">
               <span>——</span>
               </div>

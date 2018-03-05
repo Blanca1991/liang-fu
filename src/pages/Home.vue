@@ -58,7 +58,7 @@ export default {
     // 钩子函数
     console.log(this.screenHeight)
     console.log(this.homeItemListTop)
-    this.getChangeHeight()
+    // this.getChangeHeight()
   },
   methods: {
     getChangeHeight () {

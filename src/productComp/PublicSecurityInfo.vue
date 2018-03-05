@@ -9,18 +9,42 @@
         <div class="pL20 borderB titleBg titleFont">
           <strong>不良行为分</strong>
         </div>
-        <div class=" borderB titleFont flex ">
+        <div class="" >
+          <div class=" borderB titleFont flex " v-if="!!badbehaviorInfo && badbehaviorInfo !== ''">
+            <div class="flex width50">
+              <div class="width20 borderR pL20 titleBg">
+                <span>类型</span>
+              </div>
+              <div class="pL20 flex1 borderR">
+                <span class="textGreenBg" v-show="badbehaviorInfo.type === '0' ">0</span>
+                <span class="textYellowBg" v-show="badbehaviorInfo.type === '1' ">1</span>
+                <span class="textRebBg" v-show="badbehaviorInfo.type === '2' ">2</span>
+                <span class="textRebBg" v-show="badbehaviorInfo.type === '3' ">3</span>
+                <span class="textRebBg" v-show="badbehaviorInfo.type === '4' ">4</span>
+                <span class="" v-show="!badbehaviorInfo.type  || badbehaviorInfo.type === '' ">——</span>
+              </div>
+            </div>
+            <div class="flex width50">
+              <div class="width20 borderR pL20 titleBg">
+                <span>等级</span>
+              </div>
+              <div class="pL20 flex1">
+                <span class="" v-show="badbehaviorInfo.level && badbehaviorInfo.level !== '' "  :class="{textRebBg: badbehaviorInfo.type === '2' || '3' || '4',
+                textYellowBg: badbehaviorInfo.type === '1', textGreenBg: badbehaviorInfo.type === '0'}">
+                  {{ badbehaviorInfo.level}}
+                </span>
+                <span v-show="!badbehaviorInfo.level || badbehaviorInfo.level === ''">——</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=" borderB titleFont flex " v-if="!badbehaviorInfo || badbehaviorInfo === ''">
           <div class="flex width50">
             <div class="width20 borderR pL20 titleBg">
               <span>类型</span>
             </div>
             <div class="pL20 flex1 borderR">
-              <span class="textGreenBg" v-show="badbehaviorInfo.type === '0' ">0</span>
-              <span class="textYellowBg" v-show="badbehaviorInfo.type === '1' ">1</span>
-              <span class="textRebBg" v-show="badbehaviorInfo.type === '2' ">2</span>
-              <span class="textRebBg" v-show="badbehaviorInfo.type === '3' ">3</span>
-              <span class="textRebBg" v-show="badbehaviorInfo.type === '4' ">4</span>
-              <span class="" v-show="badbehaviorInfo.type === '' || null ">——</span>
+              <span>——</span>
             </div>
           </div>
           <div class="flex width50">
@@ -28,11 +52,7 @@
               <span>等级</span>
             </div>
             <div class="pL20 flex1">
-              <span class="" v-show="badbehaviorInfo.level !== '' && badbehaviorInfo.level !== null "  :class="{textRebBg: badbehaviorInfo.type === '2' || '3' || '4',
-              textYellowBg: badbehaviorInfo.type === '1', textGreenBg: badbehaviorInfo.type === '0'}">
-                {{ badbehaviorInfo.level}}
-              </span>
-              <span v-show="badbehaviorInfo.level === null || badbehaviorInfo.level === ''">——</span>
+              <span >——</span>
             </div>
           </div>
         </div>
@@ -40,8 +60,7 @@
           <strong>司法负面信息</strong>
         </div>
         <div class="titleHeader flex borderB titleFont titleBg pubilceBox" v-if="allTabHide">
-          <div class="pL20 width12 borderR pointer" :class="{tabIsActive: tabIndex === index}"
-          v-for="(item, index) in tabTitleList" @click="changeTab(index)" v-if="item.nameDate">
+          <div class="pL20 width12 borderR pointer" :class="{tabIsActive: tabIndex === index}" v-for="(item, index) in tabTitleList" @click="changeTab(index)" v-if="item.nameDate">
             <span >{{ item.name }}</span>
             <em class="trigon" v-if="index === tabIndex"></em>
           </div>
@@ -92,20 +111,28 @@
           <div class="pL20 borderR width25">
             <span>是否逾期90天以上</span>
           </div>
-          <div class="pL20 ">
-            <span class="" :class="{textRebBg: isOverdue90Red, textGreenBg: !isOverdue90Red}">
-              {{ overdueInfo.isOverdue90 }}
+          <div class="pL20 " v-if="!!overdueInfo  && overdueInfo !==''">
+            <span class="" :class="{textRebBg: isOverdue90Red, textGreenBg: !isOverdue90Red}" v-if="overdueInfo.isOverdue90 && overdueInfo.isOverdue90 !== ''">
+              {{ overdueInfo.isOverdue90}}
             </span>
+            <span v-if="!overdueInfo.isOverdue90 || overdueInfo.isOverdue90 == ''">——</span>
+          </div>
+          <div class="pL20 " v-if="!overdueInfo">
+            <span class="" >——</span>
           </div>
         </div>
         <div class="flex detailList titleBg borderB">
           <div class="pL20 borderR width25 ">
             <span>是否逾期180天以上</span>
           </div>
-          <div class="pL20 ">
-            <span class="" :class="{textRebBg: isOverdue180Red, textGreenBg: !isOverdue180Red}">
+          <div class="pL20 " v-if="!!overdueInfo  && overdueInfo !==''">
+            <span class="" :class="{textRebBg: isOverdue180Red, textGreenBg: !isOverdue180Red}" v-if="!!overdueInfo.isOverdue180 && overdueInfo.isOverdue180 !==''">
               {{ overdueInfo.isOverdue180 }}
             </span>
+            <span class="" v-if="!overdueInfo.isOverdue180 || overdueInfo.isOverdue180 === ''" >——</span>
+          </div>
+          <div class="pL20 " v-if="!overdueInfo">
+            <span class="" >——</span>
           </div>
         </div>
       </div>
@@ -173,15 +200,18 @@ export default {
       ktgg: { },
       ajlc: { },
       bgt: { },
-      wdhmd: { }
+      wdhmd: { },
+      badbehaviorInfo: {},
+      publicStoreHide: false //
     }
   },
   computed: {
     ...mapState({
       // 获取数据
+      // 网贷逾期信息
       overdueInfo: state => state.baseInfoStore.overdueInfo,
       publicSecurityInfoNew: state => state.publicStore.publicSecurityInfoNew,
-      badbehaviorInfo: state => state.publicStore.publicSecurityInfoNew.badbehaviorInfo,
+      // badbehaviorInfo: state => state.publicStore.publicSecurityInfoNew.badbehaviorInfo,
       // cpws: state => state.publicStore.publicSecurityInfoNew.negativeList.cpws,
       // zxgg: state => state.publicStore.publicSecurityInfoNew.negativeList.zxgg,
       // shixin: state => state.publicStore.publicSecurityInfoNew.negativeList.shixin,
@@ -208,29 +238,43 @@ export default {
   },
   methods: {
     init () {
-      let negativeList = this.publicSecurityInfoNew.negativeList
-      console.log(negativeList)
-      if (negativeList === undefined) {
-        this.allTabHide = false
-      } else {
-        this.cpws = negativeList.cpws
-        this.zxgg = negativeList.zxgg
-        this.shixin = negativeList.shixin
-        this.fygg = negativeList.fygg
-        this.ktgg = negativeList.ktgg
-        this.ajlc = negativeList.ajlc
-        this.bgt = negativeList.bgt
-        this.wdhmd = negativeList.wdhmd
-      }
       // 初始化
       // console.log('publicSecurityInfo init')
       // this.styeChange()
       // this.styeBgChange()
       // console.log('state', this.$store.state)
+      this.blankInfoFun()
       this.listDate = this.cpws
       this.timeGetAllModelTop()
       this.tabHide()
       this.getTabIndex()
+    },
+    blankInfoFun () {
+      if (!this.publicSecurityInfoNew || JSON.stringify(this.publicSecurityInfoNew) == '{}') {
+        this.publicStoreHide = true
+        this.badbehaviorInfo = {
+          type: null, // 0 低风险 1中  234 高风险  0：无； 1：前科；2：涉案；3：犯罪嫌疑人 ；4：吸毒
+          level: null
+        }
+        this.allTabHide = false
+      } else {
+        this.publicStoreHide = false
+        this.badbehaviorInfo = this.publicSecurityInfoNew.badbehaviorInfo
+        let negativeList = this.publicSecurityInfoNew.negativeList
+        if (!negativeList || JSON.stringify(negativeList) == '{}') {
+          this.allTabHide = false
+        } else {
+          this.allTabHide = true
+          this.cpws = negativeList.cpws
+          this.zxgg = negativeList.zxgg
+          this.shixin = negativeList.shixin
+          this.fygg = negativeList.fygg
+          this.ktgg = negativeList.ktgg
+          this.ajlc = negativeList.ajlc
+          this.bgt = negativeList.bgt
+          this.wdhmd = negativeList.wdhmd
+        }
+      }
     },
     getTabIndex () {
       // 确定哪个 tab 被选中

@@ -5,15 +5,15 @@
       <div class="infoTitle font24">
         多头借贷信息
       </div>
-      <div class="infoBox textL font16 ">
+      <div class="infoBox textL font16 "  v-if="!! borrowingInfo && JSON.stringify(this.borrowingInfo) != '{}'">
         <div class="flex titleFont">
           <div class="width25 borderR ">
             <div class="pL20 borderB titleBg">
               <span>多头借贷笔数</span>
             </div>
             <div class="pL20 borderB">
-              <span v-if="borrowingInfo.borrowingNumber === null">——</span>
-              <span v-if="borrowingInfo.borrowingNumber">{{ borrowingInfo.borrowingNumber }}</span>
+              <span v-if="borrowingInfo.borrowingNumber == null || borrowingInfo.borrowingNumber == undefined">——</span>
+              <span v-if="borrowingInfo.borrowingNumber">{{ borrowingInfo.borrowingNumber || '——' }}</span>
             </div>
           </div>
           <div class="width25 borderR ">
@@ -41,7 +41,7 @@
             </div>
           </div>
         </div>
-        <div class="titleHeader flex borderB titleBg titleFont">
+        <div class="titleHeader flex borderB titleBg titleFont" v-if="borrowingInfo.record && borrowingInfo.record.length > 0 && borrowingInfo.record !== null && borrowingInfo.record != undefined">
           <div class="width14 pL20 borderR">
             <span>借款类型</span>
           </div>
@@ -81,13 +81,98 @@
             <span>{{ item.numberOfPeriods || '——' }}</span>
           </div>
           <div class="width14 pL20 borderR">
-            <span :class="{textRebBg: item.overdueAmount > 0}">{{ item.repaymentStatus  || '——'}}</span>
+            <span :class="{textRebBg: item.overdueAmount > 0}">{{ item.repaymentStatus || '——'}}</span>
           </div>
           <div class="width14 pL20">
             <span :class="{textRebBg: item.overdueAmount > 0}">{{ item.overdueAmount || '——' }}</span>
           </div>
         </div>
       </div>
+      <div class="infoBox textL font16" v-if="borrowingInfo === null || borrowingInfo == undefined || JSON.stringify(this.borrowingInfo) == '{}'">
+        <div class="infoBox textL font16 ">
+          <div class="flex titleFont">
+            <div class="width25 borderR ">
+              <div class="pL20 borderB titleBg">
+                <span>多头借贷笔数</span>
+              </div>
+              <div class="pL20 borderB">
+                <span>——</span>
+              </div>
+            </div>
+            <div class="width25 borderR ">
+              <div class="pL20 borderB titleBg">
+                <span>申请金额(元)</span>
+              </div>
+              <div class="pL20 borderB">
+                <span>——</span>
+              </div>
+            </div>
+            <div class="width25 borderR ">
+              <div class="pL20 borderB titleBg">
+                <span>存放金额(元)</span>
+              </div>
+              <div class="pL20 borderB">
+                <span>——</span>
+              </div>
+            </div>
+            <div class="width25 borderR ">
+              <div class="pL20 borderB titleBg">
+                <span>逾期金额(元)</span>
+              </div>
+              <div class="pL20 borderB">
+                <span class="">——</span>
+              </div>
+            </div>
+          </div>
+          <div class="titleHeader flex borderB titleBg titleFont">
+            <div class="width14 pL20 borderR">
+              <span>借款类型</span>
+            </div>
+            <div class="width14 pL20 borderR">
+              <span>借款状态</span>
+            </div>
+            <div class="width14 pL20 borderR">
+              <span>借款金额(元)</span>
+            </div>
+            <div class="width14 pL20 borderR">
+              <span>借款日期</span>
+            </div>
+            <div class="width14 pL20 borderR">
+              <span>借款期数</span>
+            </div>
+            <div class="width14 pL20 borderR">
+              <span>还款状态</span>
+            </div>
+            <div class="width14 pL20">
+              <span>逾期金额(元)</span>
+            </div>
+          </div>
+          <div class="titleHeader flex borderB titleFont" >
+            <div class="width14 pL20 borderR">
+              <span>——</span>
+            </div>
+            <div class="width14 pL20 borderR">
+              <span>——</span>
+            </div>
+            <div class="width14 pL20 borderR">
+              <span>——</span>
+            </div>
+            <div class="width14 pL20 borderR">
+              <span>——</span>
+            </div>
+            <div class="width14 pL20 borderR">
+              <span>——</span>
+            </div>
+            <div class="width14 pL20 borderR">
+              <span>——</span>
+            </div>
+            <div class="width14 pL20">
+              <span >——</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="baseInfo contactsInfo flex divJump" id="contactsInfo">
       <div class="infoTitle font24">
@@ -99,36 +184,72 @@
         </div>
       </div>
       <div class="infoBox  textL">
-        <div class="flex detailList titleBg borderB">
-          <div class="pL20 borderR width25">
-            <span>直接联系人数</span>
+        <div class="" v-if="!!contactsInfo && contactsInfo != '' && JSON.stringify(contactsInfo) != '{}'">
+          <div class="flex detailList titleBg borderB">
+            <div class="pL20 borderR width25">
+              <span>直接联系人数</span>
+            </div>
+            <div class="pL20 ">
+              <span>{{ contactsInfo.directContacts || '——'}}</span>
+            </div>
           </div>
-          <div class="pL20 ">
-            <span>{{ contactsInfo.directContacts }}</span>
+          <div class="flex detailList  borderB">
+            <div class="pL20 borderR width25">
+              <span>直接联系人黑名单数</span>
+            </div>
+            <div class="pL20 ">
+              <span class="textRebBg">{{ contactsInfo.directContactsBlacklist || '——'}}</span>
+            </div>
+          </div>
+          <div class="flex detailList titleBg borderB">
+            <div class="pL20 borderR width25">
+              <span>间接联系人黑名单数</span>
+            </div>
+            <div class="pL20 ">
+              <span class="textRebBg">{{ contactsInfo.indirectContactsBlacklist || '——' }}</span>
+            </div>
+          </div>
+          <div class="flex detailList  borderB">
+            <div class="pL20 borderR width25">
+              <span>联系人圈子评分</span>
+            </div>
+            <div class="pL20 ">
+              <span class="textRebBg">{{ contactsInfo.score || '——' }}</span>
+            </div>
           </div>
         </div>
-        <div class="flex detailList  borderB">
-          <div class="pL20 borderR width25">
-            <span>直接联系人黑名单数</span>
+        <div class="" v-if="contactsInfo === null || contactsInfo == undefined || contactsInfo == '' || JSON.stringify(contactsInfo) == '{}'">
+          <div class="flex detailList titleBg borderB">
+            <div class="pL20 borderR width25">
+              <span>直接联系人数</span>
+            </div>
+            <div class="pL20 ">
+              <span>——</span>
+            </div>
           </div>
-          <div class="pL20 ">
-            <span class="textRebBg">{{ contactsInfo.directContactsBlacklist }}</span>
+          <div class="flex detailList  borderB">
+            <div class="pL20 borderR width25">
+              <span>直接联系人黑名单数</span>
+            </div>
+            <div class="pL20 ">
+              <span class="textRebBg">——</span>
+            </div>
           </div>
-        </div>
-        <div class="flex detailList titleBg borderB">
-          <div class="pL20 borderR width25">
-            <span>间接联系人黑名单数</span>
+          <div class="flex detailList titleBg borderB">
+            <div class="pL20 borderR width25">
+              <span>间接联系人黑名单数</span>
+            </div>
+            <div class="pL20 ">
+              <span class="textRebBg">——</span>
+            </div>
           </div>
-          <div class="pL20 ">
-            <span class="textRebBg">{{ contactsInfo.indirectContactsBlacklist }}</span>
-          </div>
-        </div>
-        <div class="flex detailList  borderB">
-          <div class="pL20 borderR width25">
-            <span>联系人圈子评分</span>
-          </div>
-          <div class="pL20 ">
-            <span class="textRebBg">{{ contactsInfo.score }}</span>
+          <div class="flex detailList  borderB">
+            <div class="pL20 borderR width25">
+              <span>联系人圈子评分</span>
+            </div>
+            <div class="pL20 ">
+              <span class="textRebBg">——</span>
+            </div>
           </div>
         </div>
       </div>
@@ -143,28 +264,56 @@
         </div>
       </div>
       <div class="infoBox textL">
-        <div class="flex detailList titleBg borderB">
-          <div class="pL20 borderR width25">
-            <span>理财APP注册数</span>
+        <div class="" v-if="!!appInfo && appInfo !== '' && JSON.stringify(appInfo) != '{}'">
+          <div class="flex detailList titleBg borderB">
+            <div class="pL20 borderR width25">
+              <span>理财APP注册数</span>
+            </div>
+            <div class="pL20 ">
+              <span>{{ appInfo.financialAppCount || '——'  }}</span>
+            </div>
           </div>
-          <div class="pL20 ">
-            <span>{{ appInfo.financialAppCount  || '——'  }}</span>
+          <div class="flex detailList  borderB">
+            <div class="pL20 borderR width25">
+              <span>贷款APP注册数</span>
+            </div>
+            <div class="pL20 ">
+              <span class="">{{ appInfo.borrowingAppCount || '——' }}</span>
+            </div>
+          </div>
+          <div class="flex detailList titleBg borderB">
+            <div class="pL20 borderR width25">
+              <span>理财/贷款APP注册数</span>
+            </div>
+            <div class="pL20 ">
+              <span class="">{{ appInfo.financialOrBorrowingAppCount || '——' }}</span>
+            </div>
           </div>
         </div>
-        <div class="flex detailList  borderB">
-          <div class="pL20 borderR width25">
-            <span>贷款APP注册数</span>
+        <div class="" v-if="appInfo === null || appInfo == undefined || appInfo === '' || JSON.stringify(appInfo) == '{}'">
+          <div class="flex detailList titleBg borderB">
+            <div class="pL20 borderR width25">
+              <span>理财APP注册数</span>
+            </div>
+            <div class="pL20 ">
+              <span>——</span>
+            </div>
           </div>
-          <div class="pL20 ">
-            <span class="">{{ appInfo.borrowingAppCount || '——' }}</span>
+          <div class="flex detailList  borderB">
+            <div class="pL20 borderR width25">
+              <span>贷款APP注册数</span>
+            </div>
+            <div class="pL20 ">
+              <span class="">——</span>
+            </div>
           </div>
-        </div>
-        <div class="flex detailList titleBg borderB">
-          <div class="pL20 borderR width25">
-            <span>理财/贷款APP注册数</span>
-          </div>
-          <div class="pL20 ">
-            <span class="">{{ appInfo.financialOrBorrowingAppCount }}</span>
+          <div class="flex detailList titleBg borderB">
+            <div class="pL20 borderR width25">
+              <span>理财/贷款APP注册数</span>
+            </div>
+            <div class="pL20 ">
+              <span class="">——</span>
+            </div>
           </div>
         </div>
       </div>
@@ -178,7 +327,9 @@ import {mapState} from 'vuex'
 export default {
   name: 'BorrowingInfo',
   data () {
-    return {}
+    return {
+      allHide: false // false  true-- borrowingInfo == null 或者 undefined
+    }
   },
   computed: {
     ...mapState({
@@ -201,10 +352,12 @@ export default {
     init () {
       // 初始化
       // console.log('borrowingInfo init')
-      // this.faultCheck()
+      this.faultCheck()
     },
     faultCheck () {
-      // console.log(this.borrowingInfo)
+      if (JSON.stringify(this.borrowingInfo) === undefined || this.borrowingInfo === null || JSON.stringify(this.borrowingInfo) == '{}') {
+        this.allHide = true
+      }
     }
   }
 }

@@ -7,69 +7,76 @@ import News from '@/pages/News'
 import Comments from '@/pages/Comments'
 import Jobs from '@/pages/Jobs'
 import Cooperate from '@/pages/Cooperate'
-import Product from '@/pages/Product'
+import AntiFraud from '@/pages/AntiFraud'
 import UserInfo from '@/pages/UserInfo'
 import ProductQMX from '@/pages/ProductQMX'
 import ProductQMXOrder from '@/pages/ProductQMXOrder'
+
+import Homefull from '@/pages/HomeFullpage'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', redirect: '/Home' },
+    { path: '/', redirect: '/Home.html' },
     {
-      path: '/Home',
+      path: '/Home.html',
       name: 'Home',
       component: Home
     },
     {
-      path: '/Service',
+      path: '/Homefull',
+      name: 'Homefull',
+      component: Homefull
+    },
+    {
+      path: '/Service.html',
       name: 'Service',
       component: Service
     },
     {
-      path: '/Company',
+      path: '/Company.html',
       name: 'Company',
       component: Company
     },
     {
-      path: '/News',
+      path: '/News.html',
       name: 'News',
       component: News
     },
     {
-      path: '/Comments',
+      path: '/Comments.html',
       name: 'Comments',
       component: Comments
     },
     {
-      path: '/Jobs',
+      path: '/Jobs.html',
       name: 'Jobs',
       component: Jobs
     },
     {
-      path: '/Cooperate',
+      path: '/Cooperate.html',
       name: 'Cooperate',
       component: Cooperate
     },
     {
-      path: '/Product',
-      name: 'Product',
-      component: Product
+      path: '/antiFraud.html',
+      name: 'AntiFraud',
+      component: AntiFraud
     },
     {
-      path: '/UserInfo',
+      path: '/UserInfo.html',
       name: 'UserInfo',
       component: UserInfo
     }
     // ,
     // {
-    //   path: '/ProductQMX',
+    //   path: '/ProductQMX.html',
     //   name: 'ProductQMX',
     //   component: ProductQMX
     // },
     // {
-    //   path: '/ProductQMXOrder',
+    //   path: '/ProductQMXOrder.html',
     //   name: 'ProductQMXOrder',
     //   component: ProductQMXOrder
     // }

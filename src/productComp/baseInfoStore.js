@@ -23,28 +23,6 @@ export default new Vuex.Store({
       onLineStatus: '正常在用',
       nameMatchMobile: '否'
     },
-    // 公检法信息
-    publicSecurityInfo: {
-      negativeInfo: [
-        {
-          date: '2016年01月05日',
-          type: '失信公告',
-          title: '申请执行人甘志望与被执行人王大平、吕枝民间借贷纠纷一案',
-          matchDegree: '高'
-        },
-        {
-          date: '2015年10月10日',
-          type: '执行公告',
-          title: '顾英全与丁玉国民间借贷纠纷一审民事判决书',
-          matchDegree: '高'
-        }
-      ],
-      // 不良行为分
-      negativeScore: {
-        score: '68',
-        level: '中风险'
-      }
-    },
     // 网贷逾期信息
     overdueInfo: {
       isOverdue180: '否',
@@ -100,7 +78,7 @@ export default new Vuex.Store({
         }
       ],
       suspiciousQueryInfo: {
-        userIdNumberForName: null,
+        userIdNumberForName: '',
         userIdNumberForMobile: [
           {
             date: '2017-10-19',

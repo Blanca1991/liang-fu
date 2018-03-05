@@ -61,7 +61,7 @@ export default {
     init () {
       // 初始化
       // console.log('baseInfo init')
-      this.getAllModelTop()
+      // this.getAllModelTop()
     },
     getAllModelTop () {
       // 获取homeItemListTop内的每个元素的 top值

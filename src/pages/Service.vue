@@ -1,13 +1,13 @@
 <!-- 量富服务 wuxiaobo-->
 <template>
-  <div  class="ServiceWarp minWidthBox">
+  <div  class="ServiceWarp minWidthBox background">
     <div class="ComHeaderBox">
       <ComHeader :isActiveComp="isActives" :isLogoShow="isLogoShow"/>
     </div>
-    <div class="servicesBox colorFFF minWidthBox">
-      <div class="listBox flex" >
+    <div class="servicesBox  minWidthBox">
+      <div class="listBox flex " >
         <div class="item" v-for="item in servicesList">
-          <div class="constantDiv">
+          <div class="constantDiv colorFFF">
             <div class="constantDivIn">
               <div class="imgBox">
                   <img :src="item.imgUrl" alt="iconCredit.png">
@@ -140,12 +140,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.colorFFF{color: #fff;}
+
 .ServiceWarp {background: #383332;height: 100%;width: 100%;overflow: auto;position: relative;}
+.background{background: #333322}
 .ComHeaderBox{position: absolute;z-index: 1; width: 100%;}
 .servicesBox{height: 100%;width: 100%;position: absolute;}
 .listBox {height: 100%;width: 100%;}
 .listBox .item{width: 25%; transition: 0.6s all }
+.colorFFF{color: #ffffff !important;}
 .constantDiv { width: 100%;height:120px;margin-top: 300px;position: relative; box-sizing: border-box;}
 .constantDivIn{width: 100%; position: relative;background: #EA5B56;transition: 1s all }
 .constantDivIn .imgBox{position: absolute;top: 0%;left: 50%;transform: translateX(-50%) translateY(-50%);}

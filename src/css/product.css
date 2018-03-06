@@ -27,6 +27,6 @@
 .footDiv{ margin-top: 10px; background: #eee;color: #bbb; padding: 20px 0;position: relative;}
 .footDiv .footDivText {background: #eee;padding:0 20px;position: absolute;
   left:50%;top:50%;transform: translate(-50%, -50%);z-index: 2;}
-.footDiv .footDivRule{position: absolute;display: inline-block;height: 3px;width: 1140px;
+.footDiv .footDivRule{position: absolute;display: inline-block;height: 3px;width: 1140px;left:50%;
   position: absolute;background: #bbb;top: 50%;transform: translateY(50%) translateX(-50%);}
 .isDown{cursor: pointer;background: rgb(8, 141, 184)}

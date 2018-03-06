@@ -35,7 +35,7 @@
           <div class="footDivText">
             报告结束
           </div>
-          <span class="footDivRule"></span>
+          <div class="footDivRule"></div>
         </div>
       </div>
     </div>

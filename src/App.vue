@@ -18,6 +18,8 @@ export default {
       let app = document.getElementById('app')
       // console.log(this.$store)
       // console.log(app.scrollTop)
+      // console.log(app.offsetWidth)
+      this.$store.commit('CHANGEAPPWIDTH', app.offsetWidth)
       let vm = this
       app.onscroll = function () {
         let scrollTop = app.scrollTop

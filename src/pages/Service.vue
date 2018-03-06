@@ -2,7 +2,7 @@
 <template>
   <div  class="ServiceWarp minWidthBox">
     <div class="ComHeaderBox">
-      <ComHeader :isActiveComp="isActives"/>
+      <ComHeader :isActiveComp="isActives" :isLogoShow="isLogoShow"/>
     </div>
     <div class="servicesBox colorFFF minWidthBox">
       <div class="listBox flex" >
@@ -61,6 +61,7 @@ export default {
   name: 'Service',
   data () {
     return {
+      isLogoShow: true,
       isActives: 'Service',
       servicesList: [
         {

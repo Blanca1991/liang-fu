@@ -23,6 +23,7 @@ export default new Vuex.Store({
     isLoginBox: false, // 在home页面中 需要用到的控制isLoginBox显示与否 true显示  false 隐藏
     appDom: '', // 获取app Dom元素
     scrollLeft: 0, // 被浏览器卷去的宽度
+    appWidth: '',
     modelListTop: [
       {
         modelName: 'summaryInfo',
@@ -156,6 +157,9 @@ export default new Vuex.Store({
     },
     CHANGESCROLLLEFT (state, data) {
       this.state.scrollLeft = data
+    },
+    CHANGEAPPWIDTH (state, data) {
+      this.state.appWidth = data
     }
   },
   actions: {

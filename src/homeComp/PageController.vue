@@ -100,7 +100,7 @@ export default {
     })
     window.addEventListener('touchend', function (event) {
       let spacing = event.changedTouches[0].clientY - start;
-      let direction;      
+      let direction;
       if (spacing > 50) {
         direction = 'up';
         scrollHandler(direction);
@@ -128,11 +128,9 @@ export default {
 }
 .controller-item {
     cursor: pointer;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+    height: 10px;width: 10px;border: 1px solid #fff;margin: 10px;transform: rotate(45deg);
     margin-top: 10px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
     transition: background-color 0.3s ease 0s;
 }
 .controller-item:hover {

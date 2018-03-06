@@ -1,8 +1,6 @@
+<!-- 首页 wuxiaobo-->
 <template>
   <div class="HomeWarp minWidthBox" >
-    <!-- <div class="comHeaderBox" >
-      <ComHeader :isActiveComp="isActives" />
-    </div> -->
     <div class="" class="app">
       <page :currentPage="currentPage" >
         <BigBg />
@@ -21,8 +19,13 @@
       </page>
       <page-controller :pageNum="pageNum" :currentPage="currentPage" @changePage="changePage" :option="controllerOption"></page-controller>
     </div>
-    <div class="comHeaderBox" >
-      <ComHeader :isActiveComp="isActives" />
+    <div class="comHeaderBox flex" >
+      <div class="LogoBg">
+        <LogoBg />
+      </div>
+      <div class="comHeader">
+        <ComHeader :isActiveComp="isActives" :isLogoShow="isLogoShow"/>
+      </div>
     </div>
     <div class="loginBox" v-show="isLoginBox">
       <Login v-show="isLogin"/>
@@ -35,6 +38,9 @@
 
 import {mapState} from 'vuex'
 import ComHeader from '@/components/ComHeader'
+import LogoBg from '../components/LogoBg'
+import LoginNav from '../components/LoginNav'
+
 import Login from '@/components/Login'
 import PointOut from '@/components/PointOut'
 
@@ -59,6 +65,8 @@ export default {
   name: 'HomeFullpage',
   data() {
     return {
+      screenWidth: document.documentElement.offsetWidth,
+      isLogoShow: false, // 当页面宽度不够 隐藏掉logo
       isActives: 'Home', // ComHeader内对应的tag高亮
       currentPage: 1,
       options: [{
@@ -113,7 +121,8 @@ export default {
       pointShow: state => state.pointShow,
       isLogin: state => state.isLogin,
       isLoginBox: state => state.isLoginBox,
-      scrollLeft: state => state.scrollLeft
+      scrollLeft: state => state.scrollLeft,
+      appWidth: state => state.appWidth
     }),
     pageNum() {
       return this.options.length
@@ -128,8 +137,17 @@ export default {
         child.option = childOption
       }
     })
+    this.init ()
+    console.log('this.appWidth', this.appWidth)
   },
   methods: {
+    init () {
+      // if (this.screenWidth <= 1050) {
+      //   this.isLogoShow = false
+      // } else {
+      //   this.isLogoShow = true
+      // }
+    },
     changePage(index) {
       // beforeLeave Hook
       let beforeIndex = this.currentPage - 1;
@@ -155,7 +173,8 @@ export default {
     OurAddress,
     ComHeader,
     Login,
-    PointOut
+    PointOut,
+    LogoBg
   }
 }
 </script>
@@ -173,7 +192,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #fff;
 }
-.comHeaderBox {position: absolute;z-index: 99999;width: 100vw; min-width: 1200px; top: 0;}
+.comHeaderBox {position: absolute;z-index: 99999;width: 100vw;
+   top: 0;background: #2a2d2c;align-items: center;}
+ @media screen and (max-width: 1050px) {
+     .LogoBg {
+         display: none;
+     }
+ }
+.comHeader{width: 100%;}
 .app { height: 100vh; width: 100vw; }
 /* 下面的是与fullPage无关的样式 */
 .animate { transition: all 1s ease-out 0s; }

@@ -1,7 +1,9 @@
 <!-- 合作联系 wuxiaobo-->
 <template>
   <div  class="CopperateWarp minWidthBox">
-    <ComHeader :isActiveComp="isActives"/>
+    <div class="minWidthBox">
+      <ComHeader :isActiveComp="isActives" :isLogoShow="isLogoShow"/>
+    </div>
     <div class="infoWarp">
       <div class="font28 textL">
         合作联系
@@ -91,6 +93,7 @@ export default {
   name: 'Cooperate',
   data () {
     return {
+      isLogoShow: true,
       isActives: 'Cooperate',
       ContactName: '',
       ContactPhone: '',

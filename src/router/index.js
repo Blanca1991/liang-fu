@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/Home'
+// import Home from '@/pages/Home'
 import Service from '@/pages/Service'
 import Company from '@/pages/Company'
 import News from '@/pages/News'
@@ -19,14 +19,14 @@ Vue.use(Router)
 export default new Router({
   routes: [
     { path: '/', redirect: '/Home.html' },
+    // {
+    //   path: '/Home.html',
+    //   name: 'Home',
+    //   component: Home
+    // },
     {
       path: '/Home.html',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/Homefull',
-      name: 'Homefull',
+      name: 'Home.html',
       component: Homefull
     },
     {

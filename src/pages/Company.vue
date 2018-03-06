@@ -1,7 +1,9 @@
 <!-- 公司介绍 wuxiaobo-->
 <template>
   <div  class="ServiceWarp minWidthBox">
-    <ComHeader :isActiveComp="isActives"/>
+    <div class="minWidthBox">
+      <ComHeader :isActiveComp="isActives" :isLogoShow="isLogoShow"/>
+    </div>
     <div class="companyBox">
       <div class="companyBoxTop flex">
         <div class="TopItem listItem" v-for="item in companyList1" @click="showTips(item)">
@@ -49,6 +51,7 @@ export default {
   name: 'Company',
   data () {
     return {
+      isLogoShow: true,
       isActives: 'Company',
       companyList1: [
         {

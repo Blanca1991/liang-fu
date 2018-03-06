@@ -2,7 +2,7 @@
 <template>
   <div  class="UserInfoWarp minWidthBox">
     <div class="ComHeader minWidthBox">
-      <ComHeader :isActiveComp="isActives"/>
+      <ComHeader :isActiveComp="isActives" :isLogoShow="isLogoShow"/>
     </div>
     <div class="UserInfo flex">
       <div class="UserInfoList">
@@ -92,6 +92,7 @@ export default {
   name: 'UserInfo',
   data () {
     return {
+      isLogoShow: true,
       isActives: 'UserInfo',
       leftList: [
         {

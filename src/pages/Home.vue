@@ -1,4 +1,4 @@
-<!-- 首页 wuxiaobo-->
+<!-- 首页 有bug  不再使用   wuxiaobo-->
 <template>
   <div  class="HomeWarp minWidthBox">
     <div class="comHeaderBox" :style="{left: - scrollLeft + 'px'}">

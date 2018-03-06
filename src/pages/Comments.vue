@@ -1,7 +1,9 @@
 <!-- 意见和建议 wuxiaobo-->
 <template>
   <div  class="ServiceWarp minWidthBox">
-    <ComHeader :isActiveComp="isActives" />
+    <div class="minWidthBox">
+      <ComHeader :isActiveComp="isActives" :isLogoShow="isLogoShow"/>
+    </div>
     <div class="infoWarp">
       <div class="font28 textL">
         意见建议
@@ -76,6 +78,7 @@ export default {
   name: 'Comments',
   data () {
     return {
+      isLogoShow: true,
       isActives: 'Comments',
       pointShowT: false,
       ContactName: '',

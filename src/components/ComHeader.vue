@@ -1,8 +1,8 @@
 <!-- 头部导航栏 -->
 <template>
-  <div class="comHeaderWarp minWidthBox" >
-    <div class="comHeader minWidthBox" >
-      <LogoBg :bgHide="bgHides"/>
+  <div class="comHeaderWarp " >
+    <div class="comHeader " >
+      <LogoBg :bgHide="bgHides" v-if="isLogoShow"/>
       <div class="headerTitle pointer" v-for="(item, index) in items" :key="item.id" @click="gotoInfo(item, index)"
       :class="{ 'navActive': isActive==item.pagesName }" >
         <span>{{ item.message }}</span>
@@ -33,7 +33,7 @@ export default {
       items: [
         {
           message: '首页',
-          pagesName: 'Home'
+          pagesName: 'Home.html'
         },
         {
           message: '量富服务',
@@ -114,7 +114,7 @@ export default {
     LogoBg,
     LoginNav
   },
-  props: [ 'isActiveComp' ]
+  props: [ 'isActiveComp', 'isLogoShow' ]
 }
 </script>
 

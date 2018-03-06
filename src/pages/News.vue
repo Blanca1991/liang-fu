@@ -1,7 +1,9 @@
 <!-- 公司新闻 wuxiaobo-->
 <template>
   <div  class="ServiceWarp">
-    <ComHeader :isActiveComp="isActives"/>
+    <div class="minWidthBox">
+      <ComHeader :isActiveComp="isActives" :isLogoShow="isLogoShow"/>
+    </div>
     <div class="newslistWarp">
       <div class="font28 textL Newstitle">
         新闻资讯
@@ -61,6 +63,7 @@ export default {
   name: 'News',
   data () {
     return {
+      isLogoShow: true,
       isActives: 'News',
       newsList: [],
       tipsInfo: '',

@@ -3,7 +3,7 @@
   <div  class="JobsWarp minWidthBox">
     <div class="jobsBoxWarp">
       <div class="header minWidthBox">
-        <ComHeader :isActiveComp="isActives"/>
+        <ComHeader :isActiveComp="isActives" :isLogoShow="isLogoShow"/>
       </div>
       <div class="jobsBox">
         <div class="jobsList flex font12" >
@@ -46,6 +46,7 @@ export default {
   name: 'Jobs',
   data () {
     return {
+      isLogoShow: true,
       pre1: pre1,
       pre2: pre2,
       pre3: pre3,

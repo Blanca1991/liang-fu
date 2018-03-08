@@ -35,7 +35,7 @@ animation: moveCircleBox 2s infinite ;}
 .circleDivBox{ justify-content: center;align-items:center; margin-top: 10px}
 .circleDiv{ width: 12px;height: 12px;background: #fff;border-radius: 50%;}
 .ruleDiv{width: 240px;height: 2px;background: #fff;}
-.servicesList{width: 1100px; position: absolute;top:59%;left: 50%;transform: translateX(-50%) translateY(-50%);}
+.servicesList{width: 1000px; position: absolute;top:59%;left: 50%;transform: translateX(-50%) translateY(-50%);}
 .servicesItem{width: 25%; padding: 15px;}
 .article{text-indent: 28px;}
 .servicesItemBorder{border: #fff 1px solid; padding: 11px;}
@@ -50,12 +50,12 @@ animation: moveCircleBox 2s infinite ;}
 .aboutUsWarp .aboutUs{position: absolute; top: 59%; left: 50%; transform: translateX(-50%) translateY(-50%);width: 100%;}
 .aboutUsWarp .aboutUs .imgBox{width: 50%;}
 .aboutUsWarp .aboutUs .imgBox img{width: 80%;}
-.aboutUsWarp .aboutUs .aboutUsArticles{ width: 50%;padding-right: 4%;}
+.aboutUsWarp .aboutUs .aboutUsArticles{ width: 40%;padding-right: 4%;}
 .aboutUsArticles .articles {text-align: left;text-indent: 25px;}
 .aboutUsArticles div{ margin-bottom: 5px;}
 .aboutUsArticles .aboutUsBtn {color: #a4d335; background: #fff;width: 100px;border-radius: 5px;padding: 5px 0;}
 .aboutUsArticles .aboutUsBtn:hover { color: #fff;background:#ea5b57 }
-.aboutRuleDiv {height: 2px; width: 400px;background: #fff; transform: rotate(71deg) translate(-220px,220px);}
+.aboutRuleDiv {height: 2px; width: 400px;background: #fff; transform: rotate(71deg) translate(-260px,220px);}
 
 /* Our News */
 .ourNewsWarp{ width: 100%;height: 100vh; background: rgb(245, 85, 87) ;min-width: 1200px;overflow: hidden;}
@@ -94,10 +94,10 @@ animation: moveCircleBox 2s infinite ;}
 
 }
 .ourNewsWarp .toggleBtnBox{height: 100px;width: 100%;position: absolute;top: 110px;}
-.ourNewsWarp .toggleBtnBox .leftBtn{ position: absolute;left: 30px; }
+.ourNewsWarp .toggleBtnBox .leftBtn{ position: absolute;left:80px; }
 .ourNewsWarp .toggleBtnBox .leftBtn  em{display: inline-block; width: 0px; height: 0px;border:40px solid #fff;
    border-top-color: transparent; border-left-color: transparent; border-bottom-color: transparent;transform: rotateY(50deg);}
-.ourNewsWarp .toggleBtnBox .rightBtn{ position: absolute;right:30px;}
+.ourNewsWarp .toggleBtnBox .rightBtn{ position: absolute;right:80px;}
 .ourNewsWarp .toggleBtnBox .rightBtn  em{display: inline-block; width: 0px; height: 0px;border:40px solid #fff;
    border-top-color: transparent; border-right-color: transparent; border-bottom-color: transparent;transform: rotateY(50deg);
  }

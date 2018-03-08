@@ -80,6 +80,7 @@ export default {
         this.$store.commit('GETUSERNAME', this.userName)// 给store中的username赋值
         localStorage.setItem('userName', this.userName)
         localStorage.setItem('LFZXtoken', res.data.token)
+        localStorage.setItem('LFZXLOGINTIME',Date())
         this.userName = ''
         this.passWord = ''
       } else {

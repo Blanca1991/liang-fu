@@ -1,38 +1,40 @@
 <!-- 量富服务 wuxiaobo-->
 <template>
-  <div  class="ServiceWarp minWidthBox background">
-    <div class="ComHeaderBox">
-      <ComHeader :isActiveComp="isActives" :isLogoShow="isLogoShow"/>
-    </div>
-    <div class="servicesBox  minWidthBox">
-      <div class="listBox flex " >
-        <div class="item" v-for="item in servicesList">
-          <div class="constantDiv colorFFF">
-            <div class="constantDivIn">
-              <div class="imgBox">
-                  <img :src="item.imgUrl" alt="iconCredit.png">
-              </div>
-              <div class="titleBox">
-                <span class="">{{ item.title }}</span>
-              </div>
-            </div>
-            <div class="hoverDiv secondInfo">
-              <div class="flex secondInfoTop">
+  <div class="serviceBoxWarp" style="background:#383332;height: 100vh;width: 100vw;overflow: auto;position: relative;">
+    <div class="minWidthBox background">
+      <div class="ComHeaderBox minWidthBox">
+        <ComHeader :isActiveComp="isActives" :isLogoShow="isLogoShow"/>
+      </div>
+      <div class="servicesBox  minWidthBox">
+        <div class="listBox flex " >
+          <div class="item" v-for="item in servicesList">
+            <div class="constantDiv colorFFF">
+              <div class="constantDivIn">
                 <div class="imgBox">
                     <img :src="item.imgUrl" alt="iconCredit.png">
                 </div>
-                <div class="titleBox font18">
-                  <span>{{ item.title }}</span>
+                <div class="titleBox">
+                  <span class="">{{ item.title }}</span>
                 </div>
               </div>
-              <div class="secondInfoCenter font16">
-                <div class="secondDetail textL">{{ item.detail }}</div>
-                <div class="textL">
-                  {{ item.secondTitle }}
+              <div class="hoverDiv secondInfo">
+                <div class="flex secondInfoTop">
+                  <div class="imgBox">
+                      <img :src="item.imgUrl" alt="iconCredit.png">
+                  </div>
+                  <div class="titleBox font18">
+                    <span>{{ item.title }}</span>
+                  </div>
                 </div>
-                <div class="textL inItemList" v-for="inItem in item.secondInfo">
-                  <div class="">
-                    {{ inItem }}
+                <div class="secondInfoCenter font16">
+                  <div class="secondDetail textL">{{ item.detail }}</div>
+                  <div class="textL">
+                    {{ item.secondTitle }}
+                  </div>
+                  <div class="textL inItemList" v-for="inItem in item.secondInfo">
+                    <div class="">
+                      {{ inItem }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -40,9 +42,9 @@
           </div>
         </div>
       </div>
+      <login v-show="isLogin"/>
+      <PointOut v-show="pointShow" />
     </div>
-    <login v-show="isLogin"/>
-    <PointOut v-show="pointShow" />
   </div>
 </template>
 
@@ -140,9 +142,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.ServiceWarp {background: #383332;height: 100%;width: 100%;overflow: auto;position: relative;}
-.background{background: #333322}
+.serviceBoxWarp{background: #383332;height: 100vh;width: 100vw;overflow: auto;position: relative;}
+.background{background: #383332;height: 100vh;width: 100vw;overflow: auto;position: relative;}
 .ComHeaderBox{position: absolute;z-index: 1; width: 100%;}
 .servicesBox{height: 100%;width: 100%;position: absolute;}
 .listBox {height: 100%;width: 100%;}

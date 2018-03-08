@@ -189,7 +189,7 @@ export default {
           this.$store.state.isWarning = false
           this.userCodeId = res.data.header.ordeCode
           this.isDownLoad = true
-          if (res.data.header.startTimes === null) {
+          if (res.data.header.startTimes == null) {
             localStorage.setItem('startTimes', '3600')
           } else {
             localStorage.setItem('startTimes', res.data.header.startTimes)
@@ -259,6 +259,8 @@ export default {
               this.showPointBtnFun(data)
               this.$store.state.pointOutLoginBtn = true
               break
+            default:
+              this.showPointBtnFun(res.data.body.errorMsg)
           }
         } else {
           this.pointOutFun('系统异常，请稍后再试')

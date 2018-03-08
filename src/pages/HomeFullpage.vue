@@ -67,7 +67,7 @@ export default {
     return {
       screenWidth: document.documentElement.offsetWidth,
       isLogoShow: false, // 当页面宽度不够 隐藏掉logo
-      isActives: 'Home', // ComHeader内对应的tag高亮
+      isActives: 'Home.html', // ComHeader内对应的tag高亮
       currentPage: 1,
       options: [{
         // the color of background
@@ -138,7 +138,7 @@ export default {
       }
     })
     this.init ()
-    console.log('this.appWidth', this.appWidth)
+    // console.log('this.appWidth', this.appWidth)
   },
   methods: {
     init () {

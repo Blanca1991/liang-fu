@@ -32,6 +32,23 @@ export default {
     init () {
       // 初始化
       this.getUserName()
+      this.judgeUser()
+    },
+    judgeUser () {
+      // 登录的时间差 计算 清除登录信息
+      // console.log('LFZXLOGINTIME')
+      // console.log(localStorage.getItem('LFZXLOGINTIME'))
+      if (localStorage.getItem('LFZXLOGINTIME')) {
+        let date1 = localStorage.getItem('LFZXLOGINTIME')
+        let differ = parseInt(new Date() - new Date(date1)) / 1000 / 3600
+        // differ 为 上次登录到这次登录的时间差（小时）
+        // console.log(differ)
+        if (differ >= 1) {
+          localStorage.removeItem('LFZXtoken')
+          localStorage.removeItem('LFZXLOGINTIME')
+          localStorage.removeItem('userName')
+        }
+      }
     },
     getUserName () {
       let userName = localStorage.getItem('userName')

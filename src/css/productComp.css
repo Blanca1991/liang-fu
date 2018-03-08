@@ -43,10 +43,13 @@
 .scoreImgBox .scoreBar{ align-items: flex-start; padding-left: 5px; width: 310px;}
 .scoreImgBox .scoreBar span{
   width: 310px;height: 12px;border-radius: 10px;box-sizing: border-box;
-  background: -moz-linear-gradient(left, #AA3425, #F9F900,#3D8641);
+  background: url(../images/scorePng.png) no-repeat center;background-size: 100%;
+  /* background: -moz-linear-gradient(left, #AA3425, #F9F900,#3D8641);
   background: -o-linear-gradient(left,#AA3425, #F9F900,#3D8641);
   background: -webkit-linear-gradient(left ,#AA3425, #F9F900,#3D8641);
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#AA3425',endColorStr='#3D8641',gradientType='1');  */
 }
+
 .selectDown{
   /* transition:transform 1s; */
   display: inline-block;width: 30px;height: 30px;margin-left: 10px;

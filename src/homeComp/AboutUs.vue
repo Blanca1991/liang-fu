@@ -94,7 +94,7 @@ export default {
   methods: {
     init () {
       // 初始化
-      console.log('homeBigBg init')
+      // console.log('aboutUs init')
     },
     goToCompany () {
       this.$router.push({ name: 'Company' })

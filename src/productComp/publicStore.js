@@ -78,64 +78,6 @@ export default new Vuex.Store({
             sortTimeString: '2017年08月18日',
             cpwsId: 'c2017330482zhi1024_t20170818',
             partyId: 'c2017330482zhi1024_t20170818_pxiaomeng_rt_111'
-          },
-          {
-            partys: [
-              {
-                birthday: '19920813',
-                address: '湖北省孝昌县',
-                pname: '肖猛',
-                idcardNo: '',
-                partyResult: '平',
-                lawOffice: '',
-                partyType: '自然人',
-                title: '被执行人',
-                lawyer: '',
-                status: 'p'
-              }
-            ],
-            sortTime: 1502985600000,
-            dataType: 'cpws',
-            judgeResult: '',
-            matchRatio: 0.4,
-            matchDegree: '低',
-            body: '被执行人:肖猛 平 肖猛执行实...',
-            court: '浙江省平湖市人民法院',
-            title: '肖猛执行实施类执行裁定书',
-            caseNo: '（2017）浙0482执1024号',
-            caseCause: '诈骗罪',
-            sortTimeString: '2017年08月18日',
-            cpwsId: 'c2017330482zhi1024_t20170818',
-            partyId: 'c2017330482zhi1024_t20170818_pxiaomeng_rt_111'
-          },
-          {
-            partys: [
-              {
-                birthday: '19920813',
-                address: '湖北省孝昌县',
-                pname: '肖猛',
-                idcardNo: '',
-                partyResult: '平',
-                lawOffice: '',
-                partyType: '自然人',
-                title: '被执行人',
-                lawyer: '',
-                status: 'p'
-              }
-            ],
-            sortTime: 1502985600000,
-            dataType: 'cpws',
-            judgeResult: '',
-            matchRatio: 0.4,
-            matchDegree: '低',
-            body: '被执行人:肖猛 平 肖猛执行实...',
-            court: '浙江省平湖市人民法院',
-            title: '肖猛执行实施类执行裁定书',
-            caseNo: '（2017）浙0482执1024号',
-            caseCause: '诈骗罪',
-            sortTimeString: '2017年08月18日',
-            cpwsId: 'c2017330482zhi1024_t20170818',
-            partyId: 'c2017330482zhi1024_t20170818_pxiaomeng_rt_111'
           }
         ],
         // 执行公告

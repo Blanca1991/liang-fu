@@ -119,7 +119,7 @@
                 <span>{{ item.date || '——' }}</span>
               </div>
               <div class="pL20 width50">
-                <span>{{ item.mobile.replace(item.mobile.substring(3,9), '*******') || '——'  }}</span>
+                <span>{{ item.mobile.replace(/(\d{3})\d{6}(\d{2})/, '$1******$2') || '——'  }}</span>
               </div>
             </div>
           </div>
@@ -187,7 +187,9 @@
                 <span>{{ item.date }}</span>
               </div>
               <div class="pL20 width50">
-                <span>{{ item.idNumber.substr(0, 2)+ '***********'+ item.idNumber.substr(item.idNumber.length- 2, 2) }}</span>
+                <!-- <span>{{ item.idNumber.substr(0, 2)+ '***********'+ item.idNumber.substr(item.idNumber.length- 2, 2) }}</span> -->
+                <span v-if="item.idNumber.length == 18">{{ item.idNumber.replace(/(\d{2})\d{14}(\d{2})/, '$1**************$2') }}</span>
+                <span v-if="item.idNumber.length == 15">{{ item.idNumber.replace(/(\d{2})\d{11}(\d{2})/, '$1***********$2') }}</span>
               </div>
             </div>
           </div>
@@ -212,10 +214,10 @@ export default {
   name: 'HistoryInfo',
   data () {
     return {
-      userIdNumberForName: false,
-      userIdNumberForMobile: false,
-      userMobileForName: false,
-      userMobileForIdNumber: false
+      userIdNumberForName: false, // false为显示数据为空
+      userIdNumberForMobile: false, // false为显示数据为空
+      userMobileForName: false, // false为显示数据为空
+      userMobileForIdNumber: false // false为显示数据为空
     }
   },
   computed: {

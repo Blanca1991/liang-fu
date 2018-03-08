@@ -31,8 +31,8 @@ export default {
   methods: {
     init () {
       // 初始化
-      this.getUserName()
       this.judgeUser()
+      this.getUserName()
     },
     judgeUser () {
       // 登录的时间差 计算 清除登录信息

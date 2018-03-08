@@ -17,7 +17,9 @@
             <span>身份证号</span>
           </div>
           <div class="pL20">
-            <span>{{ baseInfo.idNumber.substr(0, 2)+ '***********'+ baseInfo.idNumber.substr(baseInfo.idNumber.length- 2, 2) }}</span>
+            <!-- <span>{{ baseInfo.idNumber.substr(0, 2)+ '***********'+ baseInfo.idNumber.substr(baseInfo.idNumber.length- 2, 2) }}</span> -->
+            <span v-if="baseInfo.idNumber.length == 18">{{ baseInfo.idNumber.replace(/(\d{2})\d{14}(\d{2})/, '$1**************$2') }}</span>
+            <span v-if="baseInfo.idNumber.length == 15">{{ baseInfo.idNumber.replace(/(\d{2})\d{11}(\d{2})/, '$1***********$2') }}</span>
           </div>
         </div>
         <div class="flex detailList borderB">
@@ -59,7 +61,7 @@
           </div>
           <div class="pL20" >
             <span :class="{ textRebBg: isNameMatchIdNumber,textGreenBg: !isNameMatchIdNumber}">
-            {{ baseInfo.nameMatchIdNumber }}
+            {{ baseInfo.nameMatchIdNumber || "——"}}
             </span>
           </div>
         </div>

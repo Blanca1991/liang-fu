@@ -94,7 +94,7 @@
             <span>更多</span>
           </div>
         </div>
-        <div class="negativeInfo newNegativeInfo" v-for="(item, index) in listDate" >
+        <div class="negativeInfo newNegativeInfo" v-for="(item, index) in listDate" v-if="allTabHide">
           <ToogleList :item="item" :tabIndex="tabIndex" />
         </div>
       </div>

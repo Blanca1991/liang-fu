@@ -11,7 +11,8 @@ const sitUrl = 'http://10.166.10.111:20010'
 // let baseUrl = prdUrl
 
 const prdUrl = 'http://credit.liangfuzhengxin.com/'
-// // let baseUrl = prdUrl
+// // // let baseUrl = prdUrl
+//
 
 let baseUrl
 if (process.env.NODE_ENV === 'development') {

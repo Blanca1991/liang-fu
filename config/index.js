@@ -1,14 +1,31 @@
 'use strict'
 // Template version: 1.2.6
 // see http://vuejs-templates.github.io/webpack for documentation.
-
 const path = require('path')
+
+function getNowDateTime () {
+  // 得到当前时间
+  var date = new Date()
+  // date = date.valueOf()
+  var y = date.getFullYear()
+  var m = date.getMonth() + 1
+  m = m < 10 ? ('0' + m) : m
+  var d = date.getDate()
+  d = d < 10 ? ('0' + d) : d
+  var h = date.getHours()
+  h = h < 10 ? ('0' + h) : h
+  var minute = date.getMinutes()
+  var second = date.getSeconds()
+  minute = minute < 10 ? ('0' + minute) : minute
+  second = second < 10 ? ('0' + second) : second
+  return y + '' + m + '' + d + '' + h + '' + minute + '' + second
+}
 
 module.exports = {
   dev: {
 
     // Paths
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: 'staticV2',
     assetsPublicPath: '/',
     proxyTable: {},
 
@@ -50,10 +67,10 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, '../dist/liangfu' + getNowDateTime() + '/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsRoot: path.resolve(__dirname, '../dist/liangfu' + getNowDateTime() ),
     assetsSubDirectory: 'staticV2',
     assetsPublicPath: '/',
 

@@ -104,7 +104,7 @@ export default new Vuex.Store({
             pname: '肖猛',
             sortTime: 1431532800000,
             dataType: 'wdhmd',
-            idcardNo: '4206841986****1518',
+            idcardNo: '4206846*******1518',
             updateTime: '',
             matchRatio: 0.99,
             matchDegree: '高',

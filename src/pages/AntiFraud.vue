@@ -96,9 +96,10 @@ export default {
     init () {
       // 初始化
       // console.log('Product init')
-      if (!localStorage.getItem('userName') && !localStorage.getItem('LFZXtoken')) {
-        this.$store.commit('SHOWLOGIN')
-      }
+      // 没有LFZXtoken的时候  显示登录页面
+      // if (!localStorage.getItem('userName') && !localStorage.getItem('LFZXtoken')) {
+      //   this.$store.commit('SHOWLOGIN')
+      // }
     },
     getAllModelTop () {
       for (let i = 0; i < this.modelListTop.length; i++) {

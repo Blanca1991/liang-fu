@@ -134,7 +134,7 @@ export default {
   watch: {
     summaryInfoStore () {
       this.init()
-    },
+    }
     // restrictedInfo (newrestrictedInfo) {
     //   this.emptyDetailFun(newrestrictedInfo)
     //   this.listReverse()

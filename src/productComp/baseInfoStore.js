@@ -77,6 +77,7 @@ export default new Vuex.Store({
           isLocal: 'true'
         }
       ],
+      // 可疑信息记录
       suspiciousQueryInfo: {
         userIdNumberForName: '',
         userIdNumberForMobile: [

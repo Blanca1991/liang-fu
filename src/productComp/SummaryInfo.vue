@@ -14,6 +14,7 @@
             <div class="flex scoreWord pL20">
               <span class="font22">智多分 :</span>
               <span class="font44 pL10">{{score}}</span>
+              <span class="font44 pL10" v-if="!scoreShow">暂无数据</span>
             </div>
             <div class="scoreImgBox pL20" v-if="scoreShow">
               <div class="scoreDot flex">
@@ -31,9 +32,12 @@
               <div class="ruleTitleL textL borderR pL20">
                 <strong>触发禁止性规则</strong>
               </div>
-              <div class="ruleTitleR textL pL20 flex pointer" @click="toggleList('prohibitoryInfo')">
+              <div class="ruleTitleR textL pL20 flex pointer" v-if="prohibitoryInfo" @click="toggleList('prohibitoryInfo')">
                 <span>{{prohibitoryInfo.num}} 条</span>
                 <i class="selectDown " v-bind:class="{'selectUp': prohibitoryInfoIsShow}"></i>
+              </div>
+              <div class="ruleTitleR textL pL20" v-if="!prohibitoryInfo" >
+                <span>0 条</span>
               </div>
             </div>
             <div class="flex detailList borderT" v-if="prohibitoryInfoIsShow" v-for="item in prohibitoryInfo.detail">
@@ -50,9 +54,12 @@
               <div class="ruleTitleL textL borderR pL20">
                 <strong>触发限制性规则</strong>
               </div>
-              <div class="ruleTitleR textL pL20 flex pointer" @click="toggleList('restrictedInfo')">
+              <div class="ruleTitleR textL pL20 flex pointer" v-if="restrictedInfo" @click="toggleList('restrictedInfo')">
                 <span>{{restrictedInfo.num}} 条</span>
                 <i class="selectDown " v-bind:class="{'selectUp': restrictedInfoIsShow}"></i>
+              </div>
+              <div class="ruleTitleR textL pL20" v-if="!restrictedInfo" >
+                <span>0 条</span>
               </div>
             </div>
             <div class="flex detailList borderT" v-if="restrictedInfoIsShow" v-for="item in restrictedInfo.detail">
@@ -68,9 +75,12 @@
               <div class="ruleTitleL textL borderR pL20">
                 <strong>触发提示性规则</strong>
               </div>
-              <div class="ruleTitleR textL pL20 flex pointer" @click="toggleList('riskWarningInfo')">
+              <div class="ruleTitleR textL pL20 flex pointer" v-if="riskWarningInfo" @click="toggleList('riskWarningInfo')">
                 <span>{{riskWarningInfo.num}} 条</span>
                 <i class="selectDown " v-bind:class="{'selectUp': riskWarningInfoIsShow}"></i>
+              </div>
+              <div class="ruleTitleR textL pL20 " v-if="!riskWarningInfo" >
+                <span>0 条</span>
               </div>
             </div>
             <div class="flex detailList borderT" v-if="riskWarningInfoIsShow" v-for="item in riskWarningInfo.detail">
@@ -99,16 +109,21 @@ export default {
       scoreShow: true, // 分数条的显示与否
       prohibitoryInfoIsShow: false, // 控制禁止规则显示与否
       restrictedInfoIsShow: false, // 控制限制规则显示与否
-      riskWarningInfoIsShow: false // 控制提示规则显示与否
+      riskWarningInfoIsShow: false, // 控制提示规则显示与否
+      prohibitoryInfo: '',
+      restrictedInfo: '',
+      riskWarningInfo: '',
+      score: ''
     }
   },
   computed: {
     ...mapState({
       // 获取数据
-      score: state => state.summaryInfoStore.score,
-      prohibitoryInfo: state => state.summaryInfoStore.prohibitoryInfo,
-      restrictedInfo: state => state.summaryInfoStore.restrictedInfo,
-      riskWarningInfo: state => state.summaryInfoStore.riskWarningInfo,
+      summaryInfoStore:state => state.summaryInfoStore,
+      // score: state => state.summaryInfoStore.score,
+      // prohibitoryInfo: state => state.summaryInfoStore.prohibitoryInfo,
+      // restrictedInfo: state => state.summaryInfoStore.restrictedInfo,
+      // riskWarningInfo: state => state.summaryInfoStore.riskWarningInfo,
       modelListTop: state => state.modelListTop
     })
   },
@@ -117,32 +132,52 @@ export default {
     this.init()
   },
   watch: {
-    restrictedInfo (newrestrictedInfo) {
-      this.emptyDetailFun(newrestrictedInfo)
-      this.listReverse()
-      this.getAllModelTop()
+    summaryInfoStore () {
+      this.init()
     },
-    score (newrestrictedInfo) {
-      this.scoreStyleFun()
-      this.getAllModelTop()
-    },
-    prohibitoryInfo (newprohibitoryInfo) {
-      this.emptyDetailFun(newprohibitoryInfo)
-      this.getAllModelTop()
-    },
-    riskWarningInfo (newriskWarningInfo) {
-      this.emptyDetailFun(newriskWarningInfo)
-      this.getAllModelTop()
-    }
+    // restrictedInfo (newrestrictedInfo) {
+    //   this.emptyDetailFun(newrestrictedInfo)
+    //   this.listReverse()
+    //   this.getAllModelTop()
+    // },
+    // score (newrestrictedInfo) {
+    //   this.scoreStyleFun()
+    //   this.getAllModelTop()
+    // },
+    // prohibitoryInfo (newprohibitoryInfo) {
+    //   this.emptyDetailFun(newprohibitoryInfo)
+    //   this.getAllModelTop()
+    // },
+    // riskWarningInfo (newriskWarningInfo) {
+    //   this.emptyDetailFun(newriskWarningInfo)
+    //   this.getAllModelTop()
+    // }
   },
   methods: {
     init () {
       // 初始化
       // console.log('summaryInfo init')
+      this.emptyFun()
       this.scoreStyleFun()
-      this.listReverse()
       this.getAllModelTop()
       // console.log(document.getElementById('baseInfo').offsetTop)
+    },
+    emptyFun () {
+      if (this.summaryInfoStore && this.summaryInfoStore != '' && JSON.stringify(this.summaryInfoStore) != '{}') {
+        this.prohibitoryInfo = this.summaryInfoStore.prohibitoryInfo
+        this.restrictedInfo = this.summaryInfoStore.restrictedInfo
+        this.riskWarningInfo = this.summaryInfoStore.riskWarningInfo
+        this.score = this.summaryInfoStore.score
+        this.listReverse()
+        this.emptyDetailFun(this.prohibitoryInfo)
+        this.emptyDetailFun(this.restrictedInfo)
+        this.emptyDetailFun(this.riskWarningInfo)
+      } else {
+        this.scoreShow = false // 分数条的显示与否
+        this.prohibitoryInfoIsShow = true // 控制禁止规则显示与否
+        this.restrictedInfoIsShow = true // 控制限制规则显示与否
+        this.riskWarningInfoIsShow = true // 控制提示规则显示与否
+      }
     },
     listReverse () {
       // 数组反向 循环
@@ -182,8 +217,7 @@ export default {
       }
     },
     scoreStyleFun () {
-      if (this.score === null || this.score === '') {
-        this.$store.state.summaryInfoStore.score = '暂无数据'
+      if (!this.score || this.score === '') {
         // console.log(this)
         this.scoreShow = false
       } else {

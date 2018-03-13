@@ -7,11 +7,11 @@ const sitUrl = 'http://10.166.10.111:20010'
 // const uatUrl = 'http://10.166.8.56:11080'
 // let baseUrl = uatUrl
 
-// const prdUrl = 'http://10.168.1.86:11080' // 预生产环境
+// const prdUrl = 'http://10.168.1.86:11080' // 预生产灰度环境
 // let baseUrl = prdUrl
 
 const prdUrl = 'http://credit.liangfuzhengxin.com/'
-// // // let baseUrl = prdUrl
+// let baseUrl = prdUrl
 //
 
 let baseUrl

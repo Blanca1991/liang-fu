@@ -49,9 +49,9 @@ export default {
   overflow: auto;
   width: calc(100vw + 20px);
 }
-#app::-webkit-scrollbar {
+/* #app::-webkit-scrollbar {
     display: none;
-}
+} */
 body,html{-webkit-text-size-adjust: none;width: 100%;height: 100%;}
 body{ margin: 0;padding: 0; overflow: hidden;}
 *{text-decoration: none;list-style: none;}

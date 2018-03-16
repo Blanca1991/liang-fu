@@ -205,50 +205,62 @@ export default {
             case '-204':
               data = ['用户未添加或已注销', '请联系客服人员']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-205':
               data = ['账号已到期', '请联系客服人员']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-206':
               data = ['对应机构已停用', '请联系客服人员']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-207':
               data = ['产品已到期', '请联系客服人员']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-208':
               data = ['用户没有对应的机构', '请联系客服人员']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-209':
               data = ['未开通查询权限', '请联系客服人员']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-210':
               data = ['用量已用完', '请联系客服人员']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-211':
               data = ['已达到今日最大用量', '请联系客服人员']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-213':
               data = ['产品没有用量', '请联系客服人员']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-214':
               data = ['未找到对应产品', '请联系客服人员']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-8985':
               data = ['手机号格式不合法', '手机号码为虚拟号码']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-8984':
               data = ['手机号为虚拟号段', '无法查询']
               this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
               break
             case '-215':
               data = ['登录状态已失效', '请重新登录']
@@ -261,7 +273,9 @@ export default {
               this.$store.state.pointOutLoginBtn = true
               break
             default:
-              this.showPointBtnFun(res.data.body.errorMsg)
+              data = [res.data.body.errorMsg]
+              this.showPointBtnFun(data)
+              this.$store.state.pointOutLoginBtn = false
           }
         } else {
           this.pointOutFun('系统异常，请稍后再试')

@@ -56,7 +56,7 @@
             </div>
           </div>
         </div>
-        <div class="pL20 titleBg borderB  titleFont" v-if="allTabHide">
+        <div class="pL20 titleBg borderB  titleFont" >
           <strong>司法负面信息</strong>
         </div>
         <div class="titleHeader flex borderB titleFont titleBg pubilceBox" v-if="allTabHide">
@@ -96,6 +96,11 @@
         </div>
         <div class="negativeInfo newNegativeInfo" v-for="(item, index) in listDate" v-if="allTabHide">
           <ToogleList :item="item" :tabIndex="tabIndex" />
+        </div>
+        <div class="" v-if="!allTabHide">
+          <div  class="pL20 titleFont">
+            查询无结果
+          </div>
         </div>
       </div>
     </div>

@@ -72,9 +72,12 @@ export default {
     }
     // var tip = ''
     var pass = true
-    if (!code || !/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(code)) {
+    if (!code || !/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(code)) {
       // tip = '身份证号格式错误'
       pass = false
+      if (code.length === 15) {
+        pass = true
+      }
     } else if (!city[code.substr(0, 2)]) {
       // tip = '地址编码错误'
       pass = false
@@ -102,6 +105,7 @@ export default {
         }
       }
     }
+
     // if (!pass) alert(tip)
     console.log(pass)
     return pass

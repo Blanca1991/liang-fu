@@ -61,18 +61,14 @@ import Loading from '@/components/Loading'
 import LoginNav from '@/components/LoginNav'
 import HeaderNav from '@/QmxComp/HeaderNav'
 import Login from '@/components/Login'
-import icon01 from '@/QMX/icon_01.png'
-import icon02 from '@/QMX/icon_02.png'
-import news01 from '@/QMX/news01.png'
-import news02 from '@/QMX/news02.png'
-import news03 from '@/QMX/news03.png'
+import news01 from '@/images/QMX/news01.png'
+import news02 from '@/images/QMX/news02.png'
+import news03 from '@/images/QMX/news03.png'
 
 export default {
   name: 'Product',
   data () {
     return {
-      icon01: icon01,
-      icon02: icon02,
       news01: news01,
       news02: news02,
       news03: news03,

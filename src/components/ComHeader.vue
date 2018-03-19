@@ -7,9 +7,9 @@
       :class="{ 'navActive': isActive==item.pagesName }" >
         <span>{{ item.message }}</span>
         <div class="productList" v-if="item.pagesName === 'Product'">
-          <!-- <div class="productItem pointer font14" @click="itemGo = 1">
+          <div class="productItem pointer font14" @click="itemGo = 1">
             企明星
-          </div> -->
+          </div>
           <div class="productItem pointer font14" @click="itemGo = 2">
             星护甲
           </div>
@@ -93,7 +93,7 @@ export default {
             window.open(window.location.href.split('#')[0] + '#/' + 'antiFraud.html')
           } else if (this.itemGo === 1) {
             this.itemGo = 0
-            window.open(window.location.href.split('#')[0] + '#/' + 'ProductQMX')
+            window.open(window.location.href.split('#')[0] + '#/' + 'ProductQMX.html')
           }
         }
       } else if (item.pagesName === 'UserInfo') {

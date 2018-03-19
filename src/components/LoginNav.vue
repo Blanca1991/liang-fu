@@ -1,6 +1,6 @@
 <!-- 登录小窗 -->
 <template>
-  <div class="LoginNavWarp">
+  <div class="LoginNavWarp flex">
     <div class="LoginNav font14">
       <span class="pointer inBlock loginSpan" v-show="isLoginNav" @click="loginFun" >请登录</span>
       <span v-show="!isLoginNav">欢迎您</span>

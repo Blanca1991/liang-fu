@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import summaryInfoStore from '../productComp/summaryInfoStore'
 import baseInfoStore from '../productComp/baseInfoStore'
 import publicStore from '../productComp/publicStore'
+import QMXStore from '../QmxComp/QMXStore'
 
 Vue.use(Vuex)
 
@@ -195,178 +196,12 @@ export default new Vuex.Store({
         }
         // end
       })()
-    },
-    homeChangeAppScrollTop ({commit}, data) {
-      let step = 1
-      console.log('state.appScrollTop', this.state.appScrollTop)
-      console.log('data', data)
-      let vm = this;
-      (function smoothDown () {
-        if (vm.state.appDom.scrollTop < data) {
-          vm.state.appDom.scrollTop += step
-          setTimeout(smoothDown, 5)
-        } else if (vm.state.appDom.scrollTop > data) {
-          vm.state.appDom.scrollTop -= step
-          setTimeout(smoothDown, 5)
-        } else if (vm.state.appDom.scrollTop === data) {
-          vm.state.appDom.scrollTop = data
-        }
-      })()
-    },
-    homeItemScroll ({commit}, data) {
-      let homeItemList = this.state.homeItemListTop
-      let beforeScrollTop = data
-      let newScrollTop = this.state.appScrollTop
-      let upFlag = false
-      let downFlag = false
-      // console.log('beforeScrollTop', beforeScrollTop)
-      // console.log('newScrollTop', newScrollTop)
-      let vm = this
-      if (beforeScrollTop < newScrollTop) {
-        upFlag = true
-        // this.state.appOverflow = 'hidden'
-        // console.log('向上滚动')
-        if (newScrollTop < homeItemList[1].topNum) {
-          (function smoothDown () {
-            if (vm.state.appDom.scrollTop < homeItemList[1].topNum) {
-              vm.state.appDom.scrollTop += 1
-              setTimeout(smoothDown, 30)
-            } else if (vm.state.appDom.scrollTop === homeItemList[1].topNum) {
-              clearTimeout(smoothDown)
-              vm.state.appDom.scrollTop = homeItemList[1].topNum
-            }
-          })()
-          setTimeout(function () {
-            vm.state.appOverflow = 'auto'
-          }, 1000)
-        } else if (newScrollTop > homeItemList[1].topNum && newScrollTop < homeItemList[2].topNum) {
-          (function smoothDown () {
-            if (vm.state.appDom.scrollTop < homeItemList[2].topNum) {
-              vm.state.appDom.scrollTop += 1
-              setTimeout(smoothDown, 30)
-            } else if (vm.state.appDom.scrollTop === homeItemList[2].topNum) {
-              clearTimeout(smoothDown)
-              vm.state.appDom.scrollTop = homeItemList[2].topNum
-            }
-          })()
-          setTimeout(function () {
-            vm.state.appOverflow = 'auto'
-          }, 1000)
-        } else if (newScrollTop > homeItemList[2].topNum && newScrollTop < homeItemList[3].topNum) {
-          (function smoothDown () {
-            if (vm.state.appDom.scrollTop < homeItemList[3].topNum) {
-              vm.state.appDom.scrollTop += 1
-              setTimeout(smoothDown, 30)
-            } else if (vm.state.appDom.scrollTop === homeItemList[3].topNum) {
-              clearTimeout(smoothDown)
-              vm.state.appDom.scrollTop = homeItemList[3].topNum
-            }
-          })()
-          setTimeout(function () {
-            vm.state.appOverflow = 'auto'
-          }, 1000)
-        } else if (newScrollTop > homeItemList[3].topNum && newScrollTop < homeItemList[4].topNum) {
-          (function smoothDown () {
-            if (vm.state.appDom.scrollTop < homeItemList[4].topNum) {
-              vm.state.appDom.scrollTop += 1
-              setTimeout(smoothDown, 30)
-            } else if (vm.state.appDom.scrollTop === homeItemList[4].topNum) {
-              clearTimeout(smoothDown)
-              vm.state.appDom.scrollTop = homeItemList[4].topNum
-            }
-          })()
-          setTimeout(function () {
-            vm.state.appOverflow = 'auto'
-          }, 1000)
-        }
-      } else if (beforeScrollTop > newScrollTop) {
-        downFlag = true
-        // this.state.appOverflow = 'hidden'
-        if (newScrollTop > homeItemList[3].topNum && newScrollTop < homeItemList[4].topNum) {
-          (function smoothDown () {
-            if (vm.state.appDom.scrollTop > homeItemList[3].topNum) {
-              vm.state.appDom.scrollTop -= 1
-              setTimeout(smoothDown, 30)
-            } else if (vm.state.appDom.scrollTop === homeItemList[3].topNum) {
-              clearTimeout(smoothDown)
-              vm.state.appDom.scrollTop = homeItemList[3].topNum
-            }
-          })()
-          setTimeout(function () {
-            vm.state.appOverflow = 'auto'
-          }, 1000)
-        } else if (newScrollTop > homeItemList[2].topNum && newScrollTop < homeItemList[3].topNum) {
-          (function smoothDown () {
-            if (vm.state.appDom.scrollTop > homeItemList[2].topNum) {
-              vm.state.appDom.scrollTop -= 1
-              setTimeout(smoothDown, 30)
-            } else if (vm.state.appDom.scrollTop === homeItemList[2].topNum) {
-              clearTimeout(smoothDown)
-              vm.state.appDom.scrollTop = homeItemList[2].topNum
-            }
-          })()
-          setTimeout(function () {
-            vm.state.appOverflow = 'auto'
-          }, 1000)
-        } else if (newScrollTop > homeItemList[1].topNum && newScrollTop < homeItemList[2].topNum) {
-          (function smoothDown () {
-            if (vm.state.appDom.scrollTop > homeItemList[1].topNum) {
-              vm.state.appDom.scrollTop -= 1
-              setTimeout(smoothDown, 30)
-            } else if (vm.state.appDom.scrollTop === homeItemList[1].topNum) {
-              clearTimeout(smoothDown)
-              vm.state.appDom.scrollTop = homeItemList[1].topNum
-            }
-          })()
-          setTimeout(function () {
-            vm.state.appOverflow = 'auto'
-          }, 1000)
-        } else if (newScrollTop > homeItemList[0].topNum && newScrollTop < homeItemList[1].topNum) {
-          (function smoothDown () {
-            if (vm.state.appDom.scrollTop > homeItemList[0].topNum) {
-              vm.state.appDom.scrollTop -= 1
-              setTimeout(smoothDown, 30)
-            } else if (vm.state.appDom.scrollTop === homeItemList[0].topNum) {
-              clearTimeout(smoothDown)
-              vm.state.appDom.scrollTop = homeItemList[0].topNum
-            }
-          })()
-          setTimeout(function () {
-            vm.state.appOverflow = 'auto'
-          }, 1000)
-        }
-      } else if (beforeScrollTop === newScrollTop) {
-        if (newScrollTop > 0 && newScrollTop < homeItemList[1].topNum) {
-          if (upFlag) {
-            this.state.appDom.scrollTop = homeItemList[1].topNum
-          } else if (downFlag) {
-            this.state.appDom.scrollTop = homeItemList[0].topNum
-          }
-        } else if (newScrollTop > homeItemList[1].topNum && newScrollTop < homeItemList[2].topNum) {
-          if (upFlag) {
-            this.state.appDom.scrollTop = homeItemList[2].topNum
-          } else if (downFlag) {
-            this.state.appDom.scrollTop = homeItemList[1].topNum
-          }
-        } else if (newScrollTop > homeItemList[2].topNum && newScrollTop < homeItemList[3].topNum) {
-          if (upFlag) {
-            this.state.appDom.scrollTop = homeItemList[3].topNum
-          } else if (downFlag) {
-            this.state.appDom.scrollTop = homeItemList[2].topNum
-          }
-        } else if (newScrollTop > homeItemList[3].topNum && newScrollTop < homeItemList[4].topNum) {
-          if (upFlag) {
-            this.state.appDom.scrollTop = homeItemList[4].topNum
-          } else if (downFlag) {
-            this.state.appDom.scrollTop = homeItemList[3].topNum
-          }
-        }
-      }
     }
   },
   modules: {
     summaryInfoStore,
     baseInfoStore,
-    publicStore
+    publicStore,
+    QMXStore
   }
 })

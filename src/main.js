@@ -5,13 +5,15 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import Vuex from 'vuex'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import store from './store/store'
 import promise from 'es6-promise'
 promise.polyfill()
 
 Vue.prototype.$ajax = axios
 Vue.config.productionTip = false
-
+Vue.use(ElementUI)
 Vue.use(Vuex)
 /* eslint-disable no-new */
 new Vue({

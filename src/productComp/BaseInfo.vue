@@ -50,8 +50,11 @@
             <span>身份证符合编码规则</span>
           </div>
           <div class="pL20">
-            <span :class="{ textRebBg: isIdNumberCheck ,textGreenBg: !isIdNumberCheck}">
-            {{ baseInfo.idNumberCheck }}
+            <span :class="{ textRebBg: isIdNumberCheck ,textGreenBg: !isIdNumberCheck}" v-if="baseInfo.idNumberCheck && baseInfo.idNumberCheck != ''">
+            {{ baseInfo.idNumberCheck}}
+            </span>
+            <span v-if="!baseInfo.idNumberCheck">
+              暂无此记录
             </span>
           </div>
         </div>
@@ -60,8 +63,11 @@
             <span>姓名与身份证匹配</span>
           </div>
           <div class="pL20" >
-            <span :class="{ textRebBg: isNameMatchIdNumber,textGreenBg: !isNameMatchIdNumber}">
+            <span :class="{ textRebBg: isNameMatchIdNumber,textGreenBg: !isNameMatchIdNumber}" v-if="baseInfo.nameMatchIdNumber && baseInfo.nameMatchIdNumber != ''">
             {{ baseInfo.nameMatchIdNumber || "——"}}
+            </span>
+            <span v-if="!baseInfo.nameMatchIdNumber">
+              暂无此记录
             </span>
           </div>
         </div>
@@ -83,7 +89,7 @@
             <span>运营商类别</span>
           </div>
           <div class="pL20">
-            <span>{{ telecomInfo.type }}</span>
+            <span>{{ telecomInfo.type || '暂无此记录'}}</span>
           </div>
         </div>
         <div class="flex detailList borderB">
@@ -93,14 +99,14 @@
           <div class="pL20 width18">
             <span v-if="telecomInfo.mobileOwnership === '' || telecomInfo.mobileOwnership === null">——</span>
             <span class="fontGreenColor" v-if="telecomInfo.mobileOwnership !== '' || telecomInfo.mobileOwnership !== null">
-              {{ telecomInfo.mobileOwnership }}
+              {{ telecomInfo.mobileOwnership || '暂无此记录'}}
             </span>
           </div>
           <div class="pR20 borderR width20 textR">
             <span>入网时长</span>
           </div>
           <div class="pL20">
-            <span>{{ telecomInfo.inTime }}</span>
+            <span>{{ telecomInfo.inTime || '暂无此记录'}}</span>
           </div>
         </div>
         <div class="flex detailList titleBg borderB">
@@ -108,14 +114,17 @@
             <span>在网状态</span>
           </div>
           <div class="pL20 width18">
-            <span>{{ telecomInfo.onLineStatus }}</span>
+            <span>{{ telecomInfo.onLineStatus || '暂无此记录'}}</span>
           </div>
           <div class="pR20 borderR width20 textR">
             <span>姓名与手机号匹配情况</span>
           </div>
           <div class="pL20">
-            <span :class="{ textRebBg: isNameMatchMobile ,textGreenBg: !isNameMatchMobile}">
-            {{ telecomInfo.nameMatchMobile }}
+            <span :class="{ textRebBg: isNameMatchMobile ,textGreenBg: !isNameMatchMobile}" v-if="telecomInfo.nameMatchMobile && telecomInfo.nameMatchMobile != '' ">
+            {{ telecomInfo.nameMatchMobile}}
+            </span>
+            <span v-if="!telecomInfo.nameMatchMobile">
+              暂无此记录
             </span>
           </div>
         </div>
@@ -167,21 +176,28 @@ export default {
       nameArry[1] = '*'
       this.baseInfo.name = nameArry.join('').replace(/,/g, '')
       // 修改背景色
-      if (this.baseInfo.idNumberCheck.indexOf('否') > -1) {
-        this.isIdNumberCheck = true
-      } else if (this.baseInfo.idNumberCheck.indexOf('是') > -1) {
-        this.isIdNumberCheck = false
+      if (this.baseInfo.idNumberCheck) {
+        if (this.baseInfo.idNumberCheck.indexOf('否') > -1) {
+          this.isIdNumberCheck = true
+        } else if (this.baseInfo.idNumberCheck.indexOf('是') > -1) {
+          this.isIdNumberCheck = false
+        }
       }
-      if (this.baseInfo.nameMatchIdNumber.indexOf('否') > -1) {
-        this.isNameMatchIdNumber = true
-      } else if (this.baseInfo.nameMatchIdNumber.indexOf('是') > -1) {
-        this.isNameMatchIdNumber = false
+      if (this.baseInfo.nameMatchIdNumber) {
+        if (this.baseInfo.nameMatchIdNumber.indexOf('否') > -1) {
+          this.isNameMatchIdNumber = true
+        } else if (this.baseInfo.nameMatchIdNumber.indexOf('是') > -1) {
+          this.isNameMatchIdNumber = false
+        }
       }
-      if (this.baseInfo.idNumberCheck.indexOf('否') > -1) {
-        this.isNameMatchMobile = true
-      } else if (this.telecomInfo.nameMatchMobile.indexOf('是') > -1) {
-        this.isNameMatchMobile = false
+      if (this.telecomInfo.nameMatchMobile) {
+        if (this.telecomInfo.nameMatchMobile.indexOf('否') > -1) {
+          this.isNameMatchMobile = true
+        } else if (this.telecomInfo.nameMatchMobile.indexOf('是') > -1) {
+          this.isNameMatchMobile = false
+        }
       }
+
     }
   }
 }

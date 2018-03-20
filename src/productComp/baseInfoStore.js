@@ -11,7 +11,7 @@ export default new Vuex.Store({
       age: '36',
       sex: '男',
       idNumberOwnership: '宁夏回族自治区银南地区青铜峡市',
-      idNumberCheck: '否',
+      idNumberCheck: '是',
       nameMatchIdNumber: '否'
     },
     // 运营商信息

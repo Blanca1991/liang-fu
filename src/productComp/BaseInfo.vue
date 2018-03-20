@@ -97,9 +97,9 @@
             <span>号码归属地</span>
           </div>
           <div class="pL20 width18">
-            <span v-if="telecomInfo.mobileOwnership === '' || telecomInfo.mobileOwnership === null">——</span>
-            <span class="fontGreenColor" v-if="telecomInfo.mobileOwnership !== '' || telecomInfo.mobileOwnership !== null">
-              {{ telecomInfo.mobileOwnership || '暂无此记录'}}
+            <span v-if="telecomInfo.mobileOwnership === '' || telecomInfo.mobileOwnership === null">暂无此记录</span>
+            <span class="fontGreenColor" v-if="telecomInfo.mobileOwnership ">
+              {{ telecomInfo.mobileOwnership }}
             </span>
           </div>
           <div class="pR20 borderR width20 textR">

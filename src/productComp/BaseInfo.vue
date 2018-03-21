@@ -33,7 +33,7 @@
             <span>身份证所在地</span>
           </div>
           <div class="pL20">
-            <span v-if="baseInfo.idNumberOwnership === '' || baseInfo.idNumberOwnership === null" >——</span>
+            <span v-if="baseInfo.idNumberOwnership === '' || baseInfo.idNumberOwnership === null" class="textRebBg">查询无结果</span>
             <span class="fontGreenColor" v-if="baseInfo.idNumberOwnership !== '' || baseInfo.idNumberOwnership !== null">
               {{ baseInfo.idNumberOwnership }}
             </span>
@@ -53,8 +53,8 @@
             <span :class="{ textRebBg: isIdNumberCheck ,textGreenBg: !isIdNumberCheck}" v-if="baseInfo.idNumberCheck && baseInfo.idNumberCheck != ''">
             {{ baseInfo.idNumberCheck}}
             </span>
-            <span v-if="!baseInfo.idNumberCheck">
-              暂无此记录
+            <span class="textRebBg" v-if="!baseInfo.idNumberCheck">
+              查询无结果
             </span>
           </div>
         </div>
@@ -66,8 +66,8 @@
             <span :class="{ textRebBg: isNameMatchIdNumber,textGreenBg: !isNameMatchIdNumber}" v-if="baseInfo.nameMatchIdNumber && baseInfo.nameMatchIdNumber != ''">
             {{ baseInfo.nameMatchIdNumber || "——"}}
             </span>
-            <span v-if="!baseInfo.nameMatchIdNumber">
-              暂无此记录
+            <span class="textRebBg"  v-if="!baseInfo.nameMatchIdNumber">
+              查询无结果
             </span>
           </div>
         </div>
@@ -89,7 +89,8 @@
             <span>运营商类别</span>
           </div>
           <div class="pL20">
-            <span>{{ telecomInfo.type || '暂无此记录'}}</span>
+            <span v-if="telecomInfo.type">{{ telecomInfo.type }}</span>
+            <span v-if="!telecomInfo.type" class="textRebBg">查询无结果</span>
           </div>
         </div>
         <div class="flex detailList borderB">
@@ -97,7 +98,7 @@
             <span>号码归属地</span>
           </div>
           <div class="pL20 width18">
-            <span v-if="telecomInfo.mobileOwnership === '' || telecomInfo.mobileOwnership === null">暂无此记录</span>
+            <span v-if="telecomInfo.mobileOwnership === '' || telecomInfo.mobileOwnership === null" class="textRebBg" >查询无结果</span>
             <span class="fontGreenColor" v-if="telecomInfo.mobileOwnership ">
               {{ telecomInfo.mobileOwnership }}
             </span>
@@ -106,7 +107,8 @@
             <span>入网时长</span>
           </div>
           <div class="pL20">
-            <span>{{ telecomInfo.inTime || '暂无此记录'}}</span>
+            <span v-if="telecomInfo.inTime">{{ telecomInfo.inTime }}</span>
+            <span class="textRebBg" v-if="!telecomInfo.inTime">查询无结果</span>
           </div>
         </div>
         <div class="flex detailList titleBg borderB">
@@ -114,7 +116,8 @@
             <span>在网状态</span>
           </div>
           <div class="pL20 width18">
-            <span>{{ telecomInfo.onLineStatus || '暂无此记录'}}</span>
+            <span v-if="telecomInfo.onLineStatus">{{ telecomInfo.onLineStatus}}</span>
+            <span class="textRebBg" v-if="!telecomInfo.onLineStatus">查询无结果</span>
           </div>
           <div class="pR20 borderR width20 textR">
             <span>姓名与手机号匹配情况</span>
@@ -123,8 +126,8 @@
             <span :class="{ textRebBg: isNameMatchMobile ,textGreenBg: !isNameMatchMobile}" v-if="telecomInfo.nameMatchMobile && telecomInfo.nameMatchMobile != '' ">
             {{ telecomInfo.nameMatchMobile}}
             </span>
-            <span v-if="!telecomInfo.nameMatchMobile">
-              暂无此记录
+            <span v-if="!telecomInfo.nameMatchMobile" class="textRebBg" >
+              查询无结果
             </span>
           </div>
         </div>
@@ -188,6 +191,8 @@ export default {
           this.isNameMatchIdNumber = true
         } else if (this.baseInfo.nameMatchIdNumber.indexOf('是') > -1) {
           this.isNameMatchIdNumber = false
+        } else {
+          this.isNameMatchIdNumber = true
         }
       }
       if (this.telecomInfo.nameMatchMobile) {

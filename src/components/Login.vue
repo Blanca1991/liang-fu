@@ -73,19 +73,23 @@ export default {
       }
       const res = await http.post(api.login, params)
       console.log(res)
-      if (res.data.success && res.data.success === 'true') {
-        // console.log('loginSuccess')
-        this.$store.commit('HIDELOGIN')// 隐藏登录框
-        this.$store.state.isLoginNav = false// 切换loginNav的内容
-        this.$store.commit('GETUSERNAME', this.userName)// 给store中的username赋值
-        localStorage.setItem('userName', this.userName)
-        localStorage.setItem('LFZXtoken', res.data.token)
-        localStorage.setItem('LFZXLOGINTIME',Date())
-        this.userName = ''
-        this.passWord = ''
+      if (res.status === 200) {
+        if (res.data.success && res.data.success === 'true') {
+          // console.log('loginSuccess')
+          this.$store.commit('HIDELOGIN')// 隐藏登录框
+          this.$store.state.isLoginNav = false// 切换loginNav的内容
+          this.$store.commit('GETUSERNAME', this.userName)// 给store中的username赋值
+          localStorage.setItem('userName', this.userName)
+          localStorage.setItem('LFZXtoken', res.data.token)
+          localStorage.setItem('LFZXLOGINTIME',Date())
+          this.userName = ''
+          this.passWord = ''
+        } else {
+          this.pointOutFun(res.data.msg)
+          this.$store.state.isLoginNav = true// 切换loginNav的内容
+        }
       } else {
-        this.pointOutFun(res.data.msg)
-        this.$store.state.isLoginNav = true// 切换loginNav的内容
+        this.pointOutFun('网络异常,请稍后重试')
       }
     },
     pointOutFun (data) {

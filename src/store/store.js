@@ -161,6 +161,12 @@ export default new Vuex.Store({
     },
     CHANGEAPPWIDTH (state, data) {
       this.state.appWidth = data
+    },
+    SHOWQMXSUBTIPS (state) {
+      this.state.QMXStore.isQmxSubTips = true
+    },
+    HIDEQMXSUBTIPS (state) {
+      this.state.QMXStore.isQmxSubTips = false
     }
   },
   actions: {

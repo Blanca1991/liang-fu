@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isQmxSubTips: false, // 企明星提交订单的成功提示弹框
     // 企明星订单list
     orderList: [
       {
@@ -89,6 +90,8 @@ export default new Vuex.Store({
       }
     ]
   },
-  mutations: {},
-  actions: {}
+  mutations: {
+  },
+  actions: {
+  }
 })

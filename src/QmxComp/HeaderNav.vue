@@ -1,4 +1,4 @@
-<!-- product引用组件 基本身份信息 + 运营商信息 wuxiaobo-->
+<!-- productQMX 引用组件 消息通知和我的订单 wuxiaobo-->
 <template>
   <div class="minWidthBox">
     <div class="header flex">
@@ -100,12 +100,23 @@ export default {
       }
     },
     isMsgShowFun () {
-      this.isMsgShow = !this.isMsgShow
+      if (localStorage.getItem('userName')) {
+        this.isMsgShow = !this.isMsgShow
+      } else {
+        this.$store.dispatch('showPoint', '请先登录')
+      }
     },
     goAMXOrder () {
       // 跳转到我的订单页面
-      // window.open(window.location.href.split('#')[0] + '#/' + 'ProductQMXOrder.html')
-      this.$router.push({ name: 'ProductQMXOrder' })
+      if (window.location.hash != '#/ProductQMXOrder.html') {
+        if (localStorage.getItem('userName')) {
+          window.open(window.location.href.split('#')[0] + '#/' + 'ProductQMXOrder.html')
+        } else {
+          this.$store.dispatch('showPoint', '请先登录')
+        }
+      } else {
+        window.location.hash = '#/ProductQMXOrder.html'
+      }
     }
   },
   components: {

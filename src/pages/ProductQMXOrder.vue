@@ -12,11 +12,11 @@
           <span class="textBlank">
             编<span class="Blank"></span>号
           </span>
-          <input type="text" name="" value="">
+          <input type="text" name="" v-model="searchCode">
         </div>
         <div class="">
           <span >被调企业</span>
-          <input type="text" name="" value="">
+          <input type="text" name="" v-model="searchCompany">
         </div>
         <div class="">
           <span class="queryBtn">查询</span>
@@ -99,10 +99,9 @@
 </template>
 
 <script>
-// import myCanvas from 'vue-atom-canvas'
-// import http from '@/utils/http'
-// import api from '@/utils/api'
-// import service from '@/service'
+import http from '@/utils/http'
+import api from '@/utils/api'
+import service from '@/service'
 import {mapState} from 'vuex'
 import PointOut from '@/components/PointOut'
 import Loading from '@/components/Loading'
@@ -113,7 +112,9 @@ export default {
   name: 'Product',
   data () {
     return {
-      isLoading: false
+      isLoading: false,
+      searchCompany: '', // 被查询的企业编号
+      searchCode: '' // 被查询的企业名称
     }
   },
   computed: {
@@ -138,6 +139,8 @@ export default {
     },
     resetFun () {
       // 重置输入框
+      this.searchCompany = '' // 被查询的企业编号
+      this.searchCode = ''
     }
   },
   components: {

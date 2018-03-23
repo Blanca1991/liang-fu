@@ -4,19 +4,21 @@
     <HeaderNav />
     <div class="myCanvasBox">
       <!-- <myCanvas :dotsNum="50" :isColor="false" /> -->
-      <canvas id="Mycanvas" style="background: rgba(255,255,155,0);"></canvas>
+      <div class="CanvasBox">
+        <canvas id="Mycanvas" style="background: rgba(255,255,155,0);"></canvas>
+      </div>
       <div class="topTextBox">
         <div class="font36 colorWhite">
           下报告，查企业，就上企明星！
         </div>
         <div class="font14">
-          <input class="searchInput font14" type="text" name="" value="" placeholder="请输入完整的企业名/注册号/统一社会信用代号">
+          <input class="searchInput font14" type="text" v-model="searchValue" placeholder="请输入完整的企业名/注册号/统一社会信用代号">
         </div>
         <div class="colorWhite font12 yangli pointer">
           点击查看量富征信报告样例 > >
         </div>
         <div class="submitBox">
-          <span class="submit colorWhite font18 pointer">提交</span>
+          <span class="submit colorWhite font18 pointer" @click="submitFun">提交</span>
         </div>
       </div>
     </div>
@@ -41,19 +43,19 @@
       </div>
     </div>
     <div class="colorWhite TextBottom">
-      量富征信管理有限公司版权所有©沪ICP备18002309号-1
+      <span>量富征信管理有限公司版权所有©沪ICP备18002309号-1</span>
     </div>
     <Login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
     <Loading v-show="isLoading"/>
+    <OrderOver v-show="isQmxSubTips" />
   </div>
 </template>
 
 <script>
-// import myCanvas from 'vue-atom-canvas'
-// import http from '@/utils/http'
-// import api from '@/utils/api'
-// import service from '@/service'
+import http from '@/utils/http'
+import api from '@/utils/api'
+import service from '@/service'
 import {mapState} from 'vuex'
 import LogoBg from '@/components/LogoBg'
 import PointOut from '@/components/PointOut'
@@ -61,6 +63,7 @@ import Loading from '@/components/Loading'
 import LoginNav from '@/components/LoginNav'
 import HeaderNav from '@/QmxComp/HeaderNav'
 import Login from '@/components/Login'
+import OrderOver from '@/QmxComp/OrderOver'
 import news01 from '@/images/QMX/news01.png'
 import news02 from '@/images/QMX/news02.png'
 import news03 from '@/images/QMX/news03.png'
@@ -69,6 +72,7 @@ export default {
   name: 'Product',
   data () {
     return {
+      searchValue: '', // 查询的企业代码或者企业的名称
       news01: news01,
       news02: news02,
       news03: news03,
@@ -121,7 +125,8 @@ export default {
     ...mapState({
       // 获取数据
       pointShow: state => state.pointShow,
-      isLogin: state => state.isLogin
+      isLogin: state => state.isLogin,
+      isQmxSubTips: state => state.QMXStore.isQmxSubTips
     })
   },
   mounted () {
@@ -133,8 +138,47 @@ export default {
       // 初始化
       this.canvasFun()
     },
-    isMsgShowFun () {
-      this.isMsgShow = !this.isMsgShow
+    submitFun () {
+      if (localStorage.getItem('userName')) {
+        if (this.searchValue) {
+          this.fetchSubmit()
+        } else {
+          this.$store.dispatch('showPoint', '请输入企业名/注册名/统一社会信用代号')
+        }
+      } else {
+        this.$store.dispatch('showPoint', '请先登录')
+      }
+    },
+    fetchSubmit: async function () {
+      // 接口请求 ———— 查询企业订单提交
+      this.isLoading = true
+      let params = {
+        body: {
+          companyName: this.searchValue,
+          companyCode: this.searchValue
+        },
+        header: {
+          reqFlag: '0',
+          source: '',
+          userName: localStorage.getItem('userName'),
+          reqDateTime: service.getNowFormatDate(Date()),
+          reqTransID: '0990000sss091111'
+        }
+      }
+      console.log(params)
+      const res = await http.post(api.searchSubmit, params)
+      console.log(res)
+      if (res.status == 200) {
+        this.isLoading = false
+        if (res.data.body.success != 'false') {
+          this.$store.commit('SHOWQMXSUBTIPS')
+        } else {
+          this.$store.dispatch('showPoint', res.data.body.errorMsg)
+        }
+      } else {
+        this.isLoading = false
+        this.$store.dispatch('showPoint', '网络异常请稍后再试')
+      }
     },
     canvasFun () {
       // canvas 的设置
@@ -242,10 +286,6 @@ export default {
       draw()
     }, 16)
       // end
-    },
-    pointOutFun (data) {
-      // 事件调用 -- 调用提示层
-      this.$store.dispatch('showPoint', data)
     }
   },
   components: {
@@ -255,7 +295,8 @@ export default {
     Login,
     PointOut,
     Loading,
-    HeaderNav
+    HeaderNav,
+    OrderOver
   }
 }
 </script>

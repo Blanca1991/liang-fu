@@ -5,6 +5,5 @@ export default {
   getArticleInfoPage: 'http://portal.mis.liangfuzhengxin.com/portal/static/getFirstInfo', // 获取新闻资讯
   getRecruitInfo: 'http://portal.mis.liangfuzhengxin.com/portal/static/getRecruitInfo', // 招聘信息
   antifraud: 'credit-service/v2/xinghujiaAntiFraud', // 星护甲查询接口
-  checkToken: 'credit-service/v2/checkToken', // 检查token接口
-  searchSubmit: 'credit-service/v2/benchMark', // 企明星的 查询企业订单提交的接口
+  checkToken: 'credit-service/v2/checkToken' // 检查token接口
 }

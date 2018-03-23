@@ -6,6 +6,30 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isQmxSubTips: false, // 企明星提交订单的成功提示弹框
+    // 消息通知列表
+    messageList: [
+      {
+        time: '2018-01-20',
+        message: '消息1111111111',
+        isRead: true
+      },
+      {
+        time: '2018-01-20',
+        message: '消息2222222222',
+        isRead: false
+      },
+      {
+        time: '2018-01-20',
+        message: '消息3333333333',
+        isRead: false
+      },
+      {
+        time: '2018-01-20',
+        message: '消息4444444444',
+        isRead: false
+      }
+    ],
+    messageNum: 0, // 消息列表未读消息
     // 企明星订单list
     orderList: [
       {

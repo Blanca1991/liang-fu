@@ -10,18 +10,18 @@
         <div class="msgBox">
           <div class="font16 pointer positionR" @click="isMsgShowFun" :class="{colorBlue: isMsgShow === true }">
             <span>消息通知</span>
-            <span class="msgNumBox" v-if="msgNum && msgNum > 0">
+            <span class="msgNumBox" v-if="messageNum && messageNum > 0">
               <span class="msgNum">
-                {{ msgNum }}
+                {{ messageNum }}
               </span>
             </span>
           </div>
           <div class="msgPointBox font14 textL" :class="{ismsgPointBox : isMsgShow === true}" v-if="isMsgShow">
             <div class="pL20 fontColor msgTip">
-              <span>您有{{ msgNum }}条未读消息</span>
+              <span>您有{{ messageNum }}条未读消息</span>
               <i class="triangle"></i>
             </div>
-            <div class="pL20 msgItem flex" v-for="item in itemList">
+            <div class="pL20 msgItem flex" v-for="item in messageList">
               <div class="">
                 <img :src="icon01" alt="itemImg" class="itemImg" v-if="item.isRead">
                 <img :src="icon02" alt="itemImg" class="itemImg" v-if="!item.isRead">
@@ -50,42 +50,26 @@ import icon01 from '@/images/QMX/icon01.png'
 import icon02 from '@/images/QMX/icon02.png'
 import LogoBg from '@/components/LogoBg'
 import LoginNav from '@/components/LoginNav'
+import {mapState} from 'vuex'
 
 export default {
   name: 'homeBigBg',
   data () {
     return {
-      msgNum: 2, //未读消息
       bgHides: false, // 星护甲logo 显示和隐藏
       icon01: icon01,
       icon02: icon02,
       isBule: false,
-      isMsgShow: false, // 控制消息列表的显示
-      itemList: [
-        {
-          time: '2018-01-20',
-          message: '消息1111111111',
-          isRead: true
-        },
-        {
-          time: '2018-01-20',
-          message: '消息2222222222',
-          isRead: false
-        },
-        {
-          time: '2018-01-20',
-          message: '消息3333333333',
-          isRead: false
-        },
-        {
-          time: '2018-01-20',
-          message: '消息4444444444',
-          isRead: false
-        }
-      ]
+      isMsgShow: false // 控制消息列表的显示
     }
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      // 获取数据
+      messageList: state => state.QMXStore.messageList,
+      messageNum: state => state.QMXStore.messageNum
+    })
+  },
   watch: {},
   mounted () {
     // 钩子函数

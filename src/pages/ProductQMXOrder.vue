@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="orderCenter">
+    <div class="orderCenter" v-if="!isOrderEmpty">
       <div class="orderListBoxWarp">
         <div class="orderListBox">
           <div class="orderListTitle colorWhite flex font12">
@@ -89,6 +89,7 @@
         </el-pagination>
       </div>
     </div>
+    <OrderEmpty v-if="isOrderEmpty"/>
     <div class="colorWhite TextBottom">
       量富征信管理有限公司版权所有©沪ICP备18002309号-1
     </div>
@@ -107,11 +108,13 @@ import PointOut from '@/components/PointOut'
 import Loading from '@/components/Loading'
 import Login from '@/components/Login'
 import HeaderNav from '@/QmxComp/HeaderNav'
+import OrderEmpty from '@/QmxComp/OrderEmpty'
 
 export default {
   name: 'Product',
   data () {
     return {
+      isOrderEmpty: true, // true 为空订单 false为订单列表
       isLoading: false,
       searchCompany: '', // 被查询的企业编号
       searchCode: '' // 被查询的企业名称
@@ -148,7 +151,8 @@ export default {
     Login,
     PointOut,
     Loading,
-    HeaderNav
+    HeaderNav,
+    OrderEmpty
   }
 }
 </script>

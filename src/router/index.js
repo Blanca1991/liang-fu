@@ -68,17 +68,16 @@ export default new Router({
       path: '/UserInfo.html',
       name: 'UserInfo',
       component: UserInfo
+    },
+    {
+      path: '/ProductQMX.html',
+      name: 'ProductQMX',
+      component: ProductQMX
+    },
+    {
+      path: '/ProductQMXOrder.html',
+      name: 'ProductQMXOrder',
+      component: ProductQMXOrder
     }
-    // ,
-    // {
-    //   path: '/ProductQMX.html',
-    //   name: 'ProductQMX',
-    //   component: ProductQMX
-    // },
-    // {
-    //   path: '/ProductQMXOrder.html',
-    //   name: 'ProductQMXOrder',
-    //   component: ProductQMXOrder
-    // }
   ]
 })

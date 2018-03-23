@@ -64,7 +64,10 @@
           </div>
           <div class="pL20" >
             <span :class="{ textRebBg: isNameMatchIdNumber,textGreenBg: !isNameMatchIdNumber}" v-if="baseInfo.nameMatchIdNumber && baseInfo.nameMatchIdNumber != ''">
-            {{ baseInfo.nameMatchIdNumber || "——"}}
+            {{ baseInfo.nameMatchIdNumber }}
+            </span>
+            <span class="textRebBg"  v-if="!baseInfo.nameMatchIdNumber">
+              查询无结果
             </span>
             <span class="textRebBg"  v-if="!baseInfo.nameMatchIdNumber">
               查询无结果

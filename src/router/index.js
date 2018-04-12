@@ -11,6 +11,7 @@ import AntiFraud from '@/pages/AntiFraud'
 import UserInfo from '@/pages/UserInfo'
 import ProductQMX from '@/pages/ProductQMX'
 import ProductQMXOrder from '@/pages/ProductQMXOrder'
+import QmxPdf from '@/QmxComp/QmxPdf'
 
 import Homefull from '@/pages/HomeFullpage'
 
@@ -78,6 +79,11 @@ export default new Router({
       path: '/ProductQMXOrder.html',
       name: 'ProductQMXOrder',
       component: ProductQMXOrder
+    },
+    {
+      path: '/QmxPdf.html',
+      name: 'QmxPdf',
+      component: QmxPdf
     }
   ]
 })

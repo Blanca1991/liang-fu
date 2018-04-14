@@ -1,6 +1,6 @@
 <!-- 产品适用 wuxiaobo-->
 <template>
-  <div class="ProductWarp minWidthBox" >
+  <div class="ProductWarp minWidthBox" onselectstart="return false">
     <div class="ProductBox" id='ProductBox' >
       <div class="headerBox">
         <div class="header minWidthBox">

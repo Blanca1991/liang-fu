@@ -69,9 +69,6 @@
             <span class="textRebBg"  v-if="!baseInfo.nameMatchIdNumber">
               查询无结果
             </span>
-            <span class="textRebBg"  v-if="!baseInfo.nameMatchIdNumber">
-              查询无结果
-            </span>
           </div>
         </div>
       </div>

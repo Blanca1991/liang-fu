@@ -9,110 +9,30 @@ export default new Vuex.Store({
     // 消息通知列表
     messageList: [
       {
-        time: '2018-01-20',
-        message: '消息1111111111',
-        isRead: true
-      },
-      {
-        time: '2018-01-20',
-        message: '消息2222222222',
-        isRead: false
-      },
-      {
-        time: '2018-01-20',
-        message: '消息3333333333',
-        isRead: false
-      },
-      {
-        time: '2018-01-20',
-        message: '消息4444444444',
-        isRead: false
+        companyCode: '',
+　　　　　commitTime: '',
+　　　　　companyName: '',
+　　　　　legalPerson: '',
+　　　　　visited: '', // 0已读 1未读 messageList 查看和未查看
+　　　　　orderCode: '',
+　　　　　status: ''   // 订单状态（0：审批中，1：获取数据成功，2：获取数据失败，3：部分成功）
       }
     ],
-    messageNum: 0, // 消息列表未读消息
+    noReadNum: 0, // 消息列表未读消息
     // 企明星订单list
     orderList: [
       {
-        orderNo: '127892982737',
-        company: '量富征信管理有限公司',
-        num: '127892982737',
-        name: '张张',
-        orderDate: '2017-01-01',
-        orderState: '完成'
-      },
-      {
-        orderNo: '127892982737',
-        company: '量富征信管理有限公司',
-        num: '127892982737',
-        name: '张张',
-        orderDate: '2017-01-01',
-        orderState: '完成'
-      },
-      {
-        orderNo: '127892982737',
-        company: '量富征信管理有限公司',
-        num: '127892982737',
-        name: '张张',
-        orderDate: '2017-01-01',
-        orderState: '完成'
-      },
-      {
-        orderNo: '127892982737',
-        company: '量富征信管理有限公司',
-        num: '127892982737',
-        name: '张张',
-        orderDate: '2017-01-01',
-        orderState: '完成'
-      },
-      {
-        orderNo: '127892982737',
-        company: '量富征信管理有限公司',
-        num: '127892982737',
-        name: '张张',
-        orderDate: '2017-01-01',
-        orderState: '完成'
-      },
-      {
-        orderNo: '127892982737',
-        company: '量富征信管理有限公司',
-        num: '127892982737',
-        name: '张张',
-        orderDate: '2017-01-01',
-        orderState: '完成'
-      },
-      {
-        orderNo: '127892982737',
-        company: '量富征信管理有限公司',
-        num: '127892982737',
-        name: '张张',
-        orderDate: '2017-01-01',
-        orderState: '完成'
-      },
-      {
-        orderNo: '127892982737',
-        company: '量富征信管理有限公司',
-        num: '127892982737',
-        name: '张张',
-        orderDate: '2017-01-01',
-        orderState: '完成'
-      },
-      {
-        orderNo: '127892982737',
-        company: '量富征信管理有限公司',
-        num: '127892982737',
-        name: '张张',
-        orderDate: '2017-01-01',
-        orderState: '完成'
-      },
-      {
-        orderNo: '127892982737',
-        company: '量富征信管理有限公司',
-        num: '127892982737',
-        name: '张张',
-        orderDate: '2017-01-01',
-        orderState: '完成'
+        companyCode: '91110108551385082Q',
+　　　　　commitTime: '2018-04-12',
+　　　　　companyName: '八十米八股份有限公司',
+　　　　　legalPerson: '雷军',
+　　　　　visited: '1', // 已读 未读 messageList 查看和未查看
+　　　　　orderCode: 'FOSUN-20180412173857714-FAN-379090',
+　　　　　status: '1'   // 订单状态（0：审批中，1：获取数据成功，2：获取数据失败，3：部分成功）
       }
-    ]
+    ],
+    totalResult: null, // 订单信息的总条数
+    pageSizeNum: 10 , // 分页中 每条展示设置默认为10
   },
   mutations: {
   },

@@ -1,6 +1,6 @@
 <!-- 产品适用 wuxiaobo-->
 <template>
-  <div class="ProductWarp minWidthBox" >
+  <div class="ProductWarp minWidthBox minHight" >
     <HeaderNav />
     <div class="myCanvasBox">
       <!-- <myCanvas :dotsNum="50" :isColor="false" /> -->
@@ -14,7 +14,7 @@
         <div class="font14">
           <input class="searchInput font14" type="text" v-model="searchValue" placeholder="请输入完整的企业名/注册号/统一社会信用代号">
         </div>
-        <div class="colorWhite font12 yangli pointer">
+        <div class="colorWhite font12 yangli pointer" @click="goPdf">
           点击查看量富征信报告样例 > >
         </div>
         <div class="submitBox">
@@ -149,6 +149,10 @@ export default {
         this.$store.dispatch('showPoint', '请先登录')
       }
     },
+    goPdf () {
+      // 跳转到Pdf 查看pdf样例
+      this.$router.push({ name: 'QmxPdf' })
+    },
     fetchSubmit: async function () {
       // 接口请求 ———— 查询企业订单提交
       this.isLoading = true
@@ -240,7 +244,7 @@ export default {
   		function init () {
   			circleArr = []
   			for (var i = 0; i < POINT; i++) {
-  				circleArr.push(drawCricle(context, num(windowWidth), num(400), num(15, 2), num(10, -10)/40, num(10, -10)/40));
+  				circleArr.push(drawCricle(context, num(windowWidth), num(400), num(5, 2), num(10, -10)/40, num(10, -10)/40));
   			}
   			draw()
   		}
@@ -308,7 +312,7 @@ export default {
 .colorWhite{color: #fff;}
 .topTextBox{ position: absolute; top: 50%;left: 50%;height: 250px;width: 600px;
   transform: translateX(-50%) translateY(-50%);}
-.searchInput{width: 400px;height: 40px;background: #fafafa;text-indent: 12px;margin-top: 30px;
+.searchInput{width: 600px;height: 46px;background: #fafafa;text-indent: 12px;margin-top: 30px;
   border-radius: 5px;border:#ccc solid 1px;outline:medium;}
 ::-webkit-input-placeholder{color: #999;}
 .yangli{margin-top: 20px;}
@@ -326,5 +330,7 @@ export default {
 .newsMsg{color: #999;}
 .newsItem img{width: 100%;height: auto;}
 .newsTitle{color: #0d4492;margin: 10px 0;}
-.TextBottom{background: #2d3237;height: 58;line-height: 58px;margin-top: 20px;}
+.TextBottom{background: #2d3237;height: 58;line-height: 58px;position: absolute;bottom: 0;
+  width: 100%;min-width: 1200px;}
+.minHight{position: relative;min-height: 950px;height: 100%;}
 </style>

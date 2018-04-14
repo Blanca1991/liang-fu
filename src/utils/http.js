@@ -50,7 +50,10 @@ export default {
       timeout: 10000,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type': 'application/json;charset=UTF-8'
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Cache-Control': 'no-cache ,must-revalidate ,no-store',
+        'Pragma': 'no-cache',
+        'Expires': '0'
       }
     }).then(
       (response) => {

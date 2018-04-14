@@ -1,6 +1,6 @@
 <!-- 产品适用 wuxiaobo-->
 <template>
-  <div class="ProductWarp minWidthBox" >
+  <div class="ProductWarp minWidthBox minHight"  >
     <HeaderNav />
     <div class="orderTop">
       <div class="flex alignCenter">
@@ -19,18 +19,18 @@
           <input type="text" name="" v-model="searchCompany">
         </div>
         <div class="">
-          <span class="queryBtn">查询</span>
+          <span class="queryBtn pointer" @click="getOrder">查询</span>
         </div>
         <div class="">
-          <span class="resetBtn" @click="resetFun">重置</span>
+          <span class="resetBtn pointer" @click="resetFun">重置</span>
         </div>
       </div>
     </div>
-    <div class="orderCenter" v-if="!isOrderEmpty">
+    <div class="orderCenter" v-if="orderList">
       <div class="orderListBoxWarp">
         <div class="orderListBox">
           <div class="orderListTitle colorWhite flex font12">
-            <div class="titleItem width14">
+            <div class="titleItem width35">
               编号
             </div>
             <div class="titleItem width30">
@@ -52,28 +52,32 @@
               操作
             </div>
           </div>
-          <div class="orderList font12">
+          <div class="orderList font12" >
             <div class="orderListItem flex borderB" v-for="item in orderList">
-              <div class="titleItem width14">
-                {{ item.orderNo }}
+              <div class="titleItem width35">
+                {{ item.orderCode || '——'}}
               </div>
               <div class="titleItem width30">
-                {{ item.company }}
+                {{ item.companyName || '——'}}
               </div>
               <div class="titleItem width20">
-                {{ item.num }}
+                {{ item.companyCode || '——' }}
               </div>
               <div class="titleItem width8">
-                {{ item.name }}
+                {{ item.legalPerson || '——' }}
               </div>
               <div class="titleItem width14">
-                {{ item.orderDate}}
+                {{ item.commitTime || '——'}}
               </div>
               <div class="titleItem width8">
-                {{ item.orderState}}
+                <!-- {{ item.status || '——'}} -->
+                <span v-if="item.status == '0'">审核中</span>
+                <span v-if="item.status == '1' || item.status == '3'">成功</span>
+                <span v-if="item.status == '2'">失败</span>
               </div>
-              <div class="titleItem downLoad width8">
-                下载
+              <div class="titleItem downLoad width8 pointer" @click="downLoadPdf(item.orderCode)">
+                <span v-if="item.status == '1' || item.status == '3'">下载</span>
+                <span></span>
               </div>
             </div>
           </div>
@@ -82,14 +86,14 @@
       <div class="pageBox">
         <el-pagination
           background
-          :page-size="10"
-          layout="prev, pager, next"
-          :total="100"
+          :page-size="pageSizeNum"
+          layout="total, prev, pager, next"
+          :total="totalResult"
           @current-change="handleCurrentChange">
         </el-pagination>
       </div>
     </div>
-    <OrderEmpty v-if="isOrderEmpty"/>
+    <OrderEmpty v-if="!orderList"/>
     <div class="colorWhite TextBottom">
       量富征信管理有限公司版权所有©沪ICP备18002309号-1
     </div>
@@ -114,10 +118,12 @@ export default {
   name: 'Product',
   data () {
     return {
-      isOrderEmpty: true, // true 为空订单 false为订单列表
+      isOrderEmpty: false, // true 为空订单 false为订单列表
       isLoading: false,
-      searchCompany: '', // 被查询的企业编号
-      searchCode: '' // 被查询的企业名称
+      searchCompany: '', // 被查询的企业名称
+      searchCode: '', // 被查询的企业编号
+      pageNumber: '1', // 当前分页数字
+      orderCode: ''
     }
   },
   computed: {
@@ -125,7 +131,9 @@ export default {
       // 获取数据
       pointShow: state => state.pointShow,
       isLogin: state => state.isLogin,
-      orderList: state => state.QMXStore.orderList
+      orderList: state => state.QMXStore.orderList,
+      totalResult: state => state.QMXStore.totalResult,
+      pageSizeNum: state => state.QMXStore.pageSizeNum
     })
   },
   mounted () {
@@ -135,10 +143,60 @@ export default {
   methods: {
     init () {
       console.log('QMXorder')
+      this.getOrder()
     },
     handleCurrentChange (val) {
       // 获取页签数值
       console.log(val)
+      this.pageNumber = val
+      this.fetchOrderList()
+    },
+    getOrder () {
+      this.fetchOrderList()
+    },
+    fetchOrderList: async function () {
+      // 接口请求 ———— 获取企明星的订单list
+      let params = {
+        body: {
+          pageNum: this.pageNumber,
+          orderCode: this.searchCode,
+          companyName: this.searchCompany,
+          isMsgOrderFlag: ''
+        },
+        header: {
+          reqFlag: '0',
+          source: '',
+          userName: localStorage.getItem('userName'),
+          reqDateTime: service.getNowFormatDate(Date()),
+          reqTransID: '0990000sss091111'
+        }
+      }
+      console.log(params)
+      const res = await http.post(api.getOrderList + '?time=' + service.getNowDateTime(), params)
+      console.log(res)
+      if (res.status == 200) {
+        // this.isLoading = false
+        if (res.data.body.success != 'false') {
+          // 成功
+          this.$store.dispatch('changeOrderList', res.data.body)
+        } else {
+          this.$store.dispatch('showPoint', res.data.body.errorMsg)
+        }
+      } else {
+        this.isLoading = false
+        this.$store.dispatch('showPoint', '网络异常请稍后再试')
+      }
+    },
+    downLoadPdf (data) {
+      // 下载Pdf downQmxPdf
+      this.orderCode = data
+      this.fetchPdf()
+    },
+    fetchPdf: async function () {
+      // 接口请求 ———— 获取企明星的订单list
+      const res = await http.get(api.downQmxPdf+'&&orderCode='+this.orderCode+'&&userName='+localStorage.getItem('userName'))
+      console.log(res)
+
     },
     resetFun () {
       // 重置输入框
@@ -164,8 +222,9 @@ export default {
 .orderTop{width: 1000px;background: #fff;margin: 20px auto;padding:20px 30px;
   box-sizing: border-box;border-radius: 5px;border: 1px solid #eee;box-shadow: 0px 2px 2px #ccc}
 .oederTit{display: inline-block;width: 4px;height: 17px;margin-right: 5px;background: #3b77e3}
-.TextBottom{background: #2d3237;height: 58;line-height: 58px; margin-top: 80px;}
-.orderTop input{width: 240px;height: 28px;margin: 0 20px; text-indent: 12px;}
+.TextBottom{background: #2d3237;height: 58;line-height: 58px; margin-top: 80px;
+  position: absolute;bottom: 0;width: 100%;min-width: 1200px;}
+.orderTop input{width: 280px;height: 28px;margin: 0 20px; text-indent: 12px;}
 .textBlank{}
 .inputBox{margin-top: 20px; }
 .Blank{padding:0 10px;}
@@ -178,6 +237,7 @@ export default {
 .orderListTitle{background: #3b77e3;border-radius: 5px 5px 0 0 ;}
 .titleItem{ padding:10px 0;}
 .width14{width: 14%} .width8{width: 8%} .width25{width: 25%} .width20{width: 20%} .width30{width: 30%;}
+.width35{width: 35%}
 .orderList{ }
 .orderListItem:hover{ background: #dae7ff !important;}
 .orderListBoxWarp{height: 470px;}
@@ -188,4 +248,5 @@ export default {
 }
 .orderCenter{ width: 1000px; margin: 0 auto;}
 .pageBox { text-align: right;}
+.minHight{position: relative;min-height: 950px;height: 100%;}
 </style>

@@ -1,5 +1,6 @@
 <template>
-  <div id="app" v-bind:style="{overflow: this.$store.state.appOverflow}" onselectstart="return false" >
+  <div id="app" v-bind:style="{overflow: this.$store.state.appOverflow}" >
+    <!-- onselectstart="return false" -->
     <router-view/>
   </div>
 </template>

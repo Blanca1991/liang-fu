@@ -167,6 +167,21 @@ export default new Vuex.Store({
     },
     HIDEQMXSUBTIPS (state) {
       this.state.QMXStore.isQmxSubTips = false
+    },
+    CHANGEMESSAGELIST (state, data) {
+      // 企明星消息通知列表 信息修改
+      this.state.QMXStore.messageList = data
+    },
+    CHANGEREADNUM (state, data) {
+      // 企明星 未读消息数组修改
+      this.state.QMXStore.noReadNum = data
+    },
+    CHANGEORDERLIST (state, data) {
+      // 企明星 订单信息修改
+      this.state.QMXStore.orderList = data.result.venusResponseBody
+      this.state.QMXStore.pageSizeNum =  data.result.pageSize
+      this.state.QMXStore.totalResult =  data.result.totalResult
+      console.log(this.state.QMXStore.pageSizeNum, this.state.QMXStore.totalResult);
     }
   },
   actions: {
@@ -202,6 +217,14 @@ export default new Vuex.Store({
         }
         // end
       })()
+    },
+    changeMessageList ({commit}, data) {
+      // 企明星消息通知列表 信息修改
+      commit('CHANGEMESSAGELIST', data)
+    },
+    changeOrderList ({commit}, data) {
+      // 企明星订单信息更新
+      commit('CHANGEORDERLIST', data)
     }
   },
   modules: {

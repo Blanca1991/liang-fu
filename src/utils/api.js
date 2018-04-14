@@ -6,5 +6,8 @@ export default {
   getRecruitInfo: 'http://portal.mis.liangfuzhengxin.com/portal/static/getRecruitInfo', // 招聘信息
   antifraud: 'credit-service/v2/xinghujiaAntiFraud', // 星护甲查询接口
   checkToken: 'credit-service/v2/checkToken', // 检查token接口
-  searchSubmit: 'credit-service/v2/benchMark' // 企明星提交订单
+  searchSubmit: '/v2/benchMark', // 企明星提交订单
+  updateMessage: '/updateVenus', // 企明星用户的消息通知 已读未读修改
+  getOrderList: '/getVenusInfo', // 企明星用户订单列表  和  消息通知列表
+  downQmxPdf: '/pdfbyOrder/url/' // 企明星 下载Pdf
 }

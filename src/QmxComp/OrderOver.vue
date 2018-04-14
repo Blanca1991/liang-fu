@@ -8,10 +8,10 @@
         </div>
         <div class="textCenter font14">
           <div class="">
-            您提交的征信报告正在生成中，
+            您提交的征信报告正在生成中，请耐心等待，
           </div>
           <div class="">
-            请耐心等待，查看进度请至“我的订单”中查看
+            查看进度请至“我的订单”中查看
           </div>
         </div>
         <div class="bgLine"></div>

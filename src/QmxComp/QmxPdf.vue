@@ -8,12 +8,12 @@
       <div class="btnBox flex preBtnBox">
         <span class="preBtn pointer" @click="prePage"></span>
       </div>
-      <pdf ref="pdf"
+      <!-- <pdf
         src="../../staticV2/pdf/qimingxing.pdf"
         @num-pages="numPages = $event"
         :rotate="rotate"
         :page="page"
-      ></pdf>
+      ></pdf> -->
       <div class="btnBox flex nextBtnBox">
         <span class="nextBtn pointer " @click="nextPage"></span>
       </div>
@@ -26,7 +26,7 @@
 
 import PointOut from '@/components/PointOut'
 import {mapState} from 'vuex'
-import pdf from 'vue-pdf'
+// import pdf from 'vue-pdf'
 
 export default {
   name: 'QmxPdf',
@@ -67,7 +67,7 @@ export default {
     }
   },
   components: {
-    pdf,
+    // pdf,
     PointOut
 　}
 }

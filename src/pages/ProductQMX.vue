@@ -159,14 +159,15 @@ export default {
       let params = {
         body: {
           companyName: this.searchValue,
-          companyCode: this.searchValue
+          companyCode: this.searchValue,
+          token: localStorage.getItem('LFZXtoken')
         },
         header: {
           reqFlag: '0',
-          source: '',
+          source: 'web',
           userName: localStorage.getItem('userName'),
           reqDateTime: service.getNowFormatDate(Date()),
-          reqTransID: '0990000sss091111'
+          reqTransID: ''
         }
       }
       console.log(params)

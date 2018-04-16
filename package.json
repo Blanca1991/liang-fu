@@ -14,12 +14,11 @@
     "axios": "^0.17.1",
     "element-ui": "^2.2.2",
     "jquery": "^2.2.3",
-    "pdfjs": "^1.0.0-alpha.1",
+    "pdfjs-dist": "^2.0.489",
     "swiper": "^4.0.7",
     "vue": "^2.5.2",
     "vue-atom-canvas": "^1.0.0",
     "vue-concise-slider": "^2.4.3",
-    "vue-pdf": "^3.2.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },

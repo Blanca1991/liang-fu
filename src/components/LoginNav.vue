@@ -62,6 +62,10 @@ export default {
     quitFun () {
       this.$store.state.isLoginNav = true
       localStorage.clear()
+      this.$store.commit('ClEANUSERNAME')
+      // if (window.location.hash == '#/ProductQMX.html' || window.location.hash == '#/ProductQMXOrder.html') {
+      //   this.$router.push({ name: 'Home.html' })
+      // }
     },
     loginFun () {
       this.$store.commit('SHOWLOGIN')// 显示登录窗口

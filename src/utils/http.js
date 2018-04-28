@@ -47,13 +47,10 @@ export default {
       baseURL: baseUrl,
       url,
       data: JSON.stringify(data),
-      timeout: 10000,
+      timeout: 100000,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Cache-Control': 'no-cache ,must-revalidate ,no-store',
-        'Pragma': 'no-cache',
-        'Expires': '0'
+        'Content-Type': 'application/json;charset=UTF-8'
       }
     }).then(
       (response) => {
@@ -96,7 +93,8 @@ export default {
   get (url, params) {
     return axios({
       method: 'get',
-      baseURL: 'http://www.liangfuzhengxin.com',
+      // baseURL: 'http://www.liangfuzhengxin.com',
+      baseURL: baseUrl,
       url,
       params, // get 请求时带的参数
       timeout: 10000,

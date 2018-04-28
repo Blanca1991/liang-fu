@@ -3,7 +3,7 @@
   <div class="LoginWarp minWidthBox">
     <div class="Login" >
       <span class="close inBlock pointer" @click="$store.commit('HIDELOGIN')"></span>
-      <div class="font18 colorRed ">
+      <div class="font18 colorRed textCenter">
         <span>登录</span>
       </div>
       <div class="inputBox userNameBox font14">

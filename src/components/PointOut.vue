@@ -64,7 +64,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.pointOutWarp{width: 100vw;height: 100vh;letter-spacing:4px;
+.pointOutWarp{width: 100vw;height: 100vh;letter-spacing:4px;position: fixed;top: 0; z-index: 200;
 }
 .pointOut{background: #fff;z-index: 20;padding:10px 30px;border-radius: 5px;position: absolute;
   top: 50%;left: 50%;transform:  translateX(-50%) translateY(-50%);

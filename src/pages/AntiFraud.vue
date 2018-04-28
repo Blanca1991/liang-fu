@@ -107,7 +107,7 @@ export default {
       }
     },
     searchFun () {
-      let userNameReg = /^[\u4E00-\u9FA5]{2,4}$/  // 姓名限制为二到四位的中文字符
+      let userNameReg = /^[\u4E00-\u9FA5]{2,16}$/  // 姓名限制为二到16位的中文字符
       let userMobileReg = /^1(3|4|5|6|7|8|9)[0-9]\d{8}$/  // 手机号为1开头的11位数字
       if (this.searchName === '') {
         this.pointOutFun('请输入姓名')

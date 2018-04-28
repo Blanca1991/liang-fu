@@ -86,7 +86,8 @@ export default {
         // 新开一个窗口展示页面
         if (localStorage.getItem('LFZXtoken') === null || localStorage.getItem('LFZXtoken') === '') {
           this.$store.state.isLoginBox = true
-          this.$store.dispatch('showPoint', '请先登录')
+          // this.$store.dispatch('showPoint', '请先登录')
+          this.$store.commit('SHOWLOGIN')
         } else {
           if (this.itemGo === 2) {
             this.itemGo = 0

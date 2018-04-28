@@ -12,10 +12,11 @@
           下报告，查企业，就上企明星！
         </div>
         <div class="font14">
-          <input class="searchInput font14" type="text" v-model="searchValue" placeholder="请输入完整的企业名/注册号/统一社会信用代号">
+          <input class="searchInput font14" type="text"
+          v-model="searchValue" placeholder="请输入完整的企业名/注册号/统一社会信用代号">
         </div>
         <div class="colorWhite font12 yangli pointer" @click="goPdf">
-          点击查看量富征信报告样例 > >
+          点击查看企业征信报告样例 > >
         </div>
         <div class="submitBox">
           <span class="submit colorWhite font18 pointer" @click="submitFun">提交</span>
@@ -45,6 +46,32 @@
     <div class="colorWhite TextBottom">
       <span>量富征信管理有限公司版权所有©沪ICP备18002309号-1</span>
     </div>
+    <!-- 三个月内重复调用提示 -->
+    <div class="submitTipsBox" v-if="threeTips">
+      <div class="submitTips submitPoint">
+        <div class="textTip colorWhite font14">
+          温馨提示
+        </div>
+        <div class="textCenter font14">
+          <div class="">
+            您在三个月内已提交该企业征信报告订单，
+          </div>
+          <div class="">
+            是否重新计费生成报告？
+          </div>
+        </div>
+        <div class="bgLine"></div>
+        <div class="colorWhite flex btnBox font14">
+          <div class="blueBg pointer" @click="yesfetchSubmit">
+            是
+          </div>
+          <div class="blueBg pointer" @click="hidTipsBox">
+            否
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 三个月内重复调用提示 -->
     <Login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
     <Loading v-show="isLoading"/>
@@ -72,6 +99,7 @@ export default {
   name: 'Product',
   data () {
     return {
+      threeTips: false, // 企明星 三个月重复提交提示
       searchValue: '', // 查询的企业代码或者企业的名称
       news01: news01,
       news02: news02,
@@ -84,39 +112,17 @@ export default {
         {
           titleName: '政府部门',
           img: news01,
-          newsMsg: '结合政府部门工作的特点，开发具有政府色的风险与信用综合分级管理征信体系，监控管辖领域内企业风险点，一旦触碰风险监管部门可及时知悉。'
+          newsMsg: '结合政府部门工作的特点，开发具有政府特色的风险与信用综合分级管理征信体系。实时监控管辖领域内企业的风险点，一旦触碰风险，监管部门可及时知悉，并作出相应决策。'
         },
         {
           titleName: '金融行业',
           img: news02,
-          newsMsg: '结合政府部门工作的特点，开发具有政府色的风险与信用综合分级管理征信体系，监控管辖领域内企业风险点，一旦触碰风险监管部门可及时知悉。'
+          newsMsg: '量富征信依托自身优秀的风控能力及人工智能技术，提供金融体系的客户信息完善，贷前反欺诈过滤，申请评分模型，贷后监控等全面风控解决方案，提升信审效率，降低运营风险。'
         },
         {
           titleName: '采招行业',
           img: news03,
-          newsMsg: '量富征信依托采招平台构建基于诚信供应链的服务平台，搭建服务于采招业务的征信体系，实现采招流程的公开化和透明性。'
-        }
-      ],
-      itemList: [
-        {
-          time: '2018-01-20',
-          message: '消息1111111111',
-          isRead: true
-        },
-        {
-          time: '2018-01-20',
-          message: '消息2222222222',
-          isRead: false
-        },
-        {
-          time: '2018-01-20',
-          message: '消息3333333333',
-          isRead: false
-        },
-        {
-          time: '2018-01-20',
-          message: '消息4444444444',
-          isRead: false
+          newsMsg: '量富征信依托复星集团采购平台构建基于诚信的供应链采招服务体系，提供面向供应商的基础审核、资质审查、围标检测，招标审核、履约监控服务，实现采招流程的公开化和透明性。'
         }
       ]
     }
@@ -141,7 +147,16 @@ export default {
     submitFun () {
       if (localStorage.getItem('userName')) {
         if (this.searchValue) {
-          this.fetchSubmit()
+          // let  onkeyup="value=value.replace(/[^\w\u4E00-\u9FA5]/g, '')"
+          // let reglank = /^\s*(\S+)\s*$/;
+          // let reg = /^[a-zA-Z0-9\u4e00-\u9fa5]+$/
+          this.searchValue = this.searchValue.replace(/^\s+|\s+$/gm,'')
+          this.fetchCheckThree()
+          // if (reg.test(this.searchValue)) {
+          //   this.fetchCheckThree()
+          // } else {
+          //   this.$store.dispatch('showPoint', '请输入正确的企业名/注册名/统一社会信用代号')
+          // }
         } else {
           this.$store.dispatch('showPoint', '请输入企业名/注册名/统一社会信用代号')
         }
@@ -151,15 +166,28 @@ export default {
     },
     goPdf () {
       // 跳转到Pdf 查看pdf样例
-      this.$router.push({ name: 'QmxPdf' })
+      // this.$router.push({ name: 'QmxPdf' })
+      // this.$store.commit('CHANGEPDFURL', '../staticV2/pdf/征信报告样例.pdf')
+      let pdfName = '/staticV2/pdf/征信报告样例.pdf'
+      pdfName = encodeURI(encodeURI(pdfName))
+      window.open(window.location.href.split('#')[0] +'/staticV2/pdf/征信报告样例.pdf')
+      // window.open(window.location.href.split('#')[0] +'/staticV2/pdf/SampleReport.pdf')
+    },
+    yesfetchSubmit () {
+      // 三个月内重复提交  走提交接口
+      this.threeTips = false
+      this.fetchSubmit()
+    },
+    hidTipsBox () {
+      // 三个月内重复提交  提示关闭
+      this.threeTips = false
     },
     fetchSubmit: async function () {
       // 接口请求 ———— 查询企业订单提交
       this.isLoading = true
       let params = {
         body: {
-          companyName: this.searchValue,
-          companyCode: this.searchValue,
+          keyWord: this.searchValue,
           token: localStorage.getItem('LFZXtoken')
         },
         header: {
@@ -170,19 +198,138 @@ export default {
           reqTransID: ''
         }
       }
-      console.log(params)
+      // console.log(params)
       const res = await http.post(api.searchSubmit, params)
-      console.log(res)
+      // console.log(res)
       if (res.status == 200) {
         this.isLoading = false
         if (res.data.body.success != 'false') {
           this.$store.commit('SHOWQMXSUBTIPS')
+          let vm = this
+          setTimeout(function(){
+            vm.getMessageInfo()
+          }, 4000)
+          // setTimeout(function(){ vm.HeaderNav.methods.fetchMessage() }, 3000);
+        } else if(res.data.body.success == 'false' && res.data.body.errorMsg == null){
+          this.$store.dispatch('showPoint', '未搜索到相关企业，请重新输入')
         } else {
           this.$store.dispatch('showPoint', res.data.body.errorMsg)
         }
       } else {
         this.isLoading = false
         this.$store.dispatch('showPoint', '网络异常请稍后再试')
+      }
+    },
+    fetchCheckThree: async function (){
+      // checkThreeMonths
+      // 接口请求 ———— 判断三个月内是否有重复调用
+      this.isLoading = true
+      let params = {
+        body: {
+          keyWord: this.searchValue,
+          token: localStorage.getItem('LFZXtoken')
+        },
+        header: {
+          reqFlag: '0',
+          source: 'web',
+          userName: localStorage.getItem('userName'),
+          reqDateTime: service.getNowFormatDate(Date()),
+          reqTransID: ''
+        }
+      }
+      const res = await http.post(api.checkThreeMonths + '?time=' + Date.now(), params)
+      // console.log('', res);
+      if (res.status == 200) {
+        // console.log(res.data.body.success);
+        if (res.data.body.success == 'true') {
+          this.isLoading = false
+          this.threeTips = true
+        } else if (res.data.body.success == 'false' && res.data.body.errorMsg == null) {
+          this.fetchCheckEmpty()
+          // this.fetchSubmit()
+        } else {
+          this.isLoading = false
+          this.$store.dispatch('showPoint', res.data.body.errorMsg)
+        }
+      } else {
+        this.$store.dispatch('showPoint', '网络异常请稍后再试')
+        this.isLoading = false
+      }
+    },
+    fetchCheckEmpty: async function () {
+      // 接口请求 ———— 判断提交的企业是否存在
+      this.isLoading = true
+      let params = {
+        body: {
+          keyWord: this.searchValue,
+          token: localStorage.getItem('LFZXtoken')
+        },
+        header: {
+          reqFlag: '0',
+          source: 'web',
+          userName: localStorage.getItem('userName'),
+          reqDateTime: service.getNowFormatDate(Date()),
+          reqTransID: ''
+        }
+      }
+      const res = await http.post(api.checkEmpty + '?time=' + Date.now(), params)
+      // console.log('checkEmpty', res);
+      if (res.status == 200) {
+        if (res.data.body.success == 'true') {
+          this.fetchSubmit()
+        } else {
+          this.isLoading = false
+          this.$store.dispatch('showPoint', res.data.body.errorMsg)
+        }
+      } else {
+        this.$store.dispatch('showPoint', '网络异常请稍后再试')
+        this.isLoading = false
+      }
+    },
+    getMessageInfo () {
+      this.fetchMessage()
+    },
+    fetchMessage: async function () {
+      // 接口请求 ———— 获取企明星的消息list
+      this.isLoading = true
+      let params = {
+        body: {
+          pageNum: '1',
+          orderCode: '',
+          companyName: '',
+          isMsgOrderFlag: 'message',
+          token: localStorage.getItem('LFZXtoken')
+        },
+        header: {
+          reqFlag: '0',
+          source: 'web',
+          userName: localStorage.getItem('userName'),
+          reqDateTime: service.getNowFormatDate(Date()),
+          reqTransID: ''
+        }
+      }
+      // console.log(params)
+      const res = await http.post(api.getOrderList + '?time=' + Date.now(), params)
+      if (res.status == 200) {
+        console.log(res.data.body.success);
+        if (res.data.body.success != 'false') {
+          // 成功
+          // console.log("拉取数据")
+          // 更新消息通知列表
+          this.$store.dispatch('changeMessageList', res.data.body.result)
+          // 添加未读消息数字的 方法
+          this.$store.commit('CHANGEREADNUM', res.data.body.result.noReadNum)
+        } else {
+          console.log('暂时没有消息');
+          this.isNoMessage = true;
+          // this.$store.dispatch('showPoint', res.data.body.errorMsg)
+        }
+        this.isLoading = false
+      } else {
+        this.isLoading = false
+        this.isNoMessage = true;
+        console.log('网络异常请稍后再试');
+        // this.$store.dispatch('showPoint', '网络异常请稍后再试')
       }
     },
     canvasFun () {
@@ -320,10 +467,10 @@ export default {
 .submitBox{margin-top: 20px;}
 .submit{display: inline-block;background: #0366c3;border-radius: 5px;border:1px solid #fff;
   padding: 10px 30px;}
-.newsBox{min-width: 1200px;width: 100%;position: relative;}
+.newsBox{min-width: 1200px;width: 100%;position: relative; padding-top: 50px;}
 .newsListBoxWarp{ margin: 0 auto; width: 1100px;}
-.newsTips{width: 1100px; height: 1px;background: #ccc;
-  position: absolute;transform: translateX(-50%);left: 50%;top: -30px;}
+.newsTips{width: 1100px; height: 1px;background: #ccc;top: 55px;
+  position: absolute;transform: translateX(-50%);left: 50%;}
 .newsTipsText{color: #0d4492;background: #fff;position: absolute;top: -10px;padding: 0 30px;
   left: 50%;transform: translateX(-50%);}
 .newsListBox{margin-top: 60px;width: 1100px;display: flex;justify-content: space-between;}
@@ -333,5 +480,16 @@ export default {
 .newsTitle{color: #0d4492;margin: 10px 0;}
 .TextBottom{background: #2d3237;height: 58;line-height: 58px;position: absolute;bottom: 0;
   width: 100%;min-width: 1200px;}
-.minHight{position: relative;min-height: 950px;height: 100%;}
+.minHight{position: relative;min-height: 1000px;height: 100%;}
+.submitTipsBox{position:fixed;top: 0;min-width: 1200px; width: 100vw;height: 100vh;
+  min-height: 1000px;background: rgba(0,0,0, 0.3);}
+.submitTips{width: 400px; height: 250px;background: #fff; position: absolute; top: 40%;left: 50%;
+  transform: translateX(-50%) translateY(-50%);border-radius: 5px;}
+.textTip{background: #3b77e3;height: 40px;width: 100%;line-height: 40px;text-align: left;padding-left: 20px;
+  box-sizing: border-box;border-radius: 5px 5px 0 0 ;}
+.colorWhite{color: #fff;}
+.textCenter{text-align: center; margin-top: 60px;}
+.bgLine{background: #f1f1f1;width: 90%;margin:50px auto 12px;height: 1px;}
+.blueBg{background: #3b77e3; border-radius: 5px; padding: 5px 15px;}
+.btnBox{justify-content: space-between;width: 40%;margin: 0 auto;}
 </style>

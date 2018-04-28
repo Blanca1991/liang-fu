@@ -52,7 +52,8 @@ export default {
     },
     goToQmxOrder () {
       this.$store.commit('HIDEQMXSUBTIPS')
-      window.open(window.location.href.split('#')[0] + '#/' + 'ProductQMXOrder.html')
+      this.$router.push({ name: 'ProductQMXOrder' })
+      // window.open(window.location.href.split('#')[0] + '#/' + 'ProductQMXOrder.html')
     }
   }
 }
@@ -60,10 +61,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.orderOver{position: absolute;width: calc(100vw + 20px);height: 100vh;top: 0;background: rgba(000, 000, 000, 0.3);
-  }
+.orderOver{position: fixed;width: calc(100vw + 20px);height: 100vh;top: 0;background: rgba(000, 000, 000, 0.3);
+      min-width: 1200px;}
 .submitPointWarp{height: 100vh;position: relative;}
-.submitPoint{width: 400px; height: 250px;background: #fff; position: absolute; top: 50%;left: 50%;
+.submitPoint{width: 400px; height: 250px;background: #fff; position: absolute; top: 40%;left: 50%;
   transform: translateX(-50%) translateY(-50%);border-radius: 5px;}
 .textTip{background: #3b77e3;height: 40px;width: 100%;line-height: 40px;text-align: left;padding-left: 20px;
   box-sizing: border-box;border-radius: 5px 5px 0 0 ;}

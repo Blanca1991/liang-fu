@@ -176,7 +176,18 @@ export default {
     styeChange () {
       // 姓名第二个字*
       let nameArry = this.baseInfo.name.split('')
-      nameArry[1] = '*'
+      nameArry.forEach(function(e,i){
+      	if(nameArry.length>2){
+      		if(i>0&&i<(nameArry.length-1)){
+	      	  nameArry[i] = '*'
+	      	}
+      	}else{
+      		if(i>0){
+	      	  nameArry[i] = '*'
+	      	}
+      	}
+      	
+      });
       this.baseInfo.name = nameArry.join('').replace(/,/g, '')
       // 修改背景色
       if (this.baseInfo.idNumberCheck) {

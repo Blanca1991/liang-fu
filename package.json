@@ -20,6 +20,7 @@
     "vue-atom-canvas": "^1.0.0",
     "vue-concise-slider": "^2.4.3",
     "vue-router": "^3.0.1",
+    "vueshowpdf": "^1.1.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

@@ -13,7 +13,7 @@ export default new Vuex.Store({
     isLogin: false, // 登录窗口显示与否 true显示 false 隐藏
     isMask: false, // 灰色遮罩层 true显示 false 隐藏
     isLoginNav: true, // NAV 中的登录点击按钮显示与否
-    userName: '',
+    userName: null,
     pointShow: false, // 控制提示框的显示 true为显示 false为隐藏
     pointText: '', // 提示框内显示的文字
     pointShowBtn: false, // pointShow 弹框有无Btn按钮 fasle 隐藏btn true 显示btn
@@ -25,6 +25,7 @@ export default new Vuex.Store({
     appDom: '', // 获取app Dom元素
     scrollLeft: 0, // 被浏览器卷去的宽度
     appWidth: '',
+    qmxOrderCode: '', // 企明星的orderCode
     modelListTop: [
       {
         modelName: 'summaryInfo',
@@ -85,7 +86,8 @@ export default new Vuex.Store({
         modelName: 'OurAddress',
         topNum: 0
       }
-    ]
+    ],
+    pdfUrl: '../staticV2/pdf/征信报告样例.pdf'
   },
   mutations: {
     SHOWLOGIN (state) {
@@ -106,6 +108,7 @@ export default new Vuex.Store({
       // 显示提示框
       this.state.pointShow = true
       this.state.pointText = pointText
+      this.state.appOverflow = 'hidden'
     },
     HIDEOPTION (state) {
       // 隐藏提示框
@@ -115,10 +118,15 @@ export default new Vuex.Store({
       } else {
         this.state.isLoginBox = false
       }
+      this.state.appOverflow = 'auto'
     },
     GETUSERNAME (state, data) {
       // 获取登录用户名
       this.state.userName = data
+    },
+    ClEANUSERNAME (state, data) {
+      // 清除登录用户名
+      this.state.userName = null
     },
     CHANGESEARCHDATA (state, data) {
       // 星护甲查询三要素返回参数更新
@@ -170,7 +178,9 @@ export default new Vuex.Store({
     },
     CHANGEMESSAGELIST (state, data) {
       // 企明星消息通知列表 信息修改
-      this.state.QMXStore.messageList = data
+      this.state.QMXStore.messageList = data.venusResponseBody
+      this.state.QMXStore.pageSizeNumMsg =  data.pageSize
+      this.state.QMXStore.totalResultMsg =  data.totalResult
     },
     CHANGEREADNUM (state, data) {
       // 企明星 未读消息数组修改
@@ -182,6 +192,14 @@ export default new Vuex.Store({
       this.state.QMXStore.pageSizeNum =  data.result.pageSize
       this.state.QMXStore.totalResult =  data.result.totalResult
       console.log(this.state.QMXStore.pageSizeNum, this.state.QMXStore.totalResult);
+    },
+    CHANGEORDERCODER (state, data) {
+      // 企明星 订单信息修改
+      this.state.qmxOrderCode = data
+    },
+    CHANGEPDFURL (state, data) {
+      // 企明星 pdf url路径
+      this.state.pdfUrl = data
     }
   },
   actions: {

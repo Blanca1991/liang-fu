@@ -9,5 +9,7 @@ export default {
   searchSubmit: 'credit-service/v2/benchMark', // 企明星提交订单
   updateMessage: 'credit-service/updateVenus', // 企明星用户的消息通知 已读未读修改
   getOrderList: 'credit-service/getVenusInfo', // 企明星用户订单列表  和  消息通知列表
-  downQmxPdf: 'credit-service/pdfbyOrder/url/' // 企明星 下载Pdf
+  downQmxPdf: 'credit-service/pdfbyOrder/url/', // 企明星 下载Pdf
+  checkThreeMonths: 'credit-service/queryModelByThreeMonths', // 企明星 提交订单前的三个月判断
+  checkEmpty: 'credit-service/api/v3/BE/BE' // 企明星 判断提交的企业是否存在
 }

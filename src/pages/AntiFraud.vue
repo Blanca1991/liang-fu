@@ -1,6 +1,6 @@
 <!-- 产品适用 wuxiaobo-->
 <template>
-  <div class="ProductWarp minWidthBox" onselectstart="return false">
+  <div class="ProductWarp minWidthBox" onselectstart="return false" >
     <div class="ProductBox" id='ProductBox' >
       <div class="headerBox">
         <div class="header minWidthBox">
@@ -12,30 +12,33 @@
           maxlength="11" v-model="searchPhone">
           <span class="fontFFF searchBtn pointer font14" @click="searchFun">搜索</span>
           <span class="fontFFF downBtn font14 " :class="{notAllowed: isDownLoad === false,isDown: isDownLoad === true}" @click="downLoadFun">下载</span>
+          <span @click="getPdf()" class="fontFFF downBtn pointer font14">导出</span>
           <LoginNav class="fontFFF" />
         </div>
       </div>
       <div class="warninBox">
         <div class="warning font16" v-show="this.$store.state.isWarning" >注意！！！此处为示例数据，查询可获取相关数据</div>
       </div>
-      <div class="antiFraud" id="antiFraud">
-        <!-- 总体情况评估 -->
-        <SummaryInfo />
-        <!-- 基本身份信息 运营商信息 -->
-        <BaseInfo />
-        <!-- 公检法 逾期信息 -->
-        <PublicSecurityInfo />
-        <!-- 多头借贷信息 联系人圈子 疑似APP注册  -->
-        <BorrowingInfo />
-        <!-- 历史查询信息 -->
-        <HistoryInfo />
-        <!-- 锚点楼层 -->
-        <FloorList />
-        <div class="footDiv">
-          <div class="footDivText">
-            报告结束
+      <div class="" id="pdfDom">
+        <div class="antiFraud" id="antiFraud" >
+          <!-- 总体情况评估 -->
+          <SummaryInfo />
+          <!-- 基本身份信息 运营商信息 -->
+          <BaseInfo />
+          <!-- 公检法 逾期信息 -->
+          <PublicSecurityInfo />
+          <!-- 多头借贷信息 联系人圈子 疑似APP注册  -->
+          <BorrowingInfo />
+          <!-- 历史查询信息 -->
+          <HistoryInfo />
+          <!-- 锚点楼层 -->
+          <FloorList />
+          <div class="footDiv">
+            <div class="footDivText">
+              报告结束
+            </div>
+            <div class="footDivRule"></div>
           </div>
-          <div class="footDivRule"></div>
         </div>
       </div>
     </div>
@@ -77,7 +80,8 @@ export default {
       isLoading: false, // 加载动画 显示和隐藏
       isDownLoad: false,
       userCodeId: '', // 用户订单 -- 搜索接口返回  下载pdf使用
-      TimeoutFun: ''
+      TimeoutFun: '',
+      htmlTitle: '星护甲'
     }
   },
   computed: {

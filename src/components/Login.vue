@@ -8,11 +8,11 @@
       </div>
       <div class="inputBox userNameBox font14">
         <label class="colorRed ">用户名</label>
-        <input type="text" class="userName" v-model="userName" />
+        <input type="text" class="userName" id="userName" v-model="userName" />
       </div>
       <div class="inputBox passwordBox font14">
         <label class="colorRed ">密码</label>
-        <input type="password" class="passWord" v-model="passWord" @keyup="enterFun($event)"/>
+        <input type="password" class="passWord" id="passWord" v-model="passWord" @keyup="enterFun($event)"/>
       </div>
       <div class="LoginBtnBox">
         <span class="LoginBtn pointer" @click="loginFun()">登录</span>

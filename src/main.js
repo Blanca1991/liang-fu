@@ -9,8 +9,11 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store/store'
 import promise from 'es6-promise'
+import htmlToPdf from '@/components/utils/htmlToPdf' 
 promise.polyfill()
 
+
+Vue.use(htmlToPdf)
 Vue.prototype.$ajax = axios
 Vue.config.productionTip = false
 Vue.use(ElementUI)

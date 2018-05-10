@@ -16,7 +16,7 @@
           v-model="searchValue" placeholder="请输入完整的企业名/注册号/统一社会信用代号">
         </div>
         <div class="colorWhite font12 yangli pointer" @click="goPdf">
-          点击查看企业征信报告样例 > >
+          点击查看企业征信报告样例 >>
         </div>
         <div class="submitBox">
           <span class="submit colorWhite font18 pointer" @click="submitFun">提交</span>

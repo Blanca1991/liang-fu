@@ -119,26 +119,10 @@ export default {
     gotItem (index) {
       // 事件 ———— 获取每一个楼提层的 位置对应的模块的位置
       if (index !== 9) {
-        let data
-        if (this.$store.state.isWarning === true) {
-          data = this.modelListTop[index].topNum + 155
-        } else {
-          data = this.modelListTop[index].topNum + 95
-        }
-        this.$store.dispatch('changeAppScrollTop', data)
+        let id = '#' + this.modelListTop[index].modelName
+        document.querySelector(id).scrollIntoView(true);
       } else {
-        // console.log(this.$store.state.appDom.scrollTop)
-        let step = this.$store.state.appDom.scrollTop / 20
-        let vm = this;
-        (function stepMove () {
-          if (vm.$store.state.appDom.scrollTop > 0) {
-            vm.$store.state.appDom.scrollTop = vm.$store.state.appDom.scrollTop - step
-            setTimeout(stepMove, 8)
-          } else {
-            vm.$store.state.appDom.scrollTop = 0
-          }
-        })()
-        // this.$store.state.appDom.scrollTop = 0
+        document.querySelector('#ProductBox').scrollIntoView(true);
       }
     },
     changeFloorIconBg () {
@@ -151,24 +135,13 @@ export default {
       } else {
         appScrollTop = this.$store.state.appScrollTop - 100
       }
+      for (var i = 0; i < this.modelListTop.length; i++ ) {
+        if (appScrollTop >= this.modelListTop[i].topNum && appScrollTop < this.modelListTop[i+1].topNum) {
+          this.imgType = '0' + (i + 1)
+        }
+      }
       if (appScrollTop < this.modelListTop[1].topNum) {
         this.imgType = '01'
-      } else if (appScrollTop >= this.modelListTop[1].topNum && appScrollTop < this.modelListTop[2].topNum) {
-        this.imgType = '02'
-      } else if (appScrollTop >= this.modelListTop[2].topNum && appScrollTop < this.modelListTop[3].topNum) {
-        this.imgType = '03'
-      } else if (appScrollTop >= this.modelListTop[3].topNum && appScrollTop < this.modelListTop[4].topNum) {
-        this.imgType = '04'
-      } else if (appScrollTop >= this.modelListTop[4].topNum && appScrollTop < this.modelListTop[5].topNum) {
-        this.imgType = '05'
-      } else if (appScrollTop >= this.modelListTop[5].topNum && appScrollTop < this.modelListTop[6].topNum) {
-        this.imgType = '06'
-      } else if (appScrollTop >= this.modelListTop[6].topNum && appScrollTop < this.modelListTop[7].topNum) {
-        this.imgType = '07'
-      } else if (appScrollTop >= this.modelListTop[7].topNum && appScrollTop < this.modelListTop[8].topNum) {
-        this.imgType = '08'
-      } else if (appScrollTop >= this.modelListTop[8].topNum) {
-        this.imgType = '09'
       }
     }
   }

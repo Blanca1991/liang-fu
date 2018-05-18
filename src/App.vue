@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-bind:style="{overflow: this.$store.state.appOverflow}" >
+  <div id="app" v-bind:style="{overflow: this.$store.state.appOverflow}" class="scroll-behavior">
     <!-- onselectstart="return false" -->
     <router-view/>
   </div>
@@ -50,6 +50,7 @@ export default {
   overflow: auto;
   width: calc(100vw + 20px);
 }
+.scroll-behavior{scroll-behavior:smooth;}
 /* #app::-webkit-scrollbar {
     display: none;
 } */

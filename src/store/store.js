@@ -65,28 +65,6 @@ export default new Vuex.Store({
       }// 历史信息模块 的top值
     ],
     isTipsShow: false, // 控制TipsShow显示与否
-    homeItemListTop: [
-      {
-        modelName: 'BigBg',
-        topNum: 0
-      },
-      {
-        modelName: 'OurServices',
-        topNum: 0
-      },
-      {
-        modelName: 'AboutUs',
-        topNum: 0
-      },
-      {
-        modelName: 'OurNews',
-        topNum: 0
-      },
-      {
-        modelName: 'OurAddress',
-        topNum: 0
-      }
-    ],
     pdfUrl: '../staticV2/pdf/征信报告样例.pdf'
   },
   mutations: {

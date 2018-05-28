@@ -11,6 +11,7 @@ import AntiFraud from '@/pages/AntiFraud'
 import UserInfo from '@/pages/UserInfo'
 import ProductQMX from '@/pages/ProductQMX'
 import ProductQMXOrder from '@/pages/ProductQMXOrder'
+import TryJSX from '@/pages/TryJSX'
 import ProductQMXpdf from '@/QmxComp/QmxPdf'
 
 import Homefull from '@/pages/HomeFullpage'
@@ -84,6 +85,11 @@ export default new Router({
       path: '/QmxPdf.html',
       name: 'QmxPdf',
       component: ProductQMXpdf
+    },
+    {
+      path: '/TryJSX.html',
+      name: 'TryJSX',
+      component: TryJSX
     }
   ]
 })

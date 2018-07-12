@@ -107,7 +107,6 @@ export default {
   methods: {
     init () {
       // 初始化
-      // console.log('baseInfo init')
       this.getAllModelTop()
       this.changeFloorIconBg()
     },
@@ -117,6 +116,7 @@ export default {
       }
     },
     gotItem (index) {
+      console.log(index);
       // 事件 ———— 获取每一个楼提层的 位置对应的模块的位置
       if (index !== 9) {
         let id = '#' + this.modelListTop[index].modelName
@@ -150,5 +150,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import '../css/productComp'
+  @import '../css/productComp'
 </style>

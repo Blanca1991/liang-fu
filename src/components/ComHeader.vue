@@ -1,7 +1,7 @@
 <!-- 头部导航栏 -->
 <template>
   <div class="comHeaderWarp " >
-    <div class="comHeader " >
+    <div class="comHeader minWidth8" >
       <LogoBg :bgHide="bgHides" v-if="isLogoShow"/>
       <div class="headerTitle pointer" v-for="(item, index) in items" :key="item.id" @click="gotoInfo(item, index)"
       :class="{ 'navActive': isActive==item.pagesName }" >
@@ -121,6 +121,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.minWidth8{min-width: 850px;}
 .comHeader{ display: flex; justify-content: space-around;align-items: center;background: #2a2d2c;
   color: #fff;height: 80px;}
 .headerTitle{position: relative;height: 80px; line-height: 80px}

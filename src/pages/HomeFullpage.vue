@@ -5,18 +5,20 @@
       <page :currentPage="currentPage" >
         <BigBg />
       </page>
-      <page :currentPage="currentPage" >
-        <OurServices />
-      </page>
-      <page :currentPage="currentPage">
-        <AboutUs />
-      </page>
-      <page :currentPage="currentPage">
-        <OurNews />
-      </page>
-      <page :currentPage="currentPage">
-        <OurAddress />
-      </page>
+      <div class="" v-show="isShow">
+        <page :currentPage="currentPage" >
+          <OurServices />
+        </page>
+        <page :currentPage="currentPage">
+          <AboutUs />
+        </page>
+        <page :currentPage="currentPage">
+          <OurNews />
+        </page>
+        <page :currentPage="currentPage">
+          <OurAddress />
+        </page>
+      </div>
       <page-controller :pageNum="pageNum" :currentPage="currentPage" @changePage="changePage" :option="controllerOption"></page-controller>
     </div>
     <div class="comHeaderBox flex" >
@@ -65,6 +67,7 @@ export default {
   name: 'HomeFullpage',
   data() {
     return {
+      isShow: false,
       screenWidth: document.documentElement.offsetWidth,
       isLogoShow: false, // 当页面宽度不够 隐藏掉logo
       isActives: 'Home.html', // ComHeader内对应的tag高亮
@@ -162,6 +165,9 @@ export default {
         typeof enterFunction === 'function' && enterFunction.call(this, this.$children[nextIndex]);
       })
     }
+  },
+  updated () {
+    this.isShow = true
   },
   components: {
     Page,

@@ -9,7 +9,10 @@
         合作联系
       </div>
       <div class="font16 textL">
-        如果您有合作意向，请留下联系方式，我们会尽快联系您，谢谢！
+        如果您有合作意向，请留下联系方式，我们会尽快联系您，
+      </div>
+      <div class="font16 textL">
+        或拨打我们的客服热线021-34611615和邮箱：lfzx.cs@fosun.com ，谢谢！
       </div>
       <div class="inputBox textL">
         <div class="">

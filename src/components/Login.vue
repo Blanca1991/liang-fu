@@ -15,7 +15,7 @@
         <input type="password" class="passWord" id="passWord" v-model="passWord" @keyup="enterFun($event)"/>
       </div>
       <div class="LoginBtnBox">
-        <span class="LoginBtn pointer" @click="loginFun()">登录</span>
+        <span class="LoginBtn pointer font16 fontBold" @click="loginFun()">登录</span>
       </div>
     </div>
     <PointOut v-show="pointShow" />
@@ -71,7 +71,7 @@ export default {
         userName: this.userName,
         password: this.passWord
       }
-      const res = await http.post(api.login, params)
+      const res = await http.post(api.login + '?time=' + Date.now(), params)
       console.log(res)
       if (res.status === 200) {
         if (res.data.success && res.data.success === 'true') {
@@ -84,6 +84,14 @@ export default {
           localStorage.setItem('LFZXLOGINTIME',Date())
           this.userName = ''
           this.passWord = ''
+          console.log(this.$store.state.itemGo)
+          if (this.$store.state.itemGo === 2) {
+            this.$store.state.itemGo = 0
+            window.open(window.location.href.split('#')[0] + '#/' + 'antiFraud.html')
+          } else if (this.$store.state.itemGo === 1) {
+            this.$store.state.itemGo = 0
+            window.open(window.location.href.split('#')[0] + '#/' + 'ProductQMX.html')
+          }
         } else {
           this.pointOutFun(res.data.msg)
           this.$store.state.isLoginNav = true// 切换loginNav的内容

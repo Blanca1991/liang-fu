@@ -1,7 +1,7 @@
 <!-- product引用组件 总体评分 wuxiaobo-->
 <template>
   <div class="summaryInfoWarp ">
-    <div class="summaryInfo flex divJump" id="summaryInfo">
+    <div class="summaryInfo flex divJump " id="summaryInfo">
       <div class="infoTitle font24">
         总体评估情况
       </div>
@@ -14,9 +14,9 @@
             <div class="flex scoreWord pL20">
               <span class="font22">智多分 :</span>
               <span class="font44 pL10">{{score}}</span>
-              <span class="font44 pL10" v-if="!scoreShow">暂无数据</span>
+              <span class="font44 pL10" v-if="!score || score == ''">暂无数据</span>
             </div>
-            <div class="scoreImgBox pL20" v-if="scoreShow">
+            <div class="scoreImgBox pL20" v-if="score && score !=''">
               <div class="scoreDot flex">
                 <span class="inBlock" v-bind:style="{marginLeft: this.scoreStyle}"></span>
               </div>
@@ -32,9 +32,14 @@
               <div class="ruleTitleL textL borderR pL20">
                 <strong>触发禁止性规则</strong>
               </div>
-              <div class="ruleTitleR textL pL20 flex pointer" v-if="prohibitoryInfo" @click="toggleList('prohibitoryInfo')">
-                <span>{{prohibitoryInfo.num}} 条</span>
-                <i class="selectDown " v-bind:class="{'selectUp': prohibitoryInfoIsShow}"></i>
+              <div class="ruleTitleR textL pL20" v-if="prohibitoryInfo" >
+                <div class="pointer pointer flex ruleTitleR" v-if='prohibitoryInfo.num > 0' @click="toggleList('prohibitoryInfo')">
+                  <span>{{prohibitoryInfo.num}} 条</span>
+                  <i class="selectDown " v-bind:class="{'selectUp': prohibitoryInfoIsShow}"></i>
+                </div>
+                <div class="" v-if="prohibitoryInfo.num == 0">
+                  <span>{{prohibitoryInfo.num}} 条</span>
+                </div>
               </div>
               <div class="ruleTitleR textL pL20" v-if="!prohibitoryInfo" >
                 <span>0 条</span>
@@ -54,9 +59,14 @@
               <div class="ruleTitleL textL borderR pL20">
                 <strong>触发限制性规则</strong>
               </div>
-              <div class="ruleTitleR textL pL20 flex pointer" v-if="restrictedInfo" @click="toggleList('restrictedInfo')">
-                <span>{{restrictedInfo.num}} 条</span>
-                <i class="selectDown " v-bind:class="{'selectUp': restrictedInfoIsShow}"></i>
+              <div class="ruleTitleR textL pL20  " v-if="restrictedInfo" >
+                <div class="pointer flex ruleTitleR" v-if="restrictedInfo.num > 0" @click="toggleList('restrictedInfo')">
+                  <span>{{restrictedInfo.num}} 条</span>
+                  <i class="selectDown " v-bind:class="{'selectUp': restrictedInfoIsShow}"></i>
+                </div>
+                <div class="" v-if="restrictedInfo.num == 0">
+                  <span>{{restrictedInfo.num}} 条</span>
+                </div>
               </div>
               <div class="ruleTitleR textL pL20" v-if="!restrictedInfo" >
                 <span>0 条</span>
@@ -75,9 +85,14 @@
               <div class="ruleTitleL textL borderR pL20">
                 <strong>触发提示性规则</strong>
               </div>
-              <div class="ruleTitleR textL pL20 flex pointer" v-if="riskWarningInfo" @click="toggleList('riskWarningInfo')">
-                <span>{{riskWarningInfo.num}} 条</span>
-                <i class="selectDown " v-bind:class="{'selectUp': riskWarningInfoIsShow}"></i>
+              <div class="ruleTitleR textL pL20 flex pointer" v-if="riskWarningInfo" >
+                <div class="pointer flex ruleTitleR" v-if="riskWarningInfo.num > 0" @click="toggleList('riskWarningInfo')">
+                  <span>{{riskWarningInfo.num}} 条</span>
+                  <i class="selectDown " v-bind:class="{'selectUp': riskWarningInfoIsShow}"></i>
+                </div>
+                <div class="" v-if="riskWarningInfo.num == 0">
+                  <span>{{riskWarningInfo.num}} 条</span>
+                </div>
               </div>
               <div class="ruleTitleR textL pL20 " v-if="!riskWarningInfo" >
                 <span>0 条</span>
@@ -106,7 +121,6 @@ export default {
   data () {
     return {
       scoreStyle: '', // 智多分 分数的坐标
-      scoreShow: true, // 分数条的显示与否
       prohibitoryInfoIsShow: false, // 控制禁止规则显示与否
       restrictedInfoIsShow: false, // 控制限制规则显示与否
       riskWarningInfoIsShow: false, // 控制提示规则显示与否
@@ -173,7 +187,6 @@ export default {
         this.emptyDetailFun(this.restrictedInfo)
         this.emptyDetailFun(this.riskWarningInfo)
       } else {
-        this.scoreShow = false // 分数条的显示与否
         this.prohibitoryInfoIsShow = true // 控制禁止规则显示与否
         this.restrictedInfoIsShow = true // 控制限制规则显示与否
         this.riskWarningInfoIsShow = true // 控制提示规则显示与否
@@ -217,13 +230,13 @@ export default {
       }
     },
     scoreStyleFun () {
-      if (!this.score || this.score === '') {
+      if (this.score && this.score != '') {
         // console.log(this)
-        this.scoreShow = false
-      } else {
         let score = parseInt(this.score)
         let scoreStyle = (score - 350) * 0.6
         this.scoreStyle = scoreStyle + 'px'
+      } else {
+        return
       }
     }
   }

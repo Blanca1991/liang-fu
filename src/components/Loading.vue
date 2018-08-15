@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style scoped>
-.loading{ width: 100vw; height: 100vh; position: fixed;top: 0}
+.loading{ width: 100vw; height: 100vh; position: fixed;top: 0;z-index: 10;}
 .loadingIn{ position: relative; width: 100vw; height: 100vh;}
 .round_box_box{
   width: 150px; height: 150px; background: rgba(0,0,0,0.6); position: absolute;

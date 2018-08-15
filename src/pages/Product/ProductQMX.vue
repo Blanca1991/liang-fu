@@ -1,8 +1,8 @@
-<!-- 产品适用 wuxiaobo-->
+<!-- 产品适用 征信报告首页 wuxiaobo-->
 <template>
   <div class="ProductWarp minWidthBox minHight" >
-    <HeaderNav />
-    <div class="myCanvasBox">
+    <HeaderNavQmx />
+    <div class="myCanvasBox mT">
       <!-- <myCanvas :dotsNum="50" :isColor="false" /> -->
       <div class="CanvasBox">
         <canvas id="Mycanvas" style="background: rgba(255,255,155,0);"></canvas>
@@ -16,10 +16,10 @@
           v-model="searchValue" placeholder="请输入完整的企业名/注册号/统一社会信用代号">
         </div>
         <div class="colorWhite font12 yangli pointer" @click="goPdf">
-          点击查看企业征信报告样例 >>
+          点击查看企业征信报告样例 > >
         </div>
         <div class="submitBox">
-          <span class="submit colorWhite font18 pointer" @click="submitFun">提交</span>
+          <span class="submit colorWhite font18 fontBold pointer" @click="submitFun">提交</span>
         </div>
       </div>
     </div>
@@ -43,10 +43,10 @@
         </div>
       </div>
     </div>
-    <div class="colorWhite TextBottom">
+    <div class="colorWhite TextBottom font16">
       <span>量富征信管理有限公司版权所有©沪ICP备18002309号-1</span>
     </div>
-    <!-- 三个月内重复调用提示 -->
+    <!-- 三个月内重复调用提示 start-->
     <div class="submitTipsBox" v-if="threeTips">
       <div class="submitTips submitPoint">
         <div class="textTip colorWhite font14">
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <!-- 三个月内重复调用提示 -->
+    <!-- 三个月内重复调用提示 end-->
     <Login v-show="isLogin"/>
     <PointOut v-show="pointShow" />
     <Loading v-show="isLoading"/>
@@ -88,9 +88,9 @@ import LogoBg from '@/components/LogoBg'
 import PointOut from '@/components/PointOut'
 import Loading from '@/components/Loading'
 import LoginNav from '@/components/LoginNav'
-import HeaderNav from '@/QmxComp/HeaderNav'
+import HeaderNavQmx from '@/ProductComp/HeaderNavQmx'
 import Login from '@/components/Login'
-import OrderOver from '@/QmxComp/OrderOver'
+import OrderOver from '@/ProductComp/OrderOver'
 import news01 from '@/images/QMX/news01.png'
 import news02 from '@/images/QMX/news02.png'
 import news03 from '@/images/QMX/news03.png'
@@ -199,7 +199,7 @@ export default {
         }
       }
       // console.log(params)
-      const res = await http.post(api.searchSubmit, params)
+      const res = await http.post(api.searchSubmit + '?time=' + Date.now(), params)
       // console.log(res)
       if (res.status == 200) {
         this.isLoading = false
@@ -447,7 +447,7 @@ export default {
     Login,
     PointOut,
     Loading,
-    HeaderNav,
+    HeaderNavQmx,
     OrderOver
   }
 }
@@ -492,4 +492,5 @@ export default {
 .bgLine{background: #f1f1f1;width: 90%;margin:50px auto 12px;height: 1px;}
 .blueBg{background: #3b77e3; border-radius: 5px; padding: 5px 15px;}
 .btnBox{justify-content: space-between;width: 40%;margin: 0 auto;}
+.mT{margin-top: 2px}
 </style>

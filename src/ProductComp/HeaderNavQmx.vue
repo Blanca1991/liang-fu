@@ -1,24 +1,14 @@
-<!-- productQMX 引用组件 消息通知和我的订单 wuxiaobo-->
+<!-- 引用组件 企业征信报告引用头部 wuxiaobo-->
 <template>
   <div class="minWidthBox">
     <div class="header flex">
-      <div class="flex">
-        <!-- <LogoBg :bgHide="bgHides" class="logoBg"/>
-        <span class="font28">企明星</span> -->
-        <div class="logo" @click="goHome">
-          <img class="img1 pointer" :src="liangfu" alt="liangfu_logo">
-        </div>
-        <div class="logo">
-          <span class="logoLeft"></span>
-          <img class="img2 pointer" :src="qimingxing" alt="qimingxing_logo" @click="goQMX">
-        </div>
-      </div>
+      <NavEntrance />
       <div class="loginNavBox flex">
         <div class="msgBox">
           <div class="font16 pointer positionR" @click="isMsgShowFun" :class="{colorBlue: isMsgShow === true }">
             <span>消息通知</span>
-            <span v-if="isUserName && !isNoMessage">
-              <span class="msgNumBox" v-if="noReadNum && noReadNum > 0 ">
+            <span v-if="userName && !isNoMessage">
+              <span class="msgNumBox fontBold" v-if="noReadNum && noReadNum > 0 ">
                 <span class="msgNumDouble" v-if="noReadNum > 9">
                   {{ noReadNum }}
                 </span>
@@ -29,11 +19,11 @@
             </span>
           </div>
           <div class="msgPointBox font14 textL" :class="{ismsgPointBox : isMsgShow === true}" v-if="isMsgShow">
-            <div class="pL20 fontColor msgTip" v-if="!isNoMessage">
+            <div class="pL20 fontColor msgTip" v-if="!isNoMessage && messageList">
               <span>您有{{ noReadNum }}条未读消息</span>
               <i class="triangle"></i>
             </div>
-            <div class="msgList" v-if="!isNoMessage">
+            <div class="msgList" v-if="!isNoMessage && messageList">
               <div class="msgListIn">
                 <div class="pL20 msgItem flex" v-for="item in messageList" >
                   <div class="">
@@ -65,7 +55,7 @@
                 </div>
               </div>
             </div>
-            <div class="" v-if="isNoMessage">
+            <div class="" v-if="isNoMessage || !messageList">
               <div class="font18 noMessage" >
               暂无消息
               </div>
@@ -84,6 +74,7 @@
 <script>
 import liangfu from '@/images/liangfu_logoQ.png'
 import qimingxing from '@/images/qimingxing_logoQ.png'
+import NavEntrance from '@/ProductComp/NavEntrance'
 import icon01 from '@/images/QMX/icon01.png'
 import icon02 from '@/images/QMX/icon02.png'
 import LogoBg from '@/components/LogoBg'
@@ -97,7 +88,6 @@ export default {
   name: 'QmxHaderNav',
   data () {
     return {
-      isUserName: localStorage.getItem('userName'),
       liangfu: liangfu,
       qimingxing: qimingxing,
       bgHides: false, // 星护甲logo 显示和隐藏
@@ -106,14 +96,14 @@ export default {
       isBule: false,
       isMsgShow: false, // 控制消息列表的显示
       orderCode: '', // 订单编号
-      isNoMessage: false, // 暂时没有消息通知
+      isNoMessage: false, // 暂时没有消息通知 false为有信息
       pageNum: '1'
     }
   },
   watch: {
     userName () {
-      if (localStorage.getItem('userName')) {
-        this.isUserName = true
+      if (!!userName) {
+        this.isNoMessage = false
         this.getMessageInfo()
       } else {
         this.pageNum = 1
@@ -211,14 +201,15 @@ export default {
           this.$store.dispatch('changeMessageList', res.data.body.result)
           // 添加未读消息数字的 方法
           this.$store.commit('CHANGEREADNUM', res.data.body.result.noReadNum)
+          this.isNoMessage = false
         } else {
-          console.log('暂时没有消息');
-          this.isNoMessage = true;
+          console.log('暂时没有消息')
+          this.isNoMessage = true
           // this.$store.dispatch('showPoint', res.data.body.errorMsg)
         }
       } else {
-        this.isNoMessage = true;
-        console.log('网络异常请稍后再试');
+        this.isNoMessage = true
+        console.log('网络异常请稍后再试')
         // this.$store.dispatch('showPoint', '网络异常请稍后再试')
       }
     },
@@ -276,7 +267,8 @@ export default {
   },
   components: {
     LogoBg,
-    LoginNav
+    LoginNav,
+    NavEntrance
   }
 }
 </script>
@@ -287,7 +279,7 @@ export default {
 .logo{display: flex;align-items:center;margin-left: 20px;}
 .logo .img1{ width: 180px;}
 .logo .img2{ width: 110px;}
-.logoLeft{display: inline-block;height: 30px;width: 2px;background: #555;margin-right:20px;}
+.logoLeft{display: inline-block;height: 30px;width: 2px;background: #555;margin-left:20px;}
 .msgNumBox{background: #C30000;color: #fff;font-size: 12px;width: 16px;height: 16px;
   position: absolute;top: 12px;right: -8px;display: inline-block;border-radius: 50%;}
 .msgNum{position: absolute;top: -20px;right: 4px;transform: scale(0.8);}

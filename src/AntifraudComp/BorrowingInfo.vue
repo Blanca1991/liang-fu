@@ -1,7 +1,7 @@
 <!-- product引用组件 多头借贷信息 联系人圈子 疑似APP注册  wuxiaobo-->
 <template>
   <div class="borrowingInfoWarp ">
-    <div class="borrowingInfo flex divJump" id="borrowingInfo">
+    <div class="borrowingInfo flex divJump " id="borrowingInfo">
       <div class="infoTitle font24">
         多头借贷信息
       </div>
@@ -26,7 +26,7 @@
           </div>
           <div class="width25 borderR ">
             <div class="pL20 borderB titleBg">
-              <span>存放金额(元)</span>
+              <span>放款金额(元)</span>
             </div>
             <div class="pL20 borderB">
               <span>{{ borrowingInfo.passedAmount || '——' }}</span>
@@ -45,16 +45,16 @@
           <div class="width14 pL20 borderR">
             <span>借款类型</span>
           </div>
-          <div class="width14 pL20 borderR">
+          <div class="width15 pL20 borderR">
             <span>借款状态</span>
           </div>
-          <div class="width14 pL20 borderR">
+          <div class="width18 pL20 borderR">
             <span>借款金额(元)</span>
           </div>
           <div class="width14 pL20 borderR">
             <span>借款日期</span>
           </div>
-          <div class="width14 pL20 borderR">
+          <div class="width12 pL20 borderR">
             <span>借款期数</span>
           </div>
           <div class="width14 pL20 borderR">
@@ -64,20 +64,20 @@
             <span>逾期金额(元)</span>
           </div>
         </div>
-        <div class="titleHeader flex borderB titleFont" v-for="item in borrowingInfo.record">
-          <div class="width14 pL20 borderR">
+        <div class="titleHeader flex borderB titleFont font14" v-for="item in borrowingInfo.record">
+          <div class="width14 pL20 borderR ">
             <span>{{ item.type || '——' }}</span>
           </div>
-          <div class="width14 pL20 borderR">
+          <div class="width15 pL20 borderR">
             <span>{{ item.borrowingStatus || '——' }}</span>
           </div>
-          <div class="width14 pL20 borderR">
+          <div class="width18 pL20 borderR">
             <span>{{ item.amount || '——' }}</span>
           </div>
           <div class="width14 pL20 borderR">
             <span>{{ item.date || '——' }}</span>
           </div>
-          <div class="width14 pL20 borderR">
+          <div class="width12 pL20 borderR">
             <span>{{ item.numberOfPeriods || '——' }}</span>
           </div>
           <div class="width14 pL20 borderR">
@@ -89,7 +89,7 @@
         </div>
       </div>
       <div class="infoBox textL font16" v-if="borrowingInfo === null || borrowingInfo == undefined || JSON.stringify(this.borrowingInfo) == '{}'">
-        <div class="infoBox textL font16 ">
+        <div class="textL font16 ">
           <div class="flex titleFont">
             <div class="width25 borderR ">
               <div class="pL20 borderB titleBg">
@@ -109,7 +109,7 @@
             </div>
             <div class="width25 borderR ">
               <div class="pL20 borderB titleBg">
-                <span>存放金额(元)</span>
+                <span>放款金额(元)</span>
               </div>
               <div class="pL20 borderB">
                 <span>——</span>
@@ -128,7 +128,7 @@
             <div class="width14 pL20 borderR">
               <span>借款类型</span>
             </div>
-            <div class="width14 pL20 borderR">
+            <div class="width15 pL20 borderR">
               <span>借款状态</span>
             </div>
             <div class="width14 pL20 borderR">
@@ -137,7 +137,7 @@
             <div class="width14 pL20 borderR">
               <span>借款日期</span>
             </div>
-            <div class="width14 pL20 borderR">
+            <div class="width12 pL20 borderR">
               <span>借款期数</span>
             </div>
             <div class="width14 pL20 borderR">
@@ -151,7 +151,7 @@
             <div class="width14 pL20 borderR">
               <span>——</span>
             </div>
-            <div class="width14 pL20 borderR">
+            <div class="width15 pL20 borderR">
               <span>——</span>
             </div>
             <div class="width14 pL20 borderR">
@@ -160,7 +160,7 @@
             <div class="width14 pL20 borderR">
               <span>——</span>
             </div>
-            <div class="width14 pL20 borderR">
+            <div class="width12 pL20 borderR">
               <span>——</span>
             </div>
             <div class="width14 pL20 borderR">
@@ -174,6 +174,48 @@
       </div>
 
     </div>
+    <div class="riskListInfo overdueInfo flex divJump " id="riskListInfo">
+      <div class="infoTitle font24">
+        风险名单信息
+      </div>
+      <div class="infoBox textL">
+        <div class="flex detailList titleBg titleFont font16 borderB" >
+          <div class="pL20 borderR width25">
+            <span>风险名单类型</span>
+          </div>
+          <div class="pL20 borderR width20">
+            <span>是否命中</span>
+          </div>
+          <div class="pL20">
+            <span>名单细项</span>
+          </div>
+        </div>
+        <div class="flex detailList borderB" v-if="!!riskListInfo && riskListInfo.length > 0" v-for="item in riskListInfo">
+          <div class="pL20 borderR width25">
+            <span>{{ item.riskListType }}</span>
+          </div>
+          <div class="pL20 borderR width20">
+            <span v-if="!item.hit">——</span>
+            <span class="textRebBg" v-if="item.hit && item.hit == '是'">是</span>
+            <span class="textGreenBg" v-if="item.hit && item.hit == '否'">否</span>
+          </div>
+          <div class="pL20">
+            <span>{{ item.listDetail || '——'}}</span>
+          </div>
+        </div>
+        <div class="flex detailList borderB" v-if="!riskListInfo || riskListInfo.length == 0" v-for="item in noRiskListInfo">
+          <div class="pL20 borderR width25">
+            <span>{{ item.riskListType }}</span>
+          </div>
+          <div class="pL20 borderR width20">
+            <span>——</span>
+          </div>
+          <div class="pL20">
+            <span>——</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="baseInfo contactsInfo flex divJump" id="contactsInfo">
       <div class="infoTitle font24">
         <div class="">
@@ -186,7 +228,7 @@
       <div class="infoBox  textL">
         <div class="" v-if="!!contactsInfo && contactsInfo != '' && JSON.stringify(contactsInfo) != '{}'">
           <div class="flex detailList titleBg borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>直接联系人数</span>
             </div>
             <div class="pL20 ">
@@ -194,7 +236,7 @@
             </div>
           </div>
           <div class="flex detailList  borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>直接联系人黑名单数</span>
             </div>
             <div class="pL20 ">
@@ -202,7 +244,7 @@
             </div>
           </div>
           <div class="flex detailList titleBg borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>间接联系人黑名单数</span>
             </div>
             <div class="pL20 ">
@@ -210,7 +252,7 @@
             </div>
           </div>
           <div class="flex detailList  borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>联系人圈子评分</span>
             </div>
             <div class="pL20 ">
@@ -220,7 +262,7 @@
         </div>
         <div class="" v-if="contactsInfo === null || contactsInfo == undefined || contactsInfo == '' || JSON.stringify(contactsInfo) == '{}'">
           <div class="flex detailList titleBg borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>直接联系人数</span>
             </div>
             <div class="pL20 ">
@@ -228,7 +270,7 @@
             </div>
           </div>
           <div class="flex detailList  borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>直接联系人黑名单数</span>
             </div>
             <div class="pL20 ">
@@ -236,7 +278,7 @@
             </div>
           </div>
           <div class="flex detailList titleBg borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>间接联系人黑名单数</span>
             </div>
             <div class="pL20 ">
@@ -244,7 +286,7 @@
             </div>
           </div>
           <div class="flex detailList  borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>联系人圈子评分</span>
             </div>
             <div class="pL20 ">
@@ -266,7 +308,7 @@
       <div class="infoBox textL">
         <div class="" v-if="!!appInfo && appInfo !== '' && JSON.stringify(appInfo) != '{}'">
           <div class="flex detailList titleBg borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>理财APP注册数</span>
             </div>
             <div class="pL20 ">
@@ -274,7 +316,7 @@
             </div>
           </div>
           <div class="flex detailList  borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>贷款APP注册数</span>
             </div>
             <div class="pL20 ">
@@ -282,7 +324,7 @@
             </div>
           </div>
           <div class="flex detailList titleBg borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>理财/贷款APP注册数</span>
             </div>
             <div class="pL20 ">
@@ -292,7 +334,7 @@
         </div>
         <div class="" v-if="appInfo === null || appInfo == undefined || appInfo === '' || JSON.stringify(appInfo) == '{}'">
           <div class="flex detailList titleBg borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>理财APP注册数</span>
             </div>
             <div class="pL20 ">
@@ -300,7 +342,7 @@
             </div>
           </div>
           <div class="flex detailList  borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>贷款APP注册数</span>
             </div>
             <div class="pL20 ">
@@ -308,7 +350,7 @@
             </div>
           </div>
           <div class="flex detailList titleBg borderB">
-            <div class="pL20 borderR width25">
+            <div class="pL20 borderR width25 font16">
               <span>理财/贷款APP注册数</span>
             </div>
             <div class="pL20 ">
@@ -328,13 +370,28 @@ export default {
   name: 'BorrowingInfo',
   data () {
     return {
-      allHide: false // false  true-- borrowingInfo == null 或者 undefined
+      allHide: false, // false  true-- borrowingInfo == null 或者 undefined
+      noRiskListInfo: [ // riskListInfo 为null时渲染
+        {
+          riskListType: '虚假申请名单',
+        },
+        {
+          riskListType: '逾期不良名单'
+        },
+        {
+          riskListType: '司法高危名单'
+        },
+        {
+          riskListType: '其他风险名单'
+        }
+      ]
     }
   },
   computed: {
     ...mapState({
       // 获取数据
       borrowingInfo: state => state.baseInfoStore.borrowingInfo,
+      riskListInfo: state => state.baseInfoStore.riskListInfo,
       contactsInfo: state => state.baseInfoStore.contactsInfo,
       appInfo: state => state.baseInfoStore.appInfo
     })

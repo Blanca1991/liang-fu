@@ -5,20 +5,18 @@
       <page :currentPage="currentPage" >
         <BigBg />
       </page>
-      <div class="" v-show="isShow">
-        <page :currentPage="currentPage" >
-          <OurServices />
-        </page>
-        <page :currentPage="currentPage">
-          <AboutUs />
-        </page>
-        <page :currentPage="currentPage">
-          <OurNews />
-        </page>
-        <page :currentPage="currentPage">
-          <OurAddress />
-        </page>
-      </div>
+      <page :currentPage="currentPage" v-show='isShow'>
+        <OurServices />
+      </page>
+      <page :currentPage="currentPage" v-show='isShow'>
+        <AboutUs />
+      </page>
+      <page :currentPage="currentPage" v-show='isShow'>
+        <OurNews />
+      </page>
+      <page :currentPage="currentPage" v-show='isShow'>
+        <OurAddress />
+      </page>
       <page-controller :pageNum="pageNum" :currentPage="currentPage" @changePage="changePage" :option="controllerOption"></page-controller>
     </div>
     <div class="comHeaderBox flex" >

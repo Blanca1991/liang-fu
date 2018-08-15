@@ -7,13 +7,17 @@ export default {
     m = m < 10 ? ('0' + m) : m
     var d = date.getDate()
     d = d < 10 ? ('0' + d) : d
-    var h = date.getHours()
-    h = h < 10 ? ('0' + h) : h
-    var minute = date.getMinutes()
-    var second = date.getSeconds()
-    minute = minute < 10 ? ('0' + minute) : minute
-    second = second < 10 ? ('0' + second) : second
-    return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second
+    return y + '-' + m + '-' + d
+  },
+  getAfterDate () {
+    var date = new Date()
+    var y = date.getFullYear() + 1
+    var m = date.getMonth() + 1
+    m = m < 10 ? ('0' + m) : m
+    var d = date.getDate()
+    d = d - 1
+    d = d < 10 ? ('0' + d) : d
+    return y + '-' + m + '-' + d
   },
   getNowDateTime () {
     // 得到当前时间
@@ -30,7 +34,18 @@ export default {
     var second = date.getSeconds()
     minute = minute < 10 ? ('0' + minute) : minute
     second = second < 10 ? ('0' + second) : second
-    return y + '' + m + '' + d + '' + h + '' + minute + '' + second
+    return y + '' + m + '' + d
+  },
+  getUrlParmas (name) {
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var indexNum = window.location.hash.indexOf('?');
+    var searchStr = window.location.hash.substring(indexNum);
+    var r = searchStr.substr(1).match(reg);
+    if (r!=null) {
+      localStorage.setItem(name, unescape(r[2]))
+    } else {
+      console.log(null);
+    }
   },
   IdentityCodeValid (code) {
     var city = {

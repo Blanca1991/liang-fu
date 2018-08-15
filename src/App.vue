@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-bind:style="{overflow: this.$store.state.appOverflow}" class="scroll-behavior">
+  <div id="app" v-bind:style="{overflow: this.$store.state.appOverflow,width: this.$store.state.appWidth}" class="scroll-behavior">
     <!-- onselectstart="return false" -->
     <router-view/>
   </div>
@@ -50,7 +50,7 @@ export default {
   overflow: auto;
   width: calc(100vw + 20px);
 }
-.scroll-behavior{scroll-behavior:smooth;}
+.scroll-behavior{scroll-behavior: smooth}
 /* #app::-webkit-scrollbar {
     display: none;
 } */
@@ -95,6 +95,7 @@ a,input,button{ outline:none; }
 .minWidthBox{min-width: 1200px;}
 ::-moz-focus-inner{border:0px;}
 .alignCenter{align-items: center;}
+.centerCenter{display: flex;justify-content: center;align-items: center;}
 /*a:link {color:#0f0;text-decoration:none;}
 a:visited {color: #FFFF00; text-decoration:none;}
 a:hover {color: #00FF00; text-decoration:underline;}

@@ -18,6 +18,7 @@
 .width22{width: 22%}
 .width25{width: 25%}
 .width33{width: 33.33%}
+.width38{width: 38%;}
 .width50{width: 50%}
 .flex1{flex: 1;}
 .positionR{position: relative;}
@@ -40,7 +41,7 @@
   height: 20px;width: 20px;
   background: url(../images/dot_bg.png) no-repeat center;background-size: 100%;
 }
-.scoreImgBox .scoreBar{ align-items: flex-start; padding-left: 5px; width: 310px;}
+.scoreImgBox .scoreBar{ align-items: flex-start; padding-left: 5px; width: 280px;}
 .scoreImgBox .scoreBar span{
   width: 310px;height: 12px;border-radius: 10px;box-sizing: border-box;
   background: url(../images/scorePng.png) no-repeat center;background-size: 100%;
@@ -89,6 +90,8 @@
 .tabIsActive {background: #cccccc}
 .trigon{ width: 10px;display: inline-block;height: 10px;background: #fefefe;
   transform: translateY(270%) translateX(-350%) rotate(45deg);}
+.overflowAuto{overflow: auto;}
+.paddingTop10{padding-top: 10px}
 /* 网贷逾期信息 */
 .overdueInfo{margin-top: 10px;}
 .overdueInfo .infoTitle{background: #ec5923;}
@@ -96,6 +99,10 @@
 /* 多头借贷信息 */
 .borrowingInfo{margin-top: 10px;}
 .borrowingInfo .infoTitle{background: #f37e53;}
+
+/* 风险名单信息 */
+.riskListInfo{margin-top: 10px;}
+.riskListInfo .infoTitle{background: #5ed3b6}
 
 /* 联系人圈子 */
 .contactsInfo{margin-top: 10px;}
@@ -111,8 +118,8 @@
 
 /* floorList */
 .floorListWarp{
-  position: absolute; right: 0;
-  /* right: -5px; */
+  position: absolute; right: -5px;z-index: 2;
+  /* right: 0; */
 }
 .floorList{
   /* position: absolute; */

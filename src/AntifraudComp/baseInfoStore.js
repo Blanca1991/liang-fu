@@ -18,7 +18,7 @@ export default new Vuex.Store({
     telecomInfo: {
       type: '电信',
       mobileNo: '18616915961',
-      mobileOwnership: '上海',
+      mobileOwnership: '上海市上海',
       inTime: '24个月',
       onLineStatus: '正常在用',
       nameMatchMobile: '否'
@@ -31,14 +31,17 @@ export default new Vuex.Store({
     // 多头借贷信息
     borrowingInfo: {
       borrowingNumber: null,
-      applyAmount: '1400000',
-      passedAmount: '1400000',
+      applyAmount: '[6000,100000)',
+      passedAmount: '[6000,100000)',
+      // applyAmount: '6000',
+      // passedAmount: '6000',
       overdueAmount: '49500',
       record: [
         {
           type: '个人信贷',
           borrowingStatus: '批贷已放款',
-          amount: '50000',
+          amount: '[3000,50000)',
+          // amount: '3000',
           date: '2015-10-01',
           numberOfPeriods: '1',
           repaymentStatus: '未知',
@@ -47,7 +50,8 @@ export default new Vuex.Store({
         {
           type: '个人信贷',
           borrowingStatus: '批贷已放款',
-          amount: '50000',
+          amount: '[3000,50000)',
+          // amount: '3000',
           date: '2015-10-01',
           numberOfPeriods: '1',
           repaymentStatus: 'M6+',
@@ -55,6 +59,29 @@ export default new Vuex.Store({
         }
       ]
     },
+    // 风险名单信息
+    riskListInfo: [
+      {
+        riskListType: '虚假申请名单',
+        hit: '是',
+        listDetail: '伪冒,资料虚假,申请信息虚假'
+      },
+      {
+        riskListType: '逾期不良名单',
+        hit: '是',
+        listDetail: '丧失还款能力,长期拖欠,不良客户'
+      },
+      {
+        riskListType: '司法高危名单',
+        hit: '是',
+        listDetail: '法院失信,法院被执行'
+      },
+      {
+        riskListType: '其他风险名单',
+        hit: '是',
+        listDetail: '同行中介,用途风险,其他,疑似欺诈或高风险'
+      }
+    ],
     // 联系人圈子信息
     contactsInfo: {
       directContacts: '940',

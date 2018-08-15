@@ -1,7 +1,7 @@
 <!-- product引用组件 基本身份信息 + 运营商信息 wuxiaobo-->
 <template>
   <div class="baseInfoWarp ">
-    <div class="baseInfo flex divJump" id="baseInfo" >
+    <div class="baseInfo flex divJump " id="baseInfo" >
       <div class="infoTitle font24">
         基本身份信息
       </div>
@@ -73,7 +73,7 @@
         </div>
       </div>
     </div>
-    <div class="baseInfo telecomInfo flex divJump" id="telecomInfo">
+    <div class="baseInfo telecomInfo flex divJump " id="telecomInfo">
       <div class="infoTitle font24">
         运营商信息
       </div>
@@ -82,7 +82,7 @@
           <div class="pL20 borderR width18">
             <span>手机号</span>
           </div>
-          <div class="pL20 width18">
+          <div class="pL20 width38">
             <span>{{ telecomInfo.mobileNo.replace(/(\d{3})\d{6}(\d{2})/, "$1******$2") }}</span>
           </div>
           <div class="pR20 borderR width20 textR">
@@ -97,7 +97,7 @@
           <div class="pL20 borderR width18 ">
             <span>号码归属地</span>
           </div>
-          <div class="pL20 width18">
+          <div class="pL20 width38">
             <span v-if="telecomInfo.mobileOwnership === '' || telecomInfo.mobileOwnership === null" class="textRebBg" >查询无结果</span>
             <span class="fontGreenColor" v-if="telecomInfo.mobileOwnership ">
               {{ telecomInfo.mobileOwnership }}
@@ -115,8 +115,9 @@
           <div class="pL20 borderR width18">
             <span>在网状态</span>
           </div>
-          <div class="pL20 width18">
-            <span v-if="telecomInfo.onLineStatus">{{ telecomInfo.onLineStatus}}</span>
+          <div class="pL20 width38">
+            <span v-if="telecomInfo.onLineStatus && telecomInfo.onLineStatus=='正常在用'">{{ telecomInfo.onLineStatus}}</span>
+            <span class="textRebBg" v-if="telecomInfo.onLineStatus && telecomInfo.onLineStatus=='停网'">{{ telecomInfo.onLineStatus}}</span>
             <span class="textRebBg" v-if="!telecomInfo.onLineStatus">查询无结果</span>
           </div>
           <div class="pR20 borderR width20 textR">
@@ -186,7 +187,7 @@ export default {
 	      	  nameArry[i] = '*'
 	      	}
       	}
-      	
+
       });
       this.baseInfo.name = nameArry.join('').replace(/,/g, '')
       // 修改背景色

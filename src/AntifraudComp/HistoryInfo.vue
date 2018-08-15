@@ -1,7 +1,7 @@
 <!-- product引用组件 历史查询信息 wuxiaobo-->
 <template>
   <div class="historyInfoWarp ">
-    <div class="historyInfo flex divJump" id="historyInfo">
+    <div class="historyInfo flex divJump " id="historyInfo">
       <div class="infoTitle font24">
         历史查询信息
       </div>

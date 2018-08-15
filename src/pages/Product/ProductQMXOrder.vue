@@ -1,7 +1,7 @@
-<!-- 产品适用 wuxiaobo-->
+<!-- 产品适用 征信报告列表页 wuxiaobo-->
 <template>
   <div class="ProductWarp minWidthBox minHight"  >
-    <HeaderNav />
+    <HeaderNavQmx />
     <div class="orderTop">
       <div class="flex alignCenter">
         <div class="oederTit"></div>
@@ -9,19 +9,19 @@
       </div>
       <div class="flex font12 lineLength34px inputBox" >
         <div class="">
-          <span class="textBlank">
+          <span class="textBlank font14">
             编<span class="Blank"></span>号
           </span>
           <input type="text" name="" v-model="searchCode">
         </div>
-        <div class="">
+        <div class="font14">
           <span >被调企业</span>
           <input type="text" name="" v-model="searchCompany">
         </div>
-        <div class="">
+        <div class="font14">
           <span class="queryBtn pointer" @click="getOrder">查询</span>
         </div>
-        <div class="">
+        <div class="font14">
           <span class="resetBtn pointer" @click="resetFun">重置</span>
         </div>
       </div>
@@ -77,7 +77,7 @@
                   <span v-if="item.status == '2'">失败</span>
                 </div>
                 <div class="titleItem downLoad width12 " >
-                  <span v-if="item.status == '1' || item.status == '3'" @click="previewPdf(item.orderCode)" class="pr">预览</span>
+                  <span class="pointer" v-if="item.status == '1' || item.status == '3'" @click="previewPdf(item.orderCode)">预览</span>
                   <span class="pointer" v-if="item.status == '1' || item.status == '3'" @click="downLoadPdf(item.orderCode)">下载</span>
                   <span></span>
                 </div>
@@ -101,7 +101,7 @@
     <div class="" v-if="isOrderEmpty">
       <OrderEmpty />
     </div>
-    <div class="colorWhite TextBottom">
+    <div class="colorWhite TextBottom font16">
       量富征信管理有限公司版权所有©沪ICP备18002309号-1
     </div>
     <Login v-show="isLogin"/>
@@ -118,8 +118,8 @@ import {mapState} from 'vuex'
 import PointOut from '@/components/PointOut'
 import Loading from '@/components/Loading'
 import Login from '@/components/Login'
-import HeaderNav from '@/QmxComp/HeaderNav'
-import OrderEmpty from '@/QmxComp/OrderEmpty'
+import HeaderNavQmx from '@/ProductComp/HeaderNavQmx'
+import OrderEmpty from '@/ProductComp/OrderEmpty'
 import { baseUrl } from '@/utils/env.js'
 
 export default {
@@ -190,6 +190,7 @@ export default {
         if (this.searchCompany == '' && this.searchCode == '') {
           this.$store.dispatch('showPoint', '请输入编号或被调企业')
         } else {
+          this.pageNumber = 0
           this.fetchOrderList()
         }
       } else {
@@ -248,7 +249,9 @@ export default {
         // this.$router.push({name: 'QmxPdf'})
         // this.$store.commit('CHANGEPDFURL', res.data.result.url)
         if (res.data.result && res.data.result.url) {
-          window.open(res.data.result.url)
+          var tempwindow=window.open()
+          tempwindow.location=res.data.result.url
+          // window.open(res.data.result.url)
         } else {
           this.$store.dispatch('showPoint', '网络异常请稍后再试')
         }
@@ -289,7 +292,7 @@ export default {
     Login,
     PointOut,
     Loading,
-    HeaderNav,
+    HeaderNavQmx,
     OrderEmpty
   }
 }
@@ -304,14 +307,14 @@ export default {
 .oederTit{display: inline-block;width: 4px;height: 17px;margin-right: 5px;background: #3b77e3}
 .TextBottom{background: #2d3237;height: 58;line-height: 58px; margin-top: 80px;
   position: absolute;bottom: 0;width: 100%;min-width: 1200px;}
-.orderTop input{width: 280px;height: 28px;margin: 0 20px; text-indent: 12px;}
+.orderTop input{width: 290px;height: 28px;margin: 0 20px 0 10px; text-indent: 12px;font-size: 12px;}
 .textBlank{}
 .inputBox{margin-top: 20px; }
 .Blank{padding:0 10px;}
 .lineLength34px{height: 34px; line-height: 34px;}
-.queryBtn{background: #3b77e3;color: #fff;padding:10px 14px 10px 20px;
+.queryBtn{background: #3b77e3;color: #fff;padding:6px 14px 6px 20px;
   border-radius: 5px;letter-spacing: 6px;border: #3b77e3 solid 1px; margin-right: 20px;}
-.resetBtn{color: #3b77e3;background: #fff;padding:10px 14px 10px 20px;
+.resetBtn{color: #3b77e3;background: #fff;padding:6px 14px 6px 20px;
   border-radius: 5px;letter-spacing: 6px;border: #3b77e3 solid 1px; }
 .orderListBox{margin:20px auto;border:#eee solid 1px; border-radius: 5px 5px 0 0 ;border-bottom: none;}
 .orderListTitle{background: #3b77e3;border-radius: 5px 5px 0 0 ;}

@@ -24,6 +24,7 @@ import publicIcon from '../images/floorList/publicIcon_bg.png'
 import overMonyIcon from '../images/floorList/overMonyIcon_bg.png'
 import phoneBookIcon from '../images/floorList/phoneBookIcon_bg.png'
 import borrowMoneyIcon from '../images/floorList/borrowMoneyIcon_bg.png'
+import riskListIcon from '../images/floorList/riskListIcon_bg.png'
 import appIcon from '../images/floorList/appIcon_bg.png'
 import historyIcon from '../images/floorList/historyIcon_bg.png'
 import backTopIcon from '../images/floorList/backTopIcon_bg.png'
@@ -65,24 +66,29 @@ export default {
           type: '06'
         },
         {
+          title: '风险名单信息',
+          bgUrl: riskListIcon,
+          type: '07'
+        },
+        {
           title: '联系人圈子',
           bgUrl: phoneBookIcon,
-          type: '07'
+          type: '08'
         },
         {
           title: '疑似APP注册',
           bgUrl: appIcon,
-          type: '08'
+          type: '09'
         },
         {
           title: '历史查询信息',
           bgUrl: historyIcon,
-          type: '09'
+          type: '010'
         },
         {
           title: '点击回到顶部',
           bgUrl: backTopIcon,
-          type: '10'
+          type: '11'
         }
       ],
       imgType: ''
@@ -118,7 +124,7 @@ export default {
     gotItem (index) {
       console.log(index);
       // 事件 ———— 获取每一个楼提层的 位置对应的模块的位置
-      if (index !== 9) {
+      if (index !== 10) {
         let id = '#' + this.modelListTop[index].modelName
         document.querySelector(id).scrollIntoView(true);
       } else {
@@ -150,5 +156,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  @import '../css/productComp'
+@import '../css/productComp'
 </style>

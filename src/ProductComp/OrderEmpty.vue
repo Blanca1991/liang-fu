@@ -1,4 +1,4 @@
-<!-- productQMX引用组件 订单提交成功 wuxiaobo-->
+<!-- 引用组件 征信报告引用 订单提交成功 wuxiaobo-->
 <template>
   <div class="orderEmpty">
     <div class=" ">
@@ -8,7 +8,7 @@
       <div class="noOrder">
         暂无订单
       </div>
-      <div class="">
+      <div class="font18">
         <span class="goOrder pointer" @click="goToQMX">
           立即下单
         </span>

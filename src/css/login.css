@@ -3,6 +3,7 @@
   height: 100vh;
   position: absolute;
   top: 0;
+  min-height: 900px;
 }
 .Login{
   top: 50%;
@@ -46,6 +47,7 @@
 }
 .passWord{
   background: url(../images/loginLock_bg.png) no-repeat right center;
+  /* letter-spacing: -5px; */
 }
 .colorRed{
   color: #e75455;
@@ -59,4 +61,8 @@
   padding: 10px 25px;
   color: #fff;
   border-radius: 5px;
+}
+input:-webkit-autofill {
+-webkit-box-shadow: 0 0 0px 1000px white inset;
+background: url(../images/loginName_bg.png) no-repeat right center;
 }

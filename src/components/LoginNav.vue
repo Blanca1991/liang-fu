@@ -1,7 +1,7 @@
 <!-- 登录小窗 -->
 <template>
   <div class="LoginNavWarp flex">
-    <div class="LoginNav font14">
+    <div class="LoginNav font14 ">
       <span class="pointer inBlock loginSpan" v-show="isLoginNav" @click="loginFun" >请登录</span>
       <span v-show="!isLoginNav">欢迎您</span>
       <span v-show="!isLoginNav">{{ userName }}</span>
@@ -47,7 +47,13 @@ export default {
           localStorage.removeItem('LFZXtoken')
           localStorage.removeItem('LFZXLOGINTIME')
           localStorage.removeItem('userName')
+          this.$store.commit('ClEANUSERNAME')
         }
+      } else {
+        localStorage.removeItem('LFZXtoken')
+        localStorage.removeItem('LFZXLOGINTIME')
+        localStorage.removeItem('userName')
+        localStorage.removeItem('emailEntery')
       }
     },
     getUserName () {

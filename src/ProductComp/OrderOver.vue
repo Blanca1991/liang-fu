@@ -1,4 +1,4 @@
-<!-- productQMX引用组件 订单提交成功 wuxiaobo-->
+<!-- 引用组件 征信报告引用 订单提交成功 wuxiaobo-->
 <template>
   <div class="orderOver">
     <div class="submitPointWarp minWidthBox">

@@ -1,13 +1,13 @@
 <!-- product引用组件 公检法 逾期信息 wuxiaobo-->
 <template>
   <div class="publicSecurityInfoWarp ">
-    <div class="publicSecurityInfo flex divJump" id="publicSecurityInfo">
+    <div class="publicSecurityInfo flex divJump " id="publicSecurityInfo">
       <div class="infoTitle font24">
         公检法信息
       </div>
       <div class="infoBox textL font16">
         <div class="pL20 borderB titleBg titleFont">
-          <strong>不良行为分</strong>
+          <strong>不良行为信息</strong>
         </div>
         <div class="" >
           <div class=" borderB titleFont flex " v-if="!!badbehaviorInfo && badbehaviorInfo !== ''">
@@ -104,7 +104,7 @@
         </div>
       </div>
     </div>
-    <div class="baseInfo overdueInfo flex divJump" id="overdueInfo">
+    <div class="baseInfo overdueInfo flex divJump " id="overdueInfo">
       <div class="infoTitle font24">
         网贷逾期信息
       </div>
@@ -147,7 +147,7 @@
 
 <script>
 import {mapState} from 'vuex'
-import ToogleList from '@/productComp/ToogleList'
+import ToogleList from '@/AntifraudComp/ToogleList'
 
 export default {
   name: 'PublicSecurityInfo',
@@ -248,6 +248,7 @@ export default {
       // this.styeChange()
       // this.styeBgChange()
       // console.log('state', this.$store.state)
+      this.styeBgChange()
       this.blankInfoFun()
       this.listDate = this.cpws
       this.timeGetAllModelTop()
@@ -447,16 +448,22 @@ export default {
     },
     styeBgChange () {
       // 逾期信息 背景颜色 控制
-      if (this.overdueInfo.isOverdue90.indexOf('是') > -1) {
-        this.isOverdue90Red = true
-      } else if (this.overdueInfo.isOverdue90.indexOf('否') > -1) {
-        this.isOverdue90Red = false
-      }
-      //    //
-      if (this.overdueInfo.isOverdue180.indexOf('是') > -1) {
-        this.isOverdue180Red = true
-      } else if (this.overdueInfo.isOverdue180.indexOf('否') > -1) {
-        this.isOverdue180Red = false
+      if (!!this.overdueInfo && this.overdueInfo != '') {
+        if (this.overdueInfo.isOverdue90) {
+          if (this.overdueInfo.isOverdue90.indexOf('是') > -1) {
+            this.isOverdue90Red = true
+          } else if (this.overdueInfo.isOverdue90.indexOf('否') > -1) {
+            this.isOverdue90Red = false
+          }
+        }
+        //    //
+        if (this.overdueInfo.isOverdue180) {
+          if (this.overdueInfo.isOverdue180.indexOf('是') > -1) {
+            this.isOverdue180Red = true
+          } else if (this.overdueInfo.isOverdue180.indexOf('否') > -1) {
+            this.isOverdue180Red = false
+          }
+        }
       }
     }
   },

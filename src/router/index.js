@@ -9,10 +9,13 @@ import Jobs from '@/pages/Jobs'
 import Cooperate from '@/pages/Cooperate'
 import AntiFraud from '@/pages/AntiFraud'
 import UserInfo from '@/pages/UserInfo'
-import ProductQMX from '@/pages/ProductQMX'
-import ProductQMXOrder from '@/pages/ProductQMXOrder'
-import TryJSX from '@/pages/TryJSX'
-import ProductQMXpdf from '@/QmxComp/QmxPdf'
+import ProductQMX from '@/pages/Product/ProductQMX'
+import ProductQMXOrder from '@/pages/Product/ProductQMXOrder'
+import ProductQMXpdf from '@/ProductComp/QmxPdf'
+import CompanyMonitor from '@/pages/Product/CompanyMonitor'
+import CompanyAttention from '@/pages/Product/CompanyAttention'
+import CompanyHelp from '@/pages/Product/CompanyHelp'
+import CompanyMsgList from '@/pages/Product/CompanyMsgList'
 
 import Homefull from '@/pages/HomeFullpage'
 
@@ -87,9 +90,24 @@ export default new Router({
       component: ProductQMXpdf
     },
     {
-      path: '/TryJSX.html',
-      name: 'TryJSX',
-      component: TryJSX
+      path: '/CompanyMonitor.html',
+      name: 'CompanyMonitor',
+      component: CompanyMonitor
+    },
+    {
+      path: '/CompanyAttention.html',
+      name: 'CompanyAttention',
+      component: CompanyAttention
+    },
+    {
+      path: '/CompanyHelp.html',
+      name: 'CompanyHelp',
+      component: CompanyHelp
+    },
+    {
+      path: '/CompanyMsgList.html',
+      name: 'CompanyMsgList',
+      component: CompanyMsgList
     }
   ]
 })

@@ -1,11 +1,11 @@
 <!-- 头部导航栏 -->
 <template>
   <div class="comHeaderWarp " >
-    <div class="comHeader minWidth8" >
+    <div class="comHeader " >
       <LogoBg :bgHide="bgHides" v-if="isLogoShow"/>
       <div class="headerTitle pointer" v-for="(item, index) in items" :key="item.id" @click="gotoInfo(item, index)"
       :class="{ 'navActive': isActive==item.pagesName }" >
-        <span>{{ item.message }}</span>
+        <span class="font16">{{ item.message }}</span>
         <div class="productList" v-if="item.pagesName === 'Product'">
           <div class="productItem pointer font14" @click="itemGo = 1">
             企明星
@@ -70,7 +70,7 @@ export default {
       ],
       isActive: this.isActiveComp,
       bgHides: false,
-      itemGo: 0 // 跳转企明星还是星护甲flag
+      itemGo: 1 // 跳转企明星还是星护甲flag
     }
   },
   mounted () {
@@ -86,6 +86,8 @@ export default {
         // 新开一个窗口展示页面
         if (localStorage.getItem('LFZXtoken') === null || localStorage.getItem('LFZXtoken') === '') {
           this.$store.state.isLoginBox = true
+          this.$store.state.itemGo = this.itemGo
+          console.log(this.$store.state.itemGo)
           // this.$store.dispatch('showPoint', '请先登录')
           this.$store.commit('SHOWLOGIN')
         } else {
@@ -121,7 +123,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.minWidth8{min-width: 850px;}
 .comHeader{ display: flex; justify-content: space-around;align-items: center;background: #2a2d2c;
   color: #fff;height: 80px;}
 .headerTitle{position: relative;height: 80px; line-height: 80px}
@@ -130,6 +131,6 @@ export default {
 .comHeader .headerTitle:hover .productList{display: block; color: #fff;}
 .navActive{color: rgb(193, 83, 80);}
 .productList{position: absolute; background: rgb(193, 83, 80); padding:0px 15px;display: none;
-  top: 60px ;transition: all 1s;z-index: 22;}
-.productItem{margin: 5px 0;width: 50px;height: 20px;line-height: 20px;}
+  top: 53px ;transition: all 1s;z-index: 22;}
+.productItem{margin: 6px 0;width: 50px;height: 20px;line-height: 20px;}
 </style>

@@ -1,4 +1,4 @@
-// 存放 基本身份信息 运营商信息 公检法  网贷逾期信息 多头借贷信息 store
+// 存放 企明星 store
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
@@ -34,7 +34,7 @@ export default new Vuex.Store({
     totalResult: null, // 订单信息的总条数
     pageSizeNum: 10 , // 分页中 每条展示设置默认为10
     totalResultMsg: null, // 消息通知分页中 每条展示设置默认为10
-    pageSizeNumMsg: 10 // 消息通知分页中 每条展示设置默认为10
+    pageSizeNumMsg: 10, // 消息通知分页中 每条展示设置默认为10
   },
   mutations: {
   },

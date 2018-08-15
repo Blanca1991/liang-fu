@@ -23,7 +23,7 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    app: ["babel-polyfill","./src/main.js"]
   },
   output: {
     path: config.build.assetsRoot,
@@ -37,14 +37,20 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'jquery': 'jquery'
+      'jquery': 'jquery',
+      'assets': path.resolve(__dirname, '../src/assets'),
+      'moment':path.resolve(__dirname, '../src/assets/js/moment.min.js'),
+      'daterangepicker': path.resolve(__dirname, '../src/assets/js/daterangepicker.js')
     }
   },
   plugins: [
+  // 需要安装Jq 的时候这样使用
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
-      "window.jQuery": "jquery"
+      "window.jQuery": "jquery",
+      'moment': 'moment',
+      'daterangepicker': 'daterangepicker'
     })
   ],
   module: {

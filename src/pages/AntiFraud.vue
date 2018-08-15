@@ -1,6 +1,6 @@
-<!-- 产品适用 wuxiaobo-->
+<!-- 产品适用 星护甲 wuxiaobo-->
 <template>
-  <div class="ProductWarp minWidthBox" onselectstart="return false" >
+  <div class="ProductWarp minWidthBox font14" onselectstart="return false">
     <div class="ProductBox" id='ProductBox' >
       <div class="headerBox">
         <div class="header minWidthBox">
@@ -10,35 +10,32 @@
           maxlength="18" v-model="searchId">
           <input type="text" class="userPhone" placeholder="请输入手机号"
           maxlength="11" v-model="searchPhone">
-          <span class="fontFFF searchBtn pointer font14" @click="searchFun">搜索</span>
-          <span class="fontFFF downBtn font14 " :class="{notAllowed: isDownLoad === false,isDown: isDownLoad === true}" @click="downLoadFun">下载</span>
-          <span @click="getPdf()" class="fontFFF downBtn pointer font14">导出</span>
+          <span class="fontFFF searchBtn pointer font14 fontBold" @click="searchFun">搜索</span>
+          <span class="fontFFF downBtn font14 fontBold" :class="{notAllowed: isDownLoad === false,isDown: isDownLoad === true}" @click="downLoadFun">下载</span>
           <LoginNav class="fontFFF" />
         </div>
       </div>
       <div class="warninBox">
         <div class="warning font16" v-show="this.$store.state.isWarning" >注意！！！此处为示例数据，查询可获取相关数据</div>
       </div>
-      <div class="" id="pdfDom">
-        <div class="antiFraud" id="antiFraud" >
-          <!-- 总体情况评估 -->
-          <SummaryInfo />
-          <!-- 基本身份信息 运营商信息 -->
-          <BaseInfo />
-          <!-- 公检法 逾期信息 -->
-          <PublicSecurityInfo />
-          <!-- 多头借贷信息 联系人圈子 疑似APP注册  -->
-          <BorrowingInfo />
-          <!-- 历史查询信息 -->
-          <HistoryInfo />
-          <!-- 锚点楼层 -->
-          <FloorList />
-          <div class="footDiv">
-            <div class="footDivText">
-              报告结束
-            </div>
-            <div class="footDivRule"></div>
+      <div class="antiFraud" id="antiFraud">
+        <!-- 总体情况评估 -->
+        <SummaryInfo />
+        <!-- 基本身份信息 运营商信息 -->
+        <BaseInfo />
+        <!-- 公检法 逾期信息 -->
+        <PublicSecurityInfo />
+        <!-- 多头借贷信息  -->
+        <BorrowingInfo />
+        <!-- 历史查询信息 -->
+        <HistoryInfo />
+        <!-- 锚点楼层 -->
+        <FloorList />
+        <div class="footDiv" id="bottomLine">
+          <div class="footDivText">
+            报告结束
           </div>
+          <div class="footDivRule"></div>
         </div>
       </div>
     </div>
@@ -58,12 +55,12 @@ import Loading from '@/components/Loading'
 import LogoBg from '@/components/LogoBg'
 import LoginNav from '@/components/LoginNav'
 import Login from '@/components/Login'
-import SummaryInfo from '@/productComp/SummaryInfo'
-import BaseInfo from '@/productComp/BaseInfo'
-import PublicSecurityInfo from '@/productComp/PublicSecurityInfo'
-import BorrowingInfo from '@/productComp/BorrowingInfo'
-import HistoryInfo from '@/productComp/HistoryInfo'
-import FloorList from '@/productComp/FloorList'
+import SummaryInfo from '@/AntifraudComp/SummaryInfo'
+import BaseInfo from '@/AntifraudComp/BaseInfo'
+import PublicSecurityInfo from '@/AntifraudComp/PublicSecurityInfo'
+import BorrowingInfo from '@/AntifraudComp/BorrowingInfo'
+import HistoryInfo from '@/AntifraudComp/HistoryInfo'
+import FloorList from '@/AntifraudComp/FloorList'
 import { baseUrl } from '@/utils/env.js'
 
 export default {
@@ -80,8 +77,7 @@ export default {
       isLoading: false, // 加载动画 显示和隐藏
       isDownLoad: false,
       userCodeId: '', // 用户订单 -- 搜索接口返回  下载pdf使用
-      TimeoutFun: '',
-      htmlTitle: '星护甲'
+      TimeoutFun: ''
     }
   },
   computed: {
@@ -149,7 +145,7 @@ export default {
       params = {
         userName: localStorage.getItem('userName')
       }
-      const res = await http.post(api.checkToken, params)
+      const res = await http.post(api.checkToken + '?time=' + Date.now(), params)
       console.log('checkToken', res)
       if (res.data.errorCode === '200') {
         console.log('token未失效')
@@ -179,7 +175,7 @@ export default {
         }
       }
       // console.log(params)
-      const res = await http.post(api.antifraud, params)
+      const res = await http.post(api.antifraud + '?time=' + Date.now(), params)
       // console.log('fetchSearch', res)
       if (res.status === 200) {
         // console.log(res.data)
@@ -300,11 +296,8 @@ export default {
       if (this.isDownLoad === false) {
         return
       }
-      // sit 的链接
-      // let commonApiUrl = 'http://10.166.10.111:20010/' // sit 登录 搜索 下载 接口使用
-      // let commonApiUrl = 'http://10.166.8.56:11080' // uat 登录 搜索 下载 接口使用
-      let url = baseUrl + '/credit-service/pdfbyOrderPersonal/file/' + this.userCodeId + '&' + localStorage.getItem('userName')
-      // console.log(url)
+      let url = baseUrl + '/credit-service/pdfbyOrderPersonal/file' + '?orderCode=' + this.userCodeId + '&userName=' + localStorage.getItem('userName')
+      console.log(url);
       this.downLoad(url)
     },
     downLoad (strUrl) {

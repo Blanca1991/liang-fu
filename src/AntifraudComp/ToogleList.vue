@@ -101,8 +101,8 @@
             <div class="width18 borderR titleBg pL20 borderB titleFont ">
               <span>生效法律文书确定的义务</span>
             </div>
-            <div class="flex1 positionR pL20 positionR borderB" >
-              <span class="textAlignC">{{ item.yiwu || "——"}}</span>
+            <div class="flex1 positionR pL20 positionR borderB overflowAuto" >
+              <div class="paddingTop10">{{ item.yiwu || "——"}}</div>
             </div>
           </div>
         </div>

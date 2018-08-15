@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import summaryInfoStore from '../productComp/summaryInfoStore'
-import baseInfoStore from '../productComp/baseInfoStore'
-import publicStore from '../productComp/publicStore'
-import QMXStore from '../QmxComp/QMXStore'
+import summaryInfoStore from '../AntifraudComp/summaryInfoStore'
+import baseInfoStore from '../AntifraudComp/baseInfoStore'
+import publicStore from '../AntifraudComp/publicStore'
+import QMXStore from '../ProductComp/QMXStore'
+import MonitorStore from '../ProductComp/MonitorStore'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     appOverflow: 'auto',
+    itemGo: null , // 跳转的产品页  1：企明星  2：星护甲
     isLogin: false, // 登录窗口显示与否 true显示 false 隐藏
     isMask: false, // 灰色遮罩层 true显示 false 隐藏
     isLoginNav: true, // NAV 中的登录点击按钮显示与否
@@ -33,36 +35,44 @@ export default new Vuex.Store({
       },
       {
         modelName: 'baseInfo',
-        topNum: 0 // 总体评分模块的top值
+        topNum: 0 // 基本身份信息
       },
       {
         modelName: 'telecomInfo',
-        topNum: 0 // 总体评分模块的top值
+        topNum: 0 // 运营商信息
       },
       {
         modelName: 'publicSecurityInfo',
-        topNum: 0 // 总体评分模块的top值
+        topNum: 0 // 公检法信息
       },
       {
         modelName: 'overdueInfo',
-        topNum: 0 // 总体评分模块的top值
+        topNum: 0 // 网贷逾期信息
       },
       {
         modelName: 'borrowingInfo',
-        topNum: 0 // 总体评分模块的top值
+        topNum: 0 // 多头借贷信息
+      },
+      {
+        modelName: 'riskListInfo',
+        topNum: 0 // 风险名单信息
       },
       {
         modelName: 'contactsInfo',
-        topNum: 0 // 总体评分模块的top值
+        topNum: 0 // 联系人圈子
       },
       {
         modelName: 'appInfo',
-        topNum: 0 // 总体评分模块的top值
+        topNum: 0 // 疑似App
       },
       {
         modelName: 'historyInfo',
+        topNum: 0 // 历史信息
+      },
+      {
+        modelName: 'bottomLine',
         topNum: 0 // 总体评分模块的top值
-      }// 历史信息模块 的top值
+      }//
     ],
     isTipsShow: false, // 控制TipsShow显示与否
     pdfUrl: '../staticV2/pdf/征信报告样例.pdf'
@@ -73,20 +83,20 @@ export default new Vuex.Store({
       this.state.isLogin = true
       this.state.isMask = true
       this.state.isLoginBox = true
-      this.state.appOverflow = 'hidden'
+      // this.state.appOverflow = 'hidden'
     },
     HIDELOGIN (state) {
       // 隐藏登录
       this.state.isLogin = false
       this.state.isMask = false
       this.state.isLoginBox = false
-      this.state.appOverflow = 'auto'
+      // this.state.appOverflow = 'auto'
     },
     SHOWPOINT (state, pointText) {
       // 显示提示框
       this.state.pointShow = true
       this.state.pointText = pointText
-      this.state.appOverflow = 'hidden'
+      // this.state.appOverflow = 'hidden'
     },
     HIDEOPTION (state) {
       // 隐藏提示框
@@ -96,7 +106,7 @@ export default new Vuex.Store({
       } else {
         this.state.isLoginBox = false
       }
-      this.state.appOverflow = 'auto'
+      // this.state.appOverflow = 'auto'
     },
     GETUSERNAME (state, data) {
       // 获取登录用户名
@@ -119,13 +129,17 @@ export default new Vuex.Store({
       this.state.baseInfoStore.overdueInfo = data.overdueInfo
       // 多头借贷信息
       this.state.baseInfoStore.borrowingInfo = data.borrowingInfo
-
+      // 风险名单信息
+      this.state.baseInfoStore.riskListInfo = data.riskListInfo
+      // 联系人圈子信息
       this.state.baseInfoStore.contactsInfo = data.contactsInfo
+      // app注册信息
       this.state.baseInfoStore.appInfo = data.appInfo
+      // 历史记录信息
       this.state.baseInfoStore.historyInfo = data.historyInfo
     },
     GETFLOORLISTTOP (state, data) {
-      // 楼梯层滚动跟随
+      // 星护甲 右侧楼梯层滚动跟随 右侧楼梯层始终出现在窗口
       // console.log(data)
       this.state.appScrollTop = data
       if (data < 160 && this.state.isWarning === true) {
@@ -135,8 +149,6 @@ export default new Vuex.Store({
       } else if (data > 160 && this.state.isWarning === true) {
         this.state.floorListTop = (data - 140).toString() + 'px'
       }
-      // console.log(this.state.appScrollTop)
-      // console.log(this.state.floorListTop)
     },
     CHANGEAPPSCROLLTOP (state, data) {
       // 修改App的scrollTop值
@@ -161,7 +173,7 @@ export default new Vuex.Store({
       this.state.QMXStore.totalResultMsg =  data.totalResult
     },
     CHANGEREADNUM (state, data) {
-      // 企明星 未读消息数组修改
+      // 企明星 未读消息数修改
       this.state.QMXStore.noReadNum = data
     },
     CHANGEORDERLIST (state, data) {
@@ -178,6 +190,55 @@ export default new Vuex.Store({
     CHANGEPDFURL (state, data) {
       // 企明星 pdf url路径
       this.state.pdfUrl = data
+    },
+    SHOWADDMON (state) {
+      // 企业预警监测 添加监控企业 显示
+      this.state.MonitorStore.isShowAddMon = true
+    },
+    CLOSEADDMON (state) {
+      // 企业预警监测 添加监控企业 关闭
+      this.state.MonitorStore.isShowAddMon = false
+      this.state.MonitorStore.addMonCompanyList = []
+    },
+    SHOWDELMON (state) {
+      // 企业预警监测 删除监控企业 显示
+      this.state.MonitorStore.isShowDelMon = true
+    },
+    CLOSEDELMON (state) {
+      // 企业预警监测 删除监控企业 显示
+      this.state.MonitorStore.isShowDelMon = false
+    },
+    GETMONITORLIST (state, data) {
+      // 企业预警监测 预警中心->获取Monitorlist和相关信息
+      this.state.MonitorStore.monitorList = data.body
+      this.state.MonitorStore.totalResultMon = data.total
+    },
+    GETATTENTIONLIST (state, data) {
+      // 企业预警监测 关注企业->获取Monitorlist和相关信息
+      this.state.MonitorStore.attentionList = data.body
+      this.state.MonitorStore.totalResultAtt = data.total
+      // this.state.MonitorStore.routerCompanyName = ''
+    },
+    GETMESSAGELIST (state, data) {
+      // 企业预警监测 消息列表->获取 messageList和相关信息
+      this.state.MonitorStore.monMsgList = data.body
+      this.state.MonitorStore.totalResultMsg = data.total
+      this.state.MonitorStore.noReadCount = data.noReadCount
+    },
+    GETSEARCHCOMPANY (state, data) {
+      // 企业预警监测 关注企业-> 新增 -> 搜索企业 addMonCompanyList 和相关信息
+      this.state.MonitorStore.addMonCompanyList = data.body
+    },
+    CHANGECOMPANYINFO (state, data) {
+      // 企业预警监测 关注企业-> 添加监控 显示的企业信息
+      let info = this.state.MonitorStore.companyInfo
+      for (var key in info) {
+        info[key] = data[key]
+      }
+    },
+    ROUTERCOMPANYNAME (state, data) {
+      // 企业预警监测 从我的消息列表跳转 — >关注企业页面 将companyName 带到关注企业页面
+      this.state.MonitorStore.routerCompanyName = data
     }
   },
   actions: {
@@ -221,12 +282,33 @@ export default new Vuex.Store({
     changeOrderList ({commit}, data) {
       // 企明星订单信息更新
       commit('CHANGEORDERLIST', data)
+    },
+    getMonitorList ({commit}, data) {
+      // 企业预警监测 预警中心->获取Monitorlist和相关信息
+      commit('GETMONITORLIST', data)
+    },
+    getAttentionList ({commit}, data) {
+      // 企业预警监测 关注企业->获取AttentionList和相关信息
+      commit('GETATTENTIONLIST', data)
+    },
+    getMessageList ({commit}, data) {
+      // 企业预警监测 消息列表->获取AttentionList和相关信息
+      commit('GETMESSAGELIST', data)
+    },
+    getSearchCompany ({commit}, data) {
+      // 企业预警监测 关注企业-> 新增 -> 搜索企业 addMonCompanyList 和相关信息
+      commit('GETSEARCHCOMPANY', data)
+    },
+    changeCompanyInfo ({commit}, data) {
+      // 企业预警监测 关注企业-> 添加监控 显示的企业信息
+      commit('CHANGECOMPANYINFO', data)
     }
   },
   modules: {
     summaryInfoStore,
     baseInfoStore,
     publicStore,
-    QMXStore
+    QMXStore,
+    MonitorStore
   }
 })

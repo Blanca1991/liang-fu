@@ -4,7 +4,8 @@
 // const sitUrl = 'http://10.166.0.57:8080'
 // let baseUrl = sitUrl
 
-const sitUrl = 'http://10.166.10.111:20010'
+// const sitUrl = 'http://10.166.15.150:20010' // dev
+const sitUrl = 'http://10.166.10.111:20010'  // SIT
 let baseUrl = sitUrl
 
 // const uatUrl = 'http://10.166.8.56:11080'
